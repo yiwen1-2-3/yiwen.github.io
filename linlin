@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>揭秘保險「節稅」黑幕</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #0a192f; /* 深海軍藍 */
+            color: #ccd6f6; /* 淡藍灰色 */
+        }
+        .accent-color {
+            color: #64ffda; /* 青色 */
+        }
+        .secondary-accent-color {
+            color: #ffc107; /* 琥珀色 */
+        }
+        .card {
+            background-color: #112240; /* 較淺的海軍藍 */
+            border: 1px solid #1d3b61;
+            transition: all 0.3s ease;
+        }
+        .sticky-nav {
+            background-color: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-option:hover {
+            background-color: #1d3b61;
+        }
+        .quiz-option.selected {
+            background-color: #64ffda;
+            color: #0a192f;
+            border-color: #64ffda;
+        }
+        .tab.active {
+            border-bottom-color: #64ffda;
+            color: #64ffda;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #112240;
+            color: #ccd6f6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #64ffda;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            z-index: 10;
+        }
+        [data-tooltip] {
+            position: relative;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 固定導航欄 (預設隱藏) -->
+    <nav id="sticky-nav" class="fixed top-0 left-0 right-0 z-50 py-3 transition-transform duration-300 -translate-y-full sticky-nav">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex justify-center md:justify-between items-center flex-wrap">
+                <span class="text-lg font-bold text-white hidden md:block">保險節稅黑幕</span>
+                <div class="flex flex-wrap justify-center gap-x-3 gap-y-1 text-sm md:gap-x-4">
+                    <a href="#section-2" class="hover:text-amber-300 transition">致命陷阱</a>
+                    <a href="#section-3" class="hover:text-amber-300 transition">稅局天眼</a>
+                    <a href="#section-4" class="hover:text-amber-300 transition">血淚控訴</a>
+                    <a href="#section-5" class="hover:text-amber-300 transition">自我檢測</a>
+                    <a href="#section-6" class="hover:text-amber-300 transition">各方覺醒</a>
+                    <a href="#section-7" class="hover:text-amber-300 transition">法律護身符</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-4 py-12 md:py-20">
+
+        <!-- 1. 英雄區塊 -->
+        <header class="text-center min-h-[60vh] flex flex-col justify-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">揭秘保險「節稅」黑幕</h1>
+            <p class="text-lg md:text-xl text-gray-400 mb-6">你不可不知的法律地雷與血淚教訓！</p>
+            <div id="subtitle-carousel" class="text-lg md:text-xl h-8 mb-8 transition-opacity duration-500 ease-in-out">
+                <p class="accent-color"></p>
+            </div>
+            <a href="#section-1" class="w-max mx-auto px-6 py-3 border-2 border-amber-300 text-amber-300 rounded-full hover:bg-amber-300 hover:text-gray-900 transition-colors duration-300 text-lg font-semibold">
+                ▼ 深入了解真相
+            </a>
+        </header>
+
+        <!-- 核心主題 -->
+        <section id="section-1" class="my-16 md:my-24 p-8 rounded-lg card">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">核心主題</h2>
+            <p class="text-base md:text-lg leading-relaxed text-gray-300">
+                保險「節稅」話術，正悄悄引爆你的財務未爆彈！這不僅是一場遊走在法律邊緣的危險遊戲，更是對消費者信任的無情踐踏。本分析將直搗黃龍，撕開溫情面紗，揭露那些足以讓你血本無歸的誤導伎倆、違法操作、實質課稅的冰冷現實，以及金融消費爭議中無數個體的沉痛呼喊。這是一份生存指南，教你如何在亂象中自保，避免成為下一個犧牲品，並共同呼籲一個更透明、更公正的保險市場！
+            </p>
+        </section>
+
+        <!-- 2. 引爆點 -->
+        <section class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white text-center"><span class="accent-color">一、</span>引爆點：當「節稅」成為致命誘惑！</h2>
+            <div class="flex items-start gap-4">
+                <span class="text-5xl mt-1">💣</span>
+                <p class="text-base md:text-lg leading-relaxed text-gray-300">
+                    「節稅」——這兩個字如同魔咒，輕易就能撬開消費者的心防，讓保險商品瞬間鍍上金光。然而，當保險從業人員將這把雙刃劍舞得眼花繚亂，以「節稅」作為攻城掠地的主要武器時，災難的導火線早已悄然點燃！這不僅是對保險保障本質的粗暴扭曲，更是公然挑戰《保險業招攬及核保作業控管自律規範》的底線，隨時可能引爆毀滅性的稅務炸彈與法律糾紛！
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. 致命陷阱 -->
+        <section id="section-2" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white text-center"><span class="accent-color">二、</span>致命陷阱！揭開三大奪命花招</h2>
+            <div id="accordion-container" class="space-y-4">
+                <!-- Accordion Item 1 -->
+                <div class="accordion-item card rounded-lg overflow-hidden">
+                    <button class="accordion-header w-full text-left p-5 flex justify-between items-center hover:bg-[#1d3b61] transition">
+                        <span class="text-lg md:text-xl font-semibold text-white">謊言編織的「節稅美夢」：資訊黑洞吞噬你的判斷！</span>
+                        <span class="accordion-icon text-2xl accent-color transition-transform duration-300">+</span>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-gray-700">
+                            <p class="text-gray-300 leading-relaxed">業務員口中的「節稅神效」，往往是精心包裝的謊言！他們避重就輕，刻意隱瞞關鍵的稅務規定、嚴苛的適用條件（如最低稅負制的致命一擊），讓你沉浸在虛幻的節稅美夢中，最終卻在冰冷的稅單前幡然醒悟，悔之晚矣！</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Accordion Item 2 -->
+                <div class="accordion-item card rounded-lg overflow-hidden">
+                    <button class="accordion-header w-full text-left p-5 flex justify-between items-center hover:bg-[#1d3b61] transition">
+                        <span class="text-lg md:text-xl font-semibold text-white">保障變調！當「節稅」凌駕一切，保險已死！</span>
+                        <span class="accordion-icon text-2xl accent-color transition-transform duration-300">+</span>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-gray-700">
+                            <p class="text-gray-300 leading-relaxed">記住！<strong class="secondary-accent-color">《保險業招攬及核保作業控管自律規範》第4條</strong>的警鐘長鳴：保險的核心是保障，絕非理財或節稅的遮羞布！任何將「節稅」奉為圭臬的招攬，都是對保險精神的背叛，更是將你推向風險的深淵！</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Accordion Item 3 -->
+                <div class="accordion-item card rounded-lg overflow-hidden">
+                    <button class="accordion-header w-full text-left p-5 flex justify-between items-center hover:bg-[#1d3b61] transition">
+                        <span class="text-lg md:text-xl font-semibold text-white">KYC/KYP形同虛設？你的需求與風險，他們根本不在乎！</span>
+                        <span class="accordion-icon text-2xl accent-color transition-transform duration-300">+</span>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-gray-700">
+                            <p class="text-gray-300 leading-relaxed">為了那點可憐的業績，你的真實財務狀況、你的家庭保障需求、你那脆弱的風險承受能力（KYC），在他們眼中一文不值！他們推薦的「神單」（KYP），往往只是最適合他們佣金的毒藥，尤其當你年邁、體弱或急需用錢時，這劑毒藥將更為致命！</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Accordion Item 4 -->
+                <div class="accordion-item card rounded-lg overflow-hidden">
+                    <button class="accordion-header w-full text-left p-5 flex justify-between items-center hover:bg-[#1d3b61] transition">
+                        <span class="text-lg md:text-xl font-semibold text-white">【特別收錄】違規操作大觀園</span>
+                        <span class="accordion-icon text-2xl accent-color transition-transform duration-300">+</span>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-gray-700">
+                            <p class="text-gray-300 leading-relaxed">不實吹噓、隱匿真相、教唆謊報、惡意比較、誘你解舊單換新單……<strong class="secondary-accent-color">《保險業務員管理規則》第19條</strong>所列的禁區，早已被他們踏遍！每一步，都可能讓你跌入萬劫不復的法律泥潭！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 稅局天眼 -->
+        <section id="section-3" class="my-16 md:my-24 p-8 rounded-lg card">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white text-center"><span class="accent-color">三、</span>稅局天眼：戳破一切「節稅」幻象！</h2>
+            <p class="text-base md:text-lg leading-relaxed text-gray-300 mb-6">
+                別以為拿到《保險法》和《遺產及贈與稅法》的免稅「丹書鐵券」就能高枕無憂！稅捐機關的「<strong class="secondary-accent-color border-b-2 border-dotted border-amber-300 cursor-pointer" data-tooltip="稅務機關會穿透法律形式，直接根據經濟事實來判斷是否需要課稅，任何意圖規避的設計都可能無效。">實質課稅原則</strong>」如同一把達摩克利斯之劍，高懸在所有意圖避稅的保單之上！
+            </p>
+            <p class="text-base md:text-lg leading-relaxed text-gray-300 mb-8">
+                無論你的保單設計得多么巧妙，只要被認定為惡意逃漏稅，法律的鐵拳將無情砸下，補稅罰款讓你痛不欲生！請注意以下高風險特徵：
+            </p>
+            <div class="flex flex-wrap justify-center gap-3 text-center">
+                <span class="bg-red-900/50 text-red-300 text-sm font-medium px-3 py-1.5 rounded-full">躉繳</span>
+                <span class="bg-red-900/50 text-red-300 text-sm font-medium px-3 py-1.5 rounded-full">高齡投保</span>
+                <span class="bg-red-900/50 text-red-300 text-sm font-medium px-3 py-1.5 rounded-full">重病投保</span>
+                <span class="bg-red-900/50 text-red-300 text-sm font-medium px-3 py-1.5 rounded-full">短期投保</span>
+                <span class="bg-red-900/50 text-red-300 text-sm font-medium px-3 py-1.5 rounded-full">密集投保</span>
+                <span class="bg-red-900/50 text-red-300 text-sm font-medium px-3 py-1.5 rounded-full">鉅額投保</span>
+                <span class="bg-red-900/50 text-red-300 text-sm font-medium px-3 py-1.5 rounded-full">舉債投保</span>
+                <span class="bg-red-900/50 text-red-300 text-sm font-medium px-3 py-1.5 rounded-full">保費/保額相似</span>
+            </div>
+        </section>
+
+        <!-- 5. 血淚控訴 -->
+        <section id="section-4" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white text-center"><span class="accent-color">四、</span>血淚控訴！金融消費爭議實錄</h2>
+            <div id="case-study-container" class="grid md:grid-cols-2 gap-6">
+                <!-- Case Study Card 1 -->
+                <div class="case-card card rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-2 text-white">投資型保單稅務迷霧</h3>
+                    <p class="text-gray-400 text-sm mb-4">你的冤屈，為何無處申訴？</p>
+                    <div class="case-content">
+                        <div class="case-summary">
+                            <p class="text-gray-300 leading-relaxed"><strong>驚爆內幕：</strong> 海外投資收益與稅局認定天差地別，保險公司卻兩手一攤？你以為的「金融服務瑕疵」，竟被告知「此路不通」！</p>
+                            <button class="case-toggle mt-4 text-amber-300 font-semibold text-sm">閱讀案例詳情 ▼</button>
+                        </div>
+                        <div class="case-details hidden mt-4 pt-4 border-t border-gray-700">
+                            <p class="text-gray-300 leading-relaxed"><strong class="secondary-accent-color">殘酷現實：</strong> 這是國家稅務的「禁區」，非金融消費爭議的「樂園」！你的怒火，只能燒向稅務機關，金融爭議處理中心愛莫能助！</p>
+                            <button class="case-toggle mt-4 text-amber-300 font-semibold text-sm">收合案例 ▲</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Case Study Card 2 -->
+                <div class="case-card card rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-2 text-white">解舊換新連環套</h3>
+                    <p class="text-gray-400 text-sm mb-4">業務員的佣金狂歡，你的血汗錢付諸東流！</p>
+                    <div class="case-content">
+                        <div class="case-summary">
+                           <p class="text-gray-300 leading-relaxed"><strong>驚爆內幕：</strong> 「解掉舊的，換個更好的！」甜言蜜語背後，是解約的巨額損失和新保單的無底洞！業務員甚至膽敢代你操作，你的錢就這樣人間蒸發！</p>
+                           <button class="case-toggle mt-4 text-amber-300 font-semibold text-sm">閱讀案例詳情 ▼</button>
+                        </div>
+                        <div class="case-details hidden mt-4 pt-4 border-t border-gray-700">
+                            <p class="text-gray-300 leading-relaxed"><strong class="secondary-accent-color">法律重錘：</strong> 《民法》、《金保法》、《保險業務員管理規則》三堂會審！只要證據確鑿，業務員的失職，保險公司休想逃脫連帶賠償的噩運！</p>
+                           <button class="case-toggle mt-4 text-amber-300 font-semibold text-sm">收合案例 ▲</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Case Study Card 3 -->
+                <div class="case-card card rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-2 text-white">業務員的「私人恩怨」？</h3>
+                    <p class="text-gray-400 text-sm mb-4">別想用消費爭議討公道！</p>
+                    <div class="case-content">
+                        <div class="case-summary">
+                           <p class="text-gray-300 leading-relaxed"><strong>驚爆內幕：</strong> 個資外洩、惡言相向、服務擺爛，你怒火中燒，要求公司嚴懲、換人！</p>
+                           <button class="case-toggle mt-4 text-amber-300 font-semibold text-sm">閱讀案例詳情 ▼</button>
+                        </div>
+                        <div class="case-details hidden mt-4 pt-4 border-t border-gray-700">
+                           <p class="text-gray-300 leading-relaxed"><strong class="secondary-accent-color">冰冷裁決：</strong> 抱歉，這是公司「家務事」，與你購買的金融商品無關！金融消費爭議處理中心不是紀律委員會，你的委屈，另尋他途吧！</p>
+                           <button class="case-toggle mt-4 text-amber-300 font-semibold text-sm">收合案例 ▲</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Case Study Card 4 -->
+                <div class="case-card card rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-2 text-white">消失的保單借款清償金</h3>
+                    <p class="text-gray-400 text-sm mb-4">業務員的黑手，公司的責任？</p>
+                     <div class="case-content">
+                        <div class="case-summary">
+                           <p class="text-gray-300 leading-relaxed"><strong>驚爆內幕：</strong> 白紙黑字的支票交給業務員還款，借款卻依然高懸？通訊地址還被暗中修改！</p>
+                           <button class="case-toggle mt-4 text-amber-300 font-semibold text-sm">閱讀案例詳情 ▼</button>
+                        </div>
+                        <div class="case-details hidden mt-4 pt-4 border-t border-gray-700">
+                           <p class="text-gray-300 leading-relaxed"><strong class="secondary-accent-color">正義之聲：</strong> 業務員的職務行為，公司休想切割！只要你有合理信賴，這筆爛帳，保險公司必須認！你的清白，法律還你！</p>
+                           <button class="case-toggle mt-4 text-amber-300 font-semibold text-sm">收合案例 ▲</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. 自我檢測 -->
+        <section id="section-5" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white text-center"><span class="accent-color">五、</span>人性弱點的無情獵殺 (互動式自我檢測)</h2>
+            <div id="quiz-container" class="card rounded-lg p-6 md:p-8">
+                <div id="quiz-questions">
+                    <h3 class="text-xl md:text-2xl font-semibold mb-6 text-white text-center">1分鐘自我檢測：你容易成為「節稅話術」的目標嗎？</h3>
+                    <!-- Question 1 -->
+                    <div class="quiz-question mb-6">
+                        <p class="font-semibold mb-3 text-gray-300">1. 聽到「保證節稅」時，你的第一反應是？</p>
+                        <div class="space-y-2">
+                            <label class="block p-3 rounded-md border border-gray-600 cursor-pointer quiz-option transition">
+                                <input type="radio" name="q1" value="2" class="hidden"> 極度興奮，感覺找到捷徑
+                            </label>
+                            <label class="block p-3 rounded-md border border-gray-600 cursor-pointer quiz-option transition">
+                                <input type="radio" name="q1" value="1" class="hidden"> 半信半疑，覺得好到不真實
+                            </label>
+                            <label class="block p-3 rounded-md border border-gray-600 cursor-pointer quiz-option transition">
+                                <input type="radio" name="q1" value="0" class="hidden"> 馬上質疑，並尋求第三方驗證
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Question 2 -->
+                    <div class="quiz-question mb-6">
+                        <p class="font-semibold mb-3 text-gray-300">2. 面對熟人推薦的保單，你通常會？</p>
+                        <div class="space-y-2">
+                            <label class="block p-3 rounded-md border border-gray-600 cursor-pointer quiz-option transition">
+                                <input type="radio" name="q2" value="2" class="hidden"> 信任對方，不好意思拒絕就簽了
+                            </label>
+                            <label class="block p-3 rounded-md border border-gray-600 cursor-pointer quiz-option transition">
+                                <input type="radio" name="q2" value="1" class="hidden"> 大致翻閱，確認一下保費金額
+                            </label>
+                            <label class="block p-3 rounded-md border border-gray-600 cursor-pointer quiz-option transition">
+                                <input type="radio" name="q2" value="0" class="hidden"> 無論是誰，都堅持仔細審閱條款
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Question 3 -->
+                    <div class="quiz-question mb-8">
+                        <p class="font-semibold mb-3 text-gray-300">3. 你對保單的期待是？</p>
+                        <div class="space-y-2">
+                            <label class="block p-3 rounded-md border border-gray-600 cursor-pointer quiz-option transition">
+                                <input type="radio" name="q3" value="2" class="hidden"> 保障、理財、節稅，我全都要！
+                            </label>
+                            <label class="block p-3 rounded-md border border-gray-600 cursor-pointer quiz-option transition">
+                                <input type="radio" name="q3" value="1" class="hidden"> 主要看保障，但能理財節稅更好
+                            </label>
+                            <label class="block p-3 rounded-md border border-gray-600 cursor-pointer quiz-option transition">
+                                <input type="radio" name="q3" value="0" class="hidden"> 專款專用，不同需求購買不同產品
+                            </label>
+                        </div>
+                    </div>
+                    <button id="submit-quiz" class="w-full bg-amber-400 text-gray-900 font-bold py-3 rounded-md hover:bg-amber-300 transition-colors">查看分析結果</button>
+                </div>
+                <div id="quiz-results" class="hidden">
+                     <!-- Result High Risk -->
+                    <div id="result-high" class="hidden text-center">
+                        <h3 class="text-2xl font-bold text-red-400 mb-4">🚨 高風險警示 🚨</h3>
+                        <p class="text-gray-300 leading-relaxed mb-6">您的觀念可能讓您成為不肖業務員眼中的「肥羊」。過度相信話術、追求一步到位的心態，容易讓您忽略潛在風險。請務必重新審視保險的本質，知識才是最好的防禦！</p>
+                        <a href="#section-6" class="text-amber-300 font-bold hover:underline">查看給您的建議 →</a>
+                    </div>
+                     <!-- Result Mid Risk -->
+                    <div id="result-mid" class="hidden text-center">
+                        <h3 class="text-2xl font-bold text-yellow-400 mb-4">⚠️ 中度風險提醒 ⚠️</h3>
+                        <p class="text-gray-300 leading-relaxed mb-6">您具備一定的警覺性，但有時可能因人情或對細節的疏忽而做出錯誤決策。魔鬼藏在細節裡，請堅持打破砂鍋問到底的精神，確保每一分錢都花在刀口上。</p>
+                        <a href="#section-6" class="text-amber-300 font-bold hover:underline">查看給您的建議 →</a>
+                    </div>
+                     <!-- Result Low Risk -->
+                    <div id="result-low" class="hidden text-center">
+                        <h3 class="text-2xl font-bold text-green-400 mb-4">✅ 低風險讚賞 ✅</h3>
+                        <p class="text-gray-300 leading-relaxed mb-6">恭喜！您擁有非常健康的金融消費觀念，懂得獨立思考與驗證。您是成熟的消費者典範，請繼續保持這份警覺與智慧，守護好自己的血汗錢。</p>
+                        <a href="#section-6" class="text-amber-300 font-bold hover:underline">查看給您的建議 →</a>
+                    </div>
+                    <button id="retake-quiz" class="w-full mt-6 bg-gray-600 text-white font-bold py-3 rounded-md hover:bg-gray-500 transition-colors">重新測驗</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 各方覺醒 -->
+        <section id="section-6" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white text-center"><span class="accent-color">六、</span>警鐘為誰而鳴？各方覺醒，刻不容緩！</h2>
+            <div class="card rounded-lg p-2 md:p-4">
+                <div id="tabs-container" class="flex justify-center border-b border-gray-700 mb-6 flex-wrap">
+                    <button data-tab="consumer" class="tab active px-4 py-3 md:px-6 font-semibold border-b-2 border-transparent transition-colors">消費者/納稅人</button>
+                    <button data-tab="agent" class="tab px-4 py-3 md:px-6 font-semibold border-b-2 border-transparent transition-colors text-gray-400 hover:text-white">保險從業人員</button>
+                    <button data-tab="company" class="tab px-4 py-3 md:px-6 font-semibold border-b-2 border-transparent transition-colors text-gray-400 hover:text-white">保險公司</button>
+                    <button data-tab="regulator" class="tab px-4 py-3 md:px-6 font-semibold border-b-2 border-transparent transition-colors text-gray-400 hover:text-white">監管與仲裁機構</button>
+                </div>
+                <div id="tabs-content" class="p-4">
+                    <!-- Consumer Content -->
+                    <div data-tab-content="consumer" class="tab-content space-y-4">
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">💡</span><p><strong>知識就是力量！</strong>惡補金融常識，洞悉保險本質與稅法紅線！</p></div>
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">🛡️</span><p><strong>別被忽悠！</strong>冷靜評估需求，不信花言巧語，白紙黑字才是王道！</p></div>
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">❓</span><p><strong>打破砂鍋問到底！</strong>審閱條款，諮詢專家，別讓魔鬼藏在細節裡！</p></div>
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">⚖️</span><p><strong>找對衙門！</strong>稅務糾紛問稅局，消費爭議有專門機構，別再走冤枉路！</p></div>
+                    </div>
+                    <!-- Agent Content -->
+                    <div data-tab-content="agent" class="tab-content hidden space-y-4">
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">❤️</span><p><strong>良知是底線！</strong>回歸保障初心，別為業績出賣靈魂！</p></div>
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">🎓</span><p><strong>專業立身！</strong>精通業務，提供真實、完整的資訊，別再誤人子弟！</p></div>
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">🚫</span><p><strong>遠離「節稅」禁區！</strong>合規銷售，為客戶量身打造，而非為佣金不擇手段！</p></div>
+                    </div>
+                    <!-- Company Content -->
+                    <div data-tab-content="company" class="tab-content hidden space-y-4">
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">🤝</span><p><strong>誠信是生命線！</strong>將「公平待客」刻入骨髓，別讓法規成為一紙空文！</p></div>
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">🔎</span><p><strong>嚴管即是厚愛！</strong>加強內控，鐵腕整治違規業務員，別讓害群之馬砸了招牌！</p></div>
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">☀️</span><p><strong>陽光透明！</strong>廣告文宣去偽存真，風險揭示不留死角！</p></div>
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">🙋</span><p><strong>勇於擔當！</strong>對受損者給予應有的救濟，別讓消費者寒心！</p></div>
+                    </div>
+                    <!-- Regulator Content -->
+                    <div data-tab-content="regulator" class="tab-content hidden space-y-4">
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">📢</span><p><strong>持續發聲！</strong>金融教育永無止境，提升全民風險免疫力！</p></div>
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">⚖️</span><p><strong>重拳出擊！</strong>嚴查不貸，讓違規者付出慘痛代價！</p></div>
+                        <div class="flex items-start gap-3"><span class="text-2xl mt-1">🗺️</span><p><strong>指點迷津！</strong>爭議處理流程更清晰，指引更明確，別讓求助者迷失方向！</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. 法律護身符 -->
+        <section id="section-7" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white text-center"><span class="accent-color">七、</span>法律的利劍：你的護身符</h2>
+            <p class="text-center text-gray-400 mb-8">這些冰冷的條文，正是界定是非、裁決責任、保護你我權益的最後防線！讀懂它們，運用它們，才能在這場博弈中立於不敗之地！</p>
+            <div id="laws-accordion" class="space-y-3">
+                 <!-- Law Item -->
+                <div class="law-item card rounded-lg overflow-hidden">
+                    <button class="law-header w-full text-left p-4 flex justify-between items-center hover:bg-[#1d3b61] transition">
+                        <span class="font-semibold text-white">《金融消費者保護法》</span>
+                        <span class="law-icon text-xl accent-color transition-transform duration-300">+</span>
+                    </button>
+                    <div class="law-content hidden p-4 border-t border-gray-700">
+                        <p class="text-gray-300">核心作用：保障您在購買金融商品時的公平待遇與資訊透明權利。</p>
+                    </div>
+                </div>
+                 <!-- Law Item -->
+                <div class="law-item card rounded-lg overflow-hidden">
+                    <button class="law-header w-full text-left p-4 flex justify-between items-center hover:bg-[#1d3b61] transition">
+                        <span class="font-semibold text-white">《保險法》</span>
+                        <span class="law-icon text-xl accent-color transition-transform duration-300">+</span>
+                    </button>
+                    <div class="law-content hidden p-4 border-t border-gray-700">
+                        <p class="text-gray-300">核心作用：定義保險契約的根本，確立保險金給付的法定條件。</p>
+                    </div>
+                </div>
+                 <!-- Law Item -->
+                <div class="law-item card rounded-lg overflow-hidden">
+                    <button class="law-header w-full text-left p-4 flex justify-between items-center hover:bg-[#1d3b61] transition">
+                        <span class="font-semibold text-white">《保險業務員管理規則》</span>
+                        <span class="law-icon text-xl accent-color transition-transform duration-300">+</span>
+                    </button>
+                    <div class="law-content hidden p-4 border-t border-gray-700">
+                        <p class="text-gray-300">核心作用：規範業務員的招攬行為，明定其禁止事項與懲處罰則。</p>
+                    </div>
+                </div>
+                 <!-- Law Item -->
+                <div class="law-item card rounded-lg overflow-hidden">
+                    <button class="law-header w-full text-left p-4 flex justify-between items-center hover:bg-[#1d3b61] transition">
+                        <span class="font-semibold text-white">《稅捐稽徵法》</span>
+                        <span class="law-icon text-xl accent-color transition-transform duration-300">+</span>
+                    </button>
+                    <div class="law-content hidden p-4 border-t border-gray-700">
+                        <p class="text-gray-300">核心作用：賦予稅務機關實質課稅的權力，防止任何形式的逃漏稅行為。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. 結語 -->
+        <section class="my-16 md:my-24 text-center p-8 rounded-lg" style="background-color: #112240;">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">保護自己，捍衛權益</h2>
+            <p class="text-base md:text-lg leading-relaxed text-gray-300 max-w-2xl mx-auto">
+                知識是抵禦風險最強大的武器。若您認為這些資訊有價值，請務必將其牢記，並在生活中保持警覺，共同戳破「節稅保單」的謊言，建立更健康的金融環境。
+            </p>
+        </section>
+
+    </div>
+
+    <!-- 頁尾 -->
+    <footer class="py-8 border-t border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 本內容僅供參考，不構成任何法律或稅務建議。具體個案請諮詢合格律師或會計師。</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        // 1. 副標題輪播
+        const subtitles = [
+            "保險節稅糖衣下的致命陷阱：別讓無知斷送你的血汗錢與未來！",
+            "「節稅神單」的真相：小心！你可能正步入精心設計的財務絞索！",
+            "保險稅務話術大揭底：從業人員的違規深淵與消費者的權益火線！"
+        ];
+        let subtitleIndex = 0;
+        const subtitleElement = document.querySelector('#subtitle-carousel p');
+        
+        function changeSubtitle() {
+            subtitleElement.parentElement.style.opacity = '0';
+            setTimeout(() => {
+                subtitleIndex = (subtitleIndex + 1) % subtitles.length;
+                subtitleElement.textContent = `▶ ${subtitles[subtitleIndex]}`;
+                subtitleElement.parentElement.style.opacity = '1';
+            }, 500);
+        }
+        if(subtitleElement) {
+            subtitleElement.textContent = `▶ ${subtitles[0]}`;
+            setInterval(changeSubtitle, 5000);
+        }
+
+        // 2. 固定導航欄
+        const stickyNav = document.getElementById('sticky-nav');
+        const heroSection = document.querySelector('header');
+        if (stickyNav && heroSection) {
+            const observer = new IntersectionObserver(
+                ([e]) => {
+                    if (e.isIntersecting) {
+                        stickyNav.classList.add('-translate-y-full');
+                    } else {
+                        stickyNav.classList.remove('-translate-y-full');
+                    }
+                },
+                { threshold: 0.1 } 
+            );
+            observer.observe(heroSection);
+        }
+        
+        // 3. 手風琴效果 (致命陷阱)
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            const content = item.querySelector('.accordion-content');
+            const icon = item.querySelector('.accordion-icon');
+            header.addEventListener('click', () => {
+                const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+                if (isOpen) {
+                    content.style.maxHeight = '0px';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            });
+        });
+
+        // 4. 案例卡片展開/收合
+        const caseCards = document.querySelectorAll('.case-card');
+        caseCards.forEach(card => {
+            const toggles = card.querySelectorAll('.case-toggle');
+            const summary = card.querySelector('.case-summary');
+            const details = card.querySelector('.case-details');
+
+            toggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    summary.classList.toggle('hidden');
+                    details.classList.toggle('hidden');
+                });
+            });
+        });
+        
+        // 5. 互動式測驗
+        const quizContainer = document.getElementById('quiz-container');
+        if (quizContainer) {
+            const options = quizContainer.querySelectorAll('.quiz-option');
+            const submitBtn = document.getElementById('submit-quiz');
+            const retakeBtn = document.getElementById('retake-quiz');
+            const questionsDiv = document.getElementById('quiz-questions');
+            const resultsDiv = document.getElementById('quiz-results');
+
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    const questionGroup = option.parentElement;
+                    questionGroup.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                });
+            });
+
+            submitBtn.addEventListener('click', () => {
+                let score = 0;
+                const answered = quizContainer.querySelectorAll('input[type="radio"]:checked');
+                if (answered.length < 3) {
+                    alert('請回答所有問題！');
+                    return;
+                }
+
+                answered.forEach(input => {
+                    score += parseInt(input.value);
+                });
+                
+                questionsDiv.classList.add('hidden');
+                resultsDiv.classList.remove('hidden');
+
+                // 隱藏所有結果
+                resultsDiv.querySelectorAll('[id^="result-"]').forEach(el => el.classList.add('hidden'));
+
+                if (score >= 5) { // 5-6分 高風險
+                    document.getElementById('result-high').classList.remove('hidden');
+                } else if (score >= 2) { // 2-4分 中風險
+                    document.getElementById('result-mid').classList.remove('hidden');
+                } else { // 0-1分 低風險
+                    document.getElementById('result-low').classList.remove('hidden');
+                }
+            });
+            
+            retakeBtn.addEventListener('click', () => {
+                questionsDiv.classList.remove('hidden');
+                resultsDiv.classList.add('hidden');
+                quizContainer.querySelectorAll('input[type="radio"]:checked').forEach(input => input.checked = false);
+                options.forEach(opt => opt.classList.remove('selected'));
+            });
+        }
+        
+        // 6. 各方覺醒 (Tabs)
+        const tabsContainer = document.getElementById('tabs-container');
+        if (tabsContainer) {
+            const tabs = tabsContainer.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Update tab styles
+                    tabs.forEach(t => {
+                      t.classList.remove('active', 'accent-color');
+                      t.classList.add('text-gray-400');
+                    });
+                    tab.classList.add('active', 'accent-color');
+                    tab.classList.remove('text-gray-400');
+                    
+                    // Show content
+                    const target = tab.getAttribute('data-tab');
+                    contents.forEach(content => {
+                        if (content.getAttribute('data-tab-content') === target) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        }
+        
+        // 7. 法律護身符 (Accordion)
+        const lawItems = document.querySelectorAll('.law-item');
+        lawItems.forEach(item => {
+            const header = item.querySelector('.law-header');
+            const content = item.querySelector('.law-content');
+            const icon = item.querySelector('.law-icon');
+            header.addEventListener('click', () => {
+                const isHidden = content.classList.contains('hidden');
+                if (isHidden) {
+                    content.classList.remove('hidden');
+                    icon.style.transform = 'rotate(45deg)';
+                } else {
+                    content.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+    });
+    </script>
+</body>
+</html>
