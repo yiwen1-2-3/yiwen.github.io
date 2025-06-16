@@ -1,845 +1,941 @@
-import React, { useState, useEffect } from 'react';
-
-// Main App Component
-const App = () => {
-  const [currentPage, setCurrentPage] = useState('landing'); // 'landing', 'toc', 'chapter', 'conclusion'
-  const [currentChapter, setCurrentChapter] = useState(null);
-
-  // Scroll to top when page changes
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [currentPage, currentChapter]);
-
-  const handleStartJourney = () => {
-    setCurrentPage('toc');
-  };
-
-  const handleSelectChapter = (chapterId) => {
-    setCurrentChapter(chapterId);
-    setCurrentPage('chapter');
-  };
-
-  const handleGoToTOC = () => {
-    setCurrentPage('toc');
-    setCurrentChapter(null);
-  };
-
-  const handleGoToConclusion = () => {
-    setCurrentPage('conclusion');
-  };
-
-  return (
-    <div className="font-inter min-h-screen bg-gradient-to-br from-indigo-950 to-gray-900 text-gray-100 antialiased">
-      {currentPage === 'landing' && <LandingPage onStartJourney={handleStartJourney} />}
-      {currentPage === 'toc' && <TableOfContents onSelectChapter={handleSelectChapter} onGoToConclusion={handleGoToConclusion} />}
-      {currentPage === 'chapter' && (
-        <ChapterPage
-          chapterId={currentChapter}
-          onGoBackToTOC={handleGoToTOC}
-          onGoToConclusion={handleGoToConclusion}
-        />
-      )}
-      {currentPage === 'conclusion' && <ConclusionPage onGoBackToTOC={handleGoToTOC} />}
-    </div>
-  );
-};
-
-// Landing Page Component
-const LandingPage = ({ onStartJourney }) => {
-  const [showTitle, setShowTitle] = useState(false);
-  const [showButton, setShowButton] = useState(false);
-
-  useEffect(() => {
-    const titleTimer = setTimeout(() => setShowTitle(true), 1000); // Simulate animation delay
-    const buttonTimer = setTimeout(() => setShowButton(true), 2500); // Simulate animation delay
-    return () => {
-      clearTimeout(titleTimer);
-      clearTimeout(buttonTimer);
-    };
-  }, []);
-
-  return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden p-4">
-      {/* Background Image/Illustration Placeholder */}
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-20"
-        style={{
-          backgroundImage: "url('https://placehold.co/1920x1080/0F172A/E2E8F0?text=古樸大院')", // Placeholder for Chen Family Manor
-        }}
-      ></div>
-
-      <div className="relative z-10 flex flex-col items-center text-center">
-        {/* Gavel Icon/Animation */}
-        <div className="mb-8 transform transition-transform duration-700 hover:scale-105">
-          <svg
-            className="h-24 w-24 text-amber-400 opacity-90 drop-shadow-lg md:h-32 md:w-32"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
-          </svg>
-          {/* 法槌動畫示意，實際可替換為更複雜的SVG或Lottie動畫 */}
-        </div>
-
-        {/* Title Animation */}
-        <div
-          className={[
-            'overflow-hidden',
-            'transition-all',
-            'duration-1000',
-            'ease-in-out',
-            showTitle ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0',
-          ].join(' ')}
-        >
-          <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-            臺灣繼承啟示錄：
-          </h1>
-          <h2 className="mb-8 text-2xl font-semibold text-gray-300 md:text-4xl">
-            法網下的愛恨，算盤上的親情
-          </h2>
-        </div>
-
-        {/* Button */}
-        <button
-          onClick={onStartJourney}
-          className={[
-            'rounded-full',
-            'bg-gradient-to-r',
-            'from-amber-500',
-            'to-orange-600',
-            'px-8',
-            'py-3',
-            'text-lg',
-            'font-bold',
-            'text-white',
-            'shadow-xl',
-            'transition-all',
-            'duration-500',
-            'ease-out',
-            'hover:from-amber-600',
-            'hover:to-orange-700',
-            'hover:scale-105',
-            'focus:outline-none',
-            'focus:ring-4',
-            'focus:ring-amber-500/50',
-            showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
-          ].join(' ')}
-        >
-          點擊開啟繼承之旅
-        </button>
-      </div>
-    </div>
-  );
-};
-
-// Table of Contents Component
-const TableOfContents = ({ onSelectChapter, onGoToConclusion }) => {
-  const chapters = [
-    {
-      id: 'chapter1',
-      title: '第一章：油盡燈枯，法鐘驟響',
-      subtitle: '阿公的撒手，是家族的終章，還是戰國的序幕？',
-      keywords: '死亡宣告, 繼承開始',
-      summary: '阿公離世, 不僅是個人生命的終結, 更是家族遺產繼承大戰的序幕, 法律條文此刻如法槌落下。',
-      icon: '⏳', // 沙漏
-    },
-    {
-      id: 'chapter2',
-      title: '第二章：誰登繼承堂？',
-      subtitle: '血緣定順位，法律劃疆界，人心隔肚皮',
-      keywords: '繼承順位, 直系血親卑親屬',
-      summary: '法律明確規範繼承順位, 血緣是入場券, 但人心卻在公平與計較間拉扯。',
-      icon: '👨‍👩‍👧‍👦', // 家庭
-    },
-    {
-      id: 'chapter3',
-      title: '第三章：遺囑風暴',
-      subtitle: '阿公的最後墨跡，是平息干戈的遺訓，還是點燃戰火的星火？',
-      keywords: '遺囑, 特留分',
-      summary: '一份遺囑可能帶來和解, 也可能因為偏愛而引發新一輪的親情與利益衝突。',
-      icon: '📜', // 羊皮紙
-    },
-    {
-      id: 'chapter4',
-      title: '第四章：債務迷霧',
-      subtitle: '阿公的未了之債，是家族共負的軛，還是各自飛散的煙？',
-      keywords: '概括繼承有限責任, 拋棄繼承',
-      summary: '面對阿公的債務, 繼承人有有限責任的保護, 但也需謹慎處理, 或選擇拋棄繼承。',
-      icon: '🔗', // 鎖鏈
-    },
-    {
-      id: 'chapter5',
-      title: '第五章：祖產分割戰',
-      subtitle: '不動產的歸屬，是家族榮光的延續，還是手足反目的祭品？',
-      keywords: '公同共有, 裁判分割',
-      summary: '祖產分割是繼承中的一大難題, 從協議到訴訟, 考驗著手足情誼。',
-      icon: '🏡', // 房子
-    },
-    {
-      id: 'chapter6',
-      title: '第六章：無牌厝的悲歌',
-      subtitle: '情感的重量，在法律的邊緣，能否壓過產權的輕飄？',
-      keywords: '未登記建物, 稅籍證明',
-      summary: '鄉下的老屋可能沒有產權登記, 雖然法律處分受限, 但在特定情況下仍具意義。',
-      icon: '🏚️', // 廢棄房屋
-    },
-    {
-      id: 'chapter7',
-      title: '第七章：保單玄機',
-      subtitle: '愛心的預留，是避稅的巧門，還是國稅局的靶心？',
-      keywords: '保險金免稅, 實質課稅原則',
-      summary: '保險金原則上不計入遺產, 但若有規避稅務意圖, 仍可能面臨課稅風險。',
-      icon: '📝', // 保單
-    },
-    {
-      id: 'chapter8',
-      title: '第八章：貪婪噬心',
-      subtitle: '利慾的深淵，足以讓血脈倒流，讓親情變利刃',
-      keywords: '盜領, 偽造文書, 侵占',
-      summary: '面對巨額遺產誘惑, 貪婪可能導致觸犯刑法, 最終家庭分崩離析。',
-      icon: '⚖️', // 天秤
-    },
-    {
-      id: 'chapter9',
-      title: '第九章：協議書的烙印',
-      subtitle: '一紙契約，是紛爭的句點，還是隱忍的序章？',
-      keywords: '遺產分割協議書, 印花稅',
-      summary: '遺產分割協議書的簽訂, 或許暫時平息紛爭, 但背後仍可能有未解的情感。',
-      icon: '✍️', // 簽字
-    },
-    {
-      id: 'chapter10',
-      title: '第十章：遺產的孤寂漂流',
-      subtitle: '當財富無人承繼，是家族的悲哀，還是社會的警鐘？',
-      keywords: '無人承認繼承, 歸屬國庫',
-      summary: '當遺產無人繼承, 最終歸屬國庫, 這不僅是物質的消散, 更是家族連結斷裂的警訊。',
-      icon: '💰', // 錢袋
-    },
-  ];
-
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-8">
-      <h3 className="mb-12 text-center text-3xl font-bold text-white md:text-5xl">
-        章節之徑：迷霧中的指引
-      </h3>
-
-      {/* Chapter List Grid */}
-      <div className="grid w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {chapters.map((chapter) => (
-          <div
-            key={chapter.id}
-            onClick={() => onSelectChapter(chapter.id)}
-            className="group relative cursor-pointer overflow-hidden rounded-xl bg-gray-800 p-6 shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 hover:shadow-2xl"
-          >
-            {/* Icon */}
-            <div className="absolute right-4 top-4 text-4xl opacity-20 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110">
-              {chapter.icon}
-            </div>
-            <h4 className="mb-2 text-xl font-semibold text-amber-300 md:text-2xl">
-              {chapter.title}
-            </h4>
-            <p className="text-md mb-4 text-gray-300">{chapter.subtitle}</p>
-
-            {/* Summary on hover */}
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-90 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <p className="text-center text-sm text-gray-200">
-                <span className="font-bold text-amber-300">關鍵詞：</span>
-                {chapter.keywords}
-                <br />
-                {chapter.summary}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <button
-        onClick={onGoToConclusion}
-        className="mt-12 rounded-full bg-gradient-to-r from-teal-500 to-blue-600 px-8 py-3 text-lg font-bold text-white shadow-xl transition-all duration-300 ease-out hover:from-teal-600 hover:to-blue-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-teal-500/50"
-      >
-        前往終章：傳承的溫度 →
-      </button>
-    </div>
-  );
-};
-
-// Chapter Page Component
-const ChapterPage = ({ chapterId, onGoBackToTOC, onGoToConclusion }) => {
-  const chaptersContent = {
-    chapter1: {
-      title: '第一章：油盡燈枯，法鐘驟響',
-      subtitle: '阿公的撒手，是家族的終章，還是戰國的序幕？',
-      content: `
-        <p>陳家大院, 阿公陳樹根的氣息如風中殘燭。兒孫環伺, 淚光與算計在空氣中交織。當他「腳伸直」那刻, 不僅是一個時代的落幕,《民法》第1147條「繼承, 因被繼承人死亡而開始」的冰冷條文, 已如法槌落下, 宣告陳家龐大遺產的繼承之戰, 正式鳴槍。</p>
-        <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
-          <p class="text-gray-300">孝衣未冷, 遺產的分割線已在心中劃開; 是血濃於水, 還是利字當頭, 親情的試金石, 此刻最為殘酷。</p>
-        </div>
-      `,
-      coreQuestion: '阿公的離世, 對陳家來說意味著什麼？',
-      keywords: [
-        { term: '《民法》第1147條', explanation: '法律規定, 當被繼承人（往生者）死亡時, 繼承的程序就開始了。這是繼承法律關係發生的起點。' },
-      ],
-      interactive: {
-        type: 'gavel',
-        prompt: '點擊法槌, 感受繼承的啟動。',
-        effect: '發出清脆的敲擊聲響, 並讓頁面中心出現一個醒目的「繼承開始」字樣, 短暫閃爍後消失。',
-      },
-    },
-    chapter2: {
-      title: '第二章：誰登繼承堂？',
-      subtitle: '血緣定順位，法律劃疆界，人心隔肚皮',
-      content: `
-        <p>阿公的「牽手」林玉蘭阿嬤, 是當然繼承人。長子陳明德、次女陳秀玲、么子陳明志, 憑藉《民法》第1138條的「直系血親卑親屬」身分, 位列第一順序。這張法律的「輪班表」鐵面無私, 前順位者在, 後順位者只能望洋興嘆。血緣是門票, 順位是座次, 但心中的那把尺, 卻各自丈量。</p>
-        <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
-          <p class="text-gray-300">一脈相承的血, 此刻卻因法律的排序, 生出親疏遠近的計較; 所謂公平, 在遺產面前, 往往是各自解讀的謎題。</p>
-        </div>
-      `,
-      coreQuestion: '在繼承中, 誰是第一順位繼承人？',
-      keywords: [
-        { term: '《民法》第1138條', explanation: '規定繼承人的順序：配偶永遠是繼承人, 同時與其他順位繼承人共同繼承。其餘順序為：第一順位為直系血親卑親屬（子女、孫子女）, 第二順位為父母, 第三順位為兄弟姊妹, 第四順位為祖父母。' },
-        { term: '直系血親卑親屬', explanation: '指與自己有直接血緣關係, 且輩分比自己低的親屬, 例如子女、孫子女、曾孫子女等。他們是民法規定的第一順位繼承人。' },
-      ],
-      interactive: {
-        type: 'human-scale',
-        prompt: '點擊天秤, 感受親情與利益的拉扯。',
-        choices: [
-          { label: '血濃於水, 親情至上', value: 'kinship' },
-          { label: '利字當頭, 各自為營', value: 'profit' },
-        ],
-      },
-    },
-    chapter3: {
-      title: '第三章：遺囑風暴',
-      subtitle: '阿公的最後墨跡, 是平息干戈的遺訓, 還是點燃戰火的星火？',
-      content: `
-        <p>若阿公「沒交代清楚」, 遺產依「應繼分」均分。但若阿公的「祕笈」（遺囑）橫空出世, 獨厚某房或某孫, 則《民法》第1223條的「特留分」（子女與配偶為其應繼分之半）便是其他法定繼承人最後的法律防線。遺囑是逝者意志的延伸, 卻也常是生者矛盾的開端。</p>
-        <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
-          <p class="text-gray-300">一紙遺囑, 承載著逝者的愛憎與生者的悲喜; 當偏愛挑戰了均分, 親情是否還能抵擋利益的撕扯？</p>
-        </div>
-      `,
-      coreQuestion: '遺囑如何影響繼承財產的分配？',
-      keywords: [
-        { term: '應繼分', explanation: '指在沒有遺囑或遺囑無效的情況下, 法律規定各繼承人應繼承的遺產比例。' },
-        { term: '《民法》第1223條', explanation: '規定了特留分：子女及配偶的特留分是其應繼分的二分之一, 其他順位繼承人的特留分是其應繼分的三分之一。這確保了法定繼承人最低限度的繼承權益。' },
-        { term: '特留分', explanation: '法律為保障特定繼承人（如配偶、子女）的最低繼承權利而設定的比例, 即使遺囑另有規定, 也不能剝奪這部分。' },
-      ],
-      interactive: {
-        type: 'keepsake-box',
-        prompt: '點擊阿公的遺物箱, 看看遺囑的片段。',
-        boxContent: `
-          <h6 class="text-center text-xl font-bold text-amber-200 mb-4">阿公的遺囑片段：</h6>
-          <p class="text-gray-300 italic mb-2">「吾將吾位於南投之農地, 全數贈與長孫阿華, 以報其孝心。餘財產, 由其他子嗣均分…」</p>
-          <p class="text-sm text-gray-400 mt-4">思考：這份遺囑對其他子女公平嗎？請注意《民法》關於「特留分」的規定。</p>
-        `,
-      },
-    },
-    chapter4: {
-      title: '第四章：債務迷霧',
-      subtitle: '阿公的未了之債, 是家族共負的軛, 還是各自飛散的煙？',
-      content: `
-        <p>阿公生前債務浮現, 幸有《民法》「概括繼承有限責任」原則（第1148條第2項）, 繼承人原則上以所得遺產為限償債。但「三個月內」向法院「陳報遺產清冊」（第1156條）並經「公示催告」（第1157條）是關鍵, 否則保護傘可能失效。若債務如山, 亦可選擇「拋棄繼承」（第1174條）, 但權利與義務一併放棄, 再無轉圜。</p>
-        <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
-          <p class="text-gray-300">債務面前, 是同心斷金, 還是大難臨頭各自飛？法律提供了避風港, 卻試探出人性的底線與現實的殘酷。</p>
-        </div>
-      `,
-      coreQuestion: '如何避免繼承到超出遺產的債務？',
-      keywords: [
-        { term: '《民法》第1148條第2項', explanation: '「概括繼承有限責任」：繼承人對於被繼承人的債務, 以繼承所得的遺產為限, 負清償責任。意思是, 如果遺產不夠還債, 繼承人不用拿自己的錢去償還, 保障了繼承人的個人財產安全。' },
-        { term: '概括繼承有限責任', explanation: '這是台灣民法繼承制度的核心原則, 意指繼承人對被繼承人的債務, 只需以其所繼承的遺產為限度負責清償, 不須以自己的固有財產償還。' },
-        { term: '《民法》第1156條', explanation: '規定繼承人應在知悉繼承時起三個月內, 向法院呈報遺產清冊。這是啟動有限責任保護的重要步驟。' },
-        { term: '公示催告', explanation: '繼承人呈報遺產清冊後, 法院會公告要求債權人限期申報債權, 以查明所有債務。' },
-        { term: '拋棄繼承', explanation: '《民法》第1174條規定, 繼承人可在知悉繼承時起三個月內, 以書面方式向法院聲明拋棄繼承。一旦拋棄, 就完全與該筆繼承無關, 包括權利和義務。' },
-      ],
-      interactive: {
-        type: 'scenario-choice',
-        prompt: '如果你是陳家人, 面對阿公的巨額債務, 你會怎麼做？',
-        scenario: '阿公過世後, 你發現他欠下數百萬債務, 但遺產只有少許存款和一間老屋, 不足以償還所有債務。你會選擇…',
-        choices: [
-          { label: 'A. 乖乖償還所有債務', consequence: '法律規定有限責任, 若超出遺產範圍, 您不需用個人財產償還。' },
-          { label: 'B. 拋棄繼承, 一了百了', consequence: '拋棄繼承後, 您將完全脫離這筆繼承, 包括所有權利與義務, 但必須在規定時間內向法院聲明。' },
-          { label: 'C. 申報遺產清冊, 主張有限責任', consequence: '這是最符合法律保障的方式, 您只需以繼承所得遺產為限償還債務, 保障個人財產。' },
-        ],
-      },
-    },
-    chapter5: {
-      title: '第五章：祖產分割戰',
-      subtitle: '不動產的歸屬, 是家族榮光的延續, 還是手足反目的祭品？',
-      content: `
-        <p>阿公留下的房產土地, 分割前屬全體繼承人「公同共有」（第1151條）, 處分需全體同意, 極易陷入僵局。可協議分割為「分別共有」或「分割繼承」, 若不成, 則只能訴請法院「裁判分割」（第824條）。若有未成年繼承人, 其父母若同為繼承人, 則需法院為其選任「特別代理人」（第1086條第2項）, 以防利益衝突。</p>
-        <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
-          <p class="text-gray-300">祖輩的基業, 本應是家族的凝聚力, 卻在分割的刀俎下, 成為衡量親情的砝碼; 寸土不讓的背後, 是多少情感的割捨與人心的疏離？</p>
-        </div>
-      `,
-      coreQuestion: '多位繼承人如何合法分割不動產？',
-      keywords: [
-        { term: '公同共有', explanation: '《民法》第1151條規定, 繼承人對於遺產是「公同共有」, 意指全體繼承人對遺產共同擁有權利, 沒有各自的持分比例, 處分財產需全體同意。' },
-        { term: '分別共有', explanation: '指多人共同擁有一個財產, 但每個人有明確的持分比例。與公同共有不同, 分別共有人可以自由處分自己的持分。' },
-        { term: '分割繼承', explanation: '指繼承人之間透過協議或法院判決, 將公同共有的遺產分割為各自單獨所有或分別共有的過程。' },
-        { term: '《民法》第824條', explanation: '規定若共有人協議不成, 可以訴請法院裁判分割共有物。法院會綜合考量各種因素進行公平分割。' },
-        { term: '特別代理人', explanation: '《民法》第1086條第2項規定, 當未成年子女與其父母（法定代理人）之間發生利益衝突時, 法院應為未成年子女選任一位特別代理人, 代表其利益。例如父母與子女同時繼承遺產, 而遺產分割可能損害子女權益時。' },
-      ],
-      interactive: {
-        type: 'flow-chart', // This would ideally be an SVG or canvas animation
-        prompt: '點擊查看不動產分割流程圖（示意）。',
-        flowText: `
-          <div class="text-center text-gray-300">
-            <p><strong>不動產分割流程簡化：</strong></p>
-            <p>遺產公同共有 → 協議分割（分別共有/單獨所有）</p>
-            <p>↳ 若協議不成 → 訴請法院裁判分割</p>
-            <p>(若有未成年繼承人, 且父母有利益衝突, 需選任特別代理人)</p>
-          </div>
-        `,
-      },
-    },
-    chapter6: {
-      title: '第六章：無牌厝的悲歌',
-      subtitle: '情感的重量, 在法律的邊緣, 能否壓過產權的輕飄？',
-      content: `
-        <p>阿公鄉下的「土角厝」, 未辦「建物所有權第一次登記」, 雖無權狀, 仍屬遺產, 需申報遺產稅。繼承人可變更「房屋稅納稅義務人」名義。雖法律處分權受限, 但在特定情況下（如徵收補償）, 此稅籍證明仍具意義。這「幽靈產權」, 是法律與現實的交錯。</p>
-        <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
-          <p class="text-gray-300">一磚一瓦皆是情, 但在法律的辭典裡, 無證的房產如同無根的浮萍; 當情感的價值遭遇產權的現實, 孰輕孰重, 難以定論。</p>
-        </div>
-      `,
-      coreQuestion: '沒有權狀的房子, 在繼承中如何處理？',
-      keywords: [
-        { term: '建物所有權第一次登記', explanation: '指房屋建成後, 向地政機關申請的第一次產權登記, 登記後才會取得房屋所有權狀。未辦登記者, 雖然有實際房屋, 但無法律上的所有權證明。' },
-        { term: '無權狀', explanation: '指房屋沒有經過政府機關的正式所有權登記, 因此沒有房屋所有權狀。' },
-        { term: '房屋稅納稅義務人', explanation: '即使沒有產權登記的房屋, 只要有使用事實, 政府仍會課徵房屋稅。繼承人可以向稅捐機關申請變更房屋稅的繳納義務人。' },
-      ],
-      interactive: {
-        type: 'keepsake-box', // Reusing the keepsake box type for simplicity
-        prompt: '點擊「土角厝」照片, 看看它的法律狀態。',
-        boxContent: `
-          <div class="text-center">
-            <img src="https://placehold.co/300x200/5C4033/EAEAEA?text=土角厝" alt="土角厝示意圖" class="mx-auto my-4 rounded-lg shadow-md">
-            <h6 class="text-xl font-bold text-amber-200 mb-2">「土角厝」的法律迷思：</h6>
-            <ul class="list-disc list-inside text-left text-gray-300">
-              <li>無「建物所有權狀」, 無法辦理產權移轉。</li>
-              <li>仍屬遺產, 需申報遺產稅。</li>
-              <li>可變更房屋稅納稅義務人名義。</li>
-              <li>在都更、徵收時, 稅籍證明可能派上用場。</li>
-            </ul>
-          </div>
-        `,
-      },
-    },
-    chapter7: {
-      title: '第七章：保單玄機',
-      subtitle: '愛心的預留, 是避稅的巧門, 還是國稅局的靶心？',
-      content: `
-        <p>阿公指定受益人的人壽保險金, 依《保險法》第112條及《遺產及贈與稅法》第16條第9款, 原則上不計入遺產總額。但若國稅局認定符合「實質課稅原則八大紅線」（如帶病投保、躉繳投保等）, 意圖規避遺產稅, 則保險金仍可能被追繳課稅。保險的傳承功能, 需在合法合規的框架內運作。</p>
-        <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
-          <p class="text-gray-300">保險本是未雨綢繆的愛, 卻可能因操作不當, 淪為稅務爭議的焦點; 是真心為後人計, 還是巧立名目避稅, 人心隔肚皮, 稅法有明鏡。</p>
-        </div>
-      `,
-      coreQuestion: '人壽保險金是否會被計入遺產課稅？',
-      keywords: [
-        { term: '《保險法》第112條', explanation: '規定人壽保險契約的保險金, 經指定受益人者, 其金額不得作為要保人的遺產。這是保險金免計入遺產的主要法源依據。' },
-        { term: '《遺產及贈與稅法》第16條第9款', explanation: '明確規定, 約定於被繼承人死亡時, 給付其所指定受益人之人壽保險金額, 不計入遺產總額。' },
-        { term: '實質課稅原則八大紅線', explanation: '指國稅局判斷保險是否具有規避遺產稅意圖的八項參考指標, 例如：重病投保、高齡投保、鉅額保費、密集投保、舉債投保、保險費高於或等於保險金額、短期內解除契約或變更要保人、躉繳（一次性繳清）保費等。' },
-      ],
-      interactive: {
-        type: 'quiz',
-        prompt: '猜猜看, 以下哪種情況可能讓保險金被國稅局追稅？',
-        quiz: [
-          {
-            question: '阿公在確診癌症末期後, 才緊急投保巨額人壽保險, 並指定子女為受益人。',
-            correct: true,
-            feedback: '答對了！這可能被認定為「帶病投保」, 觸及實質課稅原則紅線。',
-          },
-          {
-            question: '阿公年輕時就投保人壽保險, 每年按時繳費, 活到高壽後才過世。',
-            correct: false,
-            feedback: '這是正常的保險規劃, 一般不會被追稅。',
-          },
-          {
-            question: '阿公用自己的積蓄購買儲蓄型保險, 期滿後領回保險金。',
-            correct: false,
-            feedback: '這屬於生存保險金, 不計入遺產範圍。',
-          },
-        ],
-      },
-    },
-    chapter8: {
-      title: '第八章：貪婪噬心',
-      subtitle: '利慾的深淵, 足以讓血脈倒流, 讓親情變利刃',
-      content: `
-        <p>若有繼承人利慾薰心, 盜領存款、偽造文書、侵占遺產, 則不僅觸犯民法, 更將墜入《刑法》的深淵。偽造私文書、詐欺、侵占等罪名, 足以讓家庭分崩離析, 個人身敗名裂。「黃金試火, 患難試人, 遺產試親情; 一念之差, 天堂地獄, 皆在方寸間。」</p>
-        <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
-          <p class="text-gray-300">在巨額遺產的誘惑下, 人性的貪婪如脫韁野馬, 足以踐踏倫理, 撕裂血親; 當法律的制裁降臨, 失去的又豈止是金錢？</p>
-        </div>
-      `,
-      coreQuestion: '繼承人若私自處分遺產, 會面臨什麼法律後果？',
-      keywords: [
-        { term: '盜領存款', explanation: '指未經合法授權, 私自提取往生者的銀行存款。可能構成《刑法》上的詐欺罪或侵占罪。' },
-        { term: '偽造文書', explanation: '指未經授權, 偽造、變造遺囑、繼承相關文件等。可能構成《刑法》偽造文書罪。' },
-        { term: '侵占遺產', explanation: '指將屬於全體繼承人公同共有的遺產, 私自佔有或處分。除了民事上的不法侵害, 嚴重者也可能觸犯《刑法》侵占罪。' },
-      ],
-      interactive: {
-        type: 'warning',
-        prompt: '點擊警示牌, 看看貪婪的代價。',
-        warningContent: `
-          <div class="text-center">
-            <svg class="mx-auto mb-4 h-16 w-16 text-red-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-            <h6 class="text-xl font-bold text-red-400 mb-2">法律的嚴懲！</h6>
-            <p class="text-gray-300">私自處分遺產、偽造文件等行為, 不僅違反繼承法規, 更可能觸犯刑法：</p>
-            <ul class="list-disc list-inside text-left text-gray-300 mt-2">
-              <li><strong>偽造文書罪：</strong> 偽造遺囑、繼承證明等。</li>
-              <li><strong>詐欺罪：</strong> 冒領、騙取遺產。</li>
-              <li><strong>侵占罪：</strong> 侵占屬於他人的遺產。</li>
-            </ul>
-            <p class="text-sm text-red-300 mt-4">一念之差, 天堂地獄, 皆在方寸間。</p>
-          </div>
-        `,
-      },
-    },
-    chapter9: {
-      title: '第九章：協議書的烙印',
-      subtitle: '一紙契約, 是紛爭的句點, 還是隱忍的序章？',
-      content: `
-        <p>歷經波折, 繼承人簽下「遺產分割協議書」。此協議書若涉及不動產分割, 需依《印花稅法》繳納不動產價值千分之一的印花稅。若僅按應繼分繼承或依遺囑繼承, 則可免徵。這張稅單, 是共識的代價, 也是法律的程序。</p>
-        <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
-          <p class="text-gray-300">簽字畫押的瞬間, 或許是硝煙暫歇的時刻, 但墨水掩蓋下的, 是真心的和解, 還是權力不對等下的無奈妥協？</p>
-        </div>
-      `,
-      coreQuestion: '遺產分割協議書簽訂後, 還需注意什麼？',
-      keywords: [
-        { term: '遺產分割協議書', explanation: '繼承人之間就遺產如何分配達成共識後, 簽訂的書面文件。這是遺產分割的重要法律依據。' },
-        { term: '印花稅', explanation: '《印花稅法》規定, 涉及不動產物權轉移的契約（如買賣、交換、贈與、分割繼承等）, 需繳納一定比例的印花稅。遺產分割協議書若有不動產分割, 原則上需繳納。' },
-      ],
-      interactive: {
-        type: 'scenario-choice',
-        prompt: '遺產分割協議書簽訂後, 你覺得下列哪句話最能描述當時的心情？',
-        scenario: '經過數月的爭執和協商, 你們終於簽下了遺產分割協議書。',
-        choices: [
-          { label: 'A. 終於塵埃落定, 鬆了一口氣。', consequence: '希望這份協議能真正帶來家族的平靜與和解。' },
-          { label: 'B. 雖然不滿, 但也只能妥協。', consequence: '現實的壓力有時讓人不得不放下心中的堅持。' },
-          { label: 'C. 表面平靜, 但暗潮洶湧。', consequence: '協議書或許只是暫時的休止符, 真正的和解還需要時間與努力。' },
-        ],
-      },
-    },
-    chapter10: {
-      title: '第十章：遺產的孤寂漂流',
-      subtitle: '當財富無人承繼, 是家族的悲哀, 還是社會的警鐘？',
-      content: `
-        <p>若遺產因債務龐大、產權複雜或繼承人失聯等因素, 致「無人承認繼承」, 經法院指定遺產管理人、公示催告後, 清償債務與交付遺贈後, 賸餘遺產將依《民法》第1185條「歸屬國庫」。財富的最終流向, 映照出家庭功能的式微與社會結構的變遷。</p>
-        <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
-          <p class="text-gray-300">曾經代表家族榮耀的財產, 最終卻無人認領, 淪為國庫的數字; 這不僅是物質的消散, 更是情感連結斷裂的無言證明。</p>
-        </div>
-      `,
-      coreQuestion: '什麼情況下遺產會最終歸屬國庫？',
-      keywords: [
-        { term: '無人承認繼承', explanation: '指被繼承人過世後, 沒有合法繼承人出面主張繼承權利, 或所有繼承人都拋棄繼承, 導致遺產處於無人繼承的狀態。' },
-        { term: '遺產管理人', explanation: '當遺產無人承認繼承時, 法院可依利害關係人或檢察官的聲請, 選任遺產管理人, 負責清點、管理、清償債務和分配遺贈。' },
-        { term: '《民法》第1185條', explanation: '規定若經公示催告後, 仍無人承認繼承, 且無債權人或受遺贈人受清償或交付遺贈後, 賸餘的遺產即歸屬國庫。' },
-        { term: '歸屬國庫', explanation: '指無人繼承的遺產, 在清償所有債務及交付遺贈後, 剩餘部分最終會由國家取得。' },
-      ],
-      interactive: {
-        type: 'reflection',
-        prompt: '點擊思考, 遺產歸屬國庫的意義。',
-        reflectionContent: `
-          <div class="text-center text-gray-300">
-            <h6 class="text-xl font-bold text-amber-200 mb-2">財富的孤寂：</h6>
-            <p>當家族財產最終無人繼承而歸屬國庫, 這不僅是物質的失去, 更是對家族連結斷裂的沉痛警示。</p>
-            <p class="mt-4">它提醒我們, 除了財富, 更重要的是維繫家族情感, 傳承無形的家風與記憶。</p>
-          </div>
-        `,
-      },
-    },
-  };
-
-  const chapterData = chaptersContent[chapterId];
-  const [showTooltip, setShowTooltip] = useState(false);
-  const [tooltipContent, setTooltipContent] = useState('');
-  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
-  const [interactiveModalOpen, setInteractiveModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState('');
-  const [quizFeedback, setQuizFeedback] = useState(''); // For quiz interactions
-
-  const handleKeywordHover = (e, explanation) => {
-    setTooltipContent(explanation);
-    setTooltipPosition({ x: e.clientX + 15, y: e.clientY + 15 });
-    setShowTooltip(true);
-  };
-
-  const handleKeywordLeave = () => {
-    setShowTooltip(false);
-  };
-
-  const handleInteractiveClick = (type, content) => {
-    setModalContent(content);
-    setInteractiveModalOpen(true);
-    if (type === 'quiz') {
-      setQuizFeedback(''); // Reset quiz feedback
-    }
-  };
-
-  const handleQuizAnswer = (isCorrect, feedbackText) => {
-    setQuizFeedback(isCorrect ? `✅ 正確！${feedbackText}` : `❌ 錯誤！${feedbackText}`);
-  };
-
-  if (!chapterData) {
-    return (
-      <div className="flex min-h-screen items-center justify-center text-white">
-        <p>章節內容載入中或不存在...</p>
-        <button onClick={onGoBackToTOC} className="ml-4 text-blue-400 hover:underline">
-          返回目錄
-        </button>
-      </div>
-    );
-  }
-
-  // Function to render content with keyword highlighters
-  const renderContentWithKeywords = (htmlContent, keywords) => {
-    let processedContent = htmlContent;
-    keywords.forEach((kw) => {
-      const regex = new RegExp(`(${kw.term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'g'); // Escape special chars for regex
-      processedContent = processedContent.replace(
-        regex,
-        `<span class="keyword-highlight cursor-pointer font-bold text-amber-300 underline decoration-dotted" data-explanation="${kw.explanation}">$1</span>`,
-      );
-    });
-    return { __html: processedContent };
-  };
-
-  useEffect(() => {
-    const handleKeywordEvents = (event) => {
-      const target = event.target;
-      if (target.classList.contains('keyword-highlight')) {
-        if (event.type === 'mouseenter') {
-          handleKeywordHover(event, target.dataset.explanation);
-        } else if (event.type === 'mouseleave') {
-          handleKeywordLeave();
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>臺灣繼承啟示錄</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-      }
-    };
+        ::-webkit-scrollbar-track {
+            background: #1e293b; /* slate-800 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568; /* gray-600 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; /* gray-500 */
+        }
+        /* Basic prose styling for content readability - will be overridden by Tailwind prose if available */
+        .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+            color: #FCD34D; /* amber-300 */
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-weight: 700;
+        }
+        .prose p {
+            margin-bottom: 1em;
+        }
+        .prose a {
+            color: #60A5FA; /* blue-400 */
+            text-decoration: underline;
+        }
+        .prose strong {
+            color: #FCD34D; /* amber-300 */
+        }
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 1.5em;
+        }
+        .prose li {
+            margin-bottom: 0.5em;
+        }
+        /* Utility for hiding elements */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="font-inter min-h-screen bg-gradient-to-br from-indigo-950 to-gray-900 text-gray-100 antialiased">
 
-    const contentDiv = document.getElementById('chapter-content');
-    if (contentDiv) {
-      contentDiv.addEventListener('mouseenter', handleKeywordEvents, true);
-      contentDiv.addEventListener('mouseleave', handleKeywordEvents, true);
-    }
+    <!-- Main App Container -->
+    <div id="app-container">
+        <!-- Landing Page -->
+        <div id="landing-page" class="relative flex min-h-screen items-center justify-center overflow-hidden p-4">
+            <!-- Background Image/Illustration Placeholder -->
+            <div
+                class="absolute inset-0 bg-cover bg-center opacity-20"
+                style="background-image: url('https://placehold.co/1920x1080/0F172A/E2E8F0?text=古樸大院');"
+            ></div>
 
-    return () => {
-      if (contentDiv) {
-        contentDiv.removeEventListener('mouseenter', handleKeywordEvents, true);
-        contentDiv.removeEventListener('mouseleave', handleKeywordEvents, true);
-      }
-    };
-  }, [chapterData]); // Re-attach listeners if chapterData changes
+            <div class="relative z-10 flex flex-col items-center text-center">
+                <!-- Gavel Icon/Animation -->
+                <div class="mb-8 transform transition-transform duration-700 hover:scale-105">
+                    <svg
+                        class="h-24 w-24 text-amber-400 opacity-90 drop-shadow-lg md:h-32 md:w-32"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
+                    </svg>
+                </div>
 
-  return (
-    <div className="flex min-h-screen flex-col"> {/* Changed from lg:flex-row to flex-col */}
-      {/* Upper Block (Chapter Info & Controls) */}
-      <div className="w-full bg-gray-950 p-8 md:p-12"> {/* Removed sticky and specific lg:h-screen lg:w-1/3 */}
-        <button
-          onClick={onGoBackToTOC}
-          className="mb-6 flex items-center text-blue-400 transition-colors duration-200 hover:text-blue-300"
-        >
-          <svg
-            className="mr-2 h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-          </svg>
-          返回章節目錄
-        </button>
+                <!-- Title Animation -->
+                <div id="landing-title" class="overflow-hidden transition-all duration-1000 ease-in-out max-h-0 opacity-0">
+                    <h1 class="mb-4 text-4xl font-extrabold tracking-tight text-white md:text-6xl">
+                        臺灣繼承啟示錄：
+                    </h1>
+                    <h2 class="mb-8 text-2xl font-semibold text-gray-300 md:text-4xl">
+                        法網下的愛恨，算盤上的親情
+                    </h2>
+                </div>
 
-        <h3 className="mb-4 text-3xl font-bold text-white md:text-4xl">
-          {chapterData.title}
-        </h3>
-        <h4 className="mb-8 text-xl font-semibold text-gray-300 md:text-2xl">
-          {chapterData.subtitle}
-        </h4>
-
-        {/* Core Question */}
-        <div className="rounded-lg bg-indigo-800 p-6 shadow-xl">
-          <p className="mb-2 text-lg font-semibold text-indigo-200">核心思考：</p>
-          <p className="text-xl text-white">{chapterData.coreQuestion}</p>
+                <!-- Button -->
+                <button
+                    id="start-journey-btn"
+                    class="rounded-full bg-gradient-to-r from-amber-500 to-orange-600 px-8 py-3 text-lg font-bold text-white shadow-xl transition-all duration-500 ease-out hover:from-amber-600 hover:to-orange-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-amber-500/50 opacity-0 translate-y-4"
+                >
+                    點擊開啟繼承之旅
+                </button>
+            </div>
         </div>
 
-        {/* Interactive Element Trigger */}
-        {chapterData.interactive && (
-          <button
-            onClick={() => handleInteractiveClick(chapterData.interactive.type, chapterData.interactive.boxContent || chapterData.interactive.quiz || chapterData.interactive.flowText || chapterData.interactive.warningContent || chapterData.interactive.reflectionContent || chapterData.interactive.prompt)}
-            className="mt-10 w-full rounded-full bg-gradient-to-r from-purple-600 to-indigo-700 px-6 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 ease-out hover:from-purple-700 hover:to-indigo-800 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500/50"
-          >
-            {chapterData.interactive.prompt}
-          </button>
-        )}
+        <!-- Table of Contents Page -->
+        <div id="toc-page" class="hidden flex min-h-screen flex-col items-center justify-center p-8">
+            <h3 class="mb-12 text-center text-3xl font-bold text-white md:text-5xl">
+                章節之徑：迷霧中的指引
+            </h3>
 
-        {/* Navigation to Conclusion */}
-        <button
-          onClick={onGoToConclusion}
-          className="mt-auto flex w-full items-center justify-center rounded-full bg-gradient-to-r from-teal-500 to-blue-600 px-6 py-3 text-lg font-bold text-white shadow-xl transition-all duration-300 ease-out hover:from-teal-600 hover:to-blue-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-teal-500/50"
-        >
-          前往終章 →
-        </button>
-      </div>
-
-      {/* Lower Block (Main Content & Interactions) */}
-      <div
-        id="chapter-content"
-        className="relative w-full flex-1 overflow-y-auto bg-gray-900 p-8 pb-20 text-lg leading-relaxed text-gray-200 md:p-12" // Removed lg:w-2/3 and adjusted padding
-      >
-        <div
-          className="prose prose-invert max-w-none text-gray-200"
-          dangerouslySetInnerHTML={renderContentWithKeywords(
-            chapterData.content,
-            chapterData.keywords,
-          )}
-        />
-
-        {/* Floating Tooltip for Keywords */}
-        {showTooltip && (
-          <div
-            className="fixed z-50 rounded-lg bg-gray-700 p-3 text-sm text-white shadow-xl transition-opacity duration-200"
-            style={{ left: tooltipPosition.x, top: tooltipPosition.y }}
-          >
-            {tooltipContent}
-          </div>
-        )}
-
-        {/* Interactive Modal */}
-        {interactiveModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4">
-            <div className="relative w-full max-w-2xl rounded-xl bg-gray-800 p-8 shadow-2xl">
-              <button
-                onClick={() => setInteractiveModalOpen(false)}
-                className="absolute right-4 top-4 text-gray-400 hover:text-white"
-              >
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-              </button>
-              <div className="max-h-[80vh] overflow-y-auto text-gray-200">
-                {chapterData.interactive.type === 'keepsake-box' || chapterData.interactive.type === 'flow-chart' || chapterData.interactive.type === 'warning' || chapterData.interactive.type === 'reflection' ? (
-                  <div dangerouslySetInnerHTML={{ __html: modalContent }} />
-                ) : chapterData.interactive.type === 'quiz' ? (
-                  <div>
-                    <h6 className="mb-4 text-center text-2xl font-bold text-amber-300">互動小測驗</h6>
-                    {/* Check if modalContent is an array and has items before accessing index 0 */}
-                    {Array.isArray(modalContent) && modalContent.length > 0 && modalContent[0].question && (
-                      <>
-                        <p className="mb-4 text-lg">{modalContent[0].question}</p>
-                        <div className="space-y-3">
-                          {modalContent.map((item, index) => (
-                            <button
-                              key={index}
-                              onClick={() => handleQuizAnswer(item.correct, item.feedback)}
-                              className="w-full rounded-md bg-blue-700 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                            >
-                              {item.question}
-                            </button>
-                          ))}
-                        </div>
-                        {quizFeedback && (
-                          <p className={`mt-4 text-center text-lg ${quizFeedback.startsWith('✅') ? 'text-green-400' : 'text-red-400'}`}>
-                            {quizFeedback}
-                          </p>
-                        )}
-                      </>
-                    )}
-                     {/* For single quiz question with choices */}
-                    {chapterData.interactive.type === 'quiz' && !Array.isArray(modalContent) && chapterData.interactive.quiz && (
-                      <>
-                        <p className="mb-4 text-lg">{chapterData.interactive.quiz[0].question}</p>
-                        <div className="space-y-3">
-                          {chapterData.interactive.quiz.map((item, index) => (
-                            <button
-                              key={index}
-                              onClick={() => handleQuizAnswer(item.correct, item.feedback)}
-                              className="w-full rounded-md bg-blue-700 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                            >
-                              {item.question}
-                            </button>
-                          ))}
-                        </div>
-                        {quizFeedback && (
-                          <p className={`mt-4 text-center text-lg ${quizFeedback.startsWith('✅') ? 'text-green-400' : 'text-red-400'}`}>
-                            {quizFeedback}
-                          </p>
-                        )}
-                      </>
-                    )}
-                  </div>
-                ) : chapterData.interactive.type === 'scenario-choice' ? (
-                  <div>
-                    <h6 className="mb-4 text-center text-2xl font-bold text-amber-300">情境選擇題</h6>
-                    <p className="mb-4 text-lg italic text-gray-300">{chapterData.interactive.scenario}</p>
-                    <div className="space-y-3">
-                      {chapterData.interactive.choices.map((choice, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setModalContent(`您選擇了 "${choice.label}"。 後果預覽：${choice.consequence}`)}
-                          className="w-full rounded-md bg-blue-700 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                        >
-                          {choice.label}
-                        </button>
-                      ))}
-                    </div>
-                    {modalContent.startsWith('您選擇了') && <p className="mt-4 text-center text-lg text-green-400">{modalContent}</p>}
-                  </div>
-                ) : chapterData.interactive.type === 'human-scale' ? (
-                  <div>
-                    <h6 className="mb-4 text-center text-2xl font-bold text-amber-300">人性羅盤</h6>
-                    <p className="mb-4 text-lg text-gray-300">投票：在遺產面前，您認為哪種情況更普遍？</p>
-                    <div className="flex justify-around space-x-4">
-                      {chapterData.interactive.choices.map((choice) => (
-                        <button
-                          key={choice.value}
-                          onClick={() => setModalContent(`您投票給：${choice.label}。此處僅為示意，無真實投票功能。`)}
-                          className="flex-1 rounded-md bg-pink-700 px-4 py-2 text-white hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
-                        >
-                          {choice.label}
-                        </button>
-                      ))}
-                    </div>
-                    {modalContent.startsWith('您投票給') && <p className="mt-4 text-center text-lg text-green-400">{modalContent}</p>}
-                  </div>
-                ) : chapterData.interactive.type === 'gavel' ? (
-                  <div className="text-center">
-                    <svg
-                      className="mx-auto mb-4 h-20 w-20 animate-bounce text-amber-400"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
-                    </svg>
-                    <h6 className="text-2xl font-bold text-amber-300">「繼承開始！」</h6>
-                    <p className="mt-2 text-gray-300">《民法》第1147條生效。</p>
-                  </div>
-                ) : (
-                  <p>未知的互動類型。</p>
-                )}
-              </div>
+            <!-- Chapter List Grid -->
+            <div id="chapters-grid" class="grid w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Chapter cards will be inserted here by JavaScript -->
             </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
 
-export default App; // Required for React components
+            <button
+                id="go-to-conclusion-from-toc"
+                class="mt-12 rounded-full bg-gradient-to-r from-teal-500 to-blue-600 px-8 py-3 text-lg font-bold text-white shadow-xl transition-all duration-300 ease-out hover:from-teal-600 hover:to-blue-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-teal-500/50"
+            >
+                前往終章：傳承的溫度 →
+            </button>
+        </div>
+
+        <!-- Chapter Page -->
+        <div id="chapter-page" class="hidden flex min-h-screen flex-col">
+            <!-- Upper Block (Chapter Info & Controls) -->
+            <div class="w-full bg-gray-950 p-8 md:p-12">
+                <button
+                    id="back-to-toc-btn"
+                    class="mb-6 flex items-center text-blue-400 transition-colors duration-200 hover:text-blue-300"
+                >
+                    <svg
+                        class="mr-2 h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    返回章節目錄
+                </button>
+
+                <h3 id="chapter-title" class="mb-4 text-3xl font-bold text-white md:text-4xl"></h3>
+                <h4 id="chapter-subtitle" class="mb-8 text-xl font-semibold text-gray-300 md:text-2xl"></h4>
+
+                <!-- Core Question -->
+                <div class="rounded-lg bg-indigo-800 p-6 shadow-xl">
+                    <p class="mb-2 text-lg font-semibold text-indigo-200">核心思考：</p>
+                    <p id="core-question" class="text-xl text-white"></p>
+                </div>
+
+                <!-- Interactive Element Trigger -->
+                <button
+                    id="interactive-trigger-btn"
+                    class="mt-10 w-full rounded-full bg-gradient-to-r from-purple-600 to-indigo-700 px-6 py-3 text-lg font-bold text-white shadow-lg transition-all duration-300 ease-out hover:from-purple-700 hover:to-indigo-800 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500/50"
+                >
+                    <!-- Interactive prompt will be inserted here -->
+                </button>
+
+                <!-- Navigation to Conclusion -->
+                <button
+                    id="go-to-conclusion-from-chapter"
+                    class="mt-auto flex w-full items-center justify-center rounded-full bg-gradient-to-r from-teal-500 to-blue-600 px-6 py-3 text-lg font-bold text-white shadow-xl transition-all duration-300 ease-out hover:from-teal-600 hover:to-blue-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-teal-500/50"
+                >
+                    前往終章 →
+                </button>
+            </div>
+
+            <!-- Lower Block (Main Content & Interactions) -->
+            <div
+                id="chapter-main-content"
+                class="relative w-full flex-1 overflow-y-auto bg-gray-900 p-8 pb-20 text-lg leading-relaxed text-gray-200 md:p-12"
+            >
+                <div id="chapter-prose-content" class="prose prose-invert max-w-none text-gray-200">
+                    <!-- Chapter content will be inserted here by JavaScript -->
+                </div>
+
+                <!-- Floating Tooltip for Keywords -->
+                <div
+                    id="keyword-tooltip"
+                    class="fixed z-50 rounded-lg bg-gray-700 p-3 text-sm text-white shadow-xl transition-opacity duration-200 hidden"
+                    style="pointer-events: none;"
+                >
+                    <!-- Tooltip content will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusion Page -->
+        <div id="conclusion-page" class="hidden flex min-h-screen flex-col items-center justify-center p-8 text-center">
+            <h3 class="mb-8 text-4xl font-bold text-white md:text-5xl">
+                終章：法網下的溫度
+            </h3>
+            <h4 class="mb-12 text-2xl font-semibold text-gray-300 md:text-3xl">
+                傳承的真諦，在算計與情感的拔河中，尋找人性的光輝
+            </h4>
+
+            <!-- Family Tree Image Placeholder -->
+            <img
+                src="https://placehold.co/400x300/1F2937/E2E8F0?text=家族樹剪影"
+                alt="Family Tree"
+                class="mb-12 max-w-full rounded-xl shadow-lg"
+            />
+
+            <div class="max-w-3xl rounded-xl bg-gray-800 p-8 shadow-xl">
+                <p class="mb-6 text-lg text-gray-200 md:text-xl">
+                    臺灣的繼承故事，是法律與人性的交響與碰撞。法律條文如經緯線，試圖規範財產的流轉與權益的分配。然而，法律的冰冷，需以人情的溫度來調和。「一代傳一代，不只傳田產，更要傳家風。」在專業法律的引導下，唯有坦誠、體諒與尊重，才能讓遺產成為凝聚家族的基石，而非分裂的炸藥。
+                </p>
+                <p class="mb-8 text-lg text-gray-300 italic md:text-xl">
+                    繼承的終點，不應僅是財產的分割，更應是家族情感的重新整合；法律能劃清界線，但唯有人心深處的愛與和解，才能真正讓逝者安息，生者無憾。
+                </p>
+
+                <!-- Your Inheritance Story - Placeholder for comment section -->
+                <div class="mb-10 rounded-lg bg-gray-700 p-6 text-center shadow-md">
+                    <h5 class="mb-4 text-xl font-semibold text-amber-300">您的繼承故事</h5>
+                    <p class="text-gray-300">
+                        請在此分享您或您身邊關於繼承的感想、故事或疑問。
+                        <br />
+                        （此為示意區塊，實際功能需後端支持）
+                    </p>
+                    <textarea
+                        class="mt-4 w-full rounded-md border border-gray-600 bg-gray-800 p-3 text-white placeholder-gray-500 focus:border-blue-500 focus:ring-blue-500"
+                        rows="4"
+                        placeholder="輸入您的故事..."
+                        disabled
+                    ></textarea>
+                    <button
+                        class="mt-4 rounded-full bg-blue-600 px-6 py-2 font-bold text-white transition-colors duration-300 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500/50"
+                        disabled
+                    >
+                        提交
+                    </button>
+                </div>
+
+                <!-- Legal Consultation Guidance -->
+                <div class="mb-10 rounded-lg bg-indigo-800 p-6 shadow-md">
+                    <h5 class="mb-3 text-xl font-semibold text-indigo-200">法律諮詢引導</h5>
+                    <p class="mb-4 text-gray-300">
+                        面對複雜的繼承問題，尋求專業法律意見至關重要。
+                    </p>
+                    <a
+                        href="https://www.laf.org.tw/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-block rounded-full bg-green-600 px-6 py-2 font-bold text-white transition-colors duration-300 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-500/50"
+                    >
+                        尋找法律扶助資源
+                    </a>
+                </div>
+
+                <!-- Family Legacy Declaration -->
+                <div class="mb-8 rounded-lg bg-amber-800 bg-opacity-30 p-6 shadow-md">
+                    <h5 class="mb-3 text-xl font-semibold text-amber-100">家族傳承宣言</h5>
+                    <p class="text-gray-200 italic">
+                        「財富非永恆，家風永流傳。世代相承的，不應只有物質，更有智慧、勇氣與愛。」
+                    </p>
+                </div>
+
+                <button
+                    id="back-to-toc-from-conclusion"
+                    class="mt-8 flex items-center justify-center rounded-full bg-gray-600 px-8 py-3 text-lg font-bold text-white shadow-xl transition-all duration-300 ease-out hover:bg-gray-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-500/50"
+                >
+                    <svg
+                        class="mr-2 h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    重新探索章節
+                </button>
+            </div>
+        </div>
+
+        <!-- Interactive Modal -->
+        <div id="interactive-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4">
+            <div class="relative w-full max-w-2xl rounded-xl bg-gray-800 p-8 shadow-2xl">
+                <button id="close-modal-btn" class="absolute right-4 top-4 text-gray-400 hover:text-white">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <div id="modal-content" class="max-h-[80vh] overflow-y-auto text-gray-200">
+                    <!-- Modal content will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Global state variables
+        let currentPage = 'landing';
+        let currentChapter = null;
+        let quizFeedback = ''; // For quiz interactions
+
+        // Define chapter contents and data
+        const chaptersContent = {
+            chapter1: {
+                title: '第一章：油盡燈枯，法鐘驟響',
+                subtitle: '阿公的撒手，是家族的終章，還是戰國的序幕？',
+                content: `
+                    <p>陳家大院, 阿公陳樹根的氣息如風中殘燭。兒孫環伺, 淚光與算計在空氣中交織。當他「腳伸直」那刻, 不僅是一個時代的落幕,《民法》第1147條「繼承, 因被繼承人死亡而開始」的冰冷條文, 已如法槌落下, 宣告陳家龐大遺產的繼承之戰, 正式鳴槍。</p>
+                    <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
+                        <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
+                        <p class="text-gray-300">孝衣未冷, 遺產的分割線已在心中劃開; 是血濃於水, 還是利字當頭, 親情的試金石, 此刻最為殘酷。</p>
+                    </div>
+                `,
+                coreQuestion: '阿公的離世, 對陳家來說意味著什麼？',
+                keywords: [
+                    { term: '《民法》第1147條', explanation: '法律規定, 當被繼承人（往生者）死亡時, 繼承的程序就開始了。這是繼承法律關係發生的起點。' },
+                ],
+                interactive: {
+                    type: 'gavel',
+                    prompt: '點擊法槌, 感受繼承的啟動。',
+                    effect: '發出清脆的敲擊聲響, 並讓頁面中心出現一個醒目的「繼承開始」字樣, 短暫閃爍後消失。',
+                },
+            },
+            chapter2: {
+                title: '第二章：誰登繼承堂？',
+                subtitle: '血緣定順位，法律劃疆界，人心隔肚皮',
+                content: `
+                    <p>阿公的「牽手」林玉蘭阿嬤, 是當然繼承人。長子陳明德、次女陳秀玲、么子陳明志, 憑藉《民法》第1138條的「直系血親卑親屬」身分, 位列第一順序。這張法律的「輪班表」鐵面無私, 前順位者在, 後順位者只能望洋興嘆。血緣是門票, 順位是座次, 但心中的那把尺, 卻各自丈量。</p>
+                    <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
+                        <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
+                        <p class="text-gray-300">一脈相承的血, 此刻卻因法律的排序, 生出親疏遠近的計較; 所謂公平, 在遺產面前, 往往是各自解讀的謎題。</p>
+                    </div>
+                `,
+                coreQuestion: '在繼承中, 誰是第一順位繼承人？',
+                keywords: [
+                    { term: '《民法》第1138條', explanation: '規定繼承人的順序：配偶永遠是繼承人, 同時與其他順位繼承人共同繼承。其餘順序為：第一順位為直系血親卑親屬（子女、孫子女）, 第二順位為父母, 第三順位為兄弟姊妹, 第四順位為祖父母。' },
+                    { term: '直系血親卑親屬', explanation: '指與自己有直接血緣關係, 且輩分比自己低的親屬, 例如子女、孫子女、曾孫子女等。他們是民法規定的第一順位繼承人。' },
+                ],
+                interactive: {
+                    type: 'human-scale',
+                    prompt: '點擊天秤, 感受親情與利益的拉扯。',
+                    choices: [
+                        { label: '血濃於水, 親情至上', value: 'kinship' },
+                        { label: '利字當頭, 各自為營', value: 'profit' },
+                    ],
+                },
+            },
+            chapter3: {
+                title: '第三章：遺囑風暴',
+                subtitle: '阿公的最後墨跡, 是平息干戈的遺訓, 還是點燃戰火的星火？',
+                content: `
+                    <p>若阿公「沒交代清楚」, 遺產依「應繼分」均分。但若阿公的「祕笈」（遺囑）橫空出世, 獨厚某房或某孫, 則《民法》第1223條的「特留分」（子女與配偶為其應繼分之半）便是其他法定繼承人最後的法律防線。遺囑是逝者意志的延伸, 卻也常是生者矛盾的開端。</p>
+                    <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
+                        <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
+                        <p class="text-gray-300">一紙遺囑, 承載著逝者的愛憎與生者的悲喜; 當偏愛挑戰了均分, 親情是否還能抵擋利益的撕扯？</p>
+                    </div>
+                `,
+                coreQuestion: '遺囑如何影響繼承財產的分配？',
+                keywords: [
+                    { term: '應繼分', explanation: '指在沒有遺囑或遺囑無效的情況下, 法律規定各繼承人應繼承的遺產比例。' },
+                    { term: '《民法》第1223條', explanation: '規定了特留分：子女及配偶的特留分是其應繼分的二分之一, 其他順位繼承人的特留分是其應繼分的三分之一。這確保了法定繼承人最低限度的繼承權益。' },
+                    { term: '特留分', explanation: '法律為保障特定繼承人（如配偶、子女）的最低繼承權利而設定的比例, 即使遺囑另有規定, 也不能剝奪這部分。' },
+                ],
+                interactive: {
+                    type: 'keepsake-box',
+                    prompt: '點擊阿公的遺物箱, 看看遺囑的片段。',
+                    boxContent: `
+                        <h6 class="text-center text-xl font-bold text-amber-200 mb-4">阿公的遺囑片段：</h6>
+                        <p class="text-gray-300 italic mb-2">「吾將吾位於南投之農地, 全數贈與長孫阿華, 以報其孝心。餘財產, 由其他子嗣均分…」</p>
+                        <p class="text-sm text-gray-400 mt-4">思考：這份遺囑對其他子女公平嗎？請注意《民法》關於「特留分」的規定。</p>
+                    `,
+                },
+            },
+            chapter4: {
+                title: '第四章：債務迷霧',
+                subtitle: '阿公的未了之債, 是家族共負的軛, 還是各自飛散的煙？',
+                content: `
+                    <p>阿公生前債務浮現, 幸有《民法》「概括繼承有限責任」原則（第1148條第2項）, 繼承人原則上以所得遺產為限償債。但「三個月內」向法院「陳報遺產清冊」（第1156條）並經「公示催告」（第1157條）是關鍵, 否則保護傘可能失效。若債務如山, 亦可選擇「拋棄繼承」（第1174條）, 但權利與義務一併放棄, 再無轉圜。</p>
+                    <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
+                        <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
+                        <p class="text-gray-300">債務面前, 是同心斷金, 還是大難臨頭各自飛？法律提供了避風港, 卻試探出人性的底線與現實的殘酷。</p>
+                    </div>
+                `,
+                coreQuestion: '如何避免繼承到超出遺產的債務？',
+                keywords: [
+                    { term: '《民法》第1148條第2項', explanation: '「概括繼承有限責任」：繼承人對於被繼承人的債務, 以繼承所得的遺產為限, 負清償責任。意思是, 如果遺產不夠還債, 繼承人不用拿自己的錢去償還, 保障了繼承人的個人財產安全。' },
+                    { term: '概括繼承有限責任', explanation: '這是台灣民法繼承制度的核心原則, 意指繼承人對被繼承人的債務, 只需以其所繼承的遺產為限度負責清償, 不須以自己的固有財產償還。' },
+                    { term: '《民法》第1156條', explanation: '規定繼承人應在知悉繼承時起三個月內, 向法院呈報遺產清冊。這是啟動有限責任保護的重要步驟。' },
+                    { term: '公示催告', explanation: '繼承人呈報遺產清冊後, 法院會公告要求債權人限期申報債權, 以查明所有債務。' },
+                    { term: '拋棄繼承', explanation: '《民法》第1174條規定, 繼承人可在知悉繼承時起三個月內, 以書面方式向法院聲明拋棄繼承。一旦拋棄, 就完全與該筆繼承無關, 包括權利和義務。' },
+                ],
+                interactive: {
+                    type: 'scenario-choice',
+                    prompt: '如果你是陳家人, 面對阿公的巨額債務, 你會怎麼做？',
+                    scenario: '阿公過世後, 你發現他欠下數百萬債務, 但遺產只有少許存款和一間老屋, 不足以償還所有債務。你會選擇…',
+                    choices: [
+                        { label: 'A. 乖乖償還所有債務', consequence: '法律規定有限責任, 若超出遺產範圍, 您不需用個人財產償還。' },
+                        { label: 'B. 拋棄繼承, 一了百了', consequence: '拋棄繼承後, 您將完全脫離這筆繼承, 包括所有權利與義務, 但必須在規定時間內向法院聲明。' },
+                        { label: 'C. 申報遺產清冊, 主張有限責任', consequence: '這是最符合法律保障的方式, 您只需以繼承所得遺產為限償還債務, 保障個人財產。' },
+                    ],
+                },
+            },
+            chapter5: {
+                title: '第五章：祖產分割戰',
+                subtitle: '不動產的歸屬, 是家族榮光的延續, 還是手足反目的祭品？',
+                content: `
+                    <p>阿公留下的房產土地, 分割前屬全體繼承人「公同共有」（第1151條）, 處分需全體同意, 極易陷入僵局。可協議分割為「分別共有」或「分割繼承」, 若不成, 則只能訴請法院「裁判分割」（第824條）。若有未成年繼承人, 其父母若同為繼承人, 則需法院為其選任「特別代理人」（第1086條第2項）, 以防利益衝突。</p>
+                    <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
+                        <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
+                        <p class="text-gray-300">祖輩的基業, 本應是家族的凝聚力, 卻在分割的刀俎下, 成為衡量親情的砝碼; 寸土不讓的背後, 是多少情感的割捨與人心的疏離？</p>
+                    </div>
+                `,
+                coreQuestion: '多位繼承人如何合法分割不動產？',
+                keywords: [
+                    { term: '公同共有', explanation: '《民法》第1151條規定, 繼承人對於遺產是「公同共有」, 意指全體繼承人對遺產共同擁有權利, 沒有各自的持分比例, 處分財產需全體同意。' },
+                    { term: '分別共有', explanation: '指多人共同擁有一個財產, 但每個人有明確的持分比例。與公同共有不同, 分別共有人可以自由處分自己的持分。' },
+                    { term: '分割繼承', explanation: '指繼承人之間透過協議或法院判決, 將公同共有的遺產分割為各自單獨所有或分別共有的過程。' },
+                    { term: '《民法》第824條', explanation: '規定若共有人協議不成, 可以訴請法院裁判分割共有物。法院會綜合考量各種因素進行公平分割。' },
+                    { term: '特別代理人', explanation: '《民法》第1086條第2項規定, 當未成年子女與其父母（法定代理人）之間發生利益衝突時, 法院應為未成年子女選任一位特別代理人, 代表其利益。例如父母與子女同時繼承遺產, 而遺產分割可能損害子女權益時。' },
+                ],
+                interactive: {
+                    type: 'flow-chart',
+                    prompt: '點擊查看不動產分割流程圖（示意）。',
+                    flowText: `
+                        <div class="text-center text-gray-300">
+                            <p><strong>不動產分割流程簡化：</strong></p>
+                            <p>遺產公同共有 → 協議分割（分別共有/單獨所有）</p>
+                            <p>↳ 若協議不成 → 訴請法院裁判分割</p>
+                            <p>(若有未成年繼承人, 且父母有利益衝突, 需選任特別代理人)</p>
+                        </div>
+                    `,
+                },
+            },
+            chapter6: {
+                title: '第六章：無牌厝的悲歌',
+                subtitle: '情感的重量, 在法律的邊緣, 能否壓過產權的輕飄？',
+                content: `
+                    <p>阿公鄉下的「土角厝」, 未辦「建物所有權第一次登記」, 雖無權狀, 仍屬遺產, 需申報遺產稅。繼承人可變更「房屋稅納稅義務人」名義。雖法律處分權受限, 但在特定情況下（如徵收補償）, 此稅籍證明仍具意義。這「幽靈產權」, 是法律與現實的交錯。</p>
+                    <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
+                        <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
+                        <p class="text-gray-300">一磚一瓦皆是情, 但在法律的辭典裡, 無證的房產如同無根的浮萍; 當情感的價值遭遇產權的現實, 孰輕孰重, 難以定論。</p>
+                    </div>
+                `,
+                coreQuestion: '沒有權狀的房子, 在繼承中如何處理？',
+                keywords: [
+                    { term: '建物所有權第一次登記', explanation: '指房屋建成後, 向地政機關申請的第一次產權登記, 登記後才會取得房屋所有權狀。未辦登記者, 雖然有實際房屋, 但無法律上的所有權證明。' },
+                    { term: '無權狀', explanation: '指房屋沒有經過政府機關的正式所有權登記, 因此沒有房屋所有權狀。' },
+                    { term: '房屋稅納稅義務人', explanation: '即使沒有產權登記的房屋, 只要有使用事實, 政府仍會課徵房屋稅。繼承人可以向稅捐機關申請變更房屋稅的繳納義務人。' },
+                ],
+                interactive: {
+                    type: 'keepsake-box',
+                    prompt: '點擊「土角厝」照片, 看看它的法律狀態。',
+                    boxContent: `
+                        <div class="text-center">
+                            <img src="https://placehold.co/300x200/5C4033/EAEAEA?text=土角厝" alt="土角厝示意圖" class="mx-auto my-4 rounded-lg shadow-md">
+                            <h6 class="text-xl font-bold text-amber-200 mb-2">「土角厝」的法律迷思：</h6>
+                            <ul class="list-disc list-inside text-left text-gray-300">
+                                <li>無「建物所有權狀」, 無法辦理產權移轉。</li>
+                                <li>仍屬遺產, 需申報遺產稅。</li>
+                                <li>可變更房屋稅納稅義務人名義。</li>
+                                <li>在都更、徵收時, 稅籍證明可能派上用場。</li>
+                            </ul>
+                        </div>
+                    `,
+                },
+            },
+            chapter7: {
+                title: '第七章：保單玄機',
+                subtitle: '愛心的預留, 是避稅的巧門, 還是國稅局的靶心？',
+                content: `
+                    <p>阿公指定受益人的人壽保險金, 依《保險法》第112條及《遺產及贈與稅法》第16條第9款, 原則上不計入遺產總額。但若國稅局認定符合「實質課稅原則八大紅線」（如帶病投保、躉繳投保等）, 意圖規避遺產稅, 則保險金仍可能被追繳課稅。保險的傳承功能, 需在合法合規的框架內運作。</p>
+                    <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
+                        <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
+                        <p class="text-gray-300">保險本是未雨綢繆的愛, 卻可能因操作不當, 淪為稅務爭議的焦點; 是真心為後人計, 還是巧立名目避稅, 人心隔肚皮, 稅法有明鏡。</p>
+                    </div>
+                `,
+                coreQuestion: '人壽保險金是否會被計入遺產課稅？',
+                keywords: [
+                    { term: '《保險法》第112條', explanation: '規定人壽保險契約的保險金, 經指定受益人者, 其金額不得作為要保人的遺產。這是保險金免計入遺產的主要法源依據。' },
+                    { term: '《遺產及贈與稅法》第16條第9款', explanation: '明確規定, 約定於被繼承人死亡時, 給付其所指定受益人之人壽保險金額, 不計入遺產總額。' },
+                    { term: '實質課稅原則八大紅線', explanation: '指國稅局判斷保險是否具有規避遺產稅意圖的八項參考指標, 例如：重病投保、高齡投保、鉅額保費、密集投保、舉債投保、保險費高於或等於保險金額、短期內解除契約或變更要保人、躉繳（一次性繳清）保費等。' },
+                ],
+                interactive: {
+                    type: 'quiz',
+                    prompt: '猜猜看, 以下哪種情況可能讓保險金被國稅局追稅？',
+                    quiz: [
+                        {
+                            question: '阿公在確診癌症末期後, 才緊急投保巨額人壽保險, 並指定子女為受益人。',
+                            correct: true,
+                            feedback: '答對了！這可能被認定為「帶病投保」, 觸及實質課稅原則紅線。',
+                        },
+                        {
+                            question: '阿公年輕時就投保人壽保險, 每年按時繳費, 活到高壽後才過世。',
+                            correct: false,
+                            feedback: '這是正常的保險規劃, 一般不會被追稅。',
+                        },
+                        {
+                            question: '阿公用自己的積蓄購買儲蓄型保險, 期滿後領回保險金。',
+                            correct: false,
+                            feedback: '這屬於生存保險金, 不計入遺產範圍。',
+                        },
+                    ],
+                },
+            },
+            chapter8: {
+                title: '第八章：貪婪噬心',
+                subtitle: '利慾的深淵, 足以讓血脈倒流, 讓親情變利刃',
+                content: `
+                    <p>若有繼承人利慾薰心, 盜領存款、偽造文書、侵占遺產, 則不僅觸犯民法, 更將墜入《刑法》的深淵。偽造私文書、詐欺、侵占等罪名, 足以讓家庭分崩離析, 個人身敗名裂。「黃金試火, 患難試人, 遺產試親情; 一念之差, 天堂地獄, 皆在方寸間。」</p>
+                    <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
+                        <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
+                        <p class="text-gray-300">在巨額遺產的誘惑下, 人性的貪婪如脫韁野馬, 足以踐踏倫理, 撕裂血親; 當法律的制裁降臨, 失去的又豈止是金錢？</p>
+                    </div>
+                `,
+                coreQuestion: '繼承人若私自處分遺產, 會面臨什麼法律後果？',
+                keywords: [
+                    { term: '盜領存款', explanation: '指未經合法授權, 私自提取往生者的銀行存款。可能構成《刑法》上的詐欺罪或侵占罪。' },
+                    { term: '偽造文書', explanation: '指未經授權, 偽造、變造遺囑、繼承相關文件等。可能構成《刑法》偽造文書罪。' },
+                    { term: '侵占遺產', explanation: '指將屬於全體繼承人公同共有的遺產, 私自佔有或處分。除了民事上的不法侵害, 嚴重者也可能觸犯《刑法》侵占罪。' },
+                ],
+                interactive: {
+                    type: 'warning',
+                    prompt: '點擊警示牌, 看看貪婪的代價。',
+                    warningContent: `
+                        <div class="text-center">
+                            <svg class="mx-auto mb-4 h-16 w-16 text-red-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                            <h6 class="text-xl font-bold text-red-400 mb-2">法律的嚴懲！</h6>
+                            <p class="text-gray-300">私自處分遺產、偽造文件等行為, 不僅違反繼承法規, 更可能觸犯刑法：</p>
+                            <ul class="list-disc list-inside text-left text-gray-300 mt-2">
+                                <li><strong>偽造文書罪：</strong> 偽造遺囑、繼承證明等。</li>
+                                <li><strong>詐欺罪：</strong> 冒領、騙取遺產。</li>
+                                <li><strong>侵占罪：</strong> 侵占屬於他人的遺產。</li>
+                            </ul>
+                            <p class="text-sm text-red-300 mt-4">一念之差, 天堂地獄, 皆在方寸間。</p>
+                        </div>
+                    `,
+                },
+            },
+            chapter9: {
+                title: '第九章：協議書的烙印',
+                subtitle: '一紙契約, 是紛爭的句點, 還是隱忍的序章？',
+                content: `
+                    <p>歷經波折, 繼承人簽下「遺產分割協議書」。此協議書若涉及不動產分割, 需依《印花稅法》繳納不動產價值千分之一的印花稅。若僅按應繼分繼承或依遺囑繼承, 則可免徵。這張稅單, 是共識的代價, 也是法律的程序。</p>
+                    <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
+                        <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
+                        <p class="text-gray-300">簽字畫押的瞬間, 或許是硝煙暫歇的時刻, 但墨水掩蓋下的, 是真心的和解, 還是權力不對等下的無奈妥協？</p>
+                    </div>
+                `,
+                coreQuestion: '遺產分割協議書簽訂後, 還需注意什麼？',
+                keywords: [
+                    { term: '遺產分割協議書', explanation: '繼承人之間就遺產如何分配達成共識後, 簽訂的書面文件。這是遺產分割的重要法律依據。' },
+                    { term: '印花稅', explanation: '《印花稅法》規定, 涉及不動產物權轉移的契約（如買賣、交換、贈與、分割繼承等）, 需繳納一定比例的印花稅。遺產分割協議書若有不動產分割, 原則上需繳納。' },
+                ],
+                interactive: {
+                    type: 'scenario-choice',
+                    prompt: '遺產分割協議書簽訂後, 你覺得下列哪句話最能描述當時的心情？',
+                    scenario: '經過數月的爭執和協商, 你們終於簽下了遺產分割協議書。',
+                    choices: [
+                        { label: 'A. 終於塵埃落定, 鬆了一口氣。', consequence: '希望這份協議能真正帶來家族的平靜與和解。' },
+                        { label: 'B. 雖然不滿, 但也只能妥協。', consequence: '現實的壓力有時讓人不得不放下心中的堅持。' },
+                        { label: 'C. 表面平靜, 但暗潮洶湧。', consequence: '協議書或許只是暫時的休止符, 真正的和解還需要時間與努力。' },
+                    ],
+                },
+            },
+            chapter10: {
+                title: '第十章：遺產的孤寂漂流',
+                subtitle: '當財富無人承繼, 是家族的悲哀, 還是社會的警鐘？',
+                content: `
+                    <p>若遺產因債務龐大、產權複雜或繼承人失聯等因素, 致「無人承認繼承」, 經法院指定遺產管理人、公示催告後, 清償債務與交付遺贈後, 賸餘遺產將依《民法》第1185條「歸屬國庫」。財富的最終流向, 映照出家庭功能的式微與社會結構的變遷。</p>
+                    <div class="human-conflict mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
+                        <h5 class="text-amber-300 text-lg font-semibold mb-2">人性衝突：</h5>
+                        <p class="text-gray-300">曾經代表家族榮耀的財產, 最終卻無人認領, 淪為國庫的數字; 這不僅是物質的消散, 更是情感連結斷裂的無言證明。</p>
+                    </div>
+                `,
+                coreQuestion: '什麼情況下遺產會最終歸屬國庫？',
+                keywords: [
+                    { term: '無人承認繼承', explanation: '指被繼承人過世後, 沒有合法繼承人出面主張繼承權利, 或所有繼承人都拋棄繼承, 導致遺產處於無人繼承的狀態。' },
+                    { term: '遺產管理人', explanation: '當遺產無人承認繼承時, 法院可依利害關係人或檢察官的聲請, 選任遺產管理人, 負責清點、管理、清償債務和分配遺贈。' },
+                    { term: '《民法》第1185條', explanation: '規定若經公示催告後, 仍無人承認繼承, 且無債權人或受遺贈人受清償或交付遺贈後, 賸餘的遺產即歸屬國庫。' },
+                    { term: '歸屬國庫', explanation: '指無人繼承的遺產, 在清償所有債務及交付遺贈後, 剩餘部分最終會由國家取得。' },
+                ],
+                interactive: {
+                    type: 'reflection',
+                    prompt: '點擊思考, 遺產歸屬國庫的意義。',
+                    reflectionContent: `
+                        <div class="text-center text-gray-300">
+                            <h6 class="text-xl font-bold text-amber-200 mb-2">財富的孤寂：</h6>
+                            <p>當家族財產最終無人繼承而歸屬國庫, 這不僅是物質的失去, 更是對家族連結斷裂的沉痛警示。</p>
+                            <p class="mt-4">它提醒我們, 除了財富, 更重要的是維繫家族情感, 傳承無形的家風與記憶。</p>
+                        </div>
+                    `,
+                },
+            },
+        };
+
+        const chaptersTOC = [
+            { id: 'chapter1', title: '第一章：油盡燈枯，法鐘驟響', subtitle: '阿公的撒手，是家族的終章，還是戰國的序幕？', keywords: '死亡宣告, 繼承開始', summary: '阿公離世, 不僅是個人生命的終結, 更是家族遺產繼承大戰的序幕, 法律條文此刻如法槌落下。', icon: '⏳' },
+            { id: 'chapter2', title: '第二章：誰登繼承堂？', subtitle: '血緣定順位，法律劃疆界，人心隔肚皮', keywords: '繼承順位, 直系血親卑親屬', summary: '法律明確規範繼承順位, 血緣是入場券, 但人心卻在公平與計較間拉扯。', icon: '👨‍👩‍👧‍👦' },
+            { id: 'chapter3', title: '第三章：遺囑風暴', subtitle: '阿公的最後墨跡, 是平息干戈的遺訓, 還是點燃戰火的星火？', keywords: '遺囑, 特留分', summary: '一份遺囑可能帶來和解, 也可能因為偏愛而引發新一輪的親情與利益衝突。', icon: '📜' },
+            { id: 'chapter4', title: '第四章：債務迷霧', subtitle: '阿公的未了之債, 是家族共負的軛, 還是各自飛散的煙？', keywords: '概括繼承有限責任, 拋棄繼承', summary: '面對阿公的債務, 繼承人有有限責任的保護, 但也需謹慎處理, 或選擇拋棄繼承。', icon: '🔗' },
+            { id: 'chapter5', title: '第五章：祖產分割戰', subtitle: '不動產的歸屬, 是家族榮光的延續, 還是手足反目的祭品？', keywords: '公同共有, 裁判分割', summary: '祖產分割是繼承中的一大難題, 從協議到訴訟, 考驗著手足情誼。', icon: '🏡' },
+            { id: 'chapter6', title: '第六章：無牌厝的悲歌', subtitle: '情感的重量, 在法律的邊緣, 能否壓過產權的輕飄？', keywords: '未登記建物, 稅籍證明', summary: '鄉下的老屋可能沒有產權登記, 雖然法律處分受限, 但在特定情況下仍具意義。', icon: '🏚️' },
+            { id: 'chapter7', title: '第七章：保單玄機', subtitle: '愛心的預留, 是避稅的巧門, 還是國稅局的靶心？', keywords: '保險金免稅, 實質課稅原則', summary: '保險金原則上不計入遺產, 但若有規避稅務意圖, 仍可能面臨課稅風險。', icon: '📝' },
+            { id: 'chapter8', title: '第八章：貪婪噬心', subtitle: '利慾的深淵, 足以讓血脈倒流, 讓親情變利刃', keywords: '盜領, 偽造文書, 侵占', summary: '面對巨額遺產誘惑, 貪婪可能導致觸犯刑法, 最終家庭分崩離析。', icon: '⚖️' },
+            { id: 'chapter9', title: '第九章：協議書的烙印', subtitle: '一紙契約, 是紛爭的句點, 還是隱忍的序章？', keywords: '遺產分割協議書, 印花稅', summary: '遺產分割協議書的簽訂, 或許暫時平息紛爭, 但背後仍可能有未解的情感。', icon: '✍️' },
+            { id: 'chapter10', title: '第十章：遺產的孤寂漂流', subtitle: '當財富無人承繼, 是家族的悲哀, 還是社會的警鐘？', keywords: '無人承認繼承, 歸屬國庫', summary: '當遺產無人繼承, 最終歸屬國庫, 這不僅是物質的消散, 更是家族連結斷裂的警訊。', icon: '💰' },
+        ];
+
+
+        /**
+         * Hides all pages and then shows the specified page.
+         * @param {string} pageId - The ID of the page to show.
+         */
+        function showPage(pageId) {
+            document.querySelectorAll('#app-container > div').forEach(page => {
+                page.classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+            // Scroll to top for new page
+            window.scrollTo(0, 0);
+        }
+
+        /**
+         * Renders the landing page with animations.
+         */
+        function renderLandingPage() {
+            showPage('landing-page');
+            const titleElement = document.getElementById('landing-title');
+            const buttonElement = document.getElementById('start-journey-btn');
+
+            setTimeout(() => {
+                titleElement.classList.remove('max-h-0', 'opacity-0');
+                titleElement.classList.add('max-h-96', 'opacity-100');
+            }, 1000);
+
+            setTimeout(() => {
+                buttonElement.classList.remove('opacity-0', 'translate-y-4');
+                buttonElement.classList.add('opacity-100', 'translate-y-0');
+            }, 2500);
+        }
+
+        /**
+         * Renders the Table of Contents page.
+         */
+        function renderTableOfContents() {
+            showPage('toc-page');
+            const chaptersGrid = document.getElementById('chapters-grid');
+            chaptersGrid.innerHTML = ''; // Clear previous content
+
+            chaptersTOC.forEach(chapter => {
+                const chapterCard = document.createElement('div');
+                chapterCard.className = `group relative cursor-pointer overflow-hidden rounded-xl bg-gray-800 p-6 shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:bg-gray-700 hover:shadow-2xl`;
+                chapterCard.dataset.chapterId = chapter.id; // Store chapter ID
+
+                chapterCard.innerHTML = `
+                    <div class="absolute right-4 top-4 text-4xl opacity-20 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110">
+                        ${chapter.icon}
+                    </div>
+                    <h4 class="mb-2 text-xl font-semibold text-amber-300 md:text-2xl">
+                        ${chapter.title}
+                    </h4>
+                    <p class="text-md mb-4 text-gray-300">${chapter.subtitle}</p>
+                    <div class="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-90 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <p class="text-center text-sm text-gray-200">
+                            <span class="font-bold text-amber-300">關鍵詞：</span>
+                            ${chapter.keywords}
+                            <br />
+                            ${chapter.summary}
+                        </p>
+                    </div>
+                `;
+                chapterCard.addEventListener('click', () => handleSelectChapter(chapter.id));
+                chaptersGrid.appendChild(chapterCard);
+            });
+        }
+
+        /**
+         * Renders the Chapter Page for a given chapter ID.
+         * @param {string} chapterId - The ID of the chapter to display.
+         */
+        function renderChapterPage(chapterId) {
+            showPage('chapter-page');
+            currentChapter = chapterId; // Update global state
+            const chapterData = chaptersContent[chapterId];
+
+            if (!chapterData) {
+                document.getElementById('chapter-prose-content').innerHTML = '<p>章節內容載入中或不存在...</p>';
+                return;
+            }
+
+            // Update header info
+            document.getElementById('chapter-title').textContent = chapterData.title;
+            document.getElementById('chapter-subtitle').textContent = chapterData.subtitle;
+            document.getElementById('core-question').textContent = chapterData.coreQuestion;
+            document.getElementById('interactive-trigger-btn').textContent = chapterData.interactive.prompt;
+
+            // Render main content with keyword highlighting
+            document.getElementById('chapter-prose-content').innerHTML = renderContentWithKeywords(
+                chapterData.content,
+                chapterData.keywords
+            );
+
+            // Add event listeners for keyword tooltips
+            const contentDiv = document.getElementById('chapter-main-content');
+            const tooltip = document.getElementById('keyword-tooltip');
+
+            // Remove existing listeners to prevent duplicates
+            const oldKeywordHighlights = contentDiv.querySelectorAll('.keyword-highlight');
+            oldKeywordHighlights.forEach(el => {
+                el.removeEventListener('mouseenter', handleKeywordHover);
+                el.removeEventListener('mouseleave', handleKeywordLeave);
+            });
+
+            const keywordHighlights = contentDiv.querySelectorAll('.keyword-highlight');
+            keywordHighlights.forEach(span => {
+                span.addEventListener('mouseenter', handleKeywordHover);
+                span.addEventListener('mouseleave', handleKeywordLeave);
+            });
+
+            // Set up interactive button
+            const interactiveBtn = document.getElementById('interactive-trigger-btn');
+            interactiveBtn.onclick = () => handleInteractiveClick(chapterData.interactive.type, chapterData.interactive.boxContent || chapterData.interactive.quiz || chapterData.interactive.flowText || chapterData.interactive.warningContent || chapterData.interactive.reflectionContent || chapterData.interactive.prompt);
+        }
+
+        /**
+         * Renders the Conclusion Page.
+         */
+        function renderConclusionPage() {
+            showPage('conclusion-page');
+        }
+
+        // --- Navigation Handlers ---
+        function handleStartJourney() {
+            currentPage = 'toc';
+            renderTableOfContents();
+        }
+
+        function handleSelectChapter(chapterId) {
+            currentPage = 'chapter';
+            renderChapterPage(chapterId);
+        }
+
+        function handleGoToTOC() {
+            currentPage = 'toc';
+            currentChapter = null;
+            renderTableOfContents();
+        }
+
+        function handleGoToConclusion() {
+            currentPage = 'conclusion';
+            renderConclusionPage();
+        }
+
+        // --- Keyword Tooltip Logic ---
+        function handleKeywordHover(event) {
+            const target = event.target;
+            const explanation = target.dataset.explanation;
+            const tooltip = document.getElementById('keyword-tooltip');
+
+            tooltip.innerHTML = explanation;
+            tooltip.style.left = `${event.clientX + 15}px`;
+            tooltip.style.top = `${event.clientY + 15}px`;
+            tooltip.classList.remove('hidden');
+            tooltip.style.opacity = '1';
+        }
+
+        function handleKeywordLeave() {
+            const tooltip = document.getElementById('keyword-tooltip');
+            tooltip.style.opacity = '0';
+            setTimeout(() => { // Hide after transition
+                tooltip.classList.add('hidden');
+            }, 200);
+        }
+
+        /**
+         * Replaces keywords in HTML content with highlighted spans.
+         * @param {string} htmlContent - The HTML string.
+         * @param {Array<Object>} keywords - Array of keyword objects {term, explanation}.
+         * @returns {string} - HTML string with highlighted keywords.
+         */
+        function renderContentWithKeywords(htmlContent, keywords) {
+            let processedContent = htmlContent;
+            keywords.forEach((kw) => {
+                // Escape special characters in the term for regex
+                const regex = new RegExp(`(${kw.term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'g');
+                processedContent = processedContent.replace(
+                    regex,
+                    `<span class="keyword-highlight cursor-pointer font-bold text-amber-300 underline decoration-dotted" data-explanation="${kw.explanation}">$1</span>`
+                );
+            });
+            return processedContent;
+        }
+
+        // --- Interactive Modal Logic ---
+        function handleInteractiveClick(type, content) {
+            const modal = document.getElementById('interactive-modal');
+            const modalContentDiv = document.getElementById('modal-content');
+            modalContentDiv.innerHTML = ''; // Clear previous content
+            quizFeedback = ''; // Reset quiz feedback
+
+            // Show appropriate content based on interactive type
+            if (type === 'keepsake-box' || type === 'flow-chart' || type === 'warning' || type === 'reflection') {
+                modalContentDiv.innerHTML = content;
+            } else if (type === 'quiz') {
+                let quizHtml = `<h6 class="mb-4 text-center text-2xl font-bold text-amber-300">互動小測驗</h6>`;
+                if (Array.isArray(content) && content.length > 0) { // Quiz with multiple questions (if applicable, though current data has 1)
+                    quizHtml += `<p class="mb-4 text-lg">${content[0].question}</p><div class="space-y-3">`;
+                    content.forEach((item, index) => {
+                        quizHtml += `
+                            <button
+                                data-correct="${item.correct}"
+                                data-feedback="${item.feedback}"
+                                class="quiz-choice-btn w-full rounded-md bg-blue-700 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                            >
+                                ${item.question}
+                            </button>
+                        `;
+                    });
+                    quizHtml += `</div><p id="quiz-feedback" class="mt-4 text-center text-lg"></p>`;
+                } else if (chaptersContent[currentChapter].interactive.quiz) { // Single quiz with choices
+                     const quizData = chaptersContent[currentChapter].interactive.quiz;
+                     quizHtml += `<p class="mb-4 text-lg">${quizData[0].question}</p><div class="space-y-3">`;
+                     quizData.forEach((item, index) => {
+                         quizHtml += `
+                             <button
+                                 data-correct="${item.correct}"
+                                 data-feedback="${item.feedback}"
+                                 class="quiz-choice-btn w-full rounded-md bg-blue-700 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                             >
+                                 ${item.question}
+                             </button>
+                         `;
+                     });
+                     quizHtml += `</div><p id="quiz-feedback" class="mt-4 text-center text-lg"></p>`;
+                }
+                modalContentDiv.innerHTML = quizHtml;
+
+                // Add event listeners for quiz buttons
+                modalContentDiv.querySelectorAll('.quiz-choice-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const correct = e.target.dataset.correct === 'true';
+                        const feedback = e.target.dataset.feedback;
+                        const feedbackEl = document.getElementById('quiz-feedback');
+                        quizFeedback = correct ? `✅ 正確！${feedback}` : `❌ 錯誤！${feedback}`;
+                        feedbackEl.textContent = quizFeedback;
+                        feedbackEl.className = `mt-4 text-center text-lg ${correct ? 'text-green-400' : 'text-red-400'}`;
+                    });
+                });
+
+            } else if (type === 'scenario-choice') {
+                const chapterData = chaptersContent[currentChapter];
+                let scenarioHtml = `<h6 class="mb-4 text-center text-2xl font-bold text-amber-300">情境選擇題</h6>`;
+                scenarioHtml += `<p class="mb-4 text-lg italic text-gray-300">${chapterData.interactive.scenario}</p>`;
+                scenarioHtml += `<div class="space-y-3">`;
+                chapterData.interactive.choices.forEach((choice, index) => {
+                    scenarioHtml += `
+                        <button
+                            data-label="${choice.label}"
+                            data-consequence="${choice.consequence}"
+                            class="scenario-choice-btn w-full rounded-md bg-blue-700 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                        >
+                            ${choice.label}
+                        </button>
+                    `;
+                });
+                scenarioHtml += `</div><p id="scenario-feedback" class="mt-4 text-center text-lg"></p>`;
+                modalContentDiv.innerHTML = scenarioHtml;
+
+                // Add event listeners for scenario buttons
+                modalContentDiv.querySelectorAll('.scenario-choice-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const label = e.target.dataset.label;
+                        const consequence = e.target.dataset.consequence;
+                        const feedbackEl = document.getElementById('scenario-feedback');
+                        feedbackEl.textContent = `您選擇了 "${label}"。 後果預覽：${consequence}`;
+                        feedbackEl.className = 'mt-4 text-center text-lg text-green-400';
+                    });
+                });
+
+            } else if (type === 'human-scale') {
+                const chapterData = chaptersContent[currentChapter];
+                let scaleHtml = `<h6 class="mb-4 text-center text-2xl font-bold text-amber-300">人性羅盤</h6>`;
+                scaleHtml += `<p class="mb-4 text-lg text-gray-300">投票：在遺產面前, 您認為哪種情況更普遍？</p>`;
+                scaleHtml += `<div class="flex justify-around space-x-4">`;
+                chapterData.interactive.choices.forEach((choice) => {
+                    scaleHtml += `
+                        <button
+                            data-label="${choice.label}"
+                            class="human-scale-btn flex-1 rounded-md bg-pink-700 px-4 py-2 text-white hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
+                        >
+                            ${choice.label}
+                        </button>
+                    `;
+                });
+                scaleHtml += `</div><p id="scale-feedback" class="mt-4 text-center text-lg"></p>`;
+                modalContentDiv.innerHTML = scaleHtml;
+
+                // Add event listeners for human-scale buttons
+                modalContentDiv.querySelectorAll('.human-scale-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const label = e.target.dataset.label;
+                        const feedbackEl = document.getElementById('scale-feedback');
+                        feedbackEl.textContent = `您投票給：${label}。此處僅為示意, 無真實投票功能。`;
+                        feedbackEl.className = 'mt-4 text-center text-lg text-green-400';
+                    });
+                });
+
+            } else if (type === 'gavel') {
+                modalContentDiv.innerHTML = `
+                    <div class="text-center">
+                        <svg class="mx-auto mb-4 h-20 w-20 animate-bounce text-amber-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                        </svg>
+                        <h6 class="text-2xl font-bold text-amber-300">「繼承開始！」</h6>
+                        <p class="mt-2 text-gray-300">《民法》第1147條生效。</p>
+                    </div>
+                `;
+            } else {
+                modalContentDiv.innerHTML = `<p>未知的互動類型。</p>`;
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function hideModal() {
+            document.getElementById('interactive-modal').classList.add('hidden');
+        }
+
+        // --- Event Listeners for Page Navigation ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial page render
+            renderLandingPage();
+
+            // Attach event listeners
+            document.getElementById('start-journey-btn').addEventListener('click', handleStartJourney);
+            document.getElementById('go-to-conclusion-from-toc').addEventListener('click', handleGoToConclusion);
+            document.getElementById('back-to-toc-btn').addEventListener('click', handleGoToTOC);
+            document.getElementById('go-to-conclusion-from-chapter').addEventListener('click', handleGoToConclusion);
+            document.getElementById('back-to-toc-from-conclusion').addEventListener('click', handleGoToTOC);
+            document.getElementById('close-modal-btn').addEventListener('click', hideModal);
+        });
+
+    </script>
+</body>
+</html>
