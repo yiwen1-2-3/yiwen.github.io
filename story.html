@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>臺灣繼承啟示錄：法網下的愛恨，算盤上的親情</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f8f9fa; /* Light background */
+            color: #333;
+        }
+        /* Custom styles for section backgrounds and effects */
+        .section-gradient-1 { background: linear-gradient(to bottom, #fdfbfb, #ebedee); }
+        .section-gradient-2 { background: linear-gradient(to bottom, #ebedee, #dfe3e8); }
+        .section-gradient-3 { background: linear-gradient(to bottom, #dfe3e8, #d0d6de); }
+        .section-gradient-4 { background: linear-gradient(to bottom, #d0d6de, #c0c8d1); }
+        .section-gradient-5 { background: linear-gradient(to bottom, #c0c8d1, #b0b9c5); }
+        .section-gradient-6 { background: linear-gradient(to bottom, #b0b9c5, #a0acba); }
+        .section-gradient-7 { background: linear-gradient(to bottom, #a0acba, #909ea9); }
+        .section-gradient-8 { background: linear-gradient(to bottom, #909ea9, #808f99); }
+        .section-gradient-9 { background: linear-gradient(to bottom, #808f99, #70808a); }
+        .section-gradient-10 { background: linear-gradient(to bottom, #70808a, #60717b); }
+        .section-final { background: linear-gradient(to bottom, #60717b, #50626b); }
+
+
+        .chapter-section {
+            min-height: 100vh;
+            padding: 4rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .chapter-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #2c3e50; /* Dark blue */
+        }
+        .chapter-subtitle {
+            font-size: 1.25rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+        .chapter-content {
+            max-width: 800px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .humanity-conflict {
+            background-color: #fef3c7; /* Light yellow */
+            border-left: 4px solid #f59e0b; /* Orange */
+            padding: 1rem 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+            font-style: italic;
+            color: #78350f; /* Dark orange */
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+            color: #2563eb; /* Blue */
+        }
+
+        /* Progress bar */
+        #progressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            background-color: #2563eb; /* Blue */
+            z-index: 1000;
+        }
+
+        /* Chapter 1 specific styles */
+        #chapter1 .lamp-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        #chapter1 .lamp {
+            width: 100px;
+            height: 150px;
+            background-color: #a0522d; /* Sienna */
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            margin: 0 auto;
+        }
+        #chapter1 .lamp-shade {
+            width: 150px;
+            height: 80px;
+            background-color: #f7d794; /* Light yellow */
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: -40px;
+            left: -25px;
+            box-shadow: 0 0 30px 10px #ffea00; /* Yellow glow - always on */
+        }
+
+        /* Chapter 2 specific styles */
+        .family-tree {
+            display: flex; /* Changed to flex for better alignment control */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+        }
+        .family-member {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: calc(33.333% - 1.5rem); /* For 3 columns, adjusted for gap */
+            min-width: 180px; /* Ensure a minimum width for readability */
+        }
+        .family-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+        /* Specific sizing for grandparents/spouse to control layout */
+        .family-member.grandparent, .family-member.spouse {
+            width: calc(50% - 1rem); /* Make them take up more space */
+            margin-bottom: 2rem; /* Add space below them */
+        }
+        .family-member.grandparent::after {
+            content: '';
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 2rem;
+            background-color: #999;
+        }
+        .family-member.spouse {
+            order: -1; /* Place spouse above children, might need further refinement for exact visual tree */
+        }
+
+
+        .family-member .icon {
+            font-size: 2.5rem;
+            color: #3b82f6; /* Blue */
+            margin-bottom: 0.75rem;
+        }
+        .family-member .name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .family-member .role {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .law-info-card {
+            background-color: #e0f2f7; /* Light blue */
+            border: 1px solid #a7d9f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: left;
+            margin-top: 1rem;
+            color: #2a657c;
+            display: none; /* Hidden by default */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .law-info-card.active {
+            display: block;
+        }
+
+        /* Chapter 3 specific styles */
+        .will-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 800px;
+        }
+        .will-tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .will-tab-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #e2e8f0; /* Light gray */
+            color: #4a5568; /* Darker gray */
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            flex: 1; /* Make buttons take equal width */
+            text-align: center;
+        }
+        .will-tab-button.active {
+            background-color: #3b82f6; /* Blue */
+            color: white;
+        }
+        .will-tab-content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: left;
+            width: 100%;
+            display: none; /* Hidden by default */
+        }
+        .will-tab-content.active {
+            display: block;
+        }
+        .will-tab-content .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .will-tab-content .title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        .will-tab-content .description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #444;
+        }
+        .will-tab-content .law-text {
+            background-color: #e0f7fa;
+            border-left: 4px solid #a7d9f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: #2a657c;
+        }
+
+
+        /* Chapter 4 specific styles */
+        .debt-flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 700px;
+        }
+        .debt-step {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .debt-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+        .debt-step .icon {
+            font-size: 2.5rem;
+            color: #ef4444; /* Red */
+            margin-bottom: 0.75rem;
+        }
+        .debt-step .label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        .law-info-card { /* Reuse for debt steps */
+            background-color: #e0f2f7; /* Light blue */
+            border: 1px solid #a7d9f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: left;
+            margin-top: 1rem;
+            color: #2a657c;
+            display: none; /* Hidden by default */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .law-info-card.active {
+            display: block;
+        }
+        .debt-scenario {
+            background-color: #ffeccf;
+            border-left: 4px solid #f97316;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            width: 90%;
+            max-width: 600px;
+            text-align: left;
+        }
+        .debt-scenario-question {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #8c4b0a;
+        }
+        .debt-scenario-option {
+            background-color: #fff;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+        .debt-scenario-option:hover {
+            background-color: #f0f0f0;
+        }
+        .debt-scenario-option.correct {
+            background-color: #d1fae5; /* Green */
+            border-color: #34d399;
+        }
+        .debt-scenario-option.incorrect {
+            background-color: #fee2e2; /* Red */
+            border-color: #ef4444;
+        }
+        .debt-scenario-feedback {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Chapter 5 specific styles */
+        .property-section {
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 800px;
+        }
+        .property-house-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 60%; /* Aspect ratio */
+            background-color: #f0f4f8;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .property-house-part {
+            position: absolute;
+            background-color: #a7d9f0;
+            border: 1px solid #60a5fa;
+            border-radius: 0.5rem;
+            opacity: 0.8;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            cursor: default; /* Changed to default cursor */
+        }
+        .property-house-part:nth-child(1) { top: 10%; left: 10%; width: 35%; height: 40%; } /* Living Room */
+        .property-house-part:nth-child(2) { top: 10%; left: 55%; width: 35%; height: 40%; } /* Kitchen */
+        .property-house-part:nth-child(3) { top: 55%; left: 10%; width: 35%; height: 35%; } /* Bedroom 1 */
+        .property-house-part:nth-child(4) { top: 55%; left: 55%; width: 35%; height: 35%; } /* Bedroom 2 */
+        .property-house-part span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        /* For 'separated' state */
+        .property-house-container.separated .property-house-part:nth-child(1) { transform: translate(-20%, -20%); opacity: 1; background-color: #d1fae5; }
+        .property-house-container.separated .property-house-part:nth-child(2) { transform: translate(20%, -20%); opacity: 1; background-color: #ffedd5; }
+        .property-house-container.separated .property-house-part:nth-child(3) { transform: translate(-20%, 20%); opacity: 1; background-color: #e0f2f7; }
+        .property-house-container.separated .property-house-part:nth-child(4) { transform: translate(20%, 20%); opacity: 1; background-color: #fde68a; }
+
+        .property-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .property-action-btn {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .property-action-btn:hover {
+            background-color: #2563eb;
+        }
+        .property-info-box {
+            background-color: #e0f2f7;
+            border: 1px solid #a7d9f0;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            text-align: left;
+            color: #2a657c;
+            width: 100%;
+        }
+
+        /* Chapter 6 specific styles */
+        .unlicensed-house-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        .visual-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .visual-card .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .visual-card.emotional .icon { color: #f472b6; } /* Pink */
+        .visual-card.legal .icon { color: #9ca3af; } /* Gray */
+
+        /* Chapter 7 specific styles */
+        .insurance-section {
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 700px;
+        }
+        .insurance-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .insurance-card .icon {
+            font-size: 3.5rem;
+            color: #6366f1; /* Indigo */
+            margin-bottom: 1rem;
+        }
+        .red-lines-toggle {
+            background-color: #ef4444;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .red-lines-toggle:hover {
+            background-color: #dc2626;
+        }
+        .red-lines-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1.5rem;
+            text-align: left;
+            display: none; /* Hidden by default */
+        }
+        .red-lines-list.active {
+            display: block;
+        }
+        .red-lines-list li {
+            background-color: #fee2e2;
+            border-left: 3px solid #ef4444;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.25rem;
+            color: #991b1b;
+        }
+
+        /* Chapter 8 specific styles */
+        .greed-section {
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 700px;
+            background-color: #2c3e50; /* Dark blue */
+            color: #ecf0f1; /* Light gray */
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .greed-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            animation: flicker 2s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        .greed-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #ef4444; /* Red */
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
+        .greed-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        .legal-consequences {
+            background-color: #4a5a6a;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: left;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        .legal-consequences ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+        }
+        .legal-consequences li {
+            margin-bottom: 0.5rem;
+            color: #ecf0f1;
+        }
+
+        /* Chapter 9 specific styles */
+        .agreement-section {
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 700px;
+        }
+        .agreement-form {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .agreement-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .agreement-form input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        .agreement-result {
+            background-color: #d1fae5;
+            border: 1px solid #34d399;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            color: #065f46;
+            font-weight: 600;
+        }
+
+        /* Chapter 10 specific styles */
+        .lonely-inheritance-visual {
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px; /* Adjusted height for static visual */
+            background-color: #f0f4f8; /* Softer background */
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        .lonely-inheritance-visual .icon-large {
+            font-size: 6rem;
+            color: #4a5568; /* Dark gray */
+            margin-bottom: 1rem;
+        }
+        .lonely-inheritance-visual .description-text {
+            font-size: 1.1rem;
+            color: #555;
+            text-align: center;
+        }
+
+
+        /* Final Chapter styles */
+        .final-section {
+            background-color: #e0f2f7;
+            padding: 5rem 1rem;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .final-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+        .final-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #3b82f6;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+        .final-conclusion-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #444;
+            max-width: 900px;
+            margin-bottom: 3rem;
+        }
+        .hands-holding {
+            font-size: 6rem;
+            color: #f59e0b;
+            margin-bottom: 2rem;
+        }
+        .external-links a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+        .external-links a:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #333;
+            text-decoration: none;
+        }
+        .modal-message {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #444;
+        }
+        .modal-button {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .modal-button:hover {
+            background-color: #2563eb;
+        }
+
+        @media (max-width: 768px) {
+            .chapter-title { font-size: 2rem; }
+            .chapter-subtitle { font-size: 1rem; }
+            .chapter-content { font-size: 1rem; }
+            .humanity-conflict { padding: 0.75rem 1rem; font-size: 0.9rem; }
+            .family-tree .family-member { width: calc(50% - 1rem); } /* Two columns on small screens */
+            .family-member.grandparent, .family-member.spouse {
+                width: 90%; /* Single column for grandparents/spouse on small screens */
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .will-tab-button { padding: 0.75rem 1rem; font-size: 0.9rem; }
+            .will-tab-content .title { font-size: 1.25rem; }
+            .will-tab-content .description { font-size: 0.95rem; }
+            /* Chapter 10 static visual adjustments for small screens */
+            .lonely-inheritance-visual { padding: 1rem; }
+            .lonely-inheritance-visual .icon-large { font-size: 4rem; }
+            .lonely-inheritance-visual .description-text { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress Bar -->
+    <div id="progressBar"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-md p-4 z-50 flex flex-wrap justify-center items-center">
+        <h1 class="text-xl font-bold text-gray-800 mr-4 mb-2 md:mb-0">臺灣繼承啟示錄</h1>
+        <div class="flex flex-wrap gap-2 md:gap-4 text-sm">
+            <a href="#chapter1" class="nav-link text-gray-600 hover:text-blue-600 rounded-md p-2 transition-colors duration-300">第一章</a>
+            <a href="#chapter2" class="nav-link text-gray-600 hover:text-blue-600 rounded-md p-2 transition-colors duration-300">第二章</a>
+            <a href="#chapter3" class="nav-link text-gray-600 hover:text-blue-600 rounded-md p-2 transition-colors duration-300">第三章</a>
+            <a href="#chapter4" class="nav-link text-gray-600 hover:text-blue-600 rounded-md p-2 transition-colors duration-300">第四章</a>
+            <a href="#chapter5" class="nav-link text-gray-600 hover:text-blue-600 rounded-md p-2 transition-colors duration-300">第五章</a>
+            <a href="#chapter6" class="nav-link text-gray-600 hover:text-blue-600 rounded-md p-2 transition-colors duration-300">第六章</a>
+            <a href="#chapter7" class="nav-link text-gray-600 hover:text-blue-600 rounded-md p-2 transition-colors duration-300">第七章</a>
+            <a href="#chapter8" class="nav-link text-gray-600 hover:text-blue-600 rounded-md p-2 transition-colors duration-300">第八章</a>
+            <a href="#chapter9" class="nav-link text-gray-600 hover:text-blue-600 rounded-md p-2 transition-colors duration-300">第九章</a>
+            <a href="#chapter10" class="nav-link text-gray-600 hover:text-blue-600 rounded-md p-2 transition-colors duration-300">第十章</a>
+            <a href="#finalChapter" class="nav-link text-gray-600 hover:text-blue-600 rounded-md p-2 transition-colors duration-300">終章</a>
+        </div>
+    </nav>
+
+    <main class="mt-[80px] md:mt-[60px]"> <!-- Adjust margin-top to account for fixed nav -->
+
+        <!-- 第一章：油盡燈枯，法鐘驟響 -->
+        <section id="chapter1" class="chapter-section section-gradient-1">
+            <div class="lamp-container">
+                <div class="lamp">
+                    <div class="lamp-shade"></div>
+                </div>
+            </div>
+            <h2 class="chapter-title">第一章：油盡燈枯，法鐘驟響</h2>
+            <p class="chapter-subtitle">阿公的撒手，是家族的終章，還是戰國的序幕？</p>
+            <div class="chapter-content">
+                <p>陳家大院，阿公陳樹根的氣息如風中殘燭。兒孫環伺，淚光與算計在空氣中交織。當他「腳伸直」那刻，不僅是一個時代的落幕，《民法》第1147條「繼承，因被繼承人死亡而開始」的冰冷條文，已如法槌落下，宣告陳家龐大遺產的繼承之戰，正式鳴槍。</p>
+            </div>
+            <div class="humanity-conflict">
+                <p><strong>人性衝突：</strong> 孝衣未冷，遺產的分割線已在心中劃開；是血濃於水，還是利字當頭，親情的試金石，此刻最為殘酷。</p>
+            </div>
+            <button id="startExploreBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg mt-8 transition-all duration-300">
+                點擊開始探索 <i class="fas fa-arrow-down ml-2"></i>
+            </button>
+        </section>
+
+        <!-- 第二章：誰登繼承堂？ -->
+        <section id="chapter2" class="chapter-section section-gradient-2">
+            <h2 class="chapter-title">第二章：誰登繼承堂？</h2>
+            <p class="chapter-subtitle">血緣定順位，法律劃疆界，人心隔肚皮</p>
+            <div class="chapter-content">
+                <p>阿公的「牽手」林玉蘭阿嬤，是當然繼承人。長子陳明德、次女陳秀玲、么子陳明志，憑藉《民法》第1138條的「直系血親卑親屬」身分，位列第一順序。這張法律的「輪班表」鐵面無私，前順位者在，後順位者只能望洋興嘆。血緣是門票，順位是座次，但心中的那把尺，卻各自丈量。</p>
+            </div>
+
+            <div class="family-tree">
+                <div class="family-member grandparent" data-member="grandpa">
+                    <i class="fas fa-male icon"></i>
+                    <p class="name">阿公 陳樹根</p>
+                    <p class="role">被繼承人</p>
+                    <div class="law-info-card hidden" id="info-grandpa">
+                        <strong>被繼承人：</strong> 指死亡者，其遺產將由繼承人繼承。
+                    </div>
+                </div>
+                <div class="family-member spouse" data-member="grandma">
+                    <i class="fas fa-female icon"></i>
+                    <p class="name">阿嬤 林玉蘭</p>
+                    <p class="role">當然繼承人 (配偶)</p>
+                    <div class="law-info-card hidden" id="info-grandma">
+                        <strong>《民法》第1144條：</strong> 配偶有相互繼承遺產之權利，其應繼分依下列各款定之：
+                        一、與第一千一百三十八條所定第一順序之繼承人同為繼承時，其應繼分與他繼承人平均。
+                    </div>
+                </div>
+                <!-- Line for visual connection -->
+                <div class="w-full border-b border-gray-400 my-4 md:col-span-3"></div>
+
+                <div class="family-member child" data-member="son1">
+                    <i class="fas fa-user icon"></i>
+                    <p class="name">長子 陳明德</p>
+                    <p class="role">第一順序繼承人</p>
+                    <div class="law-info-card hidden" id="info-son1">
+                        <strong>《民法》第1138條：</strong> 遺產繼承人，除配偶外，依下列順序定之：
+                        一、直系血親卑親屬。
+                    </div>
+                </div>
+                <div class="family-member child" data-member="daughter">
+                    <i class="fas fa-user-friends icon"></i>
+                    <p class="name">次女 陳秀玲</p>
+                    <p class="role">第一順序繼承人</p>
+                    <div class="law-info-card hidden" id="info-daughter">
+                        <strong>《民法》第1138條：</strong> 遺產繼承人，除配偶外，依下列順序定之：
+                        一、直系血親卑親屬。
+                    </div>
+                </div>
+                <div class="family-member child" data-member="son2">
+                    <i class="fas fa-child icon"></i>
+                    <p class="name">么子 陳明志</p>
+                    <p class="role">第一順序繼承人</p>
+                    <div class="law-info-card hidden" id="info-son2">
+                        <strong>《民法》第1138條：</strong> 遺產繼承人，除配偶外，依下列順序定之：
+                        一、直系血親卑親屬。
+                    </div>
+                </div>
+            </div>
+
+            <div class="humanity-conflict">
+                <p><strong>人性衝突：</strong> 一脈相承的血，此刻卻因法律的排序，生出親疏遠近的計較；所謂公平，在遺產面前，往往是各自解讀的謎題。</p>
+            </div>
+        </section>
+
+        <!-- 第三章：遺囑風暴 -->
+        <section id="chapter3" class="chapter-section section-gradient-3">
+            <h2 class="chapter-title">第三章：遺囑風暴</h2>
+            <p class="chapter-subtitle">阿公的最後墨跡，是平息干戈的遺訓，還是點燃戰火的星火？</p>
+            <div class="chapter-content">
+                <p>若阿公「沒交代清楚」，遺產依「應繼分」均分。但若阿公的「祕笈」（遺囑）橫空出世，獨厚某房或某孫，則《民法》第1223條的「特留分」（子女與配偶為其應繼分之半）便是其他法定繼承人最後的法律防線。遺囑是逝者意志的延伸，卻也常是生者矛盾的開端。</p>
+            </div>
+
+            <div class="will-section">
+                <div class="will-tabs">
+                    <button class="will-tab-button active" data-tab="no-will">無遺囑：應繼分</button>
+                    <button class="will-tab-button" data-tab="has-will">有遺囑：特留分</button>
+                </div>
+
+                <div id="no-will-content" class="will-tab-content active">
+                    <i class="fas fa-balance-scale icon text-green-500"></i>
+                    <h3 class="title">無遺囑：應繼分</h3>
+                    <p class="description">當被繼承人沒有留下遺囑時，法律會規定各繼承人應得的遺產比例，通常是均等分配給同順序的繼承人。</p>
+                    <div class="law-text">
+                        <p><strong>《民法》第1144條 (配偶之應繼分)：</strong> 配偶有相互繼承遺產之權利，其應繼分依下列各款定之：
+                        一、與第一千一百三十八條所定第一順序之繼承人同為繼承時，其應繼分與他繼承人平均。
+                        </p>
+                        <p class="mt-2"><strong>《民法》第1138條 (法定繼承人順序)：</strong> 遺產繼承人，除配偶外，依下列順序定之：
+                        一、直系血親卑親屬。
+                        </p>
+                    </div>
+                </div>
+
+                <div id="has-will-content" class="will-tab-content">
+                    <i class="fas fa-file-alt icon text-blue-500"></i>
+                    <h3 class="title">有遺囑：特留分</h3>
+                    <p class="description">即使被繼承人有立遺囑指定遺產分配，法律仍保障特定繼承人（如配偶、子女、父母）可以取得遺產的最低比例，稱為特留分。例如，子女與配偶的特留分是他們應繼分的一半。</p>
+                    <div class="law-text">
+                        <p><strong>《民法》第1223條 (特留分)：</strong> 繼承人之特留分，依下列各款之規定：<br>
+                        一、直系血親卑親屬之特留分，為其應繼分二分之一。<br>
+                        二、父母之特留分，為其應繼分二分之一。<br>
+                        三、配偶之特留分，為其應繼分二分之一。<br>
+                        四、兄弟姊妹之特留分，為其應繼分三分之一。<br>
+                        五、祖父母之特留分，為其應繼分三分之一。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="humanity-conflict">
+                <p><strong>人性衝突：</strong> 一紙遺囑，承載著逝者的愛憎與生者的悲喜；當偏愛挑戰了均分，親情是否還能抵擋利益的撕扯？</p>
+            </div>
+        </section>
+
+        <!-- 第四章：債務迷霧 -->
+        <section id="chapter4" class="chapter-section section-gradient-4">
+            <h2 class="chapter-title">第四章：債務迷霧</h2>
+            <p class="chapter-subtitle">阿公的未了之債，是家族共負的軛，還是各自飛散的煙？</p>
+            <div class="chapter-content">
+                <p>阿公生前債務浮現，幸有《民法》「概括繼承有限責任」原則（第1148條第2項），繼承人原則上以所得遺產為限償債。但「三個月內」向法院「陳報遺產清冊」（第1156條）並經「公示催告」（第1157條）是關鍵，否則保護傘可能失效。若債務如山，亦可選擇「拋棄繼承」（第1174條），但權利與義務一併放棄，再無轉圜。</p>
+            </div>
+
+            <div class="debt-flowchart">
+                <div class="debt-step" data-step="1">
+                    <i class="fas fa-hand-holding-usd icon"></i>
+                    <p class="label">步驟一：概括繼承有限責任</p>
+                    <div class="law-info-card hidden">
+                        <strong>《民法》第1148條第2項：</strong> 繼承人對於被繼承人之債務，以因繼承所得遺產為限，負清償責任。
+                    </div>
+                </div>
+                <i class="fas fa-arrow-down text-gray-500 mb-4"></i>
+                <div class="debt-step" data-step="2">
+                    <i class="fas fa-file-invoice icon"></i>
+                    <p class="label">步驟二：三個月內陳報遺產清冊</p>
+                    <div class="law-info-card hidden">
+                        <strong>《民法》第1156條：</strong> 繼承人於知悉其得繼承之時起三個月內，得開具遺產清冊呈報法院。
+                    </div>
+                </div>
+                <i class="fas fa-arrow-down text-gray-500 mb-4"></i>
+                <div class="debt-step" data-step="3">
+                    <i class="fas fa-bullhorn icon"></i>
+                    <p class="label">步驟三：公示催告</p>
+                    <div class="law-info-card hidden">
+                        <strong>《民法》第1157條：</strong> 法院接到前條陳報後，應依公示催告程序公告。
+                    </div>
+                </div>
+                <div class="debt-scenario">
+                    <p class="debt-scenario-question"><strong>情境思考：</strong>如果繼承人沒有在三個月內向法院陳報遺產清冊，會發生什麼？</p>
+                    <div class="debt-scenario-option" data-answer="A">A. 仍然適用有限責任原則</div>
+                    <div class="debt-scenario-option" data-answer="B">B. 可能會變成無限責任，須以自有財產償還債務</div>
+                    <div class="debt-scenario-option" data-answer="C">C. 債務會自動消失</div>
+                    <p id="debtFeedback" class="debt-scenario-feedback hidden"></p>
+                </div>
+            </div>
+
+            <div class="humanity-conflict">
+                <p><strong>人性衝突：</strong> 債務面前，是同心斷金，還是大難臨頭各自飛？法律提供了避風港，卻試探出人性的底線與現實的殘酷。</p>
+            </div>
+        </section>
+
+        <!-- 第五章：祖產分割戰 -->
+        <section id="chapter5" class="chapter-section section-gradient-5">
+            <h2 class="chapter-title">第五章：祖產分割戰</h2>
+            <p class="chapter-subtitle">不動產的歸屬，是家族榮光的延續，還是手足反目的祭品？</p>
+            <div class="chapter-content">
+                <p>阿公留下的房產土地，分割前屬全體繼承人「公同共有」（第1151條），處分需全體同意，極易陷入僵局。可協議分割為「分別共有」或「分割繼承」，若不成，則只能訴請法院「裁判分割」（第824條）。若有未成年繼承人，其父母若同為繼承人，則需法院為其選任「特別代理人」（第1086條第2項），以防利益衝突。</p>
+            </div>
+
+            <div class="property-section">
+                <div id="propertyHouseContainer" class="property-house-container">
+                    <div class="property-house-part" data-part="living"><span>客廳</span></div>
+                    <div class="property-house-part" data-part="kitchen"><span>廚房</span></div>
+                    <div class="property-house-part" data-part="bed1"><span>臥室一</span></div>
+                    <div class="property-house-part" data-part="bed2"><span>臥室二</span></div>
+                </div>
+                <div class="property-actions">
+                    <button id="coOwnershipBtn" class="property-action-btn">公同共有 (原狀)</button>
+                    <button id="splitOwnershipBtn" class="property-action-btn">協議分割 (分開)</button>
+                </div>
+                <div class="property-info-box">
+                    <p><strong>公同共有：</strong>所有繼承人共同擁有整份遺產，處理需全員同意。<br>
+                    <strong>協議分割：</strong>繼承人之間協商將遺產分割成個別持有。<br>
+                    <strong>裁判分割：</strong>協議不成時，訴請法院裁定分割。<br>
+                    <strong>特別代理人：</strong>未成年繼承人與父母同為繼承人時，由法院指派代理人以避免利益衝突。</p>
+                </div>
+            </div>
+
+            <div class="humanity-conflict">
+                <p><strong>人性衝突：</strong> 祖輩的基業，本應是家族的凝聚力，卻在分割的刀俎下，成為衡量親情的砝碼；寸土不讓的背後，是多少情感的割捨與人心的疏離？</p>
+            </div>
+        </section>
+
+        <!-- 第六章：無牌厝的悲歌 -->
+        <section id="chapter6" class="chapter-section section-gradient-6">
+            <h2 class="chapter-title">第六章：無牌厝的悲歌</h2>
+            <p class="chapter-subtitle">情感的重量，在法律的邊緣，能否壓過產權的輕飄？</p>
+            <div class="chapter-content">
+                <p>阿公鄉下的「土角厝」，未辦「建物所有權第一次登記」，雖無權狀，仍屬遺產，需申報遺產稅。繼承人可變更「房屋稅納稅義務人」名義。雖法律處分權受限，但在特定情況下（如徵收補償），此稅籍證明仍具意義。這「幽靈產權」，是法律與現實的交錯。</p>
+            </div>
+
+            <div class="unlicensed-house-visual">
+                <div class="visual-card emotional">
+                    <i class="fas fa-heart icon"></i>
+                    <p class="font-bold text-xl mb-2">情感的重量</p>
+                    <p>土角厝，一磚一瓦皆是情，承載著家族的回憶與愛。</p>
+                </div>
+                <div class="visual-card legal">
+                    <i class="fas fa-file-signature icon"></i>
+                    <p class="font-bold text-xl mb-2">產權的輕飄</p>
+                    <p>無權狀的房屋，在法律上處分權受限，如同無根浮萍。</p>
+                </div>
+            </div>
+            <div class="humanity-conflict">
+                <p><strong>人性衝突：</strong> 一磚一瓦皆是情，但在法律的辭典裡，無證的房產如同無根的浮萍；當情感的價值遭遇產權的現實，孰輕孰重，難以定論。</p>
+            </div>
+        </section>
+
+        <!-- 第七章：保單玄機 -->
+        <section id="chapter7" class="chapter-section section-gradient-7">
+            <h2 class="chapter-title">第七章：保單玄機</h2>
+            <p class="chapter-subtitle">愛心的預留，是避稅的巧門，還是國稅局的靶心？</p>
+            <div class="chapter-content">
+                <p>阿公指定受益人的人壽保險金，依《保險法》第112條及《遺產及贈與稅法》第16條第9款，原則上不計入遺產總額。但若國稅局認定符合「實質課稅原則八大紅線」（如帶病投保、躉繳投保等），意圖規避遺產稅，則保險金仍可能被追繳課稅。保險的傳承功能，需在合法合規的框架內運作。</p>
+            </div>
+
+            <div class="insurance-section">
+                <div class="insurance-card">
+                    <i class="fas fa-hand-holding-heart icon"></i>
+                    <p class="font-bold text-xl mb-2">人壽保險金</p>
+                    <p>原則上不計入遺產總額，是愛心的預留。</p>
+                    <button id="toggleRedLinesBtn" class="red-lines-toggle mt-4">顯示/隱藏八大紅線</button>
+                </div>
+                <ul id="redLinesList" class="red-lines-list">
+                    <li>帶病投保：被保險人帶病投保，短期內死亡。</li>
+                    <li>躉繳投保：躉繳保費，且保險金額與繳納保費相當。</li>
+                    <li>高齡投保：高齡投保，且短時間內死亡。</li>
+                    <li>巨額投保：巨額投保，且短期內死亡。</li>
+                    <li>舉債投保：舉債投保，且短期內死亡。</li>
+                    <li>保險金流向不合理：保險金受益人為非近親。</li>
+                    <li>密集投保：密集投保多筆保單。</li>
+                    <li>重病中投保：重病中投保且短期內身故。</li>
+                </ul>
+            </div>
+
+            <div class="humanity-conflict">
+                <p><strong>人性衝突：</strong> 保險本是未雨綢繆的愛，卻可能因操作不當，淪為稅務爭議的焦點；是真心為後人計，還是巧立名目避稅，人心隔肚皮，稅法有明鏡。</p>
+            </div>
+        </section>
+
+        <!-- 第八章：貪婪噬心 -->
+        <section id="chapter8" class="chapter-section section-gradient-8">
+            <h2 class="chapter-title greed-title">第八章：貪婪噬心</h2>
+            <p class="chapter-subtitle text-gray-300">利慾的深淵，足以讓血脈倒流，讓親情變利刃</p>
+            <div class="chapter-content greed-section">
+                <p class="greed-text">若有繼承人利慾薰心，盜領存款、偽造文書、侵占遺產，則不僅觸犯民法，更將墜入《刑法》的深淵。偽造私文書、詐欺、侵占等罪名，足以讓家庭分崩離析，個人身敗名裂。「黃金試火，患難試人，遺產試親情；一念之差，天堂地獄，皆在方寸間。」</p>
+                <div class="legal-consequences">
+                    <h3 class="text-xl font-bold mb-2">法律後果：</h3>
+                    <ul>
+                        <li><i class="fas fa-gavel mr-2"></i><strong>偽造私文書罪：</strong> 意圖損害他人，偽造變造私文書。</li>
+                        <li><i class="fas fa-hand-holding-usd mr-2"></i><strong>詐欺罪：</strong> 施用詐術使人陷於錯誤，交付財物。</li>
+                        <li><i class="fas fa-hand-rock mr-2"></i><strong>侵占遺產罪：</strong> 意圖為自己或第三人不法之所有，而侵占遺產。</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-gray-400">這些行為將導致家庭關係破裂，並面臨嚴重的法律制裁。</p>
+                </div>
+            </div>
+            <div class="humanity-conflict">
+                <p><strong>人性衝突：</strong> 在巨額遺產的誘惑下，人性的貪婪如脫韁野馬，足以踐踏倫理，撕裂血親；當法律的制裁降臨，失去的又豈止是金錢？</p>
+            </div>
+        </section>
+
+        <!-- 第九章：協議書的烙印 -->
+        <section id="chapter9" class="chapter-section section-gradient-9">
+            <h2 class="chapter-title">第九章：協議書的烙印</h2>
+            <p class="chapter-subtitle">一紙契約，是紛爭的句點，還是隱忍的序章？</p>
+            <div class="chapter-content">
+                <p>歷經波折，繼承人簽下「遺產分割協議書」。此協議書若涉及不動產分割，需依《印花稅法》繳納不動產價值千分之一的印花稅。若僅按應繼分繼承或依遺囑繼承，則可免徵。這張稅單，是共識的代價，也是法律的程序。</p>
+            </div>
+
+            <div class="agreement-section">
+                <div class="agreement-form">
+                    <label for="propertyValue">不動產價值 (新台幣)：</label>
+                    <input type="number" id="propertyValue" placeholder="輸入不動產總價值 (例如: 10000000)" min="0">
+                    <button id="calculateTaxBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors duration-300">計算印花稅</button>
+                    <div id="taxResult" class="agreement-result hidden"></div>
+                </div>
+                <div class="mt-6 text-gray-600 text-sm">
+                    <p><strong>提示：</strong> 印花稅為不動產價值之千分之一。若僅按應繼分繼承或依遺囑繼承，則可免徵。</p>
+                </div>
+            </div>
+
+            <div class="humanity-conflict">
+                <p><strong>人性衝突：</strong> 簽字畫押的瞬間，或許是硝煙暫歇的時刻，但墨水掩蓋下的，是真心的和解，還是權力不對等下的無奈妥協？</p>
+            </div>
+        </section>
+
+        <!-- 第十章：遺產的孤寂漂流 -->
+        <section id="chapter10" class="chapter-section section-gradient-10">
+            <h2 class="chapter-title">第十章：遺產的孤寂漂流</h2>
+            <p class="chapter-subtitle">當財富無人承繼，是家族的悲哀，還是社會的警鐘？</p>
+            <div class="chapter-content">
+                <p>若遺產因債務龐大、產權複雜或繼承人失聯等因素，致「無人承認繼承」，經法院指定遺產管理人、公示催告後，清償債務與交付遺贈後，賸餘遺產將依《民法》第1185條「歸屬國庫」。財富的最終流向，映照出家庭功能的式微與社會結構的變遷。</p>
+            </div>
+
+            <div class="lonely-inheritance-visual">
+                <i class="fas fa-vault icon-large"></i> <!-- 國庫圖示 -->
+                <p class="description-text">
+                    當遺產因各種原因（如債務龐大、繼承人失聯或全體拋棄繼承）而無人繼承時，依法律規定，最終會歸屬國庫。這不僅是財物的消散，更是家族連結斷裂的無聲警示。
+                </p>
+            </div>
+            <div class="lonely-info-box">
+                <p class="font-bold mb-2">遺產歸屬國庫的常見原因：</p>
+                <ul>
+                    <li><i class="fas fa-times-circle text-red-500 mr-2"></i> 債務龐大，遺產不足清償。</li>
+                    <li><i class="fas fa-question-circle text-yellow-500 mr-2"></i> 產權複雜，難以釐清。</li>
+                    <li><i class="fas fa-user-times text-gray-500 mr-2"></i> 繼承人失聯或不明。</li>
+                    <li><i class="fas fa-hand-sparkles text-blue-500 mr-2"></i> 所有繼承人均拋棄繼承。</li>
+                </ul>
+            </div>
+
+            <div class="humanity-conflict">
+                <p><strong>人性衝突：</strong> 曾經代表家族榮耀的財產，最終卻無人認領，淪為國庫的數字；這不僅是物質的消散，更是情感連結斷裂的無言證明。</p>
+            </div>
+        </section>
+
+        <!-- 終章：法網下的溫度 -->
+        <section id="finalChapter" class="final-section section-final">
+            <h2 class="final-title">終章：法網下的溫度</h2>
+            <p class="final-quote">「一代傳一代，不只傳田產，更要傳家風。」</p>
+            <i class="fas fa-handshake hands-holding"></i>
+            <div class="final-conclusion-text">
+                <p>臺灣的繼承故事，是法律與人性的交響與碰撞。法律條文如經緯線，試圖規範財產的流轉與權益的分配。然而，法律的冰冷，需以人情的溫度來調和。</p>
+                <p class="mt-4">在專業法律的指引下，唯有坦誠、體諒與尊重，才能讓遺產成為凝聚家族的基石，而非分裂的炸藥。</p>
+            </div>
+            <div class="humanity-conflict">
+                <p><strong>人性衝突：</strong> 繼承的終點，不應僅是財產的分割，更應是家族情感的重新整合；法律能劃清界線，但唯有人心深處的愛與和解，才能真正讓逝者安息，生者無憾。</p>
+            </div>
+            <div class="external-links mt-8">
+                <p class="mb-4 text-lg font-semibold text-gray-700">延伸閱讀與資源：</p>
+                <a href="#" onclick="showModal('了解更多法律資訊', '請諮詢專業律師或參閱司法院網站。'); return false;" class="text-blue-600 hover:underline">了解更多法律資訊 <i class="fas fa-external-link-alt ml-1 text-sm"></i></a>
+                <a href="#" onclick="showModal('尋求專業諮詢', '遇到繼承問題，務必尋求法律、會計專業人士協助。'); return false;" class="text-blue-600 hover:underline">尋求專業諮詢 <i class="fas fa-external-link-alt ml-1 text-sm"></i></a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal for messages -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <p id="modalMessage" class="modal-message"></p>
+            <button class="modal-button" onclick="closeModal()">確定</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Global Functions for Modals ---
+        function showModal(message) {
+            document.getElementById('modalMessage').innerText = message;
+            document.getElementById('myModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        // --- Chapter 1: Scroll to Chapter 2 on button click ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const startExploreBtn = document.getElementById('startExploreBtn');
+
+            startExploreBtn.addEventListener('click', () => {
+                document.getElementById('chapter2').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // --- Navigation Bar and Progress Bar ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBar = document.getElementById('progressBar');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            const updateProgressBar = () => {
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollTop = document.documentElement.scrollTop;
+                const progress = (scrollTop / docHeight) * 100;
+                progressBar.style.width = progress + '%';
+
+                // Update active nav link
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    // Adjust offset for fixed nav height
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const sectionTop = section.offsetTop - navHeight - 10; // A bit extra buffer
+                    const sectionBottom = section.offsetTop + section.offsetHeight - navHeight - 10;
+
+                    if (scrollTop >= sectionTop && scrollTop < sectionBottom) {
+                        currentSectionId = section.id;
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', updateProgressBar);
+            updateProgressBar(); // Initial call
+        });
+
+
+        // --- Chapter 2: Family Tree Interaction ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.family-member').forEach(member => {
+                member.addEventListener('click', () => {
+                    const memberId = member.dataset.member;
+                    const infoCard = member.querySelector('.law-info-card'); // Select info card within the clicked member
+
+                    // Hide all other cards from all family members
+                    document.querySelectorAll('.family-member .law-info-card').forEach(card => {
+                        if (card !== infoCard) { // Don't hide the current one
+                            card.classList.remove('active');
+                            card.classList.add('hidden');
+                        }
+                    });
+
+                    // Toggle current card
+                    if (infoCard) { // Check if infoCard exists
+                        if (infoCard.classList.contains('active')) {
+                            infoCard.classList.remove('active');
+                            infoCard.classList.add('hidden');
+                        } else {
+                            infoCard.classList.remove('hidden');
+                            infoCard.classList.add('active');
+                        }
+                    }
+                });
+            });
+        });
+
+        // --- Chapter 3: Will Storm Tabbed Interaction ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.will-tab-button');
+            const tabContents = document.querySelectorAll('.will-tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Deactivate all buttons and hide all content
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Activate clicked button and show corresponding content
+                    button.classList.add('active');
+                    const targetTabId = button.dataset.tab + '-content';
+                    document.getElementById(targetTabId).classList.add('active');
+                });
+            });
+        });
+
+        // --- Chapter 4: Debt Flowchart and Scenario ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.debt-step').forEach(step => {
+                step.addEventListener('click', () => {
+                    const infoCard = step.querySelector('.law-info-card');
+                    if (infoCard) {
+                        infoCard.classList.toggle('hidden');
+                        infoCard.classList.toggle('active');
+                    }
+                });
+            });
+
+            const debtScenarioOptions = document.querySelectorAll('.debt-scenario-option');
+            const debtFeedback = document.getElementById('debtFeedback');
+            const correctAnswer = 'B';
+
+            debtScenarioOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    // Reset previous selections
+                    debtScenarioOptions.forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
+                    });
+
+                    const selectedAnswer = option.dataset.answer;
+                    if (selectedAnswer === correctAnswer) {
+                        option.classList.add('correct');
+                        debtFeedback.innerText = "正確！若未陳報清冊，可能導致無限責任，須以自有財產償還債務。";
+                        debtFeedback.classList.remove('hidden');
+                        debtFeedback.style.color = '#065f46'; // Greenish
+                    } else {
+                        option.classList.add('incorrect');
+                        debtFeedback.innerText = "錯誤。請再思考！若未依限陳報，可能失去有限責任的保護。";
+                        debtFeedback.classList.remove('hidden');
+                        debtFeedback.style.color = '#991b1b'; // Reddish
+                    }
+                });
+            });
+        });
+
+        // --- Chapter 5: Property House Interaction ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const propertyHouseContainer = document.getElementById('propertyHouseContainer');
+            const coOwnershipBtn = document.getElementById('coOwnershipBtn');
+            const splitOwnershipBtn = document.getElementById('splitOwnershipBtn');
+
+            coOwnershipBtn.addEventListener('click', () => {
+                propertyHouseContainer.classList.remove('separated');
+            });
+
+            splitOwnershipBtn.addEventListener('click', () => {
+                propertyHouseContainer.classList.add('separated');
+            });
+
+            // Removed click handler for individual parts as requested
+            // document.querySelectorAll('.property-house-part').forEach(part => {
+            //     part.addEventListener('click', () => {
+            //         // showModal(`點擊了 "${part.querySelector('span').innerText}" 部分。\n這代表了遺產中的一個區塊，如何分割是手足間的課題。`);
+            //     });
+            // });
+        });
+
+        // --- Chapter 7: Insurance Red Lines Toggle ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleRedLinesBtn = document.getElementById('toggleRedLinesBtn');
+            const redLinesList = document.getElementById('redLinesList');
+
+            toggleRedLinesBtn.addEventListener('click', () => {
+                redLinesList.classList.toggle('hidden');
+                redLinesList.classList.toggle('active');
+            });
+        });
+
+        // --- Chapter 9: Stamp Duty Calculator ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const propertyValueInput = document.getElementById('propertyValue');
+            const calculateTaxBtn = document.getElementById('calculateTaxBtn');
+            const taxResultDiv = document.getElementById('taxResult');
+
+            calculateTaxBtn.addEventListener('click', () => {
+                const value = parseFloat(propertyValueInput.value);
+                if (isNaN(value) || value < 0) {
+                    showModal("請輸入有效的不動產價值！");
+                    taxResultDiv.classList.add('hidden');
+                    return;
+                }
+
+                const stampTax = value * 0.001; // 千分之一
+                taxResultDiv.innerHTML = `預估應繳印花稅：<strong>新台幣 ${stampTax.toLocaleString()} 元</strong>`;
+                taxResultDiv.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
