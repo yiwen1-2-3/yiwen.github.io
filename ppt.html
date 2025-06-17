@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>識破話術・智選保險</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for fonts and animations */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light gray background */
+            color: #334155; /* Dark slate gray for general text */
+            line-height: 1.6;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInMoveUp 0.8s forwards;
+        }
+
+        @keyframes fadeInMoveUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Delay for sequential text reveal */
+        .text-reveal-1 { animation-delay: 0.2s; }
+        .text-reveal-2 { animation-delay: 0.4s; }
+        .text-reveal-3 { animation-delay: 0.6s; }
+
+        /* Card hover effect */
+        .interactive-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Modal specific styles */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease-in-out;
+            animation: modalPopIn 0.3s forwards;
+            position: relative; /* For close button positioning */
+        }
+
+        .modal-overlay.show .modal-content {
+             transform: scale(1);
+        }
+
+        @keyframes modalPopIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-button:hover {
+            color: #ef4444; /* Red on hover */
+        }
+
+        /* Gold phrase animation */
+        .golden-phrase {
+            animation: slideInFromLeft 0.8s forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideInFromLeft {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- 1. 首頁：引人入勝的開場 -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-700 to-indigo-900 text-white overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://placehold.co/1920x1080/1a202c/ffffff?text=Abstract+Financial+Background');"></div>
+
+        <!-- Animated bubbles -->
+        <div class="absolute inset-0 z-0">
+            <div class="bubble bubble-1 absolute bg-white opacity-10 rounded-full animate-bubble" style="width: 150px; height: 150px; left: 10%; top: 20%; animation-delay: 0s;"></div>
+            <div class="bubble bubble-2 absolute bg-white opacity-10 rounded-full animate-bubble" style="width: 100px; height: 100px; left: 80%; top: 60%; animation-delay: 2s;"></div>
+            <div class="bubble bubble-3 absolute bg-white opacity-10 rounded-full animate-bubble" style="width: 200px; height: 200px; left: 30%; top: 70%; animation-delay: 4s;"></div>
+            <div class="bubble bubble-4 absolute bg-white opacity-10 rounded-full animate-bubble" style="width: 120px; height: 120px; left: 50%; top: 10%; animation-delay: 6s;"></div>
+            <div class="bubble bubble-5 absolute bg-white opacity-10 rounded-full animate-bubble" style="width: 80px; height: 80px; left: 5%; top: 80%; animation-delay: 8s;"></div>
+            <style>
+                @keyframes bubble {
+                    0% { transform: scale(0.5) translateY(0); opacity: 0.1; }
+                    50% { transform: scale(1.2) translateY(-20px); opacity: 0.2; }
+                    100% { transform: scale(0.5) translateY(0); opacity: 0.1; }
+                }
+                .animate-bubble {
+                    animation: bubble 10s infinite ease-in-out alternate;
+                }
+            </style>
+        </div>
+
+
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight text-shadow-lg text-reveal text-reveal-1">市場常聽！常看！常用！</h1>
+            <p class="text-2xl md:text-3xl font-light mb-8 text-shadow-md text-reveal text-reveal-2">自我警惕，行銷賣點，是否，把自己賣了？</p>
+            <button id="start-explore-btn" class="bg-white text-blue-800 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-100 hover:scale-105 transition duration-300 ease-in-out text-lg focus:outline-none focus:ring-4 focus:ring-blue-300 text-reveal text-reveal-3">
+                開始探索
+                <svg class="inline-block ml-2 w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- 2. 核心洞察：揭示誤導性行銷的本質 -->
+    <section id="core-insight" class="section-padding bg-gray-50">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <h2 class="text-4xl font-bold mb-8 text-blue-800 text-reveal">核心洞察</h2>
+            <blockquote class="bg-white p-8 md:p-10 rounded-2xl shadow-xl border-l-8 border-blue-500 italic text-xl md:text-2xl text-gray-700 relative text-reveal text-reveal-1">
+                “誤導性行銷”的精髓，在於利用資訊不對稱，放大客戶的渴望與恐懼，模糊關鍵細節，並營造一種「特殊」、「獨家」、「捷徑」的氛圍，讓客戶在情感驅使和認知偏差下做出有利於銷售的決策。
+                <span class="absolute bottom-4 right-6 text-gray-400 text-6xl opacity-20 transform -scale-x-100">“</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- 3. 三大誤導性銷售訴求：互動式情境模擬 -->
+    <section id="misleading-tactics" class="section-padding bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center text-blue-800 text-reveal">三大誤導性銷售訴求</h2>
+
+            <!-- A. 針對「稅務規避與資產保全」的誤導性銷售訴求 -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-semibold mb-8 text-blue-700 text-reveal text-reveal-1">1. 針對「稅務規避與資產保全」的誤導性銷售訴求</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Misleading Cards -->
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="tax-evasion" data-id="1">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「獨家揭秘！富人圈都在用的『財富隱形術』，讓您的資產在稅務雷達下完美遁形！」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="tax-evasion" data-id="2">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「別讓辛辛苦苦賺來的錢被稅務吞噬！我們有『特殊通道』保單，讓您的財富一分不少，安全傳承給下一代！」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="tax-evasion" data-id="3">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「面對債務追討？別擔心！這款『金鐘罩』保單，能為您的核心資產打造一道任何人都無法攻破的防火牆！」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="tax-evasion" data-id="4">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「還在傻傻繳遺產稅？專業人士都選擇用『保險金庫』，合法、巧妙地將財富『零成本』轉移！」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="tax-evasion" data-id="5">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「政府的稅法總在變，但我們的『智慧傳承方案』能幫您鎖定當下的最優稅務利益，一勞永逸！」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- B. 針對「投資回報與保證收益」的誤導性銷售訴求 -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-semibold mb-8 text-blue-700 text-reveal text-reveal-1">2. 針對「投資回報與保證收益」的誤導性銷售訴求</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Misleading Cards -->
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="investment-return" data-id="1">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「厭倦了銀行那點微薄的利息嗎？我們的『增值引擎』保單，讓您的閒錢也能享受『火箭般』的增長速度！」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="investment-return" data-id="2">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「別再讓通貨膨脹侵蝕您的財富！這款『抗通膨神器』，不僅保本，更能給您遠超市場的『穩定高回報』！」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="investment-return" data-id="3">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「還在股市裡提心吊膽？我們的『智慧鎖利』方案，讓您在享受高收益的同時，高枕無憂，風險？不存在的！」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="investment-return" data-id="4">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「這不是投資，這是『財富倍增計劃』！我們有內部精算模型，確保您的每一分投入都能獲得『超額驚喜』！」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="investment-return" data-id="5">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「錯過了比特幣？別再錯過這個！我們的『未來趨勢』保單，讓您站在財富增長的風口浪尖，輕鬆實現財務自由！」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- C. 針對「特殊身份與內部資訊」的誤導性銷售訴求 -->
+            <div>
+                <h3 class="text-3xl font-semibold mb-8 text-blue-700 text-reveal text-reveal-1">3. 針對「特殊身份與內部資訊」的誤導性銷售訴求</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Misleading Cards -->
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="special-info" data-id="1">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「這份方案是我們總部最新研發，專門針對像您這樣的VIP客戶，外面絕對找不到！」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="special-info" data-id="2">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「我剛從內部會議出來，得到第一手消息，這款產品的優惠窗口期非常短，錯過就真的沒有了！」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="special-info" data-id="3">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「一般業務員根本接觸不到這種級別的產品，只有我們核心團隊才有權限為您規劃。」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="special-info" data-id="4">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「我們和某些『關鍵部門』有著良好的合作關係，能確保您的規劃順利通過，享受別人享受不到的『綠色通道』。」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                    <div class="interactive-card bg-yellow-100 p-8 rounded-2xl shadow-md border-l-8 border-yellow-500 flex flex-col justify-between" data-tactics="special-info" data-id="5">
+                        <p class="text-xl font-medium text-yellow-800 mb-4">「很多成功的企業家都選擇了我們這套方案，他們看中的不僅是產品，更是我們背後『深不可測』的資源整合能力。」</p>
+                        <span class="text-sm text-gray-600 self-end">點擊揭示真相</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 再次強調：明確的立場聲明 -->
+    <section id="disclaimer" class="section-padding bg-blue-900 text-white text-center">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-4xl font-bold mb-6 text-reveal">再次強調</h2>
+            <p class="text-xl md:text-2xl mb-4 text-reveal text-reveal-1">以上內容，是為了揭示和分析潛在的誤導性行銷手法，絕非提倡或鼓勵使用。</p>
+            <p class="text-xl md:text-2xl mb-4 text-reveal text-reveal-2">真正的專業行銷應建立在誠信、透明和為客戶創造真實價值的基礎之上。</p>
+            <p class="text-xl md:text-2xl text-reveal text-reveal-3">了解這些誤導性話術，有助於消費者提高警惕，保護自身權益。</p>
+        </div>
+    </section>
+
+    <!-- Modal Structure -->
+    <div id="modal-overlay" class="modal-overlay fixed inset-0 hidden">
+        <div class="modal-content w-full h-full p-8 md:p-12 flex flex-col md:flex-row gap-8">
+            <button class="close-button" onclick="closeModal()">&times;</button>
+            <div class="modal-left md:w-1/2 flex flex-col justify-center">
+                <h3 id="modal-title" class="text-3xl font-bold mb-4 text-blue-700"></h3>
+                <p id="modal-misleading-text" class="text-2xl font-medium text-yellow-800 bg-yellow-50 p-4 rounded-lg mb-6 shadow-sm"></p>
+                <h4 class="text-xl font-semibold mb-3 text-gray-700">話術解析：</h4>
+                <p id="modal-analysis" class="text-lg text-gray-800 mb-6"></p>
+            </div>
+            <div class="modal-right md:w-1/2 flex flex-col justify-center">
+                <h4 class="text-xl font-semibold mb-3 text-gray-700">真相大白：</h4>
+                <p id="modal-truth" class="text-lg text-gray-800 mb-6"></p>
+                <div class="bg-blue-100 p-4 rounded-lg text-blue-800 italic text-xl golden-phrase-container relative overflow-hidden">
+                    <span class="absolute left-0 top-0 text-blue-300 text-5xl opacity-30 transform -rotate-12">“</span>
+                    <p id="modal-golden-phrase" class="golden-phrase text-xl font-semibold text-center"></p>
+                    <span class="absolute right-0 bottom-0 text-blue-300 text-5xl opacity-30 transform rotate-12">”</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll for "Start Exploring" button
+        document.getElementById('start-explore-btn').addEventListener('click', function() {
+            document.getElementById('core-insight').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Data for modal content
+        const contentData = {
+            "tax-evasion": [
+                {
+                    misleading: "「獨家揭秘！富人圈都在用的『財富隱形術』，讓您的資產在稅務雷達下完美遁形！」",
+                    analysis: "這句話術利用了客戶對「獨家」、「富人圈」、「隱形術」的好奇心和趨利心理，暗示有不為人知的合法避稅高招，但往往誇大保險產品的稅務功能，模糊了稅法細節，誘使客戶誤以為能完全規避稅務。",
+                    truth: "保險的稅務優惠通常是基於特定條件和法律規定，並非無限度或完全規避。任何宣稱「完美遁形」的說法都可能涉及誤導，甚至觸犯稅法。資產傳承應在合法合規框架下進行，專業建議應來自具備資產規劃與稅務知識的獨立第三方。",
+                    golden_phrases: [
+                        "當別人還在為稅務煩惱，您已經透過我們的規劃，享受著財富自由的陽光。",
+                        "法律是死的，人是活的。我們懂得如何在規則的邊緣，為您找到最大的利益空間。",
+                        "這不是普通的保險，這是高淨值人士專屬的『財富保險箱鑰匙』，一般人我們還不輕易透露。",
+                        "別問我怎麼做到的，您只需要知道，結果就是您的財富安全了，稅務壓力消失了。",
+                        "機會只給懂得把握的人，這套方案的名額非常有限，錯過了，可能就要多繳幾百萬的稅！"
+                    ]
+                },
+                {
+                    misleading: "「別讓辛辛苦苦賺來的錢被稅務吞噬！我們有『特殊通道』保單，讓您的財富一分不少，安全傳承給下一代！」",
+                    analysis: "強調「吞噬」引發恐懼，同時以「特殊通道」暗示獨家且高效的解決方案，讓客戶相信可以完全規避稅負，並安全傳承，掩蓋了實際稅務優惠的條件和限度，以及保單本身的流動性問題。",
+                    truth: "保險的確在資產傳承中扮演角色，但在某些情況下可享受稅務優惠。然而，這些優惠有其適用範圍和條件，並不存在所謂的「特殊通道」能完全免除所有稅負。任何資產傳承規劃都應考量多種工具，並尋求專業會計師或律師的意見。",
+                    golden_phrases: [
+                        "一單鎖定，稅務無憂！",
+                        "您的財富，由您做主，稅務，我們搞定！",
+                        "保單在手，債務繞道走！",
+                        "傳承零負擔，智慧贏未來！",
+                        "富過三代，從這張『免稅通行證』開始！"
+                    ]
+                },
+                {
+                    misleading: "「面對債務追討？別擔心！這款『金鐘罩』保單，能為您的核心資產打造一道任何人都無法攻破的防火牆！」",
+                    analysis: "「金鐘罩」、「無法攻破」等詞語製造了絕對安全的假象，利用客戶對資產安全的焦慮。然而，保險產品的債務隔離功能在不同法系和保單類型下有嚴格限制，並非絕對。",
+                    truth: "部分保險產品在特定情況下確實具有債務隔離功能，但這並非絕對。債務隔離的有效性取決於當地法律、保單類型、購買時間等多重因素。宣稱「任何人都無法攻破」是極度不負責任的說法。在規劃資產時，應諮詢法律專業人士。",
+                    golden_phrases: [
+                        "當別人還在為稅務煩惱，您已經透過我們的規劃，享受著財富自由的陽光。",
+                        "法律是死的，人是活的。我們懂得如何在規則的邊緣，為您找到最大的利益空間。",
+                        "這不是普通的保險，這是高淨值人士專屬的『財富保險箱鑰匙』，一般人我們還不輕易透露。",
+                        "別問我怎麼做到的，您只需要知道，結果就是您的財富安全了，稅務壓力消失了。",
+                        "機會只給懂得把握的人，這套方案的名額非常有限，錯過了，可能就要多繳幾百萬的稅！"
+                    ]
+                },
+                {
+                    misleading: "「還在傻傻繳遺產稅？專業人士都選擇用『保險金庫』，合法、巧妙地將財富『零成本』轉移！」",
+                    analysis: "「傻傻繳」、「零成本」等詞彙強化了客戶對遺產稅的厭惡，並暗示存在巧妙的「合法」逃稅方法。這混淆了「稅務優化」與「稅務規避」的概念，且「零成本」更是極度誤導，保險本身就有成本。",
+                    truth: "「零成本」的財富轉移是不存在的，保險產品本身有保費、管理費等成本。保險在遺產規劃中的作用是提供流動性、定向傳承等，而非絕對的「免稅」。任何聲稱「零成本」或「巧妙避稅」的說法都應高度警惕。",
+                    golden_phrases: [
+                        "一單鎖定，稅務無憂！",
+                        "您的財富，由您做主，稅務，我們搞定！",
+                        "保單在手，債務繞道走！",
+                        "傳承零負擔，智慧贏未來！",
+                        "富過三代，從這張『免稅通行證』開始！"
+                    ]
+                },
+                {
+                    misleading: "「政府的稅法總在變，但我們的『智慧傳承方案』能幫您鎖定當下的最優稅務利益，一勞永逸！」",
+                    analysis: "利用稅法變動的不確定性製造焦慮，並以「鎖定」、「一勞永逸」等詞語提供虛假的安全感。這誇大了保險產品的穩定性，忽略了未來稅法調整可能帶來的影響。",
+                    truth: "稅法會根據社會經濟發展而調整，任何金融產品都無法保證「一勞永逸」地鎖定最佳稅務利益。應定期檢視資產配置與傳承規劃，並根據最新的稅法變化進行調整。宣稱「一勞永逸」是脫離現實的。",
+                    golden_phrases: [
+                        "當別人還在為稅務煩惱，您已經透過我們的規劃，享受著財富自由的陽光。",
+                        "法律是死的，人是活的。我們懂得如何在規則的邊緣，為您找到最大的利益空間。",
+                        "這不是普通的保險，這是高淨值人士專屬的『財富保險箱鑰匙』，一般人我們還不輕易透露。",
+                        "別問我怎麼做到的，您只需要知道，結果就是您的財富安全了，稅務壓力消失了。",
+                        "機會只給懂得把握的人，這套方案的名額非常有限，錯過了，可能就要多繳幾百萬的稅！"
+                    ]
+                }
+            ],
+            "investment-return": [
+                {
+                    misleading: "「厭倦了銀行那點微薄的利息嗎？我們的『增值引擎』保單，讓您的閒錢也能享受『火箭般』的增長速度！」",
+                    analysis: "將保險與高收益畫上等號，利用客戶對低利息的不滿，暗示保險產品能帶來遠超傳統存款的「火箭般」增長。這模糊了保險產品的本質和潛在風險。",
+                    truth: "保險的核心功能是風險保障，其投資收益通常是相對穩健且長期實現的。宣稱「火箭般」增長往往誇大收益，並可能隱藏高風險。保險並非短期獲利的投資工具，其收益模式與銀行存款有本質區別。",
+                    golden_phrases: [
+                        "當別人還在為雞蛋放哪個籃子煩惱，您已經透過我們的方案，讓每個籃子都裝滿了金蛋。",
+                        "我們不談複雜的K線圖，我們只給您看得懂的『收益數字』和摸得著的『財富增長』。",
+                        "這款產品太火爆，額度都是靠搶的，能給您留一份，已經是我們盡最大努力了。",
+                        "別被那些『風險提示』嚇到，那是寫給普通人的，對於像您這樣的貴客，我們有特殊的『保障機制』。",
+                        "您只需要坐等收錢，其他的，交給我們專業的『財富管家』就行了。"
+                    ]
+                },
+                {
+                    misleading: "「別再讓通貨膨脹侵蝕您的財富！這款『抗通膨神器』，不僅保本，更能給您遠超市場的『穩定高回報』！」",
+                    analysis: "利用通膨恐懼，將保險包裝成「神器」，強調「保本」與「穩定高回報」，暗示能輕易超越市場平均水平且無風險。但「穩定高回報」本身就是矛盾的。",
+                    truth: "「穩定高回報」在金融市場中是極難實現的，高回報往往伴隨高風險，反之亦然。任何金融產品都難以完全抵禦通膨侵蝕，宣稱能「遠超市場」且「穩定高回報」的保險，其收益計算和風險揭露需要仔細審查。",
+                    golden_phrases: [
+                        "存錢不如買保險，利息翻倍漲！",
+                        "保本保息，收益看得見！",
+                        "投資選我們，財富永相隨！",
+                        "告別月光族，開啟您的『被動印鈔機』！",
+                        "高收益，零風險，只此一家！"
+                    ]
+                },
+                {
+                    misleading: "「還在股市裡提心吊膽？我們的『智慧鎖利』方案，讓您在享受高收益的同時，高枕無憂，風險？不存在的！」",
+                    analysis: "利用股市波動的焦慮，提供「高枕無憂」、「風險？不存在的！」等承諾，試圖將保險塑造成無風險高收益的替代品。完全否定風險是極度不負責任的。",
+                    truth: "任何投資都伴隨風險，即使是保險產品中的投資連結型保單也可能存在市場風險、流動性風險等。「風險？不存在的！」的說法完全違背金融常識，是典型的誤導性話術。",
+                    golden_phrases: [
+                        "當別人還在為雞蛋放哪個籃子煩惱，您已經透過我們的方案，讓每個籃子都裝滿了金蛋。",
+                        "我們不談複雜的K線圖，我們只給您看得懂的『收益數字』和摸得著的『財富增長』。",
+                        "這款產品太火爆，額度都是靠搶的，能給您留一份，已經是我們盡最大努力了。",
+                        "別被那些『風險提示』嚇到，那是寫給普通人的，對於像您這樣的貴客，我們有特殊的『保障機制』。",
+                        "您只需要坐等收錢，其他的，交給我們專業的『財富管家』就行了。"
+                    ]
+                },
+                {
+                    misleading: "「這不是投資，這是『財富倍增計劃』！我們有內部精算模型，確保您的每一分投入都能獲得『超額驚喜』！」",
+                    analysis: "混淆概念，將保險產品從「投資」提升為「財富倍增計劃」，並以「內部精算模型」、「超額驚喜」等詞語製造神秘感和高收益預期，暗示獨家技術，忽略了實際的投資回報機制和市場波動。",
+                    truth: "保險產品的收益來源於保費的運用，會受到市場環境、公司經營等多重因素影響，並非簡單的「倍增」。任何宣稱能「確保」超額驚喜的說法，都應要求提供詳細的精算報告、歷史收益數據和清晰的風險揭露。",
+                    golden_phrases: [
+                        "存錢不如買保險，利息翻倍漲！",
+                        "保本保息，收益看得見！",
+                        "投資選我們，財富永相隨！",
+                        "告別月光族，開啟您的『被動印鈔機』！",
+                        "高收益，零風險，只此一家！"
+                    ]
+                },
+                {
+                    misleading: "「錯過了比特幣？別再錯過這個！我們的『未來趨勢』保單，讓您站在財富增長的風口浪尖，輕鬆實現財務自由！」",
+                    analysis: "將保險與高風險高回報的熱門投資（如比特幣）類比，利用客戶的「錯失恐懼」，將保險包裝成下一個「風口」。這是將保險產品的風險與收益特性極度扭曲的行為。",
+                    truth: "保險與加密貨幣等高風險資產有本質區別，其穩定性與流動性完全不同。任何將保險比喻為短期高收益投資風口的說法，都是為了誘騙客戶做出非理性決策，極需警惕。",
+                    golden_phrases: [
+                        "當別人還在為雞蛋放哪個籃子煩惱，您已經透過我們的方案，讓每個籃子都裝滿了金蛋。",
+                        "我們不談複雜的K線圖，我們只給您看得懂的『收益數字』和摸得著的『財富增長』。",
+                        "這款產品太火爆，額度都是靠搶的，能給您留一份，已經是我們盡最大努力了。",
+                        "別被那些『風險提示』嚇到，那是寫給普通人的，對於像您這樣的貴客，我們有特殊的『保障機制』。",
+                        "您只需要坐等收錢，其他的，交給我們專業的『財富管家』就行了。"
+                    ]
+                }
+            ],
+            "special-info": [
+                {
+                    misleading: "「這份方案是我們總部最新研發，專門針對像您這樣的VIP客戶，外面絕對找不到！」",
+                    analysis: "製造「獨家」、「限量」、「VIP專屬」的稀缺感和尊榮感，迎合客戶的優越心理，暗示只有少數人能接觸到，以此促使客戶立即行動，而不去進行充分的比較和評估。",
+                    truth: "許多產品可能會有差異化設計，但聲稱「外面絕對找不到」或「專門針對VIP」往往是銷售話術。正規的金融產品應有公開透明的銷售管道和說明文件，不存在完全保密的「獨家」方案。消費者有權獲取充分資訊。",
+                    golden_phrases: [
+                        "VIP專屬，尊享特權！",
+                        "內部消息，搶占先機！",
+                        "核心資源，為您加持！",
+                        "獨家渠道，成就非凡！",
+                        "跟對人，做對事，財富自然來！"
+                    ]
+                },
+                {
+                    misleading: "「我剛從內部會議出來，得到第一手消息，這款產品的優惠窗口期非常短，錯過就真的沒有了！」",
+                    analysis: "利用「內部消息」、「第一手」、「窗口期短」製造緊迫感和稀缺性，迫使客戶在壓力下迅速決策，沒有足夠時間思考或諮詢第三方意見。這也是常見的「飢餓行銷」手法。",
+                    truth: "許多優惠活動確實有期限，但利用「內部消息」來施壓則可能暗示銷售方不正當獲取或誇大資訊。在面對短期促銷時，仍需保持理性，充分了解產品條款和自身需求，切勿因時間壓力而盲目購買。",
+                    golden_phrases: [
+                        "有些事情，我們不能說得太明白，但您懂的，機會往往掌握在少數人手中。",
+                        "這不僅僅是一份保單，更是一張進入高端圈層的『入場券』。",
+                        "我們的專業，不僅在於產品，更在於能為您鏈接到別人無法企及的『隱形資源』。",
+                        "選擇我們，您得到的將是『資訊差』帶來的紅利，這在財富遊戲中至關重要。",
+                        "相信我，這次的機會千載難逢，猶豫一秒，可能就與巨額財富擦肩而過。"
+                    ]
+                },
+                {
+                    misleading: "「一般業務員根本接觸不到這種級別的產品，只有我們核心團隊才有權限為您規劃。」",
+                    analysis: "強調銷售人員的「特殊地位」和「核心團隊」身份，營造權威感和神秘感，暗示客戶遇到了「高人」，以此增加信任和說服力，同時貶低其他業務員，打擊客戶貨比三家的意願。",
+                    truth: "正規保險產品的銷售權限通常是基於業務員的資質和所屬機構，並不存在某種「核心團隊」獨有的產品級別。所有合格的業務員都應能提供合法合規的產品。應警惕任何試圖製造資訊壁壘或利用業務員身份進行銷售的話術。",
+                    golden_phrases: [
+                        "VIP專屬，尊享特權！",
+                        "內部消息，搶占先機！",
+                        "核心資源，為您加持！",
+                        "獨家渠道，成就非凡！",
+                        "跟對人，做對事，財富自然來！"
+                    ]
+                },
+                {
+                    misleading: "「我們和某些『關鍵部門』有著良好的合作關係，能確保您的規劃順利通過，享受別人享受不到的『綠色通道』。」",
+                    analysis: "利用客戶對效率、便利或特權的渴望，暗示銷售人員擁有「內部關係」和「綠色通道」，可以提供超越常規的服務。這可能涉及不正當競爭，也可能誇大其影響力，給客戶帶來不切實際的期待。",
+                    truth: "保險公司的審核流程和法規要求是公開且標準化的，不存在只對特定客戶開放的「綠色通道」。任何宣稱能利用「關鍵部門」關係來簡化或加速流程的說法，都應引起警惕，這可能涉及不當行為。",
+                    golden_phrases: [
+                        "有些事情，我們不能說得太明白，但您懂的，機會往往掌握在少數人手中。",
+                        "這不僅僅是一份保單，更是一張進入高端圈層的『入場券』。",
+                        "我們的專業，不僅在於產品，更在於能為您鏈接到別人無法企及的『隱形資源』。",
+                        "選擇我們，您得到的將是『資訊差』帶來的紅利，這在財富遊戲中至關重要。",
+                        "相信我，這次的機會千載難逢，猶豫一秒，可能就與巨額財富擦肩而過。"
+                    ]
+                },
+                {
+                    misleading: "「很多成功的企業家都選擇了我們這套方案，他們看中的不僅是產品，更是我們背後『深不可測』的資源整合能力。」",
+                    analysis: "利用「從眾心理」和對「成功企業家」的崇拜，暗示購買該方案是成功人士的標配，並誇大銷售團隊的「深不可測」資源整合能力，使其聽起來無所不能，但實際效用缺乏明確解釋。",
+                    truth: "參考成功人士的選擇可以作為參考，但不應成為決策的唯一依據。應關注產品本身的條款、保障範圍、收益計算和風險揭露，而非基於模糊的「資源整合能力」或名人效應。了解產品的具體細節比聽信話術更為重要。",
+                    golden_phrases: [
+                        "VIP專屬，尊享特權！",
+                        "內部消息，搶占先機！",
+                        "核心資源，為您加持！",
+                        "獨家渠道，成就非凡！",
+                        "跟對人，做對事，財富自然來！"
+                    ]
+                }
+            ]
+        };
+
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMisleadingText = document.getElementById('modal-misleading-text');
+        const modalAnalysis = document.getElementById('modal-analysis');
+        const modalTruth = document.getElementById('modal-truth');
+        const modalGoldenPhrase = document.getElementById('modal-golden-phrase');
+
+        let currentGoldenPhrases = [];
+        let goldenPhraseIndex = 0;
+        let goldenPhraseInterval;
+
+        document.querySelectorAll('.interactive-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const tacticsType = this.dataset.tactics;
+                const cardId = parseInt(this.dataset.id);
+                const data = contentData[tacticsType][cardId - 1]; // -1 because data-id is 1-based
+
+                modalTitle.textContent = "誤導性銷售話術解析";
+                modalMisleadingText.textContent = data.misleading;
+                modalAnalysis.textContent = data.analysis;
+                modalTruth.textContent = data.truth;
+
+                currentGoldenPhrases = data.golden_phrases;
+                goldenPhraseIndex = 0;
+                displayGoldenPhrase(); // Display first phrase immediately
+                clearInterval(goldenPhraseInterval); // Clear any existing interval
+                goldenPhraseInterval = setInterval(displayGoldenPhrase, 5000); // Change phrase every 5 seconds
+
+                modalOverlay.classList.remove('hidden');
+                setTimeout(() => modalOverlay.classList.add('show'), 10); // Trigger animation
+            });
+        });
+
+        function displayGoldenPhrase() {
+            if (currentGoldenPhrases.length === 0) return;
+
+            // Reset animation
+            modalGoldenPhrase.style.opacity = '0';
+            modalGoldenPhrase.style.transform = 'translateX(-20px)';
+
+            // Set new text
+            modalGoldenPhrase.textContent = currentGoldenPhrases[goldenPhraseIndex];
+
+            // Trigger animation
+            setTimeout(() => {
+                modalGoldenPhrase.style.opacity = '1';
+                modalGoldenPhrase.style.transform = 'translateX(0)';
+            }, 100);
+
+            goldenPhraseIndex = (goldenPhraseIndex + 1) % currentGoldenPhrases.length;
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('show');
+            clearInterval(goldenPhraseInterval);
+            setTimeout(() => modalOverlay.classList.add('hidden'), 300); // Hide after animation
+        }
+
+        // Close modal when clicking outside content
+        modalOverlay.addEventListener('click', function(event) {
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Add text reveal animations on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.text-reveal').forEach(el => {
+                        el.classList.add('text-reveal-active');
+                    });
+                    observer.unobserve(entry.target); // Unobserve once animated
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+    </script>
+</body>
+</html>
