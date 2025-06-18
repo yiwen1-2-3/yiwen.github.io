@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互動式遺產稅案例：生前出售不動產未過戶</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* 主色系 */
+        .bg-primary { background-color: #1A3A64; }
+        .text-primary { color: #1A3A64; }
+        .border-primary { border-color: #1A3A64; }
+
+        /* 強調色 */
+        .bg-accent { background-color: #C5A475; }
+        .text-accent { color: #C5A475; }
+        .border-accent { border-color: #C5A475; }
+
+        /* 背景色 */
+        .bg-base { background-color: #F0F2F5; }
+
+        /* 手風琴效果 */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding: 0 1.5rem;
+        }
+        .accordion-content.open {
+            padding: 1.5rem 1.5rem;
+        }
+
+        /* 標籤頁效果 */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab.active {
+            border-color: #C5A475;
+            color: #1A3A64;
+            font-weight: 700;
+        }
+        
+        /* 流程圖動畫 */
+        .flowchart-node {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .flowchart-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .flowchart-path {
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        /* Tooltip 提示 */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 220px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body class="bg-base text-gray-800">
+
+    <!-- 第一部分：首屏 -->
+    <header class="relative min-h-screen flex items-center justify-center text-center text-white p-4">
+        <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: url('https://placehold.co/1920x1080/1A3A64/FFFFFF?text=專業背景示意圖');">
+            <div class="absolute inset-0 bg-primary opacity-80"></div>
+        </div>
+        <div class="relative z-10 flex flex-col items-center">
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">
+                生前賣房，身後未過戶<br>遺產稅該如何申報？
+            </h1>
+            <p class="text-lg md:text-xl max-w-2xl mb-8">
+                一個常見卻複雜的稅務難題。我們透過互動式案例，引導您一步步釐清。
+            </p>
+            <a href="#interactive-section" class="bg-accent hover:bg-yellow-700 text-primary-dark font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                開始探索
+            </a>
+        </div>
+    </header>
+
+    <!-- 第二部分：互動案例解析 -->
+    <main id="interactive-section" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            
+            <!-- 導覽標籤列 -->
+            <div class="mb-12 border-b border-gray-300 flex justify-center flex-wrap">
+                <button class="tab active text-lg md:text-xl py-3 px-6 border-b-4 transition" onclick="openTab(event, 'tab-summary')">精要回答</button>
+                <button class="tab text-lg md:text-xl py-3 px-6 border-b-4 border-transparent hover:border-accent transition" onclick="openTab(event, 'tab-details')">案例詳解</button>
+                <button class="tab text-lg md:text-xl py-3 px-6 border-b-4 border-transparent hover:border-accent transition" onclick="openTab(event, 'tab-flowchart')">互動流程圖</button>
+                <button class="tab text-lg md:text-xl py-3 px-6 border-b-4 border-transparent hover:border-accent transition" onclick="openTab(event, 'tab-advice')">專家提醒</button>
+            </div>
+
+            <!-- 標籤內容 -->
+            <div class="max-w-4xl mx-auto">
+                <!-- 1. 精要回答 -->
+                <div id="tab-summary" class="tab-content active animate-fade-in">
+                    <div class="flex items-start">
+                        <span class="text-5xl mr-4">🚩</span>
+                        <div>
+                            <h2 class="text-3xl font-bold text-primary mb-4">兩分鐘，掌握核心結論</h2>
+                            <p class="text-lg leading-relaxed">
+                                被繼承人生前出售土地，若於死亡時尚未辦妥產權移轉登記，該土地仍應列入遺產課稅。然而，若此項土地經法院判決確定，應將<strong class="text-accent">未給付之土地價款計入遺產總額</strong>，並將繼承人<strong class="text-accent">應負履行交付債務之義務扣除</strong>後，依法計課遺產稅。此方式有利於納稅義務人，因其可扣除債務，減少應稅遺產總額。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 案例詳解 -->
+                <div id="tab-details" class="tab-content animate-fade-in space-y-4">
+                     <div class="accordion-item border rounded-lg overflow-hidden shadow-sm">
+                        <button class="accordion-header w-full flex justify-between items-center p-6 text-left bg-gray-50 hover:bg-gray-100 transition">
+                            <h3 class="text-xl font-semibold text-primary">法律依據：這條法規是怎麼說的？</h3>
+                            <span class="text-2xl text-accent transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="accordion-content bg-white">
+                            <ul class="list-disc list-inside space-y-2 text-base">
+                                <li>
+                                    <strong>法條：</strong>
+                                    <span class="tooltip font-semibold text-accent border-b border-dashed border-accent">《遺產及贈與稅法》 第14條
+                                        <span class="tooltiptext">此法條定義了哪些財產需要被計算到遺產總額中。</span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <strong>說明：</strong>被繼承人生前出售之土地，迄至死亡時尚未辦妥產權移轉登記，依
+                                    <span class="tooltip font-semibold text-accent border-b border-dashed border-accent">民法第758條
+                                        <span class="tooltiptext">白話來說，不動產的買賣，要到地政事務所「登記」了才算數，光簽約是不夠的。</span>
+                                    </span>
+                                    規定，仍屬被繼承人之遺產，應予列入遺產課稅；惟此項土地既經訴請法院判決確定，應屬被繼承人生前未償之債務，其繼承人應負履行交付債務之義務並取得請求未給付土地價款之權利，應准以未給付之價款計入遺產總額並扣除債務後依法計課遺產稅。
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item border rounded-lg overflow-hidden shadow-sm">
+                        <button class="accordion-header w-full flex justify-between items-center p-6 text-left bg-gray-50 hover:bg-gray-100 transition">
+                            <h3 class="text-xl font-semibold text-primary">情境舉例：王先生的故事</h3>
+                            <span class="text-2xl text-accent transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="accordion-content bg-white space-y-4">
+                             <p><strong>情境：</strong>王先生生前將一筆土地以 $1000$ 萬元出售給李先生，並已收取部分價金 $500$ 萬元，但尚未辦理土地過戶登記，王先生即不幸過世。</p>
+                             <div class="grid md:grid-cols-3 gap-4 text-center">
+                                 <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                     <div class="text-4xl mb-2">🏠</div>
+                                     <h4 class="font-bold">遺產總額 (+)</h4>
+                                     <p>土地仍屬遺產，需列入課稅。</p>
+                                 </div>
+                                 <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                                     <div class="text-4xl mb-2">💰</div>
+                                     <h4 class="font-bold">債權 (+)</h4>
+                                     <p>未收取的 $500$ 萬價款，計入遺產。</p>
+                                 </div>
+                                 <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+                                     <div class="text-4xl mb-2">🤝</div>
+                                     <h4 class="font-bold">債務 (-)</h4>
+                                     <p>移轉土地的義務，可從遺產總額中扣除。</p>
+                                 </div>
+                             </div>
+                             <p><strong>稅務處理：</strong>若李先生向法院訴請判決確定，王先生的繼承人應將該土地與未收取的 $500$ 萬價款（債權）計入遺產總額，同時可主張「交付土地」的義務為債務，從遺產總額中扣除，最終以扣除後的淨額計算遺產稅。</p>
+                        </div>
+                    </div>
+                     <div class="accordion-item border rounded-lg overflow-hidden shadow-sm">
+                        <button class="accordion-header w-full flex justify-between items-center p-6 text-left bg-gray-50 hover:bg-gray-100 transition">
+                            <h3 class="text-xl font-semibold text-primary">實務應用：稽徵機關怎麼看？</h3>
+                            <span class="text-2xl text-accent transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="accordion-content bg-white">
+                            <p class="mb-4">稽徵機關在審核時，會要求納稅義務人提供以下文件，以釐清權屬及債權債務關係：</p>
+                             <div class="flex flex-wrap gap-2">
+                                <span class="bg-gray-200 text-gray-700 py-1 px-3 rounded-full">買賣契約</span>
+                                <span class="bg-gray-200 text-gray-700 py-1 px-3 rounded-full">價金支付證明</span>
+                                <span class="bg-gray-200 text-gray-700 py-1 px-3 rounded-full">法院判決文件</span>
+                            </div>
+                            <p class="mt-4">這種處理方式旨在反映被繼承人死亡時的真實財產狀況，兼顧其權利與義務，避免不公平課稅。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. 互動流程圖 -->
+                <div id="tab-flowchart" class="tab-content animate-fade-in">
+                    <h2 class="text-3xl font-bold text-primary mb-6 text-center">點擊選項，跟隨流程一探究竟</h2>
+                    <div id="flowchart-container" class="space-y-4 text-center">
+                        <div class="flowchart-node bg-white p-4 rounded-lg shadow-md border-2 border-primary">
+                            <p class="font-bold">起點：被繼承人過世</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">↓</div>
+                        <div id="q1" class="flowchart-node bg-white p-6 rounded-lg shadow-lg border-2 border-accent">
+                            <p class="font-bold text-lg">問題1：生前出售的不動產是否已完成過戶？</p>
+                            <div id="q1-options" class="mt-4 space-x-4">
+                                <button class="bg-primary text-white py-2 px-4 rounded-lg hover:bg-blue-800 transition" onclick="selectFlow(1, 'no')">否</button>
+                                <button class="bg-gray-300 text-gray-800 py-2 px-4 rounded-lg hover:bg-gray-400 transition" onclick="selectFlow(1, 'yes')">是</button>
+                            </div>
+                        </div>
+                        
+                        <div id="q1-result-yes" class="hidden flowchart-node bg-green-100 border-green-500 border-2 p-4 rounded-lg shadow-md">
+                            <p><strong class="font-bold">結果：</strong>該不動產非遺產，但已收價款是遺產。</p>
+                        </div>
+
+                        <div id="path-to-q2" class="hidden text-2xl text-gray-400">↓</div>
+
+                        <div id="q2" class="hidden flowchart-node bg-white p-6 rounded-lg shadow-lg border-2 border-accent">
+                            <p class="font-bold text-lg">問題2：買方是否已支付全部價款？</p>
+                             <div id="q2-options" class="mt-4 space-x-4">
+                                <button class="bg-primary text-white py-2 px-4 rounded-lg hover:bg-blue-800 transition" onclick="selectFlow(2, 'no')">否</button>
+                                <button class="bg-primary text-white py-2 px-4 rounded-lg hover:bg-blue-800 transition" onclick="selectFlow(2, 'yes')">是</button>
+                            </div>
+                        </div>
+
+                        <div id="q2-result-yes" class="hidden flowchart-node bg-blue-100 border-blue-500 border-2 p-4 rounded-lg shadow-md">
+                            <p><strong class="font-bold">結果：</strong>遺產總額需 <span class="text-green-600 font-bold">加入</span> 土地價值，但可 <span class="text-red-600 font-bold">扣除</span> 同等價值的移轉義務(債務)。</p>
+                        </div>
+                        <div id="q2-result-no" class="hidden flowchart-node bg-blue-100 border-blue-500 border-2 p-4 rounded-lg shadow-md">
+                            <p><strong class="font-bold">結果：</strong>遺產總額需 <span class="text-green-600 font-bold">加入</span> 土地價值，<span class="text-green-600 font-bold">加入</span> 未收價金(債權)，並可 <span class="text-red-600 font-bold">扣除</span> 移轉土地的義務(債務)。</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 4. 專家提醒 -->
+                <div id="tab-advice" class="tab-content animate-fade-in space-y-12">
+                     <div>
+                        <h2 class="text-3xl font-bold text-primary mb-4">法律背後的溫度</h2>
+                         <blockquote class="border-l-4 border-accent pl-6 py-2 italic text-gray-700">
+                             這種處理方式體現了法律在形式與實質之間的平衡。雖然土地登記名義上仍屬被繼承人，但考量到生前已有移轉義務的事實，若完全不考慮此義務而全額課稅，將對繼承人造成不公平。允許扣除未償債務，反映了稅法對個人誠信與契約精神的尊重。
+                         </blockquote>
+                     </div>
+                     <div>
+                        <h2 class="text-3xl font-bold text-primary mb-4">給繼承人的行動清單</h2>
+                        <div class="bg-white p-6 rounded-lg border shadow-sm">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <span><strong>妥善保存文件：</strong>所有相關契約、付款證明及法院判決等文件，是申報時的關鍵證據。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <span><strong>主動向稽徵機關說明：</strong>提供完整資訊，確保能合法地扣除債務，避免多繳遺產稅。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <span><strong>盡早完成法律程序：</strong>提醒我們在進行不動產交易時，應及時完成過戶，避免未來的稅務複雜性。</span>
+                                </li>
+                            </ul>
+                            <div class="text-center mt-6">
+                                <button class="bg-accent hover:bg-yellow-700 text-primary-dark font-bold py-2 px-6 rounded-lg transition duration-300" onclick="alert('此為示範功能，將提供檢查清單PDF下載。')">
+                                    下載PDF檢查清單
+                                </button>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    
+    <!-- 第三部分：行動呼籲 -->
+    <section class="bg-primary text-white py-16 md:py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">情況更複雜？或需要專人協助？</h2>
+            <p class="max-w-2xl mx-auto text-lg mb-8">
+                每個家庭的狀況都是獨一無二的。讓我們的專家為您提供客製化的財務及稅務規劃。
+            </p>
+            <div class="flex justify-center items-center flex-wrap gap-4">
+                 <a href="#contact" class="bg-accent hover:bg-yellow-700 text-primary-dark font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                    預約免費諮詢
+                </a>
+                <a href="#more-cases" class="border-2 border-white text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 hover:bg-white hover:text-primary">
+                    查看更多案例
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第四部分：頁腳 -->
+    <footer class="bg-gray-800 text-gray-400 py-8">
+        <div class="container mx-auto px-4 text-center">
+             <p>&copy; 2025 [您的公司名稱]. All Rights Reserved.</p>
+             <p class="text-sm mt-4">※ 本頁面資訊由 AI 協助整理，僅供參考，不構成任何法律或稅務建議。</p>
+             <p class="text-sm">實際情況請務必諮詢您的會計師或律師等專業人士。</p>
+        </div>
+    </footer>
+
+
+    <script>
+    // 標籤頁功能
+    function openTab(evt, tabName) {
+        let i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tab");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // 手風琴功能
+    document.querySelectorAll('.accordion-header').forEach(button => {
+        button.addEventListener('click', () => {
+            const accordionContent = button.nextElementSibling;
+            const icon = button.querySelector('span');
+
+            button.classList.toggle('open');
+
+            if (button.classList.contains('open')) {
+                accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                accordionContent.classList.add('open');
+                icon.textContent = '-';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                accordionContent.style.maxHeight = 0;
+                accordionContent.classList.remove('open');
+                icon.textContent = '+';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        });
+    });
+    
+    // 互動流程圖功能
+    function resetFlowchart() {
+        // 隱藏所有結果和後續問題
+        document.getElementById('q1-result-yes').classList.add('hidden');
+        document.getElementById('path-to-q2').classList.add('hidden');
+        document.getElementById('q2').classList.add('hidden');
+        document.getElementById('q2-result-yes').classList.add('hidden');
+        document.getElementById('q2-result-no').classList.add('hidden');
+
+        // 恢復按鈕樣式
+        const buttons = document.querySelectorAll('#flowchart-container button');
+        buttons.forEach(btn => {
+            btn.disabled = false;
+        });
+    }
+
+    function selectFlow(question, answer) {
+        resetFlowchart(); // 重置以防用戶重複點擊
+
+        if (question === 1) {
+            if (answer === 'yes') {
+                document.getElementById('q1-result-yes').classList.remove('hidden');
+            } else { // 'no'
+                document.getElementById('path-to-q2').classList.remove('hidden');
+                document.getElementById('q2').classList.remove('hidden');
+            }
+        } else if (question === 2) {
+            // 先顯示從Q1到Q2的路徑
+            document.getElementById('path-to-q2').classList.remove('hidden');
+            document.getElementById('q2').classList.remove('hidden');
+            if (answer === 'yes') {
+                document.getElementById('q2-result-yes').classList.remove('hidden');
+            } else { // 'no'
+                document.getElementById('q2-result-no').classList.remove('hidden');
+            }
+        }
+    }
+    
+    // 預設展開第一個手風琴項目
+    window.addEventListener('load', () => {
+        const firstAccordion = document.querySelector('.accordion-header');
+        if(firstAccordion) {
+           firstAccordion.click();
+        }
+        resetFlowchart();
+    });
+
+    </script>
+</body>
+</html>
