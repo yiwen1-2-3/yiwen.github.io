@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>傳承的藝術：以終為始的財富治理</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Noto Serif for titles, Noto Sans for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #0a192f; /* 深藍色背景 */
+            color: #e6f1ff; /* 柔和的白色文字 */
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('https://placehold.co/1920x1080/0a192f/172a46?text=..'); /* 星空背景 */
+            background-size: cover;
+            background-position: center;
+            transition: opacity 1s ease-in-out;
+        }
+        .content-section {
+            padding: 10vh 5%;
+            position: relative;
+            z-index: 1;
+        }
+        .chapter-title {
+            border-left: 4px solid #daa520; /* 金色邊框 */
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+        }
+        .interactive-card {
+            background-color: rgba(23, 42, 70, 0.8); /* 半透明深藍 */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            border-radius: 1rem;
+            transition: all 0.3s ease-in-out;
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(218, 165, 32, 0.2);
+        }
+        .story-text {
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        /* Fade-in animation on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: #0a192f;
+            border: 1px solid #daa520;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+        }
+        .close-btn {
+            color: #aaa;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <div id="parallax-background" class="parallax-bg"></div>
+
+    <!-- 序章 -->
+    <header class="h-screen flex flex-col justify-center items-center text-center p-4 content-section">
+        <div class="fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">傳承的藝術</h1>
+            <p class="text-xl md:text-2xl text-amber-300 font-serif mb-8">以終為始的財富治理與人性洞察</p>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 story-text">您的遺產，是家族的最終樂章，還是紛爭的序曲？</p>
+            <a href="#chapter1" class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+                開啟傳承的旅程
+            </a>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <!-- 第一章 -->
+        <section id="chapter1" class="min-h-screen content-section bg-black bg-opacity-20">
+            <div class="max-w-5xl mx-auto">
+                <div class="fade-in">
+                    <h2 class="text-4xl font-serif mb-2 text-amber-200">第一章</h2>
+                    <h3 class="text-2xl font-serif chapter-title">傳承的兩個競技場 — 遺產與贈與的深層博弈</h3>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mt-12">
+                    <!-- 贈與賽局 -->
+                    <div class="interactive-card p-6 fade-in" style="transition-delay: 200ms;">
+                        <h4 class="text-2xl font-serif text-amber-300 mb-4">贈與賽局</h4>
+                        <p class="mb-4">與時間賽跑的藝術，您是主動佈局的棋手。核心在於「主導權」與「確定性」。</p>
+                        <div class="bg-slate-800 p-4 rounded-lg">
+                            <label for="gift-amount" class="block mb-2 font-semibold">年度贈與計算儀 (2025年標準)</label>
+                            <p class="text-sm text-gray-400 mb-2">每年免稅額度：244 萬元</p>
+                            <input type="number" id="gift-amount" placeholder="輸入目標贈與金額(萬)" class="w-full bg-slate-700 p-2 rounded border border-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            <p id="gift-result" class="mt-3 text-amber-400 font-semibold h-5"></p>
+                        </div>
+                    </div>
+
+                    <!-- 繼承賽局 -->
+                    <div class="interactive-card p-6 fade-in" style="transition-delay: 400ms;">
+                        <h4 class="text-2xl font-serif text-red-400 mb-4">繼承賽局</h4>
+                        <p class="mb-4">人生的終局賽，家族情感最嚴峻的壓力測試。您的缺席，將放大所有變數。</p>
+                        <div class="bg-slate-800 p-4 rounded-lg">
+                            <h5 class="font-semibold mb-2">法律的剛性底線：特留分</h5>
+                            <p class="text-sm text-gray-400">即便有遺囑，法律仍為法定繼承人保留最低繼承權，無法撼動。這是血緣優先於個人處分自由的體現。</p>
+                            <button onclick="openModal('terry-fen-modal')" class="mt-3 text-amber-400 hover:underline">了解更多關於特留分</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 法律的迴響 -->
+                <div class="mt-16 interactive-card p-8 fade-in">
+                    <h4 class="text-2xl font-serif text-sky-300 mb-4">法律的迴響：擬制遺產</h4>
+                    <p class="mb-4">法律擁有記憶。身故前二年內對特定親屬的贈與，將被「抓回」併入遺產總額計算。這是一條無法利用終點線規避的追溯條款。</p>
+                     <div class="border-t border-amber-500/30 pt-4 mt-4">
+                        <p class="font-semibold">情境模擬：李老先生的2,000萬</p>
+                        <p class="text-sm text-gray-300">他在2024年初贈與2,000萬給長子並繳稅。若他在2025年底辭世，這筆錢將被<span class="text-red-400 font-bold">強制加回遺產總額</span>，但已繳贈與稅可扣抵，以維持公平。</p>
+                        <button onclick="openModal('legal-echo-modal')" class="mt-3 text-amber-400 hover:underline">查看更多情境</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二章 -->
+        <section id="chapter2" class="min-h-screen content-section bg-black bg-opacity-20">
+            <div class="max-w-5xl mx-auto">
+                <div class="fade-in">
+                    <h2 class="text-4xl font-serif mb-2 text-amber-200">第二章</h2>
+                    <h3 class="text-2xl font-serif chapter-title">保險的聖殿與煉獄 — 傳承工具的極致運用</h3>
+                </div>
+
+                <!-- 聖殿 -->
+                <div class="interactive-card p-8 mb-12 fade-in">
+                    <div class="flex items-center gap-4 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path><path d="M12 21V3"></path><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79zM19 12a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <h4 class="text-3xl font-serif text-amber-300">法律的聖殿：神聖指定權</h4>
+                    </div>
+                    <p class="mb-4">保險金基於獨立契約，不屬於遺產，能直接交付指定受益人，實現「保密性」、「及時性」與「意志確定性」。</p>
+                    <p class="font-bold text-white">如同為家人打造一艘不受遺產凍結與債務追討影響的「諾亞方舟」。</p>
+                     <button onclick="openModal('sanctuary-modal')" class="mt-4 text-amber-400 hover:underline">探索聖殿中的案例</button>
+                </div>
+
+                <!-- 煉獄 -->
+                <div class="interactive-card p-8 fade-in" style="transition-delay: 200ms;">
+                     <div class="flex items-center gap-4 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.096-3.464l-4.242-1.414-1.414-4.242a2 2 0 00-3.464-1.096L3 21l8.572-5.572zM19.428 15.428L21 21l-5.572-8.572"></path><path d="M3.293 15.293l6.414-6.414"></path></svg>
+                        <h4 class="text-3xl font-serif text-red-400">公平的煉獄：最低稅負制</h4>
+                    </div>
+                    <p class="mb-4">當要保人與受益人不同人時，高額保險給付將啟動國家最終的公平性檢視。這是一筆對社會的回饋，而非懲罰。</p>
+                    <div class="bg-slate-800 p-4 rounded-lg">
+                        <label for="insurance-payout" class="block mb-2 font-semibold">最低稅負試算儀 (2025年標準)</label>
+                        <p class="text-sm text-gray-400 mb-2">每一申報戶死亡給付免稅額：3,740 萬元</p>
+                        <input type="number" id="insurance-payout" placeholder="輸入死亡給付總額(萬)" class="w-full bg-slate-700 p-2 rounded border border-slate-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        <p id="insurance-result" class="mt-3 text-red-300 font-semibold h-10"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 第三章 -->
+        <section id="chapter3" class="min-h-screen content-section bg-black bg-opacity-20">
+            <div class="max-w-5xl mx-auto">
+                 <div class="fade-in">
+                    <h2 class="text-4xl font-serif mb-2 text-amber-200">第三章</h2>
+                    <h3 class="text-2xl font-serif chapter-title">傳承路上的詭雷 — 人性、意外與法律的連鎖反應</h3>
+                </div>
+
+                <div class="interactive-card p-8 mb-12 fade-in">
+                    <h4 class="text-3xl font-serif text-sky-300 mb-4">國稅局的鷹眼：實質課稅原則</h4>
+                    <p class="mb-6">國稅局會穿透契約形式，直視您投保的「真實動機」。以下八大樣態是高風險指標，請務必謹慎。</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+                        <div class="bg-red-900/50 p-3 rounded-lg">躉繳</div>
+                        <div class="bg-red-900/50 p-3 rounded-lg">重病投保</div>
+                        <div class="bg-red-900/50 p-3 rounded-lg">高齡投保</div>
+                        <div class="bg-red-900/50 p-3 rounded-lg">短期內投保</div>
+                        <div class="bg-red-900/50 p-3 rounded-lg">密集投保</div>
+                        <div class="bg-red-900/50 p-3 rounded-lg">鉅額投保</div>
+                        <div class="bg-red-900/50 p-3 rounded-lg">舉債投保</div>
+                        <div class="bg-red-900/50 p-3 rounded-lg">保額低於保費</div>
+                    </div>
+                     <button onclick="openModal('temple-case-modal')" class="mt-6 text-amber-400 hover:underline">深度剖析：寺廟案的信仰與人性悲劇</button>
+                </div>
+                 <div class="interactive-card p-8 fade-in" style="transition-delay: 200ms;">
+                    <h4 class="text-3xl font-serif text-sky-300 mb-4">家庭關係的詭雷</h4>
+                    <p class="mb-6">最危險的風險，往往來自對生活突發性的低估。</p>
+                    <div class="space-y-4">
+                        <p><strong class="text-red-400">離婚：</strong>婚後收入繳納的保單，其「保單價值準備金」可能成為離婚時需分配的財產。</p>
+                        <p><strong class="text-red-400">失能：</strong>若未預設保險金信託或意定監護，保單可能陷入無人能動用的「權力真空」。</p>
+                        <p><strong class="text-red-400">債務：</strong>若未及時辦理拋棄或限定繼承，子女可能需以自身財產清償父母債務。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 第四章 -->
+         <section id="chapter4" class="min-h-screen content-section bg-black bg-opacity-20">
+            <div class="max-w-5xl mx-auto">
+                 <div class="fade-in">
+                    <h2 class="text-4xl font-serif mb-2 text-amber-200">第四章</h2>
+                    <h3 class="text-2xl font-serif chapter-title">財富建築師的誓言 — 專業顧問的責任與道德</h3>
+                </div>
+                 <div class="interactive-card p-8 fade-in">
+                    <p class="text-lg text-center mb-6">作為客戶財富傳承的建築師，您的每一句建議，都承擔著一個家庭的未來。</p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h5 class="text-xl font-serif text-red-400 mb-2">法律的緊箍咒</h5>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>金融消費者保護法：</strong>必須執行KYC/KYP，確保商品適合度。</li>
+                                <li><strong>保險業務員管理規則：</strong>禁止不實陳述、勸誘不當解約等行為。</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="text-xl font-serif text-green-400 mb-2">您的防護盾</h5>
+                             <ul class="list-disc list-inside space-y-2">
+                                <li>詳實填寫「業務員報告書」。</li>
+                                <li>妥善保存所有溝通紀錄，這是在爭議中保護客戶與自己的最強盾牌。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-8 border-t border-amber-500/30 pt-6 text-center">
+                        <h5 class="text-xl font-serif text-amber-300 mb-2">客戶的護身符：納保官</h5>
+                        <p>主動向客戶介紹《納稅者權利保護法》及「納保官」制度，這會極大提升客戶的信任，傳達您與客戶站在同一陣線的專業形象。</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- 結語 -->
+        <footer class="h-screen flex flex-col justify-center items-center text-center p-4 content-section">
+            <div class="fade-in">
+                <h2 class="text-3xl md:text-5xl font-serif font-bold mb-6 text-white">您的簽名，是永恆的承諾</h2>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 story-text">
+                    一份偉大的傳承規劃是份「活的契約」，需隨人生階段、家庭變遷、法規更迭而不斷微調。今天您投入的深度思考，是為了讓家人在未來感受到您深思熟慮的智慧，與最溫柔堅實的擁抱。
+                </p>
+                <p class="text-2xl font-serif text-amber-300 mb-12">這，才是傳承，真正的藝術。</p>
+                <a href="mailto:your-email@example.com?subject=預約一場深度對話：我的傳承藍圖" class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-4 px-10 rounded-full text-xl transition duration-300">
+                    開始繪製您的傳承藍圖
+                </a>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Modals -->
+    <div id="terry-fen-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('terry-fen-modal')">&times;</span>
+            <h3 class="text-2xl font-serif text-amber-300 mb-4">關於「特留分」</h3>
+            <p>《民法》第1223條 規定，即便立了遺囑，法律仍會強制為特定繼承人（如子女、配偶、父母）保留一份最低限度的遺產份額，這就是「特留分」。</p>
+            <p class="mt-2">例如，子女的特留分是其「應繼分」的二分之一。若您有兩位子女，他們原本應各繼承1/2，則其特留分就是1/4。您的遺囑最多只能剝奪他們繼承權的一部分，而無法完全排除。</p>
+            <p class="mt-4 font-semibold">法律的深層邏輯是：對家庭的扶養義務與血緣關係，在價值排序上，優先於個人的財產處分自由。</p>
+        </div>
+    </div>
+     <div id="legal-echo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('legal-echo-modal')">&times;</span>
+            <h3 class="text-2xl font-serif text-amber-300 mb-4">法律的迴響：更多情境</h3>
+            <div class="space-y-6">
+                <div>
+                    <h4 class="font-bold text-white">人性規避情境</h4>
+                    <p>王太太想給孫子500萬，為規避追溯，先贈與給兒子，再由兒子轉交。此行為同樣會被追溯，因法律追溯的是一個緊密的「親屬網絡」（包含各順序繼承人及其配偶），而非單一贈與路徑。</p>
+                </div>
+                 <div>
+                    <h4 class="font-bold text-white">視同贈與情境</h4>
+                    <p>張先生用自己的錢替兒子還清800萬債務。雖無現金交付給兒子，但依《遺贈稅法》§5，此行為被「視同贈與」，因法律洞穿的是「經濟利益的實質移轉」，而非表面的金流形式。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div id="sanctuary-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('sanctuary-modal')">&times;</span>
+            <h3 class="text-2xl font-serif text-amber-300 mb-4">聖殿中的案例</h3>
+            <div class="space-y-6">
+                <div>
+                    <h4 class="font-bold text-white">企業主的防火牆</h4>
+                    <p>陳總的9,000萬壽險，在他意外離世後，不受公司債務追討與個人遺產凍結影響，直接成為家人的關鍵活水，實現了「資產保全」與「風險隔離」。</p>
+                </div>
+                 <div>
+                    <h4 class="font-bold text-white">照顧弱勢的承諾</h4>
+                    <p>吳先生透過「保險金信託」，將5,000萬壽險理賠金指定由信託機構分期、專款專用給付給身心障礙的女兒，確保他的愛能化為最穩定的長期照護。</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-red-400">受益權的真空悲劇</h4>
+                    <p>巫太太受益人指定為「配偶」，離婚再婚後未變更保單。身故時因「配偶」身分關係不存在，8,000萬理賠金被視為遺產，由子女與現任丈夫繼承，完全違背初衷。警示我們「指定姓名」遠比「指定身分」穩固。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="temple-case-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('temple-case-modal')">&times;</span>
+            <h3 class="text-2xl font-serif text-red-400 mb-4">深度剖析：寺廟案的信仰與人性悲劇</h3>
+            <p>一位虔誠的母親，為將鉅額保險金留給寺廟，透過躉繳、高齡、鉅額等方式投保，並指定寺廟為受益人。她的意圖純粹，卻將保險異化為「財產搬運工具」，完全踩在實質課稅的紅線上。</p>
+            <div class="mt-4 bg-slate-800 p-4 rounded-lg">
+                <h4 class="font-bold text-white mb-2">法律的冷酷裁決</h4>
+                 <ul class="list-disc list-inside space-y-2">
+                    <li>國稅局認定其投保動機是規避遺產稅，將保險金併入遺產課稅。</li>
+                    <li>保險公司依法將理賠金給付給受益人「寺廟」。</li>
+                    <li>遺產稅的「納稅義務人」卻是法定繼承人，即她的子女。</li>
+                </ul>
+            </div>
+            <p class="mt-4 font-semibold text-amber-300">核心警示：子女們最終被迫要用自己的錢，去繳納一筆他們從未獲得、且已交付給寺廟的錢所產生的巨額遺產稅。這個安排讓家人陷入了法律與道德的雙重困境，是規劃時絕不可忽略的人性風險。</p>
+        </div>
+    </div>
+
+    <script>
+        // --- Parallax Effect ---
+        const bg = document.getElementById('parallax-background');
+        window.addEventListener('scroll', function() {
+            const offset = window.pageYOffset;
+            bg.style.transform = `translateY(${offset * 0.3}px)`;
+        });
+
+        // --- Fade-in on Scroll ---
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // --- Interactive Calculators ---
+        const giftAmountInput = document.getElementById('gift-amount');
+        const giftResult = document.getElementById('gift-result');
+        const annualGiftExemption = 244;
+
+        giftAmountInput.addEventListener('input', function() {
+            const amount = parseFloat(this.value);
+            if (isNaN(amount) || amount <= 0) {
+                giftResult.textContent = '';
+                return;
+            }
+            if (amount <= annualGiftExemption) {
+                 giftResult.textContent = '在年度免稅額度內。';
+            } else {
+                const years = Math.ceil(amount / annualGiftExemption);
+                giftResult.textContent = `約需 ${years} 年的免稅額度來完成規劃。`;
+            }
+        });
+        
+        const insurancePayoutInput = document.getElementById('insurance-payout');
+        const insuranceResult = document.getElementById('insurance-result');
+        const deathBenefitExemption = 3740;
+        const basicIncomeDeduction = 750;
+
+        insurancePayoutInput.addEventListener('input', function() {
+            const payout = parseFloat(this.value);
+            if (isNaN(payout) || payout <= 0) {
+                insuranceResult.textContent = '';
+                return;
+            }
+            if (payout <= deathBenefitExemption) {
+                insuranceResult.textContent = '豁免：理賠金在 3,740 萬以下，不計入基本所得額。';
+            } else {
+                const taxableAmount = payout - deathBenefitExemption;
+                let resultText = `超過部分 ${taxableAmount.toLocaleString()} 萬，需計入基本所得額。`;
+                if(taxableAmount <= basicIncomeDeduction){
+                    resultText += ` 但總額仍在 ${basicIncomeDeduction} 萬扣除額內，可能無需繳稅。`;
+                }
+                insuranceResult.textContent = resultText;
+            }
+        });
+        
+        // --- Modal Logic ---
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal if clicked outside of the content
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = "none";
+                }
+            }
+        }
+        
+        // --- Smooth Scroll for anchor links ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
