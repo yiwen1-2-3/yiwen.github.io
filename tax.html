@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>稅務法規解析：逾期繳納稅款與滯納金/強制執行權益指南</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #f8faff; /* Light background */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 2.25rem; /* text-4xl */
+            color: #1a202c; /* text-gray-900 */
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #3b82f6; /* blue-500 */
+            border-radius: 9999px; /* rounded-full */
+        }
+        /* Accordion specific styles */
+        .accordion-header {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-header:hover {
+            background-color: #eff6ff; /* blue-50 */
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.active {
+            max-height: 500px; /* Adjust based on content length */
+            transition: max-height 0.5s ease-in;
+        }
+        .accordion-header .fa-chevron-down {
+            transition: transform 0.3s ease;
+        }
+        .accordion-header.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .scroll-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top">
+        <i class="fas fa-arrow-up mr-2"></i> 返回頂部
+    </button>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white shadow-lg py-4">
+        <div class="container flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold text-blue-600 rounded-lg p-2 hover:bg-blue-50 transition-all">稅務指南</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#key-takeaways" class="text-gray-700 hover:text-blue-600 hover:underline underline-offset-4 transition-all duration-300">精要回答</a>
+                <a href="#legal-basis" class="text-gray-700 hover:text-blue-600 hover:underline underline-offset-4 transition-all duration-300">法條與函釋</a>
+                <a href="#case-studies" class="text-gray-700 hover:text-blue-600 hover:underline underline-offset-4 transition-all duration-300">案例解析</a>
+                <a href="#practical-insights" class="text-gray-700 hover:text-blue-600 hover:underline underline-offset-4 transition-all duration-300">實務觀點</a>
+                <a href="#reflections" class="text-gray-700 hover:text-blue-600 hover:underline underline-offset-4 transition-all duration-300">稅務反思</a>
+                <a href="#footer" class="text-gray-700 hover:text-blue-600 hover:underline underline-offset-4 transition-all duration-300">聯絡我們</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white py-2 shadow-inner">
+            <a href="#key-takeaways" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-all">精要回答</a>
+            <a href="#legal-basis" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-all">法條與函釋</a>
+            <a href="#case-studies" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-all">案例解析</a>
+            <a href="#practical-insights" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-all">實務觀點</a>
+            <a href="#reflections" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-all">稅務反思</a>
+            <a href="#footer" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-all">聯絡我們</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative bg-gradient-to-r from-blue-700 to-blue-900 text-white py-24 md:py-32 overflow-hidden shadow-xl rounded-b-xl">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <!-- Placeholder for a subtle background pattern or image -->
+            <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://placehold.co/1920x1080/0d3a77/ffffff?text=Professional+Background');"></div>
+        </div>
+        <div class="container relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                《稅捐稽徵法》深度解析：<br class="hidden md:block">逾期繳納稅款的法律責任與權益
+            </h1>
+            <p class="text-lg md:text-xl mb-8 opacity-90 max-w-3xl mx-auto">
+                掌握滯納金與強制執行規範，守護您的稅務權益。
+            </p>
+            <a href="#key-takeaways" class="inline-block bg-white text-blue-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-100 hover:text-blue-800 transition-all duration-300 transform hover:scale-105">
+                立即了解精要回答 <i class="fas fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 精要回答 (Key Takeaways Section) -->
+    <section id="key-takeaways" class="py-16 bg-gray-50 rounded-lg shadow-inner mx-4 my-8">
+        <div class="container">
+            <h2 class="section-title">🚩 精要回答</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group">
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-coins text-blue-500 text-3xl mr-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">逾期繳納滯納金</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">納稅義務人逾期繳納稅捐，每逾2日按滯納數額加徵1%滯納金，最高加徵至15%。</p>
+                    <button class="expand-btn text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-300" data-target="legal-basis-1">
+                        了解更多 <i class="fas fa-chevron-right text-sm ml-1 transform group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group">
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-gavel text-blue-500 text-3xl mr-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">行政救濟與滯納金</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">若因行政救濟案件經復查決定應補徵稅額，納稅義務人逾期繳納半數，雖提起訴願，仍應加徵滯納金。</p>
+                    <button class="expand-btn text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-300" data-target="legal-basis-2">
+                        了解更多 <i class="fas fa-chevron-right text-sm ml-1 transform group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group">
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-calendar-alt text-blue-500 text-3xl mr-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">分期繳納的規範</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">經核准分期繳納所得稅案件，如未依限繳納，除分期利息計算至分期繳納限繳日期屆滿之日止外，逾期部分仍應加徵滯納金。</p>
+                    <button class="expand-btn text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-300" data-target="legal-basis-3">
+                        了解更多 <i class="fas fa-chevron-right text-sm ml-1 transform group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group">
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-shield-alt text-blue-500 text-3xl mr-4 group-hover:scale-110 transition-transform"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">擔保品的處理</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">行政救濟案件確定後，若已提供擔保品，稽徵機關應先對擔保品行使權利，於擔保品足資清償範圍內，不宜加徵滯納金；如不足清償，再就不足部分移送執行並加徵滯納金及利息。</p>
+                    <button class="expand-btn text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-300" data-target="legal-basis-4">
+                        了解更多 <i class="fas fa-chevron-right text-sm ml-1 transform group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 說明 (Legal Basis & Interpretations) -->
+    <section id="legal-basis" class="py-16 bg-white mx-4 my-8 rounded-lg shadow-md">
+        <div class="container">
+            <h2 class="section-title">📜 法條與函釋說明</h2>
+
+            <!-- Accordion 1 -->
+            <div id="legal-basis-1" class="accordion-item mb-4 border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                <div class="accordion-header bg-gray-100 p-6 flex justify-between items-center rounded-t-lg hover:bg-gray-200 transition-all">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-800">
+                        《稅捐稽徵法》第20條：滯納金之加徵（最高15%）
+                    </h3>
+                    <i class="fas fa-chevron-down text-gray-600 transition-transform transform"></i>
+                </div>
+                <div class="accordion-content p-6 text-gray-700 bg-white">
+                    <p class="mb-2"><strong>• 法條：</strong>《稅捐稽徵法》 一Ｏ九年版 第20條（滯納金之加徵）</p>
+                    <p class="mb-2"><strong>• 函令：</strong>財政部82/01/05台財稅第811688010號函 (函釋12)</p>
+                    <p class="mb-2"><strong>• 函釋說明：</strong>逾期繳納稅捐，依法應加徵之滯納金，至多應按滯納數額加徵15%。</p>
+                    <div class="mt-4 p-4 bg-blue-50 rounded-md border border-blue-200 text-blue-800">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        **關鍵字說明:** <span class="font-medium text-gray-900 cursor-help" title="逾期未繳納稅款，按照稅法規定加徵的罰款。">滯納金</span>,
+                        <span class="font-medium text-gray-900 cursor-help" title="依法對稅捐進行徵收和管理。">稅捐稽徵</span>
+                    </div>
+                </div>
+
+                <!-- Accordion 2 -->
+                <div id="legal-basis-2" class="accordion-item mb-4 border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <div class="accordion-header bg-gray-100 p-6 flex justify-between items-center rounded-t-lg hover:bg-gray-200 transition-all">
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-800">
+                            《稅捐稽徵法》第20條：行政救濟仍應加徵滯納金
+                        </h3>
+                        <i class="fas fa-chevron-down text-gray-600 transition-transform transform"></i>
+                    </div>
+                    <div class="accordion-content p-6 text-gray-700 bg-white">
+                        <p class="mb-2"><strong>• 法條：</strong>《稅捐稽徵法》 一Ｏ九年版 第20條（滯納金之加徵）</p>
+                        <p class="mb-2"><strong>• 函令：</strong>財政部80/04/08台財稅第790445422號函 (函釋7)</p>
+                        <p class="mb-2"><strong>• 函釋說明：</strong>納稅義務人對稽徵機關復查決定補徵之應納稅額，逾限繳期限始繳納半數者，雖依法提起訴願，依法仍應加徵滯納金。</p>
+                        <div class="mt-4 p-4 bg-blue-50 rounded-md border border-blue-200 text-blue-800">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            **關鍵字說明:** <span class="font-medium text-gray-900 cursor-help" title="對稅捐機關的決定不服，向行政機關或法院提出申訴或訴訟。">行政救濟</span>,
+                            <span class="font-medium text-gray-900 cursor-help" title="繳納稅款的截止日期。">限繳期限</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion 3 -->
+                <div id="legal-basis-3" class="accordion-item mb-4 border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <div class="accordion-header bg-gray-100 p-6 flex justify-between items-center rounded-t-lg hover:bg-gray-200 transition-all">
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-800">
+                            《稅捐稽徵法》第20條：分期繳納逾期加徵滯納金
+                        </h3>
+                        <i class="fas fa-chevron-down text-gray-600 transition-transform transform"></i>
+                    </div>
+                    <div class="accordion-content p-6 text-gray-700 bg-white">
+                        <p class="mb-2"><strong>• 法條：</strong>《稅捐稽徵法》 一Ｏ九年版 第20條（滯納金之加徵）</p>
+                        <p class="mb-2"><strong>• 函令：</strong>財政部99/12/15台財稅字第09904542400號函 (函釋16)</p>
+                        <p class="mb-2"><strong>• 函釋說明：</strong>經核准以加計利息分期繳納所得稅案件，如未依限繳納者，其分期利息計算至分期繳納限繳日期屆滿之日止，並就逾期部分依所得稅法第112條第1項及稅捐稽徵法第20條前段規定加徵滯納金。</p>
+                        <div class="mt-4 p-4 bg-blue-50 rounded-md border border-blue-200 text-blue-800">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            **關鍵字說明:** <span class="font-medium text-gray-900 cursor-help" title="將應繳稅款分多次繳納。">分期繳納</span>,
+                            <span class="font-medium text-gray-900 cursor-help" title="依照法律規定應向政府繳納的所得稅額。">所得稅</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion 4 -->
+                <div id="legal-basis-4" class="accordion-item mb-4 border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <div class="accordion-header bg-gray-100 p-6 flex justify-between items-center rounded-t-lg hover:bg-gray-200 transition-all">
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-800">
+                            《稅捐稽徵法》第39條：擔保品與強制執行
+                        </h3>
+                        <i class="fas fa-chevron-down text-gray-600 transition-transform transform"></i>
+                    </div>
+                    <div class="accordion-content p-6 text-gray-700 bg-white">
+                        <p class="mb-2"><strong>• 法條：</strong>《稅捐稽徵法》 一Ｏ九年版 第39條（強制執行之移送）</p>
+                        <p class="mb-2"><strong>• 函令：</strong>財政部90/04/17台財稅字第0900452474號函 (函釋13)</p>
+                        <p class="mb-2"><strong>• 函釋說明：</strong>行政救濟案件，已提供擔保品者，於行政救濟確定後，填發補繳稅款通知書時，宜一併通知納稅義務人，應依限繳納稅款，逾期未繳者，即對原提供之擔保品行使應有之權利，即行使質權，故於該定期存單足資清償之範圍內，尚不宜加徵滯納金，如不足清償者，於滯納期滿後再就不足部分依稅捐稽徵法第39條規定移送執行，並依法加徵滯納金及利息。</p>
+                        <div class="mt-4 p-4 bg-blue-50 rounded-md border border-blue-200 text-blue-800">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            **關鍵字說明:** <span class="font-medium text-gray-900 cursor-help" title="為確保債務履行而提供的財產。">擔保品</span>,
+                            <span class="font-medium text-gray-900 cursor-help" title="依照法律規定，強制執行特定的行為或義務。">強制執行</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 舉例 (Case Studies) -->
+    <section id="case-studies" class="py-16 bg-gray-50 mx-4 my-8 rounded-lg shadow-inner">
+        <div class="container">
+            <h2 class="section-title">💡 案例解析</h2>
+            <div class="grid grid-cols-1 gap-12">
+                <!-- 情境一：滯納金試算工具 -->
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 flex flex-col md:flex-row items-start md:items-center">
+                    <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-3xl">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">情境一：逾期繳納房屋稅及滯納金計算</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            某甲應繳納房屋稅10,000元，繳納期限為5月31日。若某甲遲至6月5日才繳納，則逾期4日。依規定，每逾2日加徵1%，因此某甲需加徵2%的滯納金（逾期第3日、第4日），即200元。若某甲遲至7月1日才繳納，則已逾期30日，滯納金將加徵至最高15%，即1,500元，並可能被移送強制執行。
+                        </p>
+                        <div class="p-6 bg-blue-50 rounded-lg border border-blue-200">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-4">滯納金試算工具</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="tax-amount" class="block text-gray-700 text-sm font-bold mb-2">應繳稅額 (元):</label>
+                                    <input type="number" id="tax-amount" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="例如：10000" value="10000">
+                                </div>
+                                <div>
+                                    <label for="overdue-days" class="block text-gray-700 text-sm font-bold mb-2">逾期天數 (日):</label>
+                                    <input type="number" id="overdue-days" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="例如：4" value="4">
+                                </div>
+                            </div>
+                            <button id="calculate-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
+                                計算滯納金
+                            </button>
+                            <div id="calculation-result" class="mt-4 p-4 bg-white border border-gray-300 rounded-lg text-gray-800 font-semibold">
+                                滯納金：0 元
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 情境二 -->
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 flex flex-col md:flex-row items-start md:items-center">
+                    <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-3xl">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">情境二：行政救濟期間的滯納金</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            某乙收到綜合所得稅復查決定，應補稅額50,000元，限繳日期為8月15日。某乙不服決定，於8月20日繳納半數25,000元並提起訴願。雖然某乙已提起訴願，但因逾期繳納半數，依規定仍應就該半數加徵滯納金。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 情境三 -->
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 flex flex-col md:flex-row items-start md:items-center">
+                    <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600 text-3xl">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">情境三：分期繳納未依限繳款</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            某丙因所得稅獲准分期繳納，每期應繳10,000元，第一期繳納期限為9月10日。若某丙未於9月10日繳納第一期稅款，則其分期利息計算至9月10日止，並就逾期未繳的10,000元加徵滯納金。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 情境四 -->
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 flex flex-col md:flex-row items-start md:items-center">
+                    <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-3xl">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">情境四：擔保品的運用與滯納金</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            某丁因土地增值稅案件提起行政救濟，並提供定期存單作為擔保品。行政救濟確定後，稽徵機關發單通知某丁補繳稅款。若某丁逾期未繳，稽徵機關應優先對其提供的定期存單行使質權，在定期存單足以清償的範圍內，不應再加徵滯納金。若定期存單不足清償，則就不足部分移送強制執行並依法加徵滯納金及利息。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 實務 (Practical Insights) -->
+    <section id="practical-insights" class="py-16 bg-white mx-4 my-8 rounded-lg shadow-md">
+        <div class="container">
+            <h2 class="section-title">📊 實務觀點</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Point 1 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                        <i class="fas fa-calculator-alt text-blue-500 mr-3"></i> 滯納金的計算與上限
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed">實務上，稅捐稽徵機關會嚴格按照《稅捐稽徵法》第20條的規定計算滯納金，並在繳款書上明確載明逾期加徵的金額。納稅義務人應特別留意繳款書上的繳納期限，避免因逾期而增加額外負擔。財政部函釋明確滯納金最高加徵至15%，這對納稅義務人而言，設定了一個明確的上限，避免無限期累積。</p>
+                </div>
+                <!-- Point 2 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                        <i class="fas fa-balance-scale text-blue-500 mr-3"></i> 行政救濟與滯納金的平衡
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed">在行政救濟程序中，納稅義務人常誤以為只要提起救濟，就可以免除滯納金。然而，根據函釋，即使提起訴願，若未依限繳納應納稅額的半數或提供擔保，仍會被加徵滯納金。這提醒納稅義務人，行政救濟程序與繳稅義務是兩個獨立的面向，應分別處理。</p>
+                </div>
+                <!-- Point 3 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                        <i class="fas fa-exclamation-triangle text-blue-500 mr-3"></i> 分期繳納的潛在風險
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed">分期繳納雖能減輕一次性繳納的壓力，但實務上若未依約繳納，仍會面臨滯納金的加徵，且分期利息的計算也會有其終止點，之後則轉為滯納金與滯納利息。這要求納稅義務人必須嚴格遵守分期繳納的約定。</p>
+                </div>
+                <!-- Point 4 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                        <i class="fas fa-hand-holding-usd text-blue-500 mr-3"></i> 擔保品的有效運用
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed">對於行政救濟案件提供擔保品者，實務上稽徵機關會優先處理擔保品，這對納稅義務人而言，可以避免在擔保品足以清償稅款的情況下，仍被額外加徵滯納金，減少不必要的負擔。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 反思 (Reflections) -->
+    <section id="reflections" class="py-16 bg-blue-800 text-white mx-4 my-8 rounded-lg shadow-xl">
+        <div class="container">
+            <h2 class="section-title text-white">🤔 稅務反思</h2>
+            <div class="space-y-8">
+                <!-- Reflection 1 -->
+                <div class="bg-blue-700 p-6 rounded-xl shadow-md border border-blue-600">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 flex items-start">
+                        <i class="fas fa-question-circle text-blue-300 text-2xl mr-4 mt-1"></i> 滯納金的合理性：是否能更細緻化？
+                    </h3>
+                    <p class="opacity-90 leading-relaxed">目前滯納金的計算方式為每逾2日加徵1%，最高15%。雖然有上限，但對於短期逾期者而言，其加徵比例仍相對較高。考量到部分納稅義務人可能僅因一時疏忽或資金周轉問題而逾期，是否可考慮引入更細緻的階梯式加徵機制，或給予首次逾期者較輕的懲罰，以更符合比例原則，並兼顧輔導性質？</p>
+                </div>
+                <!-- Reflection 2 -->
+                <div class="bg-blue-700 p-6 rounded-xl shadow-md border border-blue-600">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 flex items-start">
+                        <i class="fas fa-balance-scale-right text-blue-300 text-2xl mr-4 mt-1"></i> 行政救濟的配套：如何平衡權利與義務？
+                    </h3>
+                    <p class="opacity-90 leading-relaxed">在行政救濟期間，納稅義務人若未繳納半數或提供擔保，仍需加徵滯納金。這雖然是為了避免濫用救濟程序，但也可能對真正有爭議的案件造成壓力。或許可以考慮在特定情況下，例如經初步審查認為爭議點明確且有合理理由者，給予更彈性的處理方式，以鼓勵納稅義務人積極尋求權利救濟。</p>
+                </div>
+                <!-- Reflection 3 -->
+                <div class="bg-blue-700 p-6 rounded-xl shadow-md border border-blue-600">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 flex items-start">
+                        <i class="fas fa-bullhorn text-blue-300 text-2xl mr-4 mt-1"></i> 資訊透明與宣導：加強納稅人教育？
+                    </h3>
+                    <p class="opacity-90 leading-relaxed">許多納稅義務人對於滯納金的計算方式、行政救濟期間的繳稅義務等規定並不清楚。稅捐機關應加強宣導，透過多元管道（如網站、社群媒體、稅務講座等）提供更清晰易懂的資訊，並提供線上試算工具，幫助納稅義務人了解自身權益與義務，從而減少逾期繳納及相關爭議的發生，這將有利於納稅義務人。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-gray-900 text-gray-300 py-12 rounded-t-xl shadow-inner">
+        <div class="container text-center">
+            <p class="mb-4 text-sm md:text-base">
+                引用條文名稱：<strong class="text-white">《稅捐稽徵法》第20條與第39條</strong>。
+                這兩條文分別規範了逾期繳納稅捐所加徵滯納金的標準及強制執行的相關規定，為本案中稅捐徵收與納稅義務人權益的核心依據。
+            </p>
+            <div class="text-gray-500 text-xs md:text-sm mt-8">
+                <p class="mb-2">※ 根據我的專業知識，此資訊僅供參考，請務必自行查證。</p>
+                <p>&copy; 2025 稅務指南. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu after clicking a link
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Accordion functionality for Legal Basis section
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const accordionContent = this.nextElementSibling;
+                    const chevronIcon = this.querySelector('.fa-chevron-down');
+                    const isActive = this.classList.contains('active');
+
+                    // Close all other open accordions except the clicked one
+                    document.querySelectorAll('.accordion-header.active').forEach(openHeader => {
+                        if (openHeader !== this) {
+                            openHeader.classList.remove('active');
+                            openHeader.nextElementSibling.classList.remove('active');
+                            openHeader.nextElementSibling.style.maxHeight = null;
+                            openHeader.querySelector('.fa-chevron-down').classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Toggle current accordion
+                    if (isActive) {
+                        this.classList.remove('active');
+                        accordionContent.classList.remove('active');
+                        accordionContent.style.maxHeight = null;
+                        chevronIcon.classList.remove('rotate-180');
+                    } else {
+                        this.classList.add('active');
+                        accordionContent.classList.add('active');
+                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                        chevronIcon.classList.add('rotate-180');
+                    }
+                });
+            });
+
+            // Expand button functionality for Key Takeaways to link to Legal Basis
+            document.querySelectorAll('.expand-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.dataset.target; // e.g., 'legal-basis-1'
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        // Scroll to the legal basis section
+                        document.querySelector('#legal-basis').scrollIntoView({ behavior: 'smooth' });
+
+                        // Open the specific accordion item after a small delay
+                        setTimeout(() => {
+                            const header = targetElement.querySelector('.accordion-header');
+                            const content = targetElement.querySelector('.accordion-content');
+                            const chevron = header.querySelector('.fa-chevron-down');
+
+                            // Close any currently active accordion first, if it's not the target
+                            document.querySelectorAll('.accordion-header.active').forEach(openHeader => {
+                                if (openHeader !== header) {
+                                    openHeader.classList.remove('active');
+                                    openHeader.nextElementSibling.classList.remove('active');
+                                    openHeader.nextElementSibling.style.maxHeight = null;
+                                    openHeader.querySelector('.fa-chevron-down').classList.remove('rotate-180');
+                                }
+                            });
+
+                            // Ensure the target accordion is open and animated
+                            if (!header.classList.contains('active')) {
+                                header.classList.add('active');
+                                content.classList.add('active');
+                                content.style.maxHeight = content.scrollHeight + "px";
+                                chevron.classList.add('rotate-180');
+                            }
+                            // Briefly highlight the target accordion for better UX
+                            header.style.backgroundColor = '#e0f2fe'; // blue-100
+                            setTimeout(() => {
+                                header.style.backgroundColor = ''; // Revert
+                            }, 1000);
+                        }, 600); // Adjust delay to match scroll speed
+                    }
+                });
+            });
+
+
+            // 滯納金試算工具 (Scenario 1 Calculator)
+            const taxAmountInput = document.getElementById('tax-amount');
+            const overdueDaysInput = document.getElementById('overdue-days');
+            const calculateBtn = document.getElementById('calculate-btn');
+            const calculationResult = document.getElementById('calculation-result');
+
+            function calculateLateFee() {
+                const taxAmount = parseFloat(taxAmountInput.value);
+                const overdueDays = parseInt(overdueDaysInput.value);
+
+                if (isNaN(taxAmount) || isNaN(overdueDays) || taxAmount < 0 || overdueDays < 0) {
+                    calculationResult.textContent = '請輸入有效的金額和天數。';
+                    return;
+                }
+
+                if (overdueDays === 0) {
+                    calculationResult.textContent = `滯納金：0 元`;
+                    return;
+                }
+
+                let lateFeePercentage = Math.floor(overdueDays / 2) * 0.01; // 每逾2日加徵1%
+                if (lateFeePercentage > 0.15) { // 最高加徵至15%
+                    lateFeePercentage = 0.15;
+                }
+
+                const lateFee = Math.round(taxAmount * lateFeePercentage);
+                const totalAmount = taxAmount + lateFee;
+
+                calculationResult.innerHTML = `
+                    <p>應加徵滯納金：<strong class="text-blue-600">${lateFee} 元</strong></p>
+                    <p>（佔原稅額：${(lateFeePercentage * 100).toFixed(0)}%）</p>
+                    <p>含滯納金總應繳納金額：<strong class="text-blue-600">${totalAmount} 元</strong></p>
+                    ${overdueDays >= 30 ? '<p class="text-red-500 font-bold mt-2"><i class="fas fa-exclamation-circle mr-1"></i> 注意：逾期已達30日，可能被移送強制執行。</p>' : ''}
+                `;
+            }
+
+            calculateBtn.addEventListener('click', calculateLateFee);
+            // Also calculate on input change for a more interactive experience
+            taxAmountInput.addEventListener('input', calculateLateFee);
+            overdueDaysInput.addEventListener('input', calculateLateFee);
+            calculateLateFee(); // Initial calculation on page load
+
+            // Scroll to top button logic
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) { // Show button after scrolling down 300px
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
