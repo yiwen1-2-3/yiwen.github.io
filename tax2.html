@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>保險理賠與遺產繼承：稅務疑慮一次釐清</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 自定義字體 - 思源黑體 (Noto Sans CJK TC) */
+        /* 如果系統沒有安裝，會回退到通用無襯線字體 */
+        body {
+            font-family: 'Noto Sans CJK TC', 'Inter', sans-serif;
+            background-color: #F8F9FA; /* 淺灰背景 */
+            color: #333; /* 深色文字 */
+        }
+        h1, h2, h3 {
+            font-weight: bold;
+            color: #003366; /* 深藍色標題 */
+        }
+        /* 自定義按鈕樣式 */
+        .btn-primary {
+            @apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out;
+        }
+        /* 輸入框樣式 */
+        .input-field {
+            @apply p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+        }
+        /* 訊息卡片樣式 */
+        .info-card {
+            @apply bg-white p-6 rounded-xl shadow-lg border border-gray-200;
+        }
+        /* 綠色提示 */
+        .text-success {
+            color: #28A745;
+        }
+        /* 紅色警示 */
+        .text-warning {
+            color: #DC3545;
+        }
+        /* 黃色強調 */
+        .text-emphasis {
+            color: #FFD700;
+        }
+        /* 可展開區塊的箭頭旋轉 */
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+        .rotate-icon.rotated {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
+        <!-- 標題與引言區塊 -->
+        <header class="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-8 text-center rounded-t-xl">
+            <h1 class="text-3xl sm:text-4xl mb-3">保險理賠與遺產繼承：稅務疑慮一次釐清</h1>
+            <p class="text-lg sm:text-xl">被繼承人身故，保險金、遺產如何課稅？我們為您專業解析。</p>
+            <p class="mt-4 text-sm opacity-90">當摯愛的家人離世，除了面對悲痛，更需要處理繁瑣的遺產及稅務問題。特別是涉及大額保險金時，如何正確申報遺產稅與所得稅，往往成為家屬的困惑。本頁將透過互動式引導，協助您釐清相關稅務法規，確保權益不受損。</p>
+        </header>
+
+        <main class="p-6 sm:p-10">
+            <!-- 互動式情境設定區塊 -->
+            <section id="scenario-setup" class="info-card mb-10">
+                <h2 class="text-2xl mb-6 border-b-2 pb-2">您的情境是什麼？</h2>
+
+                <!-- 問題一：保險金總額 -->
+                <div class="mb-6">
+                    <label class="block text-lg font-semibold mb-2">1. 被繼承人的身故保險金總額是多少？</label>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="insuranceAmount" value="51880000" checked class="form-radio h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">5,188 萬元</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="insuranceAmount" value="custom" class="form-radio h-5 w-5 text-blue-600" id="customAmountRadio">
+                            <span class="ml-2 text-gray-700">其他 (請輸入)：</span>
+                        </label>
+                        <input type="number" id="customInsuranceAmount" class="input-field w-32 ml-2" placeholder="金額 (萬元)">
+                    </div>
+                </div>
+
+                <!-- 問題二：指定受益人 -->
+                <div class="mb-6">
+                    <label class="block text-lg font-semibold mb-2">2. 保險金有指定受益人嗎？有多少位？</label>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="beneficiaries" value="1" class="form-radio h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">有，1 位</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="beneficiaries" value="2" checked class="form-radio h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">有，2 位</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="beneficiaries" value="3plus" class="form-radio h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">有，3 位以上</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="beneficiaries" value="none" class="form-radio h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">無指定受益人</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 問題三：其他遺產 -->
+                <div class="mb-6">
+                    <label class="block text-lg font-semibold mb-2">3. 除了保險金，被繼承人是否還有其他遺產？</label>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="otherAssets" value="realEstate" class="form-radio h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">有不動產</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="otherAssets" value="cash" checked class="form-radio h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">有現金 (預設 100 萬元)</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="otherAssets" value="both" class="form-radio h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">兩者皆有</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="otherAssets" value="none" class="form-radio h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">無其他遺產</span>
+                        </label>
+                    </div>
+                    <div id="cashAmountInput" class="mt-4 hidden">
+                        <label for="cashAmount" class="block text-gray-700 text-sm font-bold mb-2">現金金額 (萬元)：</label>
+                        <input type="number" id="cashAmount" class="input-field" value="1000000" placeholder="現金金額 (萬元)">
+                    </div>
+                </div>
+
+                <!-- 問題四：更多保單資訊 (可展開區塊) -->
+                <div class="mb-6 border-t pt-4">
+                    <button id="togglePolicyInfo" class="w-full flex justify-between items-center bg-gray-100 p-4 rounded-lg text-left font-semibold text-gray-800 hover:bg-gray-200 transition duration-300">
+                        <span>4. 請提供更多保單相關資訊 (點擊展開)</span>
+                        <svg class="rotate-icon w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <div id="policyInfoContent" class="hidden mt-4 p-4 bg-gray-50 rounded-lg border">
+                        <div class="mb-4">
+                            <label for="policyPurchaseTime" class="block text-gray-700 text-sm font-bold mb-2">保單購買年份/投保多久？</label>
+                            <input type="text" id="policyPurchaseTime" class="input-field w-full" placeholder="例如：2020年/長期投保">
+                        </div>
+                        <div class="mb-4">
+                            <label for="policyMotive" class="block text-gray-700 text-sm font-bold mb-2">投保動機是什麼？</label>
+                            <input type="text" id="policyMotive" class="input-field w-full" placeholder="例如：為保障/為節稅/其他">
+                        </div>
+                        <div class="mb-4">
+                            <label for="deathCause" class="block text-gray-700 text-sm font-bold mb-2">被繼承人死亡原因？</label>
+                            <input type="text" id="deathCause" class="input-field w-full" placeholder="例如：疾病/意外/其他">
+                        </div>
+                        <div class="mb-4">
+                            <label for="policyType" class="block text-gray-700 text-sm font-bold mb-2">保單類型？</label>
+                            <input type="text" id="policyType" class="input-field w-full" placeholder="例如：壽險/傷害險/年金險">
+                        </div>
+                        <div class="mb-4">
+                            <label for="beneficiaryDistribution" class="block text-gray-700 text-sm font-bold mb-2">保險金指定分配比例？</label>
+                            <input type="text" id="beneficiaryDistribution" class="input-field w-full" placeholder="例如：平均分配/特定比例">
+                        </div>
+                        <div>
+                            <label for="otherSpecialSituations" class="block text-gray-700 text-sm font-bold mb-2">是否有其他特殊情況？</label>
+                            <textarea id="otherSpecialSituations" class="input-field w-full h-24" placeholder="例如：帶病投保、舉債投保等"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="analyzeBtn" class="btn-primary w-full mt-6">分析我的稅務狀況</button>
+            </section>
+
+            <!-- 稅務解析與結果呈現區塊 (動態顯示) -->
+            <section id="tax-analysis-results" class="hidden">
+                <div class="mb-10 info-card">
+                    <h2 class="text-2xl mb-6 border-b-2 pb-2">遺產稅解析：您的遺產稅會是多少？</h2>
+                    <div id="estateTaxContent" class="text-gray-800 leading-relaxed">
+                        <!-- 動態內容將插入這裡 -->
+                    </div>
+                    <div id="estateTaxPaymentMethods" class="hidden mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-3">繳納遺產稅的方式 (僅供參考)：</h3>
+                        <ul class="list-disc list-inside text-blue-700">
+                            <li>**被繼承人留有存款：** 由繼承人多數決同意，可申請以被繼承人之存款繳稅。</li>
+                            <li>**延期繳納：** 有正當理由者，得申請延長申報期限最長三個月，繳納困難者得申請延期繳納以二個月為限。</li>
+                            <li>**分期繳納：** 應納稅額在30萬元以上且現金繳納有困難者，得申請分18期以內繳納。</li>
+                            <li>**實物抵繳：** 應納稅額在30萬元以上且現金繳納有困難者，得申請以課徵標的物或其他易於變價及保管之實物抵繳。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h2 class="text-2xl mb-6 border-b-2 pb-2">所得稅解析：最低稅負制與保險金</h2>
+                    <div id="incomeTaxContent" class="text-gray-800 leading-relaxed">
+                        <!-- 動態內容將插入這裡 -->
+                    </div>
+                    <div id="sameHouseholdQuestion" class="hidden mt-4 p-4 bg-gray-50 rounded-lg border">
+                        <p class="font-semibold mb-3">兩位受益人為「同一申報戶」嗎？(例如：夫妻)</p>
+                        <div class="flex gap-4">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="sameHousehold" value="yes" class="form-radio h-5 w-5 text-blue-600">
+                                <span class="ml-2 text-gray-700">是</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="sameHousehold" value="no" class="form-radio h-5 w-5 text-blue-600">
+                                <span class="ml-2 text-gray-700">否</span>
+                            </label>
+                        </div>
+                        <div id="sameHouseholdResult" class="mt-4 text-gray-800"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 綜合建議與行動呼籲區塊 -->
+            <section id="conclusion" class="info-card mt-10">
+                <h2 class="text-2xl mb-6 border-b-2 pb-2">綜合總結與專業建議</h2>
+                <div class="text-gray-800 leading-relaxed mb-6">
+                    <p class="mb-4">就遺產稅而言，本案例已知遺產 (現金 <span id="finalCashAmount" class="font-bold">100 萬元</span>) 遠低於遺產稅免稅額及扣除額，**原則上無需繳納遺產稅。** 但請務必留意**身故保險金是否會被依實質課稅原則計入遺產總額**，務必備齊相關資料以備查核。</p>
+                    <p class="mb-4">就所得稅而言，身故保險金原則上免納所得稅，但需注意是否會納入**最低稅負制的個人基本所得額計算**。尤其當指定受益人為**同一申報戶**且領取保險金合計超過 3,740 萬元時，請務必留意。</p>
+                </div>
+                <div class="bg-blue-100 p-6 rounded-lg border border-blue-300 text-blue-900">
+                    <h3 class="text-xl font-bold mb-3">立即行動！</h3>
+                    <p class="mb-4">由於稅務規定複雜且個案狀況差異大，強烈建議您**主動向專業會計師或稅務專家諮詢**，以獲得最精確的個人化建議。務必準備相關文件 (如保單契約、繳費證明、被繼承人健康狀況證明、死亡證明、戶籍謄本等)，以應對稅捐稽徵機關的查核，確保正確申報遺產稅及所得稅，避免因不了解法令而產生額外稅賦或罰則。</p>
+                    <div class="mt-6 text-center">
+                        <a href="#" class="btn-primary inline-block">預約線上諮詢</a>
+                        <p class="mt-3 text-sm">或致電：(02) 1234-5678</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 頁尾資訊 -->
+        <footer class="bg-gray-800 text-white text-center p-6 mt-10 rounded-b-xl text-sm">
+            <p class="mb-2">&copy; 2024 稅務諮詢服務. 版權所有.</p>
+            <p class="mb-4">**免責聲明：** 本網頁內容僅供參考，不構成任何稅務建議。實際稅務處理仍應以稅捐稽徵機關之核定為準。</p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?PCode=G0330001" target="_blank" class="text-gray-400 hover:text-white">保險法</a>
+                <a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?PCode=G0340072" target="_blank" class="text-gray-400 hover:text-white">遺產及贈與稅法</a>
+                <a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?PCode=G0340097" target="_blank" class="text-gray-400 hover:text-white">所得基本稅額條例</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 獲取元素
+        const customAmountRadio = document.getElementById('customAmountRadio');
+        const customInsuranceAmountInput = document.getElementById('customInsuranceAmount');
+        const cashAmountInputDiv = document.getElementById('cashAmountInput');
+        const cashAmountInput = document.getElementById('cashAmount');
+        const otherAssetsRadios = document.querySelectorAll('input[name="otherAssets"]');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const taxAnalysisResults = document.getElementById('tax-analysis-results');
+        const estateTaxContent = document.getElementById('estateTaxContent');
+        const incomeTaxContent = document.getElementById('incomeTaxContent');
+        const estateTaxPaymentMethods = document.getElementById('estateTaxPaymentMethods');
+        const sameHouseholdQuestion = document.getElementById('sameHouseholdQuestion');
+        const sameHouseholdRadios = document.querySelectorAll('input[name="sameHousehold"]');
+        const sameHouseholdResult = document.getElementById('sameHouseholdResult');
+        const finalCashAmountSpan = document.getElementById('finalCashAmount');
+        const togglePolicyInfoBtn = document.getElementById('togglePolicyInfo');
+        const policyInfoContent = document.getElementById('policyInfoContent');
+        const toggleIcon = togglePolicyInfoBtn.querySelector('svg');
+
+
+        // 事件監聽：自定義保險金金額輸入框的顯示/隱藏
+        customAmountRadio.addEventListener('change', () => {
+            if (customAmountRadio.checked) {
+                customInsuranceAmountInput.style.display = 'inline-block';
+                customInsuranceAmountInput.focus();
+            } else {
+                customInsuranceAmountInput.style.display = 'none';
+            }
+        });
+
+        // 初始設定自定義保險金輸入框的顯示狀態
+        if (!customAmountRadio.checked) {
+            customInsuranceAmountInput.style.display = 'none';
+        }
+
+        // 事件監聽：其他遺產現金金額輸入框的顯示/隱藏
+        otherAssetsRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'cash' || radio.value === 'both') {
+                    cashAmountInputDiv.classList.remove('hidden');
+                } else {
+                    cashAmountInputDiv.classList.add('hidden');
+                }
+            });
+        });
+
+        // 初始設定現金金額輸入框的顯示狀態
+        const initialOtherAsset = document.querySelector('input[name="otherAssets"]:checked').value;
+        if (initialOtherAsset === 'cash' || initialOtherAsset === 'both') {
+            cashAmountInputDiv.classList.remove('hidden');
+        }
+
+        // 事件監聽：點擊展開更多保單資訊
+        togglePolicyInfoBtn.addEventListener('click', () => {
+            policyInfoContent.classList.toggle('hidden');
+            toggleIcon.classList.toggle('rotated');
+        });
+
+        // 主要分析按鈕點擊事件
+        analyzeBtn.addEventListener('click', () => {
+            const insuranceAmount = document.querySelector('input[name="insuranceAmount"]:checked').value === 'custom' ?
+                                    parseFloat(customInsuranceAmountInput.value || 0) * 10000 :
+                                    parseFloat(document.querySelector('input[name="insuranceAmount"]:checked').value);
+            const beneficiaries = document.querySelector('input[name="beneficiaries"]:checked').value;
+            const otherAssets = document.querySelector('input[name="otherAssets"]:checked').value;
+            const cashAmount = (otherAssets === 'cash' || otherAssets === 'both') ? parseFloat(cashAmountInput.value || 0) : 0;
+
+            // 更新總結區塊的現金金額
+            finalCashAmountSpan.textContent = `${(cashAmount / 10000).toLocaleString()} 萬元`;
+
+            let estateTaxHtml = '';
+            let incomeTaxHtml = '';
+            let estateTaxDue = false;
+            let minimumTaxApplicable = false;
+
+            // --- 遺產稅解析 ---
+            estateTaxHtml += `<p class="mb-3">身故保險金：${(insuranceAmount / 10000).toLocaleString()} 萬元</p>`;
+            estateTaxHtml += `<p class="mb-3">指定受益人：`;
+            if (beneficiaries === 'none') {
+                estateTaxHtml += `<span class="text-warning font-bold">無指定受益人</span></p>`;
+                estateTaxHtml += `<p class="mb-3">由於保險金<span class="text-warning font-bold">無指定受益人</span>，此筆保險金 <span class="font-bold">${(insuranceAmount / 10000).toLocaleString()} 萬元將全數計入遺產總額</span>，應依法課徵遺產稅。</p>`;
+                estateTaxDue = true;
+            } else {
+                estateTaxHtml += `<span class="text-success font-bold">${beneficiaries} 位指定受益人</span></p>`;
+                estateTaxHtml += `<p class="mb-3">根據《保險法》第112條及《遺產及贈與稅法》第16條第9款規定，您的身故保險金因有指定受益人，<span class="text-success font-bold">原則上不計入遺產總額，無需課徵遺產稅。</span></p>`;
+                estateTaxHtml += `<div class="bg-yellow-100 p-4 rounded-lg border border-yellow-300 text-yellow-800 mb-4">
+                                    <h3 class="font-bold mb-2">【重要提醒！實質課稅原則！】</h3>
+                                    <p>儘管有指定受益人，但稅捐稽徵機關可能依據「實質課稅原則」判斷投保動機是否為規避遺產稅。如果被認定有規避稅捐的意圖，保險金仍可能被計入遺產總額課稅。</p>
+                                    <p class="mt-2 text-sm">國稅局常見的判斷因素包括：**帶病投保、高齡投保、短期投保、鉅額投保、躉繳投保（一次繳清保費）、密集投保、舉債投保、繳納的保費大於或等於保險金額**等。您所提供的保單資訊，將成為判斷的關鍵。</p>
+                                  </div>`;
+            }
+
+            const estateExemption = 13330000; // 114年度遺產稅免稅額
+            const funeralDeduction = 1230000; // 113年度喪葬費扣除額
+
+            let actualEstateTotal = cashAmount; // 假設只有現金為遺產總額
+            if (beneficiaries === 'none') { // 如果無指定受益人，保險金也計入遺產總額
+                actualEstateTotal += insuranceAmount;
+            }
+
+            estateTaxHtml += `<p class="mb-3">目前考量之遺產總額 (不含符合免稅規定的保險金部分)：<span class="font-bold">${(cashAmount / 10000).toLocaleString()} 萬元</span></p>`;
+            estateTaxHtml += `<p class="mb-3">遺產稅免稅額 (114年度)：<span class="font-bold">${(estateExemption / 10000).toLocaleString()} 萬元</span></p>`;
+            estateTaxHtml += `<p class="mb-3">喪葬費扣除額 (113年度)：<span class="font-bold">${(funeralDeduction / 10000).toLocaleString()} 萬元</span></p>`;
+
+
+            if (actualEstateTotal <= estateExemption + funeralDeduction) {
+                estateTaxHtml += `<p class="text-success font-bold text-lg mt-4">此案例原則上無需繳納遺產稅。</p>`;
+                estateTaxPaymentMethods.classList.add('hidden');
+            } else {
+                estateTaxHtml += `<p class="text-warning font-bold text-lg mt-4">此案例可能需繳納遺產稅，課稅遺產淨額為：<span class="font-bold">${((actualEstateTotal - estateExemption - funeralDeduction) / 10000).toLocaleString()} 萬元</span>。</p>`;
+                estateTaxHtml += `<p class="text-warning text-sm">請注意，具體稅額需根據完整遺產清冊及扣除額計算。</p>`;
+                estateTaxPaymentMethods.classList.remove('hidden'); // 顯示繳納方式
+                estateTaxDue = true;
+            }
+
+            estateTaxHtml += `<p class="mt-4">**遺產稅申報提醒：** 即使無需繳稅，仍建議**於被繼承人死亡之日起六個月內向戶籍所在地稽徵機關辦理遺產稅申報**，並取得遺產稅免稅證明書，以利後續遺產處理。</p>`;
+            estateTaxContent.innerHTML = estateTaxHtml;
+
+            // --- 所得稅解析 (最低稅負制) ---
+            const minimumTaxExemption = 37400000; // 113年度保險死亡給付免稅額
+            const personalBasicExemption = 7500000; // 113年度個人基本所得額免稅額
+            const taxRate = 0.20; // 最低稅負稅率
+
+            incomeTaxHtml += `<p class="mb-3">根據《所得基本稅額條例》第12條第1項第2款規定，受益人與要保人非屬同一人之人壽保險及年金保險（不含傷害險及健康險），受益人領取之死亡給付，每一申報戶全年合計數超過一定金額部分，應計入個人基本所得額。</p>`;
+            incomeTaxHtml += `<p class="mb-3">**113年度 (2024年) 起，保險死亡給付的免稅額為 <span class="font-bold">${(minimumTaxExemption / 10000).toLocaleString()} 萬元</span>。**</p>`;
+
+            // 判斷是否需要最低稅負計算 (前提：有指定受益人且保險金可能超過免稅額)
+            if (beneficiaries !== 'none' && insuranceAmount > 0) {
+                sameHouseholdQuestion.classList.remove('hidden');
+                minimumTaxApplicable = true; // 標記可能適用最低稅負
+                sameHouseholdResult.innerHTML = ''; // 清空上次結果
+                // 檢查是否已選取過
+                const currentHouseholdSelection = document.querySelector('input[name="sameHousehold"]:checked');
+                if (currentHouseholdSelection) {
+                    currentHouseholdSelection.checked = false; // 清除之前的選擇，強制用戶重新選擇
+                }
+
+                // 添加對 sameHousehold 廣播按鈕的監聽器
+                sameHouseholdRadios.forEach(radio => {
+                    radio.onchange = () => {
+                        const isSameHousehold = document.querySelector('input[name="sameHousehold"]:checked').value;
+                        let excessAmount = 0;
+                        let beneficiaryShare = insuranceAmount; // 預設為單一受益人或未分割
+
+                        if (beneficiaries === '2') {
+                            beneficiaryShare = insuranceAmount / 2;
+                        } else if (beneficiaries === '3plus') {
+                            beneficiaryShare = insuranceAmount / 3; // 假設至少3位，用3來計算，提示可能不精確
+                            sameHouseholdResult.innerHTML = `<p class="mt-3 text-sm text-gray-600">請注意：若有3位以上受益人且為不同申報戶，則每人分得金額會更低。</p>`;
+                        }
+
+                        if (isSameHousehold === 'yes') {
+                            // 同一申報戶，判斷總額
+                            if (insuranceAmount > minimumTaxExemption) {
+                                excessAmount = insuranceAmount - minimumTaxExemption;
+                                sameHouseholdResult.innerHTML = `<p class="mt-3">由於兩位受益人為**同一申報戶**，領取保險金合計 <span class="font-bold">${(insuranceAmount / 10000).toLocaleString()} 萬元</span>，已超過 ${minimumTaxExemption / 10000} 萬元免稅額。**超過部分 <span class="text-warning font-bold">${(excessAmount / 10000).toLocaleString()} 萬元</span>**，將計入該申報戶的**個人基本所得額**，需納入最低稅負計算。</p>`;
+                                sameHouseholdResult.innerHTML += `<p class="mt-2 text-sm">個人基本所得額免稅額為 ${personalBasicExemption / 10000} 萬元 (113年度)。</p>`;
+                                sameHouseholdResult.innerHTML += `<p class="mt-2 text-sm">最低稅負稅率為 ${taxRate * 100}%。</p>`;
+                                sameHouseholdResult.innerHTML += `<p class="mt-2 text-sm text-blue-700">**隔年度所得稅提報，受益人需要將此部分計入個人基本所得額，並計算是否應繳納最低稅負。**</p>`;
+                            } else {
+                                sameHouseholdResult.innerHTML = `<p class="mt-3">由於兩位受益人為**同一申報戶**，領取保險金合計 <span class="font-bold">${(insuranceAmount / 10000).toLocaleString()} 萬元</span>，未超過 ${minimumTaxExemption / 10000} 萬元免稅額，**因此無需計入個人基本所得額。**</p>`;
+                            }
+                        } else { // 不同申報戶
+                            if (beneficiaryShare > minimumTaxExemption) {
+                                excessAmount = beneficiaryShare - minimumTaxExemption;
+                                sameHouseholdResult.innerHTML = `<p class="mt-3">由於兩位受益人為**不同申報戶**，每位受益人預計領取 <span class="font-bold">${(beneficiaryShare / 10000).toLocaleString()} 萬元</span>。超過免稅額的部分 <span class="text-warning font-bold">${(excessAmount / 10000).toLocaleString()} 萬元</span>，將計入每位受益人的**個人基本所得額**，需納入最低稅負計算。</p>`;
+                                sameHouseholdResult.innerHTML += `<p class="mt-2 text-sm">個人基本所得額免稅額為 ${personalBasicExemption / 10000} 萬元 (113年度)。</p>`;
+                                sameHouseholdResult.innerHTML += `<p class="mt-2 text-sm">最低稅負稅率為 ${taxRate * 100}%。</p>`;
+                                sameHouseholdResult.innerHTML += `<p class="mt-2 text-sm text-blue-700">**隔年度所得稅提報，受益人需要將此部分計入個人基本所得額，並計算是否應繳納最低稅負。**</p>`;
+                            } else {
+                                sameHouseholdResult.innerHTML = `<p class="mt-3">由於兩位受益人為**不同申報戶**，每位受益人預計領取 <span class="font-bold">${(beneficiaryShare / 10000).toLocaleString()} 萬元</span>，皆未超過 ${minimumTaxExemption / 10000} 萬元免稅額，**因此無需計入個人基本所得額。**</p>`;
+                            }
+                        }
+                    };
+                });
+            } else {
+                sameHouseholdQuestion.classList.add('hidden');
+                incomeTaxHtml += `<p class="mb-3">此案例中的保險金狀況不符合最低稅負制的保險給付計入規定 (例如：無保險金或無指定受益人)，因此原則上無需考量最低稅負制下的保險金計入問題。</p>`;
+                sameHouseholdResult.innerHTML = '';
+            }
+
+            incomeTaxContent.innerHTML = incomeTaxHtml;
+
+
+            // 顯示結果區塊
+            taxAnalysisResults.classList.remove('hidden');
+
+            // 滾動到結果區塊
+            taxAnalysisResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    </script>
+</body>
+</html>
