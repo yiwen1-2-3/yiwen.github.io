@@ -75,6 +75,27 @@
             font-size: 4rem; /* Large icon size */
             color: #666666;
         }
+
+        /* Responsive video container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio (height / width * 100%) */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 8px; /* Rounded corners for the video container */
+        }
+
+        .video-container iframe,
+        .video-container object,
+        .video-container embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body class="leading-relaxed">
@@ -94,6 +115,7 @@
             <nav id="navbar-menu" class="hidden md:block w-full md:w-auto mt-4 md:mt-0">
                 <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 items-center">
                     <li><a href="#about" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">關於我</a></li>
+                    <li><a href="#video-section" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">精選影音</a></li>
                     <li><a href="#services" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">服務項目</a></li>
                     <li><a href="#testimonials" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">客戶見證</a></li>
                     <li><a href="#knowledge" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">保險知識</a></li>
@@ -164,8 +186,21 @@
         </div>
     </section>
 
+    <!-- 精選影音區塊 (Video Section) -->
+    <section id="video-section" class="container mx-auto py-16 px-4 bg-primary-blue-lightest rounded-lg shadow-xl">
+        <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">精選影音</h2>
+        <div class="max-w-4xl mx-auto">
+            <div class="video-container shadow-lg">
+                <iframe src="https://www.youtube.com/embed/VVO-8Su-q3A?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p class="text-center text-gray-700 mt-6 text-lg">
+                觀看我的最新分享，深入了解保險知識與規劃重點。
+            </p>
+        </div>
+    </section>
+
     <!-- 服務項目 (Services Section) -->
-    <section id="services" class="container mx-auto py-16 px-4 bg-primary-blue-lightest rounded-lg shadow-xl">
+    <section id="services" class="container mx-auto py-16 px-4">
         <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">服務項目</h2>
         <p class="text-xl text-center text-gray-700 mb-10 max-w-3xl mx-auto">
             在瞬息萬變的現代社會中，為自己與家人預備一份完善的保障，是愛與責任的體現。作為您的專業保險顧問，我致力於提供全面且個人化的保險規劃服務，幫助您構築安穩的未來。
@@ -244,7 +279,7 @@
     </section>
 
     <!-- 客戶見證/成功案例 (Testimonials Section) -->
-    <section id="testimonials" class="container mx-auto py-16 px-4">
+    <section id="testimonials" class="container mx-auto py-16 px-4 bg-primary-blue-lightest rounded-lg shadow-xl">
         <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">客戶見證 / 成功案例</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- 見證卡片 1 -->
@@ -296,7 +331,7 @@
     </section>
 
     <!-- 保險知識/文章分享 (Knowledge Section) -->
-    <section id="knowledge" class="container mx-auto py-16 px-4 bg-primary-blue-lightest rounded-lg shadow-xl">
+    <section id="knowledge" class="container mx-auto py-16 px-4">
         <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">保險知識 / 文章分享</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- 文章卡片 (家產風暴眼) -->
@@ -363,7 +398,7 @@
     </section>
 
     <!-- 常見問題解答 (FAQ Section) -->
-    <section id="faq" class="container mx-auto py-16 px-4">
+    <section id="faq" class="container mx-auto py-16 px-4 bg-primary-blue-lightest rounded-lg shadow-xl">
         <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">常見問題解答 (FAQ)</h2>
         <div class="max-w-4xl mx-auto space-y-4">
             <!-- FAQ Item 1 -->
