@@ -81,13 +81,18 @@
 
     <!-- 頂部導航欄 (Header) -->
     <header class="bg-white shadow-lg sticky top-0 z-50 py-4">
-        <div class="container mx-auto px-4 flex justify-between items-center">
+        <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
             <!-- Logo / 品牌名稱 -->
             <a href="#hero" class="text-2xl font-bold text-primary-blue">林小明 保險顧問</a>
 
+            <!-- 漢堡選單按鈕 (只在 md 螢幕以下顯示) -->
+            <button id="hamburger-button" class="md:hidden text-gray-700 focus:outline-none focus:text-primary-blue">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+
             <!-- 導航菜單 -->
-            <nav>
-                <ul class="flex space-x-6">
+            <nav id="navbar-menu" class="hidden md:block w-full md:w-auto mt-4 md:mt-0">
+                <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 items-center">
                     <li><a href="#about" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">關於我</a></li>
                     <li><a href="#services" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">服務項目</a></li>
                     <li><a href="#testimonials" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">客戶見證</a></li>
@@ -508,6 +513,15 @@
     </button>
 
     <script>
+        // 獲取漢堡按鈕和導航菜單
+        const hamburgerButton = document.getElementById('hamburger-button');
+        const navbarMenu = document.getElementById('navbar-menu');
+
+        // 為漢堡按鈕添加點擊事件監聽器
+        hamburgerButton.addEventListener('click', () => {
+            navbarMenu.classList.toggle('hidden'); // 切換菜單的 hidden class
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -515,6 +529,11 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+
+                // 在點擊導航連結後，如果菜單是展開的（在手機模式下），則隱藏菜單
+                if (!navbarMenu.classList.contains('hidden') && window.innerWidth < 768) { // 768px 是 Tailwind 的 md breakpoint
+                    navbarMenu.classList.add('hidden');
+                }
 
                 // Update active class
                 document.querySelectorAll('.nav-link').forEach(link => {
@@ -588,6 +607,16 @@
             const heroLink = document.querySelector('nav a[href="#hero"]');
             if (heroLink) {
                 heroLink.classList.add('active');
+            }
+        });
+
+        // Add a resize event listener to ensure the menu is visible on larger screens if resized
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) { // 768px is Tailwind's md breakpoint
+                navbarMenu.classList.remove('hidden');
+            } else {
+                // If the screen resizes to smaller than md, ensure the menu is hidden
+                navbarMenu.classList.add('hidden');
             }
         });
 
