@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>林小明 - 您的專業保險顧問</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        /* Custom Blue Palette */
+        .bg-primary-blue { background-color: #4682B4; /* SteelBlue */ }
+        .text-primary-blue { color: #4682B4; }
+        .border-primary-blue { border-color: #4682B4; }
+        .hover\:bg-primary-blue-dark:hover { background-color: #366792; /* Darker SteelBlue */ }
+        .focus\:ring-primary-blue-light:focus { ring-color: #6A96C2; /* Lighter SteelBlue */ }
+        .bg-primary-blue-lightest { background-color: #E6F0F8; /* Very Light Blue */ }
+
+
+        /* Smooth scroll for navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Active navigation link style */
+        .nav-link.active {
+            font-weight: 600;
+            color: #4682B4; /* SteelBlue */
+            border-bottom: 2px solid #4682B4;
+        }
+
+        /* Scroll-to-top button */
+        #scrollToTopBtn {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position */
+            bottom: 20px; /* Place at the bottom */
+            right: 20px; /* Place at the right */
+            z-index: 99; /* High z-index to be on top */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: #4682B4; /* SteelBlue background */
+            color: white; /* White text */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 50%; /* Rounded corners */
+            font-size: 18px; /* Increase font size */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: #366792; /* Darker SteelBlue */
+        }
+
+        /* Custom icon styling for knowledge section cards */
+        .knowledge-icon-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 120px; /* Maintain a consistent height for the icon area */
+            background-color: #E0E0E0; /* Light gray for placeholder */
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .knowledge-icon-placeholder .fas {
+            font-size: 4rem; /* Large icon size */
+            color: #666666;
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- 頂部導航欄 (Header) -->
+    <header class="bg-white shadow-lg sticky top-0 z-50 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <!-- Logo / 品牌名稱 -->
+            <a href="#hero" class="text-2xl font-bold text-primary-blue">林小明 保險顧問</a>
+
+            <!-- 導航菜單 -->
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#about" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">關於我</a></li>
+                    <li><a href="#services" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">服務項目</a></li>
+                    <li><a href="#testimonials" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">客戶見證</a></li>
+                    <li><a href="#knowledge" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">保險知識</a></li>
+                    <li><a href="#faq" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">常見問題</a></li>
+                    <li><a href="#contact" class="nav-link text-gray-700 hover:text-primary-blue transition duration-300 px-2 py-1 rounded-md">聯絡我</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主視覺區塊 (Hero Section) -->
+    <section id="hero" class="relative bg-gradient-to-r from-blue-400 to-blue-600 text-white py-20 px-4 overflow-hidden rounded-b-lg shadow-xl">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="text-center md:text-left mb-10 md:mb-0 md:w-1/2">
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 animate-fade-in-down">
+                    為您的未來，<br class="hidden md:block">築起堅實的保障
+                </h1>
+                <p class="text-xl md:text-2xl opacity-90 mb-8 animate-fade-in-up">
+                    林小明，您值得信賴的專業保險顧問
+                </p>
+                <a href="#contact" class="inline-block bg-white text-primary-blue font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 animate-bounce-in">
+                    立即諮詢
+                </a>
+            </div>
+            <div class="md:w-1/2 flex justify-center md:justify-end animate-fade-in-right">
+                <!-- 專業形象圖示 -->
+                <div class="rounded-full shadow-2xl border-4 border-white transform hover:rotate-3 transition duration-300 flex items-center justify-center bg-gray-200" style="width: 250px; height: 250px;">
+                    <i class="fas fa-user-tie text-primary-blue text-8xl"></i>
+                </div>
+            </div>
+        </div>
+        <!-- 裝飾性圖形 -->
+        <div class="absolute inset-0 z-0 opacity-10">
+            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <circle cx="20" cy="80" r="15" fill="currentColor" class="text-blue-300"></circle>
+                <rect x="70" y="10" width="20" height="20" rx="5" fill="currentColor" class="text-blue-300"></rect>
+                <polygon points="50,0 60,20 40,20" fill="currentColor" class="text-blue-300"></polygon>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 關於我/團隊介紹 (About Me Section) -->
+    <section id="about" class="container mx-auto py-16 px-4">
+        <div class="bg-white p-8 rounded-lg shadow-xl">
+            <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">關於我</h2>
+            <div class="flex flex-col md:flex-row items-center md:space-x-12">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center items-center">
+                    <!-- 個人照片圖示 -->
+                    <div class="rounded-full mx-auto shadow-lg border-4 border-primary-blue flex items-center justify-center bg-gray-200" style="width: 200px; height: 200px;">
+                        <i class="fas fa-user-circle text-primary-blue text-8xl"></i>
+                    </div>
+                </div>
+                <div class="md:w-2/3 text-lg text-gray-700">
+                    <p class="mb-6">您好，我是林小明，一位在保險領域深耕 8 年的專業顧問。從業以來，我始終秉持著真誠與熱忱，致力於為每一位客戶提供最貼心、最適合的保障規劃。</p>
+                    <p class="mb-6">我的專業涵蓋了多元面向，無論是為您和家人建構堅實的家庭保障，協助您妥善規劃資產傳承，或是量身打造醫療與長期照顧保險，我都能運用豐富的實務經驗與專業知識，提供您全面的分析與建議。我深知保險不僅是一份契約，更是對未來的一份承諾與安心，因此我會耐心傾聽您的需求，深入了解您的家庭狀況與人生階段，為您繪製出專屬的保障藍圖。</p>
+                    <p class="mb-6">我持有人身保險業務員與投資型保險商品業務員雙證照，這不僅代表著專業上的肯定，更是我持續精進的動力。在複雜的保險商品中，我會用最淺顯易懂的方式為您解說，確保您在充分理解的前提下做出最適當的選擇。</p>
+                    <p class="mb-6">在協助客戶的這段旅程中，我見證了許多家庭因為完善的保險規劃，得以在面對人生挑戰時，依然能保有尊嚴與希望。您的信任是我最大的動力，期待能有機會與您聊聊，共同為您與家人的未來，築起一道堅實的防線。</p>
+
+                    <h3 class="text-2xl font-semibold text-primary-blue mt-8 mb-4">我的核心價值</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li><i class="fas fa-hand-holding-heart text-primary-blue mr-2"></i> 真誠服務，以客為尊</li>
+                        <li><i class="fas fa-lightbulb text-primary-blue mr-2"></i> 專業精進，持續學習</li>
+                        <li><i class="fas fa-users text-primary-blue mr-2"></i> 關係建立，長期陪伴</li>
+                        <li><i class="fas fa-shield-alt text-primary-blue mr-2"></i> 信任為本，保障承諾</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服務項目 (Services Section) -->
+    <section id="services" class="container mx-auto py-16 px-4 bg-primary-blue-lightest rounded-lg shadow-xl">
+        <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">服務項目</h2>
+        <p class="text-xl text-center text-gray-700 mb-10 max-w-3xl mx-auto">
+            在瞬息萬變的現代社會中，為自己與家人預備一份完善的保障，是愛與責任的體現。作為您的專業保險顧問，我致力於提供全面且個人化的保險規劃服務，幫助您構築安穩的未來。
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <!-- 保險種類列表 -->
+            <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-2 transition duration-300">
+                <i class="fas fa-umbrella text-primary-blue text-5xl mb-6 block text-center"></i>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">全方位保險種類</h3>
+                <ul class="space-y-4 text-gray-700">
+                    <li>
+                        <strong class="text-primary-blue">人壽保險：</strong> 為您的摯愛提供堅實的財務保障，確保在您缺席時，家庭生活品質不變，理想得以延續。
+                    </li>
+                    <li>
+                        <strong class="text-primary-blue">健康保險：</strong> 醫療費用日益增加。透過完整的健康險規劃，無論是門診、住院，甚至是重大疾病，都能讓您無後顧之憂地接受最佳治療。
+                    </li>
+                    <li>
+                        <strong class="text-primary-blue">傷害保險：</strong> 面對突如其來的意外事故，傷害保險能提供即時的經濟援助，減輕您與家庭的負擔。
+                    </li>
+                    <li>
+                        <strong class="text-primary-blue">財產保險：</strong> 保護您的重要資產免受突發損失，無論是房屋、汽車或其他重要財產，都能透過財產保險獲得妥善保障。
+                    </li>
+                    <li>
+                        <strong class="text-primary-blue">團體保險：</strong> 為企業或組織提供全面的員工保障方案。
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 專業規劃服務 -->
+            <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-2 transition duration-300">
+                <i class="fas fa-lightbulb text-primary-blue text-5xl mb-6 block text-center"></i>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">專業規劃服務</h3>
+                <ul class="space-y-4 text-gray-700">
+                    <li>
+                        <strong class="text-primary-blue">家庭整體保障配置：</strong> 仔細聆聽您的家庭狀況、成員結構與未來目標，為您與家人量身打造一套滴水不漏的整體保障方案，全面兼顧，讓您高枕無憂。
+                    </li>
+                    <li>
+                        <strong class="text-primary-blue">退休規劃：</strong> 透過穩健的保險工具，協助您提早為退休生活做好準備。無論是穩定的現金流，或是彈性的資產運用，都能幫助您在退休後依然能享有尊嚴、舒適的生活品質。
+                    </li>
+                    <li>
+                        <strong class="text-primary-blue">教育基金規劃：</strong> 為子女的未來教育做好儲備，確保他們能無後顧之憂地追求學業夢想。
+                    </li>
+                    <li>
+                        <strong class="text-primary-blue">財富傳承規劃：</strong> 協助您妥善安排資產的分配與移轉，確保您的財富能依循您的意願，順利傳承給下一代。
+                    </li>
+                    <li>
+                        <strong class="text-primary-blue">企業風險規劃：</strong> 為企業提供專業的風險評估與保險解決方案，保障企業營運的穩定性與永續發展。
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 產品特色與優勢 (範例) -->
+            <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-2 transition duration-300">
+                <i class="fas fa-handshake text-primary-blue text-5xl mb-6 block text-center"></i>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">產品特色與優勢</h3>
+                <ul class="space-y-4 text-gray-700">
+                    <li>
+                        <strong class="text-primary-blue">客製化方案：</strong> 根據您的個人需求與家庭狀況，量身打造最適合您的保險組合。
+                    </li>
+                    <li>
+                        <strong class="text-primary-blue">條款透明：</strong> 詳細解說保險條款，確保您充分理解保障內容與權益。
+                    </li>
+                    <li>
+                        <strong class="text-primary-blue">理賠協助：</strong> 在需要時提供專業的理賠諮詢與協助，讓您安心無虞。
+                    </li>
+                    <li>
+                        <strong class="text-primary-blue">長期陪伴：</strong> 不只銷售保單，更是您一生的保險夥伴，定期檢視保單，確保保障持續符合您的需求。
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p class="text-xl text-center text-gray-700">
+            我相信，保險不僅是風險的轉嫁，更是實現人生目標的重要基石。期待與您進一步交流，共同為您的安心未來努力。
+        </p>
+    </section>
+
+    <!-- 客戶見證/成功案例 (Testimonials Section) -->
+    <section id="testimonials" class="container mx-auto py-16 px-4">
+        <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">客戶見證 / 成功案例</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- 見證卡片 1 -->
+            <div class="bg-white p-8 rounded-lg shadow-md border-t-4 border-primary-blue relative">
+                <i class="fas fa-quote-left text-primary-blue text-3xl absolute top-4 left-4 opacity-20"></i>
+                <p class="text-gray-700 italic mb-6">
+                    「林顧問非常專業且細心，詳細解釋了每一項保險的細節。在一次意外中，他快速協助我完成理賠手續，讓我感受到了保險的真正價值。非常感謝！」
+                </p>
+                <div class="flex items-center">
+                    <!-- 客戶A圖示 -->
+                    <div class="w-12 h-12 rounded-full mr-4 border-2 border-primary-blue flex items-center justify-center bg-gray-200">
+                        <i class="fas fa-user text-primary-blue text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-gray-800">王先生</p>
+                        <p class="text-sm text-gray-500">科技業主管</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 見證卡片 2 -->
+            <div class="bg-white p-8 rounded-lg shadow-md border-t-4 border-primary-blue relative">
+                <i class="fas fa-quote-left text-primary-blue text-3xl absolute top-4 left-4 opacity-20"></i>
+                <p class="text-gray-700 italic mb-6">
+                    「透過林顧問的專業規劃，我的家庭保障更加完善。他不僅幫我們節省了保費，更讓我們對未來的退休生活充滿信心，非常推薦他的服務！」
+                </p>
+                <div class="flex items-center">
+                    <!-- 客戶B圖示 -->
+                    <div class="w-12 h-12 rounded-full mr-4 border-2 border-primary-blue flex items-center justify-center bg-gray-200">
+                        <i class="fas fa-user text-primary-blue text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-gray-800">陳太太</p>
+                        <p class="text-sm text-gray-500">家庭主婦</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center">
+            <h3 class="text-2xl font-bold text-primary-blue mb-6">成功案例分享</h3>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h4 class="text-xl font-semibold text-gray-800 mb-4">匿名案例：突發疾病的家庭支柱</h4>
+                <p class="text-gray-700 mb-4">
+                    一位40歲的家庭主婦，平時身體健康，卻突然罹患重大疾病。由於林顧問在事前協助她規劃了完善的醫療險與重大疾病險，在治療期間，保險金不僅支付了高昂的醫療費用，也彌補了家庭因她無法工作而造成的收入損失。這讓他們一家能夠專心面對病魔，而無需擔心經濟壓力。
+                </p>
+                <p class="text-right text-gray-600 italic">— 案例經客戶同意匿名分享，並保護隱私 —</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 保險知識/文章分享 (Knowledge Section) -->
+    <section id="knowledge" class="container mx-auto py-16 px-4 bg-primary-blue-lightest rounded-lg shadow-xl">
+        <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">保險知識 / 文章分享</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- 文章卡片 (家產風暴眼) -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-2 transition duration-300">
+                <div class="knowledge-icon-placeholder">
+                    <i class="fas fa-house-damage"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">家產風暴眼：愛、權謀與法律的隱形戰爭</h3>
+                <p class="text-gray-600 text-sm mb-3">發布日期：2024/06/17</p>
+                <p class="text-gray-700 mb-4 line-clamp-3">當財富成為試煉，您的家庭，能安然渡過嗎？深入解析家庭財產傳承中的挑戰與解決方案。</p>
+                <a href="https://yiwen-2.github.io/yiwen/lin.html#section1" target="_blank" class="text-primary-blue hover:underline font-semibold">閱讀更多 <i class="fas fa-arrow-right text-sm"></i></a>
+            </div>
+            <!-- 文章卡片 (市場常聽！) -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-2 transition duration-300">
+                <div class="knowledge-icon-placeholder">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">市場常聽！常看！常用！自我警惕，行銷賣點，是否，把自己賣了？</h3>
+                <p class="text-gray-600 text-sm mb-3">發布日期：2024/06/17</p>
+                <p class="text-gray-700 mb-4 line-clamp-3">探討保險行銷的常見手法，提醒從業人員自我警惕，避免過度推銷。</p>
+                <a href="https://yiwen1-2-3.github.io/yiwen.github.io/ppt.html" target="_blank" class="text-primary-blue hover:underline font-semibold">閱讀更多 <i class="fas fa-arrow-right text-sm"></i></a>
+            </div>
+            <!-- 文章卡片 (掌握您的保險權益) -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-2 transition duration-300">
+                <div class="knowledge-icon-placeholder">
+                    <i class="fas fa-book-reader"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">掌握您的保險權益，不容錯過的重要資訊！</h3>
+                <p class="text-gray-600 text-sm mb-3">發布日期：2024/06/17</p>
+                <p class="text-gray-700 mb-4 line-clamp-3">深入了解保險相關權益，幫助您做出明智的決策。</p>
+                <a href="https://yiwen1-2-3.github.io/yiwen.github.io/linlin.html" target="_blank" class="text-primary-blue hover:underline font-semibold">閱讀更多 <i class="fas fa-arrow-right text-sm"></i></a>
+            </div>
+            <!-- 文章卡片 (理財規劃新趨勢) -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-2 transition duration-300">
+                <div class="knowledge-icon-placeholder">
+                    <i class="fas fa-money-check-alt"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">理財規劃新趨勢：保險在資產配置中的關鍵角色</h3>
+                <p class="text-gray-600 text-sm mb-3">發布日期：2024/06/23</p>
+                <p class="text-gray-700 mb-4 line-clamp-3">探索如何將保險商品融入您的整體財務規劃，實現財富增長與風險管理。</p>
+                <a href="https://yiwen1-2-3.github.io/yiwen.github.io/new3.html" target="_blank" class="text-primary-blue hover:underline font-semibold">閱讀更多 <i class="fas fa-arrow-right text-sm"></i></a>
+            </div>
+            <!-- 文章卡片 (稅務規劃與保險) -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-2 transition duration-300">
+                <div class="knowledge-icon-placeholder">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">稅務規劃與保險：合法節稅的聰明策略</h3>
+                <p class="text-gray-600 text-sm mb-3">發布日期：2024/06/23</p>
+                <p class="text-gray-700 mb-4 line-clamp-3">了解保險商品在稅務規劃中的優勢，助您合法節省稅務負擔。</p>
+                <a href="https://yiwen1-2-3.github.io/yiwen.github.io/tax.html" target="_blank" class="text-primary-blue hover:underline font-semibold">閱讀更多 <i class="fas fa-arrow-right text-sm"></i></a>
+            </div>
+            <!-- 新增文章 (最新保險策略解析) -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-2 transition duration-300">
+                <div class="knowledge-icon-placeholder">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">最新保險策略解析：掌握未來保障</h3>
+                <p class="text-gray-600 text-sm mb-3">發布日期：2024/06/24</p>
+                <p class="text-gray-700 mb-4 line-clamp-3">深入探討當前最新的保險策略，幫助您規劃更全面的未來保障。</p>
+                <a href="https://yiwen1-2-3.github.io/yiwen.github.io/tax2.html" target="_blank" class="text-primary-blue hover:underline font-semibold">閱讀更多 <i class="fas fa-arrow-right text-sm"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常見問題解答 (FAQ Section) -->
+    <section id="faq" class="container mx-auto py-16 px-4">
+        <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">常見問題解答 (FAQ)</h2>
+        <div class="max-w-4xl mx-auto space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 bg-gray-50 hover:bg-gray-100 transition duration-300 focus:outline-none">
+                    <span>1. 什麼是「人身保險」？它包含了哪些主要項目？</span>
+                    <i class="fas fa-chevron-down text-primary-blue transform transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content p-6 text-gray-700 hidden">
+                    <p>人身保險泛指保障「人」的生命與身體的保險，主要涵蓋壽險、健康險和傷害險。壽險保障身故或全殘，健康險保障醫療行為和疾病，傷害險則針對意外事故造成的傷害提供保障。它們共同為個人和家庭提供全面的風險防護。</p>
+                </div>
+            </div>
+            <!-- FAQ Item 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 bg-gray-50 hover:bg-gray-100 transition duration-300 focus:outline-none">
+                    <span>2. 「家庭保障規劃」為什麼重要？一般家庭應該如何著手？</span>
+                    <i class="fas fa-chevron-down text-primary-blue transform transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content p-6 text-gray-700 hidden">
+                    <p>家庭保障規劃是確保家庭成員在面對意外、疾病或身故時，仍能維持原有生活品質的關鍵。重要性在於能轉嫁風險、穩定家庭財務，並保障子女教育和配偶生活。著手規劃時，建議先評估家庭的經濟狀況、成員組成、負債情形，並考量未來目標（如子女教育、退休），再依序配置壽險、醫療險、意外險等。</p>
+                </div>
+            </div>
+            <!-- FAQ Item 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 bg-gray-50 hover:bg-gray-100 transition duration-300 focus:outline-none">
+                    <span>3. 「資產傳承」與保險有什麼關係？它可以如何協助資產傳承？</span>
+                    <i class="fas fa-chevron-down text-primary-blue transform transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content p-6 text-gray-700 hidden">
+                    <p>資產傳承是將個人財產順利、有效率地移轉給指定繼承人。保險在資產傳承中扮演重要角色，主要體現在指定受益人、免稅效益（在一定限額內）、提供流動資金繳納遺產稅，以及避免遺產爭議等。透過保險，可以確保資產按照您的意願分配，並減少不必要的稅務負擔。</p>
+                </div>
+            </div>
+            <!-- FAQ Item 4 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 bg-gray-50 hover:bg-gray-100 transition duration-300 focus:outline-none">
+                    <span>4. 醫療保險有哪些常見種類？我該如何選擇適合自己的？</span>
+                    <i class="fas fa-chevron-down text-primary-blue transform transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content p-6 text-gray-700 hidden">
+                    <p>醫療保險常見種類包括實支實付型醫療險、日額型醫療險和重大疾病險/特定傷病險。實支實付依據實際醫療花費核銷，適合高額醫療費用的風險轉嫁。日額型則按住院天數給付固定金額。重大疾病險在罹患特定重大疾病時一次性給付保險金。選擇時，應考量自身的預算、家族病史、對醫療品質的要求，以及健保給付範圍，並建議以實支實付為主要規劃核心。</p>
+                </div>
+            </div>
+            <!-- FAQ Item 5 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 bg-gray-50 hover:bg-gray-100 transition duration-300 focus:outline-none">
+                    <span>5. 「長期照顧保險」（長照險）是什麼？什麼時候該開始規劃？</span>
+                    <i class="fas fa-chevron-down text-primary-blue transform transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content p-6 text-gray-700 hidden">
+                    <p>長期照顧保險主要保障被保險人因疾病、意外或年老導致身體失能或認知障礙，需要長期接受照護時所產生的費用。這些費用可能包括居家照護、機構安養或醫療支出等。建議在50歲左右或更早開始規劃，因為年紀越大保費越高，且身體狀況可能影響核保。提早規劃能鎖定較低的保費，並確保未來有足夠的經濟能力面對長照需求。</p>
+                </div>
+            </div>
+            <!-- FAQ Item 6 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 bg-gray-50 hover:bg-gray-100 transition duration-300 focus:outline-none">
+                    <span>6. 我已經有公司的團體保險了，還需要自己買個人保險嗎？</span>
+                    <i class="fas fa-chevron-down text-primary-blue transform transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content p-6 text-gray-700 hidden">
+                    <p>是的，非常需要。公司的團體保險通常保障範圍有限，保額可能不足，且離職後保障就會中斷。個人保險可以作為團險的補充，提供更全面、更長期的保障，並且可以根據您的個人需求和家庭情況量身訂做。</p>
+                </div>
+            </div>
+            <!-- FAQ Item 7 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 bg-gray-50 hover:bg-gray-100 transition duration-300 focus:outline-none">
+                    <span>7. 保險的保費會隨著年齡增長而增加嗎？為什麼？</span>
+                    <i class="fas fa-chevron-down text-primary-blue transform transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content p-6 text-gray-700 hidden">
+                    <p>是的，大部分保險的保費會隨著年齡增長而增加，尤其是壽險和健康險。主要原因是隨著年齡增長，罹患疾病或發生事故的風險也會相對提高，保險公司承擔的風險成本隨之增加，自然會反映在保費上。因此，提早規劃通常能享有較低的保費。</p>
+                </div>
+            </div>
+            <!-- FAQ Item 8 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 bg-gray-50 hover:bg-gray-100 transition duration-300 focus:outline-none">
+                    <span>8. 如果我身體有些小毛病，還能買保險嗎？會不會被拒保？</span>
+                    <i class="fas fa-chevron-down text-primary-blue transform transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content p-6 text-gray-700 hidden">
+                    <p>身體有些小毛病不一定會被拒保，但保險公司會進行健康告知與核保審查。根據病況的嚴重程度和類型，保險公司可能會採取加費承保、批註除外（特定疾病不予理賠）、延期承保或拒保等方式。務必誠實告知，以免未來影響理賠權益。</p>
+                </div>
+            </div>
+            <!-- FAQ Item 9 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 bg-gray-50 hover:bg-gray-100 transition duration-300 focus:outline-none">
+                    <span>9. 保險規劃是否需要定期檢視？多久檢視一次比較好？</span>
+                    <i class="fas fa-chevron-down text-primary-blue transform transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content p-6 text-gray-700 hidden">
+                    <p>保險規劃確實需要定期檢視。建議至少每2-3年檢視一次，或在發生人生重大事件時（如結婚、生子、購屋、換工作、收入變動等）立即檢視。因為人生階段的變化會直接影響您的保障需求和財務狀況，定期檢視能確保您的保險配置始終符合當前所需。</p>
+                </div>
+            </div>
+            <!-- FAQ Item 10 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 bg-gray-50 hover:bg-gray-100 transition duration-300 focus:outline-none">
+                    <span>10. 除了提供保障，保險還有其他功能嗎？</span>
+                    <i class="fas fa-chevron-down text-primary-blue transform transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content p-6 text-gray-700 hidden">
+                    <p>除了提供風險保障，保險還有多重功能。例如，儲蓄型保險或投資型保險可以兼具資產累積的功能；特定保險商品在身故後可以提供一筆指定金額的現金，用於繳納遺產稅或其他費用，協助資產順利移轉；此外，保險的強制儲蓄特性也有助於紀律性地累積財富。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡方式 (Contact Section) -->
+    <section id="contact" class="container mx-auto py-16 px-4 bg-primary-blue-lightest rounded-lg shadow-xl">
+        <h2 class="text-4xl font-bold text-center text-primary-blue mb-12">聯絡方式</h2>
+        <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md flex flex-col md:flex-row items-center justify-around text-center md:text-left">
+            <div class="mb-8 md:mb-0">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">歡迎與我聯繫</h3>
+                <p class="text-gray-700 mb-2"><i class="fas fa-phone-alt text-primary-blue mr-3"></i> 手機：09XX-XXX-XXX (範例)</p>
+                <p class="text-700 mb-2"><i class="fas fa-envelope text-primary-blue mr-3"></i> Email：your.email@example.com (範例)</p>
+                <p class="text-gray-700 mb-2"><i class="fab fa-line text-primary-blue mr-3"></i> Line ID：@yourlineid (範例)</p>
+                <div class="flex justify-center md:justify-start space-x-6 mt-6">
+                    <a href="https://www.facebook.com/MarketingDataScienceTMR/?locale=zh_TW" target="_blank" class="text-primary-blue hover:text-blue-700 text-3xl transition duration-300" aria-label="Facebook"><i class="fab fa-facebook-square"></i></a>
+                    <a href="https://www.instagram.com/ai_learning_ark/" target="_blank" class="text-primary-blue hover:text-blue-700 text-3xl transition duration-300" aria-label="Instagram"><i class="fab fa-instagram-square"></i></a>
+                    <!-- 您可以添加其他社群媒體連結 -->
+                </div>
+            </div>
+            <div class="border-t pt-8 md:border-t-0 md:border-l md:pl-8 md:pt-0 border-gray-200">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">服務說明</h3>
+                <p class="text-gray-700 mb-4"><i class="far fa-clock text-primary-blue mr-3"></i> 服務時間：週一至週五 09:00 - 18:00</p>
+                <p class="text-gray-700 mb-6"><i class="fas fa-calendar-alt text-primary-blue mr-3"></i> 預約方式：請透過電話、Line 或 Email 提前預約，我將盡快與您聯繫。</p>
+                <!-- 線上預約按鈕 -->
+                <a href="https://line.me/ti/p/xG7_z0P3KT" target="_blank" class="inline-block bg-primary-blue text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-primary-blue-dark transition duration-300 transform hover:scale-105">
+                    線上預約諮詢
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁腳 (Footer) -->
+    <footer class="bg-gray-800 text-white py-8 px-4 mt-16 rounded-t-lg shadow-inner">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 林小明 保險顧問. 版權所有.</p>
+            <p class="text-sm mt-2">
+                <a href="#" class="text-gray-400 hover:text-primary-blue mx-2">隱私權政策</a> |
+                <a href="#" class="text-gray-400 hover:text-primary-blue mx-2">服務條款</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- 返回頂部按鈕 -->
+    <button id="scrollToTopBtn" title="返回頂部">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Update active class
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Highlight active nav link on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) { // Adjust offset for better highlighting
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Show/hide scroll to top button
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        });
+
+        // Scroll to top button functionality
+        document.getElementById("scrollToTopBtn").addEventListener("click", function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+
+        // FAQ Accordion functionality
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+
+                // Close all other open accordions
+                document.querySelectorAll('.faq-content').forEach(otherContent => {
+                    if (otherContent !== content && !otherContent.classList.contains('hidden')) {
+                        otherContent.classList.add('hidden');
+                        otherContent.previousElementSibling.querySelector('i').classList.remove('rotate-180');
+                    }
+                });
+
+                // Toggle current accordion
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Initialize active nav link on page load for the hero section
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroLink = document.querySelector('nav a[href="#hero"]');
+            if (heroLink) {
+                heroLink.classList.add('active');
+            }
+        });
+
+    </script>
+</body>
+</html>
