@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>保險迷局：因果追擊 - 互動式保險資訊網頁</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for general text, and Cinzel Decorative for titles to give a movie feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom Colors & Variables */
+        :root {
+            --color-dark-blue: #0A192F;
+            --color-deep-red: #8B0000;
+            --color-gold: #FFD700;
+            --color-light-gray: #CCD6F6;
+            --color-accent-blue: #64FFDA;
+            --color-dim-gray: #8892B0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-dark-blue);
+            color: var(--color-light-gray);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel Decorative', cursive;
+            color: var(--color-gold);
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Hero Section Specific Styles */
+        .hero-bg {
+            /* Removed background-image */
+            background-color: var(--color-dark-blue); /* Fallback to solid color */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cta-button {
+            background-color: var(--color-gold);
+            color: var(--color-dark-blue);
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            border: 2px solid var(--color-gold);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--color-gold);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 1rem;
+            background-color: rgba(10, 25, 47, 0.95); /* Slightly transparent dark background */
+            margin-top: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Card styles for various sections */
+        .card {
+            background-color: #1A2A40;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--color-gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #1A2A40;
+            margin: auto;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            animation: zoomIn 0.3s ease-out;
+            border: 2px solid var(--color-gold);
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-button {
+            color: var(--color-gold);
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--color-accent-blue);
+            transform: scale(1.1);
+        }
+
+        /* Accordion styles */
+        .accordion-item {
+            background-color: #1A2A40;
+            border-radius: 0.75rem;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .accordion-header {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--color-gold);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        .accordion-header:hover {
+            background-color: #2A3B53;
+        }
+
+        .accordion-content {
+            padding: 1.5rem;
+            background-color: #0F1D30;
+            color: var(--color-light-gray);
+            display: none; /* Hidden by default */
+        }
+        .accordion-content.active {
+            display: block;
+        }
+        .accordion-header i {
+            transition: transform 0.3s ease;
+        }
+        .accordion-header.active i {
+            transform: rotate(180deg);
+        }
+
+        /* Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background-color: var(--color-accent-blue);
+            width: 0%;
+            z-index: 99;
+            box-shadow: 0 0 10px var(--color-accent-blue);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- 導航欄 (Navigation Bar) -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-dark-blue to-transparent py-4 px-8 text-lg font-bold text-light-gray">
+        <ul class="flex flex-wrap justify-center gap-x-8 gap-y-2">
+            <li><a href="#hero" class="hover:text-gold transition-colors duration-300">核心迷團</a></li>
+            <li><a href="#legal-principles" class="hover:text-gold transition-colors duration-300">法律角色</a></li>
+            <li><a href="#contract-limits" class="hover:text-gold transition-colors duration-300">劇情反轉</a></li>
+            <li><a href="#case-studies" class="hover:text-gold transition-colors duration-300">評議檔案</a></li>
+            <li><a href="#causation-proof" class="hover:text-gold transition-colors duration-300">關鍵證據</a></li>
+            <li><a href="#legal-analysis" class="hover:text-gold transition-colors duration-300">法律解密</a></li>
+            <li><a href="#consumer-advice" class="hover:text-gold transition-colors duration-300">權益建議</a></li>
+        </ul>
+    </nav>
+
+    <!-- 區塊一：【預告片：核心迷團】首頁視覺衝擊 -->
+    <section id="hero" class="hero-bg flex flex-col items-center justify-center min-h-screen text-center px-4 py-20">
+        <h1 class="text-6xl md:text-8xl font-black mb-4 tracking-wider leading-tight animate-pulse" style="color: var(--color-gold);">
+            保險迷局：因果追擊
+        </h1>
+        <p class="text-xl md:text-3xl font-light mb-8 text-light-gray" style="text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);">
+            違反告知義務？理賠能否破局？
+        </p>
+        <!-- Removed contract image div -->
+        <button onclick="document.getElementById('legal-principles').scrollIntoView({ behavior: 'smooth' });" class="cta-button">
+            展開調查 <i class="fas fa-arrow-right ml-2"></i>
+        </button>
+    </section>
+
+    <!-- 區塊二：【角色介紹：法律核心人物】 -->
+    <section id="legal-principles" class="max-w-7xl mx-auto px-4 py-16">
+        <h2 class="text-4xl md:text-5xl text-center mb-12 tracking-wide">核心法律原則：誰是關鍵角色？</h2>
+        <div class="flex flex-col md:flex-row justify-center gap-8">
+            <!-- 基本原則卡片 -->
+            <div class="card w-full md:w-1/2" data-modal-target="principle-modal">
+                <h3 class="text-3xl font-bold mb-4 text-gold text-center">基本原則：無因果，仍理賠！</h3>
+                <p class="text-lg text-dim-gray text-center">要保人投保時違反告知義務，但保險事故的發生與其未告知或不實說明的事項之間無因果關係時，保險公司仍應負擔理賠責任。</p>
+                <div class="flex justify-center mt-6">
+                    <i class="fas fa-balance-scale-left text-accent-blue text-6xl"></i>
+                </div>
+            </div>
+            <!-- 法律依據卡片 -->
+            <div class="card w-full md:w-1/2" data-modal-target="law-basis-modal">
+                <h3 class="text-3xl font-bold mb-4 text-gold text-center">法律依據：《保險法》64條2項但書</h3>
+                <p class="text-lg text-dim-gray text-center">「但要保人證明危險之發生未基於其說明或未說明之事實時，不在此限。」</p>
+                <div class="flex justify-center mt-6">
+                    <i class="fas fa-gavel text-red-700 text-6xl"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 區塊三：【劇情反轉：契約解除權的限制】 -->
+    <section id="contract-limits" class="max-w-7xl mx-auto px-4 py-16">
+        <h2 class="text-4xl md:text-5xl text-center mb-12 tracking-wide">劇情反轉：保險公司的解除權限？</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- 解除權之行使前提 -->
+            <div class="card flex flex-col items-center text-center" data-modal-target="premise-modal">
+                <div class="text-6xl text-accent-blue mb-4"><i class="fas fa-scroll"></i></div>
+                <h3 class="text-2xl font-bold mb-2 text-gold">第一幕：解除權之行使前提</h3>
+                <p class="text-dim-gray">未告知事項需足以變更或減少保險人對於危險之估計。</p>
+                <button class="mt-4 text-gold hover:text-accent-blue transition-colors duration-300">詳情</button>
+            </div>
+            <!-- 因果關係不存在之效果 -->
+            <div class="card flex flex-col items-center text-center" data-modal-target="no-causation-effect-modal">
+                <div class="text-6xl text-red-500 mb-4"><i class="fas fa-ban"></i></div>
+                <h3 class="text-2xl font-bold mb-2 text-gold">第二幕：因果關係不存在之效果</h3>
+                <p class="text-dim-gray">若無因果關係，保險公司不得解除契約，仍應理賠。</p>
+                <button class="mt-4 text-gold hover:text-accent-blue transition-colors duration-300">詳情</button>
+            </div>
+            <!-- 解除契約前已發生事故之理賠 -->
+            <div class="card flex flex-col items-center text-center" data-modal-target="pre-termination-claim-modal">
+                <div class="text-6xl text-green-500 mb-4"><i class="fas fa-hand-holding-usd"></i></div>
+                <h3 class="text-2xl font-bold mb-2 text-gold">第三幕：解除契約前已發生事故之理賠</h3>
+                <p class="text-dim-gray">即使保險人有權解除，若事故與未告知事項無關，仍應理賠。</p>
+                <button class="mt-4 text-gold hover:text-accent-blue transition-colors duration-300">詳情</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 區塊四：【案件檔案：評議中心案例解析】 -->
+    <section id="case-studies" class="max-w-7xl mx-auto px-4 py-16">
+        <h2 class="text-4xl md:text-5xl text-center mb-12 tracking-wide">金融消費評議中心：真實案例檔案</h2>
+        <p class="text-center text-lg mb-8 text-dim-gray">以下案例參考「財團法人金融消費評議中心」之評議書 (實際內容以各該評議書為準)。</p>
+        
+        <h3 class="text-3xl font-bold text-gold mb-6 text-center">共通見解：</h3>
+        <div class="bg-gray-800 p-8 rounded-lg mb-12 border border-gold border-opacity-30 shadow-lg">
+            <p class="text-xl text-center italic text-light-gray">
+                多數評議案例支持，若要保人違反告知義務，但理賠事故與未告知事項無因果關係時，保險公司仍應理賠。
+            </p>
+            <div class="flex justify-center mt-6">
+                <i class="fas fa-chart-line text-accent-blue text-5xl"></i>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- 案例一 -->
+            <div class="card case-card" data-case-id="case1">
+                <h3 class="text-xl font-bold text-gold mb-2">案例一：肝功能異常與心肌梗塞</h3>
+                <p class="text-dim-gray">小陳投保醫療險時未告知輕微肝功能異常，後因急性心肌梗塞住院。</p>
+                <div class="flex justify-center mt-4 text-5xl text-red-400">
+                    <i class="fas fa-heartbeat"></i> <i class="fas fa-link-slash mx-2 text-blue-400"></i> <i class="fas fa-liver"></i>
+                </div>
+            </div>
+            <!-- 案例二 -->
+            <div class="card case-card" data-case-id="case2">
+                <h3 class="text-xl font-bold text-gold mb-2">案例二：下顎骨折與甲狀腺癌</h3>
+                <p class="text-dim-gray">張先生投保時未告知曾因車禍致下顎骨折住院，後診斷罹患甲狀腺惡性腫瘤。</p>
+                <div class="flex justify-center mt-4 text-5xl text-purple-400">
+                    <i class="fas fa-bone"></i> <i class="fas fa-link-slash mx-2 text-blue-400"></i> <i class="fas fa-capsules"></i>
+                </div>
+            </div>
+            <!-- 案例三 -->
+            <div class="card case-card" data-case-id="case3">
+                <h3 class="text-xl font-bold text-gold mb-2">案例三：精神分裂症與意外溺斃</h3>
+                <p class="text-dim-gray">李女士投保傷害險時未告知曾因精神分裂症就醫，後因騎機車自摔溺斃。</p>
+                <div class="flex justify-center mt-4 text-5xl text-yellow-400">
+                    <i class="fas fa-brain"></i> <i class="fas fa-link-slash mx-2 text-blue-400"></i> <i class="fas fa-motorcycle"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 區塊五：【關鍵證據：因果判斷與舉證責任】 -->
+    <section id="causation-proof" class="max-w-7xl mx-auto px-4 py-16">
+        <h2 class="text-4xl md:text-5xl text-center mb-12 tracking-wide">關鍵證據：誰來證明因果？</h2>
+        <div class="flex flex-col md:flex-row justify-center items-start gap-8">
+            <!-- 保險公司之舉證責任 -->
+            <div class="card w-full md:w-1/2 relative p-8">
+                <h3 class="text-3xl font-bold text-gold mb-4 text-center">保險公司：證明足以變更估計！</h3>
+                <p class="text-lg text-dim-gray mb-4">需證明要保人違反告知義務，且該違反足以變更或減少其對危險的估計。</p>
+                <ul class="list-disc list-inside text-light-gray space-y-2">
+                    <li><i class="fas fa-check-circle text-accent-blue mr-2"></i> 證明要保人違反告知</li>
+                    <li><i class="fas fa-check-circle text-accent-blue mr-2"></i> 證明足以影響風險評估</li>
+                </ul>
+                <div class="flex justify-center mt-6">
+                    <i class="fas fa-building text-blue-500 text-7xl opacity-70"></i>
+                </div>
+            </div>
+            
+            <!-- 中間分隔與天秤 -->
+            <div class="md:w-auto flex flex-col items-center justify-center py-8 md:py-0">
+                <div class="text-8xl text-gold animate-bounce-slow" style="animation-delay: 0.5s;">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <p class="text-xl text-gold mt-4 text-center">實質或醫學上關聯性</p>
+            </div>
+
+            <!-- 要保人/受益人之舉證責任 -->
+            <div class="card w-full md:w-1/2 relative p-8">
+                <h3 class="text-3xl font-bold text-gold mb-4 text-center">要保人：證明事故與其無因果！</h3>
+                <p class="text-lg text-dim-gray mb-4">若要主張保險公司不得解除契約或應予理賠，需證明保險事故的發生與未告知或不實說明的事項「無因果關係」。</p>
+                <p class="text-light-gray font-semibold mb-2">建議提供證據：</p>
+                <ul class="list-disc list-inside text-light-gray space-y-2">
+                    <li><i class="fas fa-file-medical text-accent-blue mr-2"></i> 相關病歷</li>
+                    <li><i class="fas fa-file-alt text-accent-blue mr-2"></i> 診斷證明</li>
+                    <li><i class="fas fa-user-md text-accent-blue mr-2"></i> 第二醫療意見</li>
+                </ul>
+                <div class="flex justify-center mt-6">
+                    <i class="fas fa-user-shield text-green-500 text-7xl opacity-70"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 區塊六：【解密手冊：法律條文深度解析】 -->
+    <section id="legal-analysis" class="max-w-7xl mx-auto px-4 py-16">
+        <h2 class="text-4xl md:text-5xl text-center mb-12 tracking-wide">解密手冊：法律條文詳盡剖析</h2>
+        
+        <div class="accordion">
+            <!-- 保險法第64條第1項 -->
+            <div class="accordion-item">
+                <div class="accordion-header flex justify-between items-center">
+                    《保險法》第64條第1項 <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p class="mb-2 text-base md:text-lg"><strong class="text-gold">條文內容：</strong>「訂立契約時，要保人對於保險人之書面詢問，應據實說明。」</p>
+                    <p class="text-base md:text-lg"><strong class="text-accent-blue">白話註解：</strong>簽訂保險契約時，要保人對於保險公司以書面形式提出的問題，有義務<strong class="text-gold">誠實且完整地回答</strong>。</p>
+                </div>
+            </div>
+            <!-- 保險法第64條第2項 -->
+            <div class="accordion-item">
+                <div class="accordion-header flex justify-between items-center">
+                    《保險法》第64條第2項 <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p class="mb-2 text-base md:text-lg"><strong class="text-gold">條文內容：</strong>「要保人有為隱匿或遺漏不為說明，或為不實之說明，足以變更或減少保險人對於危險之估計者，保險人得解除契約；其危險發生後亦同。但要保人證明危險之發生未基於其說明或未說明之事實時，不在此限。」</p>
+                    <p class="text-base md:text-lg"><strong class="text-accent-blue">白話註解：</strong>如果要保人故意隱瞞、沒有說明，或提供了不正確的資訊，而這些資訊<strong class="text-gold">足以影響保險公司對承保風險的判斷</strong>，那麼保險公司可以解除這個保險契約，即使保險事故已經發生了也可以解除。然而，有一個例外情況：如果<strong class="text-gold">「要保人」能夠證明發生的保險事故，跟那些他沒有說明或說明不實的事情「沒有關係」</strong>，那麼保險公司就不能解除契約。</p>
+                </div>
+            </div>
+            <!-- 保險法第64條第3項 -->
+            <div class="accordion-item">
+                <div class="accordion-header flex justify-between items-center">
+                    《保險法》第64條第3項 <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p class="mb-2 text-base md:text-lg"><strong class="text-gold">條文內容：</strong>「前項解除契約權，自保險人知有解除之原因後，經過一個月不行使而消滅；或契約訂立後經過二年，即有可以解除之原因，亦不得解除契約。」</p>
+                    <p class="text-base md:text-lg"><strong class="text-accent-blue">白話註解：</strong>保險公司如果發現有可以解除契約的原因（例如要保人違反告知義務），必須在知道後<strong class="text-gold">一個月內</strong>行使解除權，否則就不能再解約。另外，從契約訂立開始算起，如果<strong class="text-gold">超過兩年</strong>，即使有可以解約的原因，保險公司也不能再解除契約了。這是一個保護要保人的時效規定。</p>
+                </div>
+            </div>
+            <!-- 金融消費者保護法第20條第1項 -->
+            <div class="accordion-item">
+                <div class="accordion-header flex justify-between items-center">
+                    《金融消費者保護法》第20條第1項 (公平合理原則) <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p class="mb-2 text-base md:text-lg"><strong class="text-gold">條文內容：</strong>「爭議處理機構處理評議事件，應由評議委員會三人以上單數委員評議，並由委員互選一人為主席。評議委員會應有符合第七條第一項資格之委員二分之一以上出席，始得開會；應有出席委員二分之一以上同意，始得決議。但有關重大金融消費爭議事件或本法或其他法律另有規定者，不在此限。」</p>
+                    <p class="text-base md:text-lg"><strong class="text-accent-blue">文件提及之「公平合理」原則適用：</strong>雖然第20條第1項主要規範評議程序，但<strong class="text-gold">「公平合理」原則是貫穿《金融消費者保護法》及金融消費評議制度的核心精神</strong>。評議中心在處理違反告知義務與因果關係的爭議時，會在此原則下，綜合考量所有事證，以求衡平雙方利益。</p>
+                    <p class="text-base md:text-lg mt-2"><strong class="text-accent-blue">白話註解：</strong>金融消費評議中心在處理金融消費糾紛時，必須秉持<strong class="text-gold">公平合理的態度</strong>，仔細考量每一個案件的具體情況來做出判斷。這意味著評議中心在面對複雜的因果關係認定時，會在法律框架下，充分考量所有證據，力求做出對金融消費者相對有利的判斷，尤其是在資訊不對等的情況下。</p>
+                    <div class="flex justify-center mt-4">
+                        <i class="fas fa-balance-scale text-gold text-7xl animate-pulse"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 區塊七：【結局反思：消費者保護與建議】 -->
+    <section id="consumer-advice" class="max-w-7xl mx-auto px-4 py-16">
+        <h2 class="text-4xl md:text-5xl text-center mb-12 tracking-wide">結局反思：消費者的權益與未來</h2>
+        
+        <div class="bg-gray-900 p-8 rounded-lg mb-12 border border-blue-500 border-opacity-30 shadow-lg text-center">
+            <p class="text-xl italic text-light-gray mb-4">
+                金融消費者對於應告知事項的範圍、醫學術語的理解可能有限，易導致非故意的告知疏漏。
+            </p>
+            <p class="text-xl italic text-light-gray mb-4">
+                保險契約為最大誠信契約，雙方均應本誠信履行。避免因輕微或無關的告知瑕疵導致保險公司全面免責。
+            </p>
+            <p class="text-xl italic text-light-gray mb-4">
+                過於嚴苛地解釋告知義務，可能損害善意消費者的權益。
+            </p>
+            <p class="text-xl italic text-light-gray">
+                金融消費評議機制體現對處於資訊或資源相對弱勢一方的金融消費者的保護。
+            </p>
+        </div>
+
+        <h3 class="text-3xl font-bold text-gold mb-8 text-center">重要觀念與建議：</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- 強化告知義務宣導 -->
+            <div class="card advice-card">
+                <i class="fas fa-bullhorn text-accent-blue text-5xl mb-4"></i>
+                <h4 class="text-xl font-bold text-gold mb-2">強化告知義務宣導</h4>
+                <p class="text-sm text-dim-gray">保險公司應以更清晰、易懂的方式向消費者說明告知義務的範圍。</p>
+            </div>
+            <!-- 保險業務員之專業與責任 -->
+            <div class="card advice-card">
+                <i class="fas fa-handshake text-green-500 text-5xl mb-4"></i>
+                <h4 class="text-xl font-bold text-gold mb-2">業務員專業與責任</h4>
+                <p class="text-sm text-dim-gray">業務員應具備專業素養與誠信，正確解釋告知事項，避免誤導。</p>
+            </div>
+            <!-- 個案判斷之彈性 -->
+            <div class="card advice-card">
+                <i class="fas fa-gavel text-red-500 text-5xl mb-4"></i>
+                <h4 class="text-xl font-bold text-gold mb-2">個案判斷之彈性</h4>
+                <p class="text-sm text-dim-gray">不宜一概而論，應考量未告知事項的性質、嚴重性等因素。</p>
+            </div>
+            <!-- 金融消費評議中心之持續作用 -->
+            <div class="card advice-card">
+                <i class="fas fa-shield-alt text-yellow-500 text-5xl mb-4"></i>
+                <h4 class="text-xl font-bold text-gold mb-2">評議中心持續作用</h4>
+                <p class="text-sm text-dim-gray">評議中心引入專業醫療意見，平衡保險公司與消費者權益。</p>
+            </div>
+        </div>
+
+        <div class="text-center mt-20 text-light-gray text-2xl italic animate-pulse">
+            您的權益，值得守護！
+        </div>
+    </section>
+
+    <!-- Modal for Basic Principle -->
+    <div id="principle-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="text-4xl text-gold mb-6 text-center">核心原則：無因果，仍理賠！</h3>
+            <p class="mb-4 text-light-gray text-lg">
+                要保人投保時違反告知義務，但保險事故的發生與其未告知或不實說明的事項之間無因果關係時，保險公司仍應負擔理賠責任。
+            </p>
+            <p class="mb-4 text-light-gray text-lg">
+                這意味著，即使您在投保時有疏漏，只要保險事故的發生與您未告知的事項沒有實質上的關聯，保險公司就不能以此為由拒絕您的理賠申請。
+            </p>
+            <p class="text-accent-blue text-xl font-bold italic text-center">
+                理解因果關係是關鍵！
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal for Law Basis -->
+    <div id="law-basis-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="text-4xl text-gold mb-6 text-center">法律依據：《保險法》第64條第2項但書</h3>
+            <p class="mb-4 text-light-gray text-lg">
+                <strong class="text-gold">條文原文：</strong>「但要保人證明危險之發生未基於其說明或未說明之事實時，不在此限。」
+            </p>
+            <p class="mb-4 text-light-gray text-lg">
+                <strong class="text-accent-blue">白話註解：</strong>
+                即使要保人沒有誠實告知某些情況，但如果能證明發生的保險事故與這些未告知的情況無關，保險公司仍然不能以此為理由拒絕理賠或解除契約。
+            </p>
+            <p class="text-light-gray text-xl font-bold italic text-center">
+                這是保護要保人權益的重要條款！
+            </p>
+        </div>
+    </div>
+
+    <!-- Modals for Contract Limits Section -->
+    <div id="premise-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="text-4xl text-gold mb-6 text-center">解除權之行使前提：何種情況下保險公司能解除契約？</h3>
+            <p class="mb-4 text-light-gray text-lg">
+                保險公司因要保人違反告知義務而欲解除保險契約，必須該未告知事項<strong class="text-gold">足以變更或減少保險人對於危險之估計</strong>。
+            </p>
+            <p class="mb-4 text-light-gray text-lg">
+                換句話說，如果未告知的資訊並不會顯著影響保險公司對風險的判斷（例如不影響保費或承保與否），保險公司則不能輕易解除契約。
+            </p>
+            <p class="text-light-gray text-lg italic"><strong class="text-accent-blue">《保險法》第64條第2項本文：</strong>「要保人有為隱匿或遺漏不為說明，或為不實之說明，足以變更或減少保險人對於危險之估計者，保險人得解除契約；其危險發生後亦同。」</p>
+        </div>
+    </div>
+
+    <div id="no-causation-effect-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="text-4xl text-gold mb-6 text-center">因果關係不存在之效果：契約仍有效！</h3>
+            <p class="mb-4 text-light-gray text-lg">
+                若要保人能證明保險事故的發生與其未告知或不實說明的事項之間<strong class="text-gold">「無因果關係」</strong>，則保險公司不得解除契約，對於已發生的保險事故應負理賠責任。
+            </p>
+            <p class="mb-4 text-light-gray text-lg">
+                這是《保險法》第64條第2項但書的關鍵作用，保護了善意的要保人，即使有告知上的疏漏，也不會因此完全失去保障。
+            </p>
+        </div>
+    </div>
+
+    <div id="pre-termination-claim-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="text-4xl text-gold mb-6 text-center">解除契約前已發生事故之理賠：事故時間點很重要！</h3>
+            <p class="mb-4 text-light-gray text-lg">
+                即使保險人有權解除契約，若理賠事故的發生與未告知事項<strong class="text-gold">無因果關係</strong>，保險人仍應就解除契約前已發生的保險事故負理賠責任。
+            </p>
+            <p class="mb-4 text-light-gray text-lg">
+                這強調了事故發生時的狀況，而非契約解除與否。只要事故與未告知事項無關，即使之後契約被解除，之前的理賠仍應被保障。
+            </p>
+        </div>
+    </div>
+
+    <!-- Modals for Case Studies -->
+    <div id="case-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="text-4xl text-gold mb-6 text-center" id="case-modal-title"></h3>
+            <p class="text-light-gray text-lg mb-4"><strong class="text-accent-blue">案情簡述：</strong> <span id="case-modal-description"></span></p>
+            <p class="text-light-gray text-lg mb-4"><strong class="text-accent-blue">關鍵疑點：</strong> <span id="case-modal-question"></span></p>
+            <p class="text-light-gray text-lg mb-4"><strong class="text-accent-blue">評議結果：</strong> <span id="case-modal-resolution" class="font-bold text-green-400"></span></p>
+            <p class="text-light-gray text-lg mb-4"><strong class="text-accent-blue">評議解析：</strong> <span id="case-modal-analysis"></span></p>
+            <div class="flex justify-center mt-6" id="case-modal-icon"></div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollProgress = (window.scrollY / totalHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollProgress + '%';
+        });
+
+        // Modals functionality
+        const modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.close-button');
+
+        document.querySelectorAll('[data-modal-target]').forEach(element => {
+            element.addEventListener('click', () => {
+                const targetId = element.getAttribute('data-modal-target');
+                document.getElementById(targetId).style.display = 'flex';
+            });
+        });
+
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                button.closest('.modal').style.display = 'none';
+            });
+        });
+
+        window.addEventListener('click', (event) => {
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Accordion functionality for Legal Analysis
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('i');
+
+                // Close other open accordions
+                document.querySelectorAll('.accordion-header').forEach(otherHeader => {
+                    if (otherHeader !== header && otherHeader.classList.contains('active')) {
+                        otherHeader.classList.remove('active');
+                        otherHeader.nextElementSibling.classList.remove('active');
+                        otherHeader.nextElementSibling.style.maxHeight = null;
+                        otherHeader.querySelector('i').style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                // Toggle current accordion
+                header.classList.toggle('active');
+                content.classList.toggle('active');
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Case Studies Data
+        const caseStudiesData = {
+            case1: {
+                title: '案例一：肝功能異常與心肌梗塞',
+                description: '小陳投保醫療險時未告知輕微肝功能異常，後因急性心肌梗塞住院。',
+                question: '肝功能異常與急性心肌梗塞是否存在因果？',
+                resolution: '評議：無因果關係，應理賠！',
+                analysis: '評議認為肝功能異常與急性心肌梗塞無因果關係，且肝功能異常程度輕微，不足以影響心肌梗塞風險評估，故保險公司應理賠。',
+                iconHtml: '<i class="fas fa-heartbeat text-red-400 text-6xl"></i> <i class="fas fa-link-slash mx-4 text-blue-400 text-6xl"></i> <i class="fas fa-liver text-green-400 text-6xl"></i>'
+            },
+            case2: {
+                title: '案例二：下顎骨折與甲狀腺癌',
+                description: '張先生投保壽險及醫療險時未告知曾因車禍致下顎骨折住院，後診斷罹患甲狀腺惡性腫瘤。',
+                question: '下顎骨折與甲狀腺惡性腫瘤是否存在因果？',
+                resolution: '評議：無顯著關聯，應理賠！',
+                analysis: '評議認為下顎骨折與甲狀腺惡性腫瘤無顯著關聯，保險事故（甲状腺惡性腫瘤）與未告知事項無因果關係，故保險公司應理賠。',
+                iconHtml: '<i class="fas fa-bone text-purple-400 text-6xl"></i> <i class="fas fa-link-slash mx-4 text-blue-400 text-6xl"></i> <i class="fas fa-microscope text-yellow-400 text-6xl"></i>'
+            },
+            case3: {
+                title: '案例三：精神分裂症與意外溺斃',
+                description: '李女士投保傷害險時未告知曾因精神分裂症就醫，後因騎機車自摔溺斃。',
+                question: '騎車自摔溺斃與精神分裂症是否存在因果？',
+                resolution: '評議：無證據證明有因果，應理賠！',
+                analysis: '評議認為無證據證明騎車摔倒與精神分裂症有因果關係，死亡證明記載為意外死亡，故保險公司應理賠。',
+                iconHtml: '<i class="fas fa-brain text-orange-400 text-6xl"></i> <i class="fas fa-link-slash mx-4 text-blue-400 text-6xl"></i> <i class="fas fa-person-falling text-gray-400 text-6xl"></i>'
+            }
+        };
+
+        document.querySelectorAll('.case-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const caseId = card.getAttribute('data-case-id');
+                const caseData = caseStudiesData[caseId];
+
+                document.getElementById('case-modal-title').textContent = caseData.title;
+                document.getElementById('case-modal-description').textContent = caseData.description;
+                document.getElementById('case-modal-question').textContent = caseData.question;
+                document.getElementById('case-modal-resolution').textContent = caseData.resolution;
+                document.getElementById('case-modal-analysis').textContent = caseData.analysis;
+                document.getElementById('case-modal-icon').innerHTML = caseData.iconHtml;
+
+                document.getElementById('case-detail-modal').style.display = 'flex';
+            });
+        });
+
+        // Set max-height for accordion content initially
+        document.querySelectorAll('.accordion-content').forEach(content => {
+            content.style.maxHeight = null; // Ensure they are collapsed on load
+        });
+
+    </script>
+</body>
+</html>
