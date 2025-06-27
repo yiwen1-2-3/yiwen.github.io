@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>婚姻財產規劃：您的專業指南</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom styles for professional aesthetic and smooth transitions */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .section-heading {
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.75rem;
+            margin-bottom: 2rem;
+            color: #1a202c; /* Tailwind gray-900 */
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .accordion-content.open {
+            max-height: 500px; /* Adjust as needed for content height */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .accordion-toggle i {
+            transition: transform 0.3s ease;
+        }
+        .accordion-toggle.rotated i {
+            transform: rotate(180deg);
+        }
+        .sticky-toc {
+            top: 2rem; /* Adjust based on header height */
+        }
+        .sticky-toc a.active {
+            font-weight: bold;
+            color: #2563eb; /* Tailwind blue-600 */
+            border-left: 3px solid #2563eb;
+            padding-left: 0.5rem;
+        }
+        .slide-in-text {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.8s forwards;
+        }
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md py-4 px-6 md:px-12 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="https://placehold.co/40x40/007bff/ffffff?text=LOGO" alt="公司Logo" class="rounded-full">
+                <a href="#" class="text-xl font-bold text-gray-800">金庸群 財產規劃</a>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">首頁</a>
+                <a href="#core-strategies" class="text-gray-600 hover:text-blue-600 transition-colors">規劃策略</a>
+                <a href="#expert-team" class="text-gray-600 hover:text-blue-600 transition-colors">專家團隊</a>
+                <!-- Removed Contact link from main navigation as form is removed -->
+            </nav>
+            <!-- Removed Contact button -->
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden mt-4 bg-white shadow-lg rounded-lg py-2 hidden">
+            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">首頁</a>
+            <a href="#core-strategies" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">規劃策略</a>
+            <a href="#expert-team" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">專家團隊</a>
+            <!-- Removed Contact link from mobile navigation -->
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 px-6 md:px-12 text-center relative overflow-hidden rounded-b-3xl shadow-lg">
+        <div class="absolute inset-0 bg-pattern opacity-10"></div> <!-- Background pattern -->
+        <div class="container mx-auto relative z-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 slide-in-text">
+                婚姻財產規劃：為您的未來資產保駕護航
+            </h1>
+            <p class="text-lg md:text-xl mb-8 slide-in-text animation-delay-200">
+                在婚姻關係中，確保個人財產的獨立性與安全性是明智的選擇。我們提供專業、符合法規的策略，助您安心規劃。
+            </p>
+            <div class="flex justify-center items-center space-x-6 mb-8">
+                <div class="text-3xl font-bold slide-in-text animation-delay-400">
+                    <span id="clients-counter">0</span>+
+                    <p class="text-sm font-normal opacity-80 mt-1">成功協助客戶</p>
+                </div>
+                <div class="text-3xl font-bold slide-in-text animation-delay-600">
+                    <span id="satisfaction-counter">0</span>%
+                    <p class="text-sm font-normal opacity-80 mt-1">客戶滿意度</p>
+                </div>
+            </div>
+            <a href="#detailed-planning" class="bg-white text-blue-700 px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-xl slide-in-text animation-delay-800 scroll-smooth">
+                探索財產規劃方案
+            </a>
+        </div>
+    </section>
+
+    <!-- Core Strategies Overview (Cards) -->
+    <section id="core-strategies" class="py-16 px-6 md:px-12 bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 section-heading">
+                我們的核心規劃策略
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Strategy 1 Card -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 cursor-pointer" data-target="section-separate-property">
+                    <div class="text-blue-600 mb-4 text-4xl text-center"><i class="fas fa-handshake"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">約定「分別財產制」</h3>
+                    <p class="text-gray-600 text-center">最徹底的保障，各自管理個人財產。</p>
+                    <div class="text-center mt-4">
+                        <button class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">深入了解 <i class="fas fa-arrow-right text-sm ml-1"></i></button>
+                    </div>
+                </div>
+                <!-- Strategy 2 Card -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 cursor-pointer" data-target="section-inherited-gifts">
+                    <div class="text-blue-600 mb-4 text-4xl text-center"><i class="fas fa-gift"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">繼承與贈與財產</h3>
+                    <p class="text-gray-600 text-center">婚後特定來源財產，不計入分配。</p>
+                    <div class="text-center mt-4">
+                        <button class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">深入了解 <i class="fas fa-arrow-right text-sm ml-1"></i></button>
+                    </div>
+                </div>
+                <!-- Strategy 3 Card -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 cursor-pointer" data-target="section-tax-planning">
+                    <div class="text-blue-600 mb-4 text-4xl text-center"><i class="fas fa-calculator"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">稅務規劃與移轉</h3>
+                    <p class="text-gray-600 text-center">避免視同贈與，合法節稅考量。</p>
+                    <div class="text-center mt-4">
+                        <button class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">深入了解 <i class="fas fa-arrow-right text-sm ml-1"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Planning Section -->
+    <section id="detailed-planning" class="py-16 px-6 md:px-12 bg-gray-100">
+        <div class="container mx-auto flex flex-col md:flex-row gap-8">
+            <!-- Sticky Table of Contents (left side for desktop) -->
+            <div class="md:w-1/4 sticky-toc md:sticky hidden md:block self-start p-6 bg-white rounded-xl shadow-lg">
+                <h4 class="font-bold text-lg mb-4 text-gray-800">章節導覽</h4>
+                <nav>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><a href="#section-separate-property" class="block py-2 rounded hover:bg-gray-50 transition-colors">一、約定「分別財產制」</a></li>
+                        <li><a href="#section-inherited-gifts" class="block py-2 rounded hover:bg-gray-50 transition-colors">二、繼承與贈與財產</a></li>
+                        <li><a href="#section-tax-planning" class="block py-2 rounded hover:bg-gray-50 transition-colors">三、稅務規劃考量</a></li>
+                        <li><a href="#section-practical-notes" class="block py-2 rounded hover:bg-gray-50 transition-colors">四、實務操作與注意</a></li>
+                        <li><a href="#section-reflection" class="block py-2 rounded hover:bg-gray-50 transition-colors">五、人性與反思</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="md:w-3/4 bg-white rounded-xl shadow-lg p-8 md:p-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8">婚姻財產規劃：詳細指南</h2>
+
+                <!-- Section 1: 約定「分別財產制」 -->
+                <section id="section-separate-property" class="mb-12">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-6 section-heading">
+                        一、核心策略：約定「分別財產制」
+                    </h3>
+                    <p class="mb-4 text-gray-700">
+                        在台灣，若夫妻未特別約定，則自動適用「法定財產制」。在法定財產制下，夫妻婚後財產（扣除債務後）的差額，在離婚時會產生「夫妻剩餘財產差額分配請求權」。因此，若要確保婚後財產不被請求或被請求最少，最直接且有效的方式，就是在結婚後與配偶約定採用「分別財產制」。
+                    </p>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-md">
+                        <div class="font-semibold text-blue-800">1. 約定「分別財產制」：最徹底的保障</div>
+                        <p class="text-gray-700 mt-2">
+                            「分別財產制」就像是夫妻雙方各自擁有自己的錢包，各自管理自己的財產，互不干涉。在這種制度下，夫妻各自的財產歸各自所有，各自的債務也各自負責。離婚時，也不會有剩餘財產差額分配的問題。
+                        </p>
+                    </div>
+
+                    <!-- Accordion: 法令依據 -->
+                    <div class="mb-6">
+                        <button class="accordion-toggle w-full text-left p-4 bg-gray-100 rounded-lg font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-200 transition-colors">
+                            <span>法令依據</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content bg-white p-4 rounded-b-lg border border-t-0 border-gray-200">
+                            <ul class="list-disc list-inside text-gray-700">
+                                <li class="mb-2">《民法》第1044條：
+                                    <span class="text-blue-600 hover:underline cursor-pointer" data-link="https://law.moj.gov.tw/LawClass/LawSingle.aspx?Pcode=B0000001&FLNO=1044">
+                                        分別財產，夫妻各保有其財產之所有權，各自管理、使用、收益及處分。夫妻得以契約訂定夫妻財產制。約定財產制有「共同財產制」和「分別財產制」。
+                                    </span>
+                                </li>
+                                <li>《民法》第1004條：
+                                    <span class="text-blue-600 hover:underline cursor-pointer" data-link="https://law.moj.gov.tw/LawClass/LawSingle.aspx?Pcode=B0000001&FLNO=1004">
+                                        夫妻得於結婚前或結婚後，以契約就本法所定之約定財產制中，選擇其一，為其夫妻財產制。
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Accordion: 實務操作 -->
+                    <div class="mb-6">
+                        <button class="accordion-toggle w-full text-left p-4 bg-gray-100 rounded-lg font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-200 transition-colors">
+                            <span>實務操作</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content bg-white p-4 rounded-b-lg border border-t-0 border-gray-200">
+                            <ul class="list-disc list-inside text-gray-700">
+                                <li class="mb-2">簽訂書面契約：夫妻雙方必須以書面形式簽訂「夫妻財產契約」，明確約定採用「分別財產制」。</li>
+                                <li>辦理登記：該契約必須向法院聲請登記，才對第三人發生效力。未經登記，僅對夫妻雙方有效，但對外仍可能被視為法定財產制。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Example Scenario Card -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-inner mb-6">
+                        <h4 class="font-bold text-gray-800 mb-3">舉例說明：</h4>
+                        <div class="bg-white p-5 rounded-lg shadow-md border border-gray-200">
+                            <div class="mb-3 text-gray-700">
+                                <span class="font-semibold text-blue-600">情境：</span> 王先生與李小姐結婚後，王先生的事業蒸蒸日上，婚後累積了大量財產。為了確保個人財產的獨立性，兩人決定約定分別財產制。
+                            </div>
+                            <div class="mb-3 text-gray-700">
+                                <span class="font-semibold text-blue-600">策略：</span> 王先生與李小姐共同簽署一份「夫妻財產契約」，載明雙方自簽約日起改採「分別財產制」，並各自管理、使用、收益及處分其所有財產。隨後，他們將這份契約向法院聲請登記。
+                            </div>
+                            <div class="font-semibold text-green-700">
+                                <span class="text-blue-600">結果：</span> 由於已合法約定並登記為分別財產制，未來若不幸離婚，李小姐將無法向王先生主張夫妻剩餘財產差額分配請求權。王先生婚後所累積的財產，將完全歸其個人所有。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Psychological & Marketing Interactive Section -->
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-md mb-6">
+                        <h4 class="font-bold text-blue-800 mb-3 flex items-center">
+                            <i class="fas fa-lightbulb text-blue-600 mr-2"></i> 心理學暗示與行銷技巧
+                        </h4>
+                        <div class="mb-4">
+                            <label for="psych-question" class="block text-gray-700 font-semibold mb-2">精準提問：</label>
+                            <input type="text" id="psych-question" class="w-full p-3 border border-gray-300 rounded-md bg-white focus:ring-blue-500 focus:border-blue-500" placeholder="您是否曾與配偶討論過財務管理與財產獨立性的議題？">
+                        </div>
+                        <div class="mb-4">
+                            <button id="predict-qa-toggle" class="accordion-toggle w-full text-left p-3 bg-blue-100 rounded-lg font-semibold text-blue-800 flex justify-between items-center hover:bg-blue-200 transition-colors">
+                                <span>預測客戶疑問與遲疑：「結婚後才提這個，會不會傷害感情？」</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div id="predict-qa-content" class="accordion-content bg-white p-4 rounded-b-lg border border-t-0 border-blue-200 text-gray-700">
+                                <p class="font-semibold text-blue-700 mb-2">精準回答：</p>
+                                <p>「這是一個非常自然的顧慮。然而，許多成功的婚姻關係，正是建立在坦誠與清晰的基礎之上。婚後約定分別財產制，並非不信任，而是對彼此財務獨立性的尊重，也是對未來可能風險的共同承擔與預防。這份協議，是為您的婚姻關係增添一份『財務安全網』，讓雙方在情感上更無後顧之憂，因為財務的界線是清晰的，反而能讓愛更純粹，避免未來因金錢糾紛而產生裂痕。」</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: 不列入法定財產制的財產 -->
+                <section id="section-inherited-gifts" class="mb-12">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-6 section-heading">
+                        二、不列入法定財產制的財產 (繼承、贈與財產)
+                    </h3>
+                    <p class="mb-4 text-gray-700">
+                        這邊指的應該是不列入法定財產制的財產，包含繼承、贈與財產，因為跟夫妻婚後貢獻無關，所以不會列入婚後財產計算，不需要特別聲明，只要可以舉證為贈與或繼承取得，就可以排除在婚後財產。
+                    </p>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-md">
+                        <div class="font-semibold text-blue-800">法令依據：</div>
+                        <p class="text-gray-700 mt-2">
+                            《民法》第 1030-1 條<br>
+                            法定財產制關係消滅時，夫或妻現存之婚後財產，扣除婚姻關係存續所負債務後，如有剩餘，其雙方剩餘財產之差額，應平均分配。但下列財產不在此限：
+                        </p>
+                        <ol class="list-decimal list-inside text-gray-700 mt-2">
+                            <li>因<span class="font-semibold text-blue-600 hover:underline cursor-pointer" data-tooltip="指透過繼承方式取得的財產">繼承</span>或其他<span class="font-semibold text-blue-600 hover:underline cursor-pointer" data-tooltip="指非經對價關係而無償取得，如受贈">無償取得</span>之財產。</li>
+                            <li><span class="font-semibold text-blue-600 hover:underline cursor-pointer" data-tooltip="指因精神或身體損害所獲賠償">慰撫金</span>。</li>
+                        </ol>
+                        <p class="font-semibold text-gray-800 mt-3">【精準白話註解】</p>
+                        <p class="text-gray-700">簡單來說，婚後您繼承來的財產，或是別人（非配偶）贈送給您，這些都屬於您的「私房錢」，離婚時對方不能要求分走。</p>
+                    </div>
+
+                    <!-- Scenario Comparison for Inheritance and Gift -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <!-- Inheritance Example -->
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                            <h4 class="font-bold text-gray-800 mb-3">舉例說明：繼承財產</h4>
+                            <div class="bg-white p-5 rounded-lg shadow-md border border-gray-200">
+                                <div class="mb-3 text-gray-700">
+                                    <span class="font-semibold text-blue-600">情境：</span> 小李與小張結婚後，小李的祖父過世，小李繼承了一筆價值3,000萬元的房產。
+                                </div>
+                                <div class="mb-3 text-gray-700">
+                                    <span class="font-semibold text-blue-600">策略：</span> 小李應妥善保存繼承相關證明文件（如遺產分割協議書、繼承登記文件）。
+                                </div>
+                                <div class="font-semibold text-green-700">
+                                    <span class="text-blue-600">結果：</span> 即使小李與小張維持法定財產制，這筆3,000萬元的房產因屬於小李婚後「繼承所得財產」，依《民法》1030-1 條第1項，繼承財產未來離婚時不計入剩餘財產分配。
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gift Example -->
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                            <h4 class="font-bold text-gray-800 mb-3">舉例說明：贈與財產</h4>
+                            <div class="bg-white p-5 rounded-lg shadow-md border border-gray-200">
+                                <div class="mb-3 text-gray-700">
+                                    <span class="font-semibold text-blue-600">情境：</span> 小陳與小林結婚後，小陳的父母為了獎勵小陳在工作上的成就，贈與小陳一筆500萬元的現金，並明確表示這是給小陳個人的。
+                                </div>
+                                <div class="mb-3 text-gray-700">
+                                    <span class="font-semibold text-blue-600">策略：</span> 小陳應保留贈與證明（如贈與契約、匯款紀錄），並請父母在贈與時明確聲明此贈與是給小陳個人的特有財產。若金額超過贈與稅免稅額，應依法申報贈與稅。
+                                </div>
+                                <div class="font-semibold text-green-700">
+                                    <span class="text-blue-600">結果：</span> 這筆500萬元現金因屬於小陳婚後「所受之贈物」，依《民法》1030-1 條第1項，為小陳的贈與財產，未來離婚時不計入剩餘財產分配。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: 稅務規劃與財產移轉的考量 -->
+                <section id="section-tax-planning" class="mb-12">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-6 section-heading">
+                        三、稅務規劃與財產移轉的考量
+                    </h3>
+                    <p class="mb-4 text-gray-700">
+                        在進行財產保護規劃時，稅務問題是不可忽視的一環。
+                    </p>
+
+                    <!-- Strategic Gifting -->
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-md">
+                        <div class="font-semibold text-blue-800 mb-2">1. 策略性贈與給子女或其他親屬</div>
+                        <p class="text-gray-700">
+                            您可以利用每年贈與稅的免稅額，將部分婚後財產贈與給子女或其他您信任的親屬。這樣，這些財產就不再屬於您的婚後財產，自然不會在離婚時被列入剩餘財產分配。
+                            <span class="text-red-600 font-semibold cursor-pointer ml-1" id="risk-warning-toggle">
+                                <i class="fas fa-exclamation-triangle mr-1"></i>(注意：無財產控制權，風險極高)
+                            </span>
+                        </p>
+                        <div id="risk-warning-content" class="hidden bg-red-100 p-3 mt-3 rounded-md text-red-800 border border-red-300">
+                            <p class="font-semibold">重要風險提示：</p>
+                            <p>將財產贈與他人，代表您已放棄該財產的所有權與控制權。若非屬借名登記，一旦贈與完成，該財產將歸受贈人所有，您將無法再自由處分。若受贈人（如子女）未來不願返還或面臨自身債務問題，您的財產將面臨巨大風險。</p>
+                        </div>
+
+                        <!-- Accordion for 法令依據 - Strategic Gifting -->
+                        <div class="mt-4">
+                            <button class="accordion-toggle w-full text-left p-3 bg-gray-100 rounded-lg font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-200 transition-colors">
+                                <span>法令依據</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-content bg-white p-4 rounded-b-lg border border-t-0 border-gray-200">
+                                <ul class="list-disc list-inside text-gray-700">
+                                    <li class="mb-2">《遺產及贈與稅法》第4條：
+                                        <span class="text-blue-600 hover:underline cursor-pointer" data-link="https://law.moj.gov.tw/LawClass/LawSingle.aspx?Pcode=G0340003&FLNO=4">
+                                            本法稱贈與，指財產所有人以自己之財產無償給予他人，經他人允受而生效力之行為。
+                                        </span>
+                                    </li>
+                                    <li>《遺產及贈與稅法》第24條：
+                                        <span class="text-blue-600 hover:underline cursor-pointer" data-link="https://law.moj.gov.tw/LawClass/LawSingle.aspx?Pcode=G0340003&FLNO=24">
+                                            贈與人在一年內贈與他人之財產總值超過贈與稅免稅額時，應於超過免稅額之贈與行為發生後30日內，向主管稽徵機關依本法規定辦理贈與稅申報。目前每人每年有244萬元的贈與稅免稅額。
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Example Scenario Card -->
+                        <div class="bg-gray-50 p-5 rounded-lg shadow-inner mt-4">
+                            <h4 class="font-bold text-gray-800 mb-3">舉例說明：</h4>
+                            <div class="bg-white p-5 rounded-lg shadow-md border border-gray-200">
+                                <div class="mb-3 text-gray-700">
+                                    <span class="font-semibold text-blue-600">情境：</span> 張先生與太太結婚多年，育有兩名子女。張先生婚後累積了部分存款，希望在未來離婚時能減少被分配的金額。
+                                </div>
+                                <div class="mb-3 text-gray-700">
+                                    <span class="font-semibold text-blue-600">策略：</span> 張先生可以每年利用244萬元的贈與稅免稅額，分年將存款贈與給兩名子女。例如，每年贈與每位子女200萬元，共400萬元(課贈與稅)，持續數年。
+                                </div>
+                                <div class="font-semibold text-green-700">
+                                    <span class="text-blue-600">結果：</span> 這些贈與出去的財產，在贈與行為完成後，就不再屬於張先生的財產，自然不會在離婚時被列入剩餘財產分配。同時，在免稅額範圍內，也無需繳納贈與稅。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Avoid "Deemed Gift" -->
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-md">
+                        <div class="font-semibold text-blue-800 mb-2">2. 避免「視同贈與」的風險</div>
+                        <p class="text-gray-700">
+                            【精準白話註解】 如果您用不合理的價格把財產賣給親近的人（特別是二親等以內親屬），或者幫親近的人付錢買東西、還債，即使您沒有說「這是送你的」，稅務機關也可能認為這是「贈與」，要課贈與稅。
+                        </p>
+
+                        <!-- Deemed Gift Simulator -->
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-inner mt-4">
+                            <h4 class="font-bold text-gray-800 mb-4">「視同贈與」風險評估模擬器</h4>
+                            <div class="mb-4">
+                                <label for="relation-select" class="block text-gray-700 mb-2">請選擇交易對象關係：</label>
+                                <select id="relation-select" class="w-full p-3 border border-gray-300 rounded-md bg-white focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="none">請選擇</option>
+                                    <option value="2nd-degree">二親等以內親屬 (如：子女、兄弟姊妹)</option>
+                                    <option value="other">其他親屬或非親屬</option>
+                                </select>
+                            </div>
+                            <div class="mb-4" id="price-input-group" style="display: none;">
+                                <label for="price-ratio-select" class="block text-gray-700 mb-2">交易價格是否顯著不相當於市價？</label>
+                                <select id="price-ratio-select" class="w-full p-3 border border-gray-300 rounded-md bg-white focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="none">請選擇</option>
+                                    <option value="low">是 (明顯低於市價)</option>
+                                    <option value="reasonable">否 (符合市價或合理範圍)</option>
+                                </select>
+                            </div>
+                            <div class="mb-4" id="fund-source-group" style="display: none;">
+                                <label for="fund-source-select" class="block text-gray-700 mb-2">交易資金是否由您（出賣人）提供？</label>
+                                <select id="fund-source-select" class="w-full p-3 border border-gray-300 rounded-md bg-white focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="none">請選擇</option>
+                                    <option value="provided">是 (由我方提供)</option>
+                                    <option value="self-funded">否 (對方自行提供)</option>
+                                </select>
+                            </div>
+                            <div id="deemed-gift-result" class="mt-4 p-4 rounded-md text-sm font-semibold bg-gray-100 text-gray-700 border border-gray-200" style="display: none;">
+                                評估結果將在此顯示。
+                            </div>
+                        </div>
+
+                        <!-- Accordion for 法令依據 - Avoid Deemed Gift -->
+                        <div class="mt-6 mb-6">
+                            <button class="accordion-toggle w-full text-left p-3 bg-gray-100 rounded-lg font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-200 transition-colors">
+                                <span>法令依據</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-content bg-white p-4 rounded-b-lg border border-t-0 border-gray-200">
+                                <p class="font-semibold text-gray-800 mb-2">《遺產及贈與稅法》第5條：</p>
+                                <p class="text-gray-700">財產之移動，具有左列各款情形之一者，以贈與論，依本法規定，課徵贈與稅：</p>
+                                <ol class="list-decimal list-inside text-gray-700 mt-2">
+                                    <li>在請求權時效內無償免除或承擔債務者，其免除或承擔之債務。</li>
+                                    <li>以顯著不相當之代價，讓與財產、免除或承擔債務者，其差額部分。</li>
+                                    <li>以自己之資金，無償為他人購置財產者，其資金。但該財產為不動產者，其不動產。</li>
+                                    <li>二親等以內親屬間財產之買賣。但能提出已支付價款之確實證明，且該已支付之價款非由出賣人貸與或提供擔保向他人借得者，不在此限。</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- Example Scenario Card - Avoid Deemed Gift -->
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-inner mb-6">
+                            <h4 class="font-bold text-gray-800 mb-3">舉例說明：</h4>
+                            <div class="bg-white p-5 rounded-lg shadow-md border border-gray-200">
+                                <div class="mb-3 text-gray-700">
+                                    <span class="font-semibold text-blue-600">情境：</span> 李太太婚後想將一筆房產「賣」給自己的弟弟，但只收取了遠低於市價的金額，且弟弟的購屋款項實際上是李太太提供的。
+                                </div>
+                                <div class="mb-3 text-red-600 font-semibold">
+                                    <span class="font-semibold text-blue-600">風險：</span> 這種情況會被稅務機關依《遺產及贈與稅法》第5條第2款及第6款規定，視為「視同贈與」。其差額部分或全部房產價值將被課徵贈與稅。
+                                </div>
+                                <div class="font-semibold text-green-700">
+                                    <span class="font-semibold text-blue-600">建議：</span> 若有二親等內親屬間的財產買賣，務必確保有明確的價金支付證明，且資金來源非由出賣人提供，以避免被認定為贈與。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-md mb-6 text-gray-700">
+                            <p class="font-bold text-yellow-800 mb-2">實務補充：</p>
+                            <ul class="list-disc list-inside">
+                                <li class="mb-1">實務：二親等買賣要先申報。</li>
+                                <li class="mb-1">後續查核的情況：</li>
+                                <ul class="list-circle list-inside ml-4">
+                                    <li class="mb-1">低於 "A" 按差額 (A 指不動產贈與時的土地公告現值與評定價格)。</li>
+                                    <li>資金來源來自賣方時 "全額(指現值，不是市價)" (舉例: 頭期款500萬就是500萬)。</li>
+                                </ul>
+                            </ul>
+                        </div>
+
+                        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-md text-gray-700">
+                            <p class="font-bold text-red-800 mb-2">重要提醒：</p>
+                            <p>贈與解決不了剩餘財產請求的權利。贈與是單獨行為，對方只要有接受就行。但贈與的如果是婚後財產，另一方可將已贈與的財產"加計"回婚後財產計算。就是離婚的時候，用贈與的方式贈給別人，或是出售或轉讓，還是會被拉回來計算。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: 實務操作與注意事項 -->
+                <section id="section-practical-notes" class="mb-12">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-6 section-heading">
+                        四、實務操作與注意事項
+                    </h3>
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-md">
+                        <ul class="space-y-4">
+                            <!-- Checklist Item 1 -->
+                            <li>
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded-md focus:ring-blue-500 mt-1">
+                                    <div class="ml-3">
+                                        <div class="font-bold text-gray-800 text-lg mb-1 group-hover:text-blue-700 transition-colors">及早規劃與溝通</div>
+                                        <p class="text-gray-700">任何財產規劃都應及早進行，並與配偶坦誠溝通。這不僅能避免未來爭議，也能讓雙方對家庭財務有更清晰的共識。</p>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- Checklist Item 2 -->
+                            <li>
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded-md focus:ring-blue-500 mt-1">
+                                    <div class="ml-3">
+                                        <div class="font-bold text-gray-800 text-lg mb-1 group-hover:text-blue-700 transition-colors">專業諮詢</div>
+                                        <p class="text-gray-700 mb-3">夫妻財產制的約定、財產移轉的稅務影響等，都涉及複雜的法律與稅務專業知識。強烈建議您尋求專業律師或會計師的協助，進行一對一的諮詢與規劃。他們能根據您的具體資產狀況和未來期望，提供最精確的法律意見和稅務建議。</p>
+                                        <!-- Removed the "立即預約專業諮詢" button here -->
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- Checklist Item 3 -->
+                            <li>
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded-md focus:ring-blue-500 mt-1">
+                                    <div class="ml-3">
+                                        <div class="font-bold text-gray-800 text-lg mb-1 group-hover:text-blue-700 transition-colors">文件保存</div>
+                                        <p class="text-gray-700 mb-2">無論採取何種策略，務必妥善保存所有相關證明文件，例如：</p>
+                                        <button class="accordion-toggle w-full text-left p-3 bg-gray-100 rounded-lg font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-200 transition-colors text-sm">
+                                            <span>點擊查看完整文件清單</span>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                        <div class="accordion-content bg-white p-4 rounded-b-lg border border-t-0 border-gray-200 mt-2">
+                                            <ul class="list-disc list-inside text-gray-700">
+                                                <li>夫妻財產契約及法院登記文件。</li>
+                                                <li>繼承證明文件（遺產分割協議書、繼承登記文件）。</li>
+                                                <li>贈與契約、匯款紀錄、贈與稅繳納證明或免稅證明。</li>
+                                                <li>財產取得來源證明（如買賣契約、資金流向證明）。</li>
+                                            </ul>
+                                            <p class="text-gray-600 mt-3 text-sm">這些文件在未來若有爭議時，將是證明財產性質的關鍵證據。</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Section 5: 人性與反思 -->
+                <section id="section-reflection" class="mb-12 text-center bg-blue-50 p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-6 section-heading">
+                        五、人性與反思
+                    </h3>
+                    <p class="text-gray-700 mb-4 slide-in-text animation-delay-0">
+                        婚姻中的財務透明與信任：雖然財產保護是個人權益的考量，但婚姻關係的維繫更仰賴信任與溝通。
+                    </p>
+                    <p class="text-gray-700 mb-6 slide-in-text animation-delay-100">
+                        在進行這些規劃時，如何與配偶坦誠溝通，讓對方理解這是一種對家庭負責、避免未來潛在風險的行為，而非不信任，至關重要。
+                    </p>
+                    <p class="text-gray-700 mb-8 slide-in-text animation-delay-200">
+                        法律的保障與情感的平衡：法律提供了保障個人財產的工具，但婚姻的價值遠超於財產。
+                    </p>
+                    <p class="text-lg font-semibold text-blue-800 mb-8 slide-in-text animation-delay-300">
+                        在追求財產獨立的同時，也應思考如何維護婚姻中的情感連結與共同目標。這份規劃，是為了讓您在婚姻中能更安心、更自由地去愛與付出，因為您知道，即使未來有任何變數，您的辛勞成果依然受到法律的保護。
+                    </p>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md inline-block">
+                        <p class="text-gray-700 font-semibold mb-2">從金庸看傳承：</p>
+                        <p class="text-gray-600 text-sm">
+                            引用條文名稱：《民法》第1004條、第1044條。這些條文是界定夫妻財產性質與剩餘財產分配請求權的核心依據，直接影響婚後財產的保護。<br>
+                            引用條文名稱：《遺產及贈與稅法》第4條、第5條、第24條。這些條文規範了贈與的定義、視同贈與的判斷以及贈與稅的免稅額與申報期限，是財產移轉規劃的稅務基礎。
+                        </p>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-8">※ 此資訊為 AI 整理，請務必自行查證。</p>
+                </section>
+
+                <!-- Expert Team Section -->
+                <section id="expert-team" class="py-16 text-center bg-gray-50 rounded-xl shadow-lg mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-10 section-heading">
+                        金庸群 專家團隊
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+                        <!-- Expert 1: 律師 -->
+                        <div class="expert-card bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow cursor-pointer" data-expert-name="鍾依庭" data-expert-title="律師" data-expert-bio="專精於民法、家事法、繼承法，提供婚姻財產規劃與爭議解決的法律服務。">
+                            <img src="https://placehold.co/100x100/A0B2C8/FFFFFF?text=律師" alt="鍾依庭 律師" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h4 class="text-xl font-semibold text-gray-800">鍾依庭</h4>
+                            <p class="text-blue-600 mb-2">律師</p>
+                            <p class="text-gray-600 text-sm">家事法、婚姻財產</p>
+                        </div>
+                        <!-- Expert 2: 律師 -->
+                        <div class="expert-card bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow cursor-pointer" data-expert-name="王瑞輔" data-expert-title="律師" data-expert-bio="擅長不動產法、公司法，提供資產配置與風險控管的法律建議。">
+                            <img src="https://placehold.co/100x100/A0B2C8/FFFFFF?text=律師" alt="王瑞輔 律師" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h4 class="text-xl font-semibold text-gray-800">王瑞輔</h4>
+                            <p class="text-blue-600 mb-2">律師</p>
+                            <p class="text-gray-600 text-sm">不動產、公司法</p>
+                        </div>
+                        <!-- Expert 3: 會計師 -->
+                        <div class="expert-card bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow cursor-pointer" data-expert-name="吳佳晉" data-expert-title="會計師" data-expert-bio="專精於稅務規劃、遺贈稅申報，協助客戶進行合法節稅。">
+                            <img src="https://placehold.co/100x100/A0B2C8/FFFFFF?text=會計師" alt="吳佳晉 會計師" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h4 class="text-xl font-semibold text-gray-800">吳佳晉</h4>
+                            <p class="text-blue-600 mb-2">會計師</p>
+                            <p class="text-gray-600 text-sm">稅務規劃、遺贈稅</p>
+                        </div>
+                        <!-- Expert 4: 會計師 -->
+                        <div class="expert-card bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow cursor-pointer" data-expert-name="林月嬌" data-expert-title="會計師" data-expert-bio="提供個人及企業財務報表分析、會計諮詢服務。">
+                            <img src="https://placehold.co/100x100/A0B2C8/FFFFFF?text=會計師" alt="林月嬌 會計師" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h4 class="text-xl font-semibold text-gray-800">林月嬌</h4>
+                            <p class="text-blue-600 mb-2">會計師</p>
+                            <p class="text-gray-600 text-sm">財務報表、會計諮詢</p>
+                        </div>
+                        <!-- Expert 5: 地政士 -->
+                        <div class="expert-card bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow cursor-pointer" data-expert-name="沙振言" data-expert-title="地政士" data-expert-bio="專長於不動產登記、產權移轉，確保您的不動產權益。">
+                            <img src="https://placehold.co/100x100/A0B2C8/FFFFFF?text=地政士" alt="沙振言 地政士" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h4 class="text-xl font-semibold text-gray-800">沙振言</h4>
+                            <p class="text-blue-600 mb-2">地政士</p>
+                            <p class="text-gray-600 text-sm">不動產登記、產權移轉</p>
+                        </div>
+                        <!-- Expert 6: 理財規劃師 -->
+                        <div class="expert-card bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow cursor-pointer" data-expert-name="郭恬箖" data-expert-title="理財規劃師" data-expert-bio="提供全方位個人及家庭理財規劃，助您資產穩健增長。">
+                            <img src="https://placehold.co/100x100/A0B2C8/FFFFFF?text=理財規劃師" alt="郭恬箖 理財規劃師" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h4 class="text-xl font-semibold text-gray-800">郭恬箖</h4>
+                            <p class="text-blue-600 mb-2">理財規劃師</p>
+                            <p class="text-gray-600 text-sm">家庭理財、資產配置</p>
+                        </div>
+                    </div>
+                </section>
+                <!-- Expert Detail Modal -->
+                <div id="expert-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 hidden">
+                    <div class="bg-white p-8 rounded-lg shadow-xl max-w-sm w-full mx-4 relative">
+                        <button id="close-expert-modal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl"><i class="fas fa-times"></i></button>
+                        <img id="modal-expert-img" src="" alt="專家頭像" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+                        <h3 id="modal-expert-name" class="text-2xl font-bold text-gray-800 text-center mb-1"></h3>
+                        <p id="modal-expert-title" class="text-blue-600 text-center mb-3 text-lg"></p>
+                        <p id="modal-expert-bio" class="text-gray-700 text-center"></p>
+                        <div class="text-center mt-6">
+                            <!-- Removed the "預約此專家諮詢" button from here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Us Section - Removed -->
+                <!-- The contact form section with id="contact" was here and has been removed -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Chatbot Button -->
+    <button id="chatbot-button" class="fixed bottom-8 right-8 bg-blue-600 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center text-2xl hover:bg-blue-700 transition-colors transform hover:scale-110 z-50">
+        <i class="fas fa-comments"></i>
+    </button>
+    <!-- Chatbot Modal (simple placeholder) -->
+    <div id="chatbot-modal" class="fixed bottom-24 right-8 bg-white p-6 rounded-lg shadow-xl w-80 z-50 hidden">
+        <div class="flex justify-between items-center mb-4">
+            <h5 class="font-bold text-lg text-gray-800">智能客服</h5>
+            <button id="close-chatbot-modal" class="text-gray-500 hover:text-gray-800 text-xl"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="mb-4 h-32 overflow-y-auto border border-gray-200 p-3 rounded-md text-gray-700 text-sm">
+            <p>您好！我是您的智能客服。請問有什麼可以協助您的嗎？</p>
+            <p class="mt-2 text-gray-500">您可以試著問：「什麼是分別財產制？」</p>
+        </div>
+        <input type="text" placeholder="輸入您的問題..." class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm">
+        <button class="mt-3 w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors text-sm">傳送</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-10 px-6 md:px-12 mt-12 rounded-t-3xl shadow-lg">
+        <div class="container mx-auto text-center md:text-left grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h4 class="text-xl font-bold text-white mb-4">金庸群 財產規劃</h4>
+                <p class="text-sm">專業、信任、安心</p>
+                <p class="text-sm mt-2">© 2025 All Rights Reserved.</p>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">快速連結</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-blue-400 transition-colors">首頁</a></li>
+                    <li><a href="#core-strategies" class="hover:text-blue-400 transition-colors">規劃策略</a></li>
+                    <li><a href="#expert-team" class="hover:text-blue-400 transition-colors">專家團隊</a></li>
+                    <!-- Removed contact link from footer quick links -->
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">聯絡資訊</h4>
+                <p class="text-sm mb-2"><i class="fas fa-map-marker-alt mr-2"></i> 台北市中正區衡陽路XXX號</p>
+                <p class="text-sm mb-2"><i class="fas fa-phone mr-2"></i> (02) 1234-5678</p>
+                <p class="text-sm"><i class="fas fa-envelope mr-2"></i> info@jinyongproperty.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for all internal anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                // Check if targetId is just "#" to avoid SyntaxError
+                if (targetId === '#') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    return; // Exit function after scrolling to top
+                }
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - (document.querySelector('header').offsetHeight + 20), // Adjust for sticky header
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+
+        // Hero Section Counters (simple animation)
+        function animateCounter(id, endValue, duration) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            let start = 0;
+            const range = endValue - start;
+            let current = start;
+            const increment = endValue > start ? 1 : -1;
+            const stepTime = Math.abs(Math.floor(duration / range));
+
+            const timer = setInterval(() => {
+                current += increment;
+                element.textContent = current;
+                if (current === endValue) {
+                    clearInterval(timer);
+                }
+            }, stepTime);
+        }
+
+        window.addEventListener('load', () => {
+            animateCounter('clients-counter', 500, 2000); // 500+ clients in 2 seconds
+            animateCounter('satisfaction-counter', 98, 2000); // 98% satisfaction in 2 seconds
+        });
+
+
+        // Core Strategies Overview Cards - Smooth Scroll on Click
+        document.querySelectorAll('.core-strategies-overview .cursor-pointer').forEach(card => {
+            card.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - (document.querySelector('header').offsetHeight + 20),
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                button.classList.toggle('rotated'); // Rotate chevron icon
+                content.classList.toggle('open'); // Expand/collapse content
+            });
+        });
+
+
+        // Legal Citation Links (simple pop-up/new tab)
+        document.querySelectorAll('[data-link]').forEach(el => {
+            el.addEventListener('click', function() {
+                const url = this.getAttribute('data-link');
+                if (url) {
+                    window.open(url, '_blank');
+                }
+            });
+        });
+
+
+        // Keyword Tooltips for 法令依據 in Section 2
+        document.querySelectorAll('[data-tooltip]').forEach(el => {
+            let tooltipDiv;
+            el.addEventListener('mouseenter', function(e) {
+                tooltipDiv = document.createElement('div');
+                tooltipDiv.className = 'absolute z-50 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 transition-opacity duration-200';
+                tooltipDiv.textContent = this.getAttribute('data-tooltip');
+                document.body.appendChild(tooltipDiv);
+
+                const rect = this.getBoundingClientRect();
+                tooltipDiv.style.left = `${rect.left + window.scrollX}px`;
+                tooltipDiv.style.top = `${rect.bottom + window.scrollY + 5}px`;
+                setTimeout(() => tooltipDiv.classList.add('opacity-100'), 10);
+            });
+            el.addEventListener('mouseleave', function() {
+                if (tooltipDiv) {
+                    tooltipDiv.classList.remove('opacity-100');
+                    setTimeout(() => {
+                        if (tooltipDiv && tooltipDiv.parentNode) { // Check if it's still in DOM
+                            tooltipDiv.parentNode.removeChild(tooltipDiv);
+                        }
+                    }, 200);
+                }
+            });
+        });
+
+
+        // Risk Warning Toggle
+        const riskWarningToggle = document.getElementById('risk-warning-toggle');
+        const riskWarningContent = document.getElementById('risk-warning-content');
+        if (riskWarningToggle && riskWarningContent) {
+            riskWarningToggle.addEventListener('click', () => {
+                riskWarningContent.classList.toggle('hidden');
+            });
+        }
+
+        // Deemed Gift Simulator Logic
+        const relationSelect = document.getElementById('relation-select');
+        const priceInputGroup = document.getElementById('price-input-group');
+        const priceRatioSelect = document.getElementById('price-ratio-select');
+        const fundSourceGroup = document.getElementById('fund-source-group');
+        const fundSourceSelect = document.getElementById('fund-source-select');
+        const deemedGiftResult = document.getElementById('deemed-gift-result');
+
+        function updateDeemedGiftResult() {
+            const relation = relationSelect.value;
+            const priceRatio = priceRatioSelect.value;
+            const fundSource = fundSourceSelect.value;
+            let resultText = '';
+            let resultColor = 'text-gray-700 bg-gray-100';
+
+            deemedGiftResult.style.display = 'block';
+
+            if (relation === 'none' || (relation === '2nd-degree' && (priceRatio === 'none' || fundSource === 'none'))) {
+                resultText = '請選擇所有選項以進行評估。';
+                resultColor = 'text-gray-700 bg-gray-100';
+            } else if (relation === 'other') {
+                if (priceRatio === 'low') {
+                    resultText = '風險提示：交易價格顯著不相當於市價，可能被稅務機關認定為「視同贈與」的差額部分。';
+                    resultColor = 'text-red-800 bg-red-100';
+                } else if (fundSource === 'provided') {
+                    resultText = '風險提示：若資金由您無償提供，可能被認定為「視同贈與」的資金部分（不動產則為不動產本身）。';
+                    resultColor = 'text-red-800 bg-red-100';
+                } else {
+                    resultText = '目前評估風險較低。但仍建議保留交易證明。';
+                    resultColor = 'text-green-800 bg-green-100';
+                }
+            } else if (relation === '2nd-degree') {
+                if (fundSource === 'provided') {
+                    resultText = '高風險警告：二親等內親屬間買賣，若資金由您提供，將被視為「全額贈與」（以現值計算）。稅務風險極高。';
+                    resultColor = 'text-red-800 bg-red-100';
+                } else if (priceRatio === 'low') {
+                    resultText = '風險提示：二親等內親屬間買賣，若價格顯著不相當，差額部分仍可能被視為贈與。請務必保留支付證明。';
+                    resultColor = 'text-orange-800 bg-orange-100';
+                } else {
+                    resultText = '目前評估風險較低。只要能提供確實的價款支付證明，且資金非由您提供，通常不會被認定為贈與。';
+                    resultColor = 'text-green-800 bg-green-100';
+                }
+            }
+            deemedGiftResult.className = `mt-4 p-4 rounded-md text-sm font-semibold border ${resultColor}`;
+            deemedGiftResult.textContent = resultText;
+        }
+
+        relationSelect.addEventListener('change', () => {
+            if (relationSelect.value === '2nd-degree') {
+                priceInputGroup.style.display = 'block';
+                fundSourceGroup.style.display = 'block';
+            } else if (relationSelect.value === 'other') {
+                priceInputGroup.style.display = 'block';
+                fundSourceGroup.style.display = 'block';
+                priceRatioSelect.value = 'none'; // Reset for fresh evaluation
+                fundSourceSelect.value = 'none'; // Reset
+            } else {
+                priceInputGroup.style.display = 'none';
+                fundSourceGroup.style.display = 'none';
+                deemedGiftResult.style.display = 'none';
+            }
+            updateDeemedGiftResult();
+        });
+
+        priceRatioSelect.addEventListener('change', updateDeemedGiftResult);
+        fundSourceSelect.addEventListener('change', updateDeemedGiftResult);
+
+
+        // Sticky Table of Contents active state
+        const sections = document.querySelectorAll('section[id^="section-"]');
+        const navLinks = document.querySelectorAll('.sticky-toc nav a');
+        const headerOffset = document.querySelector('header').offsetHeight; // Get header height for offset
+
+        function updateActiveNavLink() {
+            let currentActive = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - headerOffset - 30; // Adjust offset
+                const sectionBottom = sectionTop + section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                    currentActive = section.id;
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(currentActive)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNavLink);
+        window.addEventListener('load', updateActiveNavLink); // Initial check on load
+
+
+        // Expert Team Modal
+        const expertCards = document.querySelectorAll('.expert-card');
+        const expertModal = document.getElementById('expert-modal');
+        const closeExpertModal = document.getElementById('close-expert-modal');
+        const modalExpertImg = document.getElementById('modal-expert-img');
+        const modalExpertName = document.getElementById('modal-expert-name');
+        const modalExpertTitle = document.getElementById('modal-expert-title');
+        const modalExpertBio = document.getElementById('modal-expert-bio');
+
+        expertCards.forEach(card => {
+            card.addEventListener('click', () => {
+                modalExpertImg.src = card.querySelector('img').src;
+                modalExpertName.textContent = card.getAttribute('data-expert-name');
+                modalExpertTitle.textContent = card.getAttribute('data-expert-title');
+                modalExpertBio.textContent = card.getAttribute('data-expert-bio');
+                expertModal.classList.remove('hidden');
+            });
+        });
+
+        closeExpertModal.addEventListener('click', () => {
+            expertModal.classList.add('hidden');
+        });
+
+        expertModal.addEventListener('click', (e) => {
+            if (e.target === expertModal) {
+                expertModal.classList.add('hidden');
+            }
+        });
+
+
+        // Floating Chatbot Button
+        const chatbotButton = document.getElementById('chatbot-button');
+        const chatbotModal = document.getElementById('chatbot-modal');
+        const closeChatbotModal = document.getElementById('close-chatbot-modal');
+
+        if (chatbotButton && chatbotModal && closeChatbotModal) {
+            chatbotButton.addEventListener('click', () => {
+                chatbotModal.classList.toggle('hidden');
+            });
+
+            closeChatbotModal.addEventListener('click', () => {
+                chatbotModal.classList.add('hidden');
+            });
+
+            // Close if clicking outside modal
+            document.addEventListener('click', (event) => {
+                if (!chatbotModal.contains(event.target) && !chatbotButton.contains(event.target)) {
+                    chatbotModal.classList.add('hidden');
+                }
+            });
+        }
+
+
+        // Simple form submission handler (for demonstration, no actual backend)
+        // Removed the form submission handler as the form is removed
+        // document.querySelector('#contact form').addEventListener('submit', function(e) {
+        //     e.preventDefault();
+        //     alert('感謝您的預約！我們將盡快與您聯繫。');
+        //     this.reset();
+        // });
+    </script>
+</body>
+</html>
