@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>離婚房產價值認定 | 專業指南</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for professional typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons for professional icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom styles for a professional look and feel */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        /* Hero section background with a subtle overlay */
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1582463229584-34759a153239?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-overlay {
+            background-color: rgba(26, 58, 90, 0.75); /* Deep blue overlay */
+        }
+
+        /* Styling for the interactive tabs */
+        .tab-btn {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-btn.active {
+            border-bottom-color: #D4AF37; /* Gold accent */
+            color: #1A3A5A; /* Deep blue */
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Styling for the accordion (collapsible sections) */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        /* Styling for the timeline */
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+            padding-left: 2.5rem; 
+        }
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 9999px;
+            background-color: #fff;
+            border: 4px solid #D4AF37; /* Gold accent */
+        }
+        .timeline-line {
+            position: absolute;
+            left: 0.5rem;
+            top: 0.25rem;
+            bottom: 0;
+            width: 2px;
+            background-color: #e5e7eb; /* Gray line */
+        }
+        
+        /* Tooltip for legal terms */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 320px;
+            background-color: #1A3A5A;
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 1rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -160px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Section 1: Hero & Introduction -->
+    <header class="hero-section">
+        <div class="hero-overlay">
+            <div class="container mx-auto px-6 py-24 md:py-32 text-center text-white">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">離婚時，如何確定房子的真實價格？</h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto">一場法院、夫妻、專家共同參與的價值探索，攸關您的千萬財產。</p>
+                
+                <!-- Expert Credits -->
+                <div class="flex justify-center items-center space-x-6 md:space-x-12 mb-12 text-sm">
+                    <div class="flex items-center space-x-2">
+                        <i data-lucide="scale"></i>
+                        <span>律師: 鍾依庭</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i data-lucide="calculator"></i>
+                        <span>會計師: 林月嬌</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i data-lucide="land-plot"></i>
+                        <span>地政士: 沙振言</span>
+                    </div>
+                </div>
+
+                <!-- Call to Action Button -->
+                <a href="#interactive-section" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+                    開始了解估價流程
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section 2: Core Interactive Module -->
+        <section id="interactive-section" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800">價格的認定：雙方角力與法院權威的展現</h2>
+                    <p class="text-lg text-slate-600 mt-4 max-w-2xl mx-auto">房產價值並非單一數字，而是透過不同角色、不同方式共同確認的結果。</p>
+                </div>
+
+                <!-- Interactive Tabs -->
+                <div class="max-w-4xl mx-auto">
+                    <div class="border-b border-gray-200 mb-8">
+                        <nav class="flex justify-center -mb-px space-x-8" aria-label="Tabs">
+                            <button class="tab-btn whitespace-nowrap py-4 px-1 text-lg font-medium text-slate-500 hover:text-slate-700 active" data-tab="court">法院如何認定</button>
+                            <button class="tab-btn whitespace-nowrap py-4 px-1 text-lg font-medium text-slate-500 hover:text-slate-700" data-tab="couple">夫妻如何參與</button>
+                        </nav>
+                    </div>
+
+                    <!-- Tab Content: Court's Methods -->
+                    <div id="tab-court" class="tab-content active">
+                        <div class="space-y-4 accordion-container">
+                            <!-- Accordion Item 1 -->
+                            <div class="accordion-item border rounded-lg overflow-hidden">
+                                <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100">
+                                    <span class="flex items-center">
+                                        <i data-lucide="search-check" class="mr-4 text-amber-600"></i>
+                                        <span class="font-semibold text-lg text-slate-800">委託專業不動產估價師鑑價</span>
+                                        <span class="ml-4 text-xs font-bold bg-amber-200 text-amber-800 py-1 px-2 rounded-full">法院最常用</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="accordion-icon transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t bg-white text-slate-600">
+                                        <p>這是法院最常採用的方式。法院會指定專業的不動產估價師，對爭議房產進行實地勘查、蒐集市場資料，並依據專業估價方法（如比較法、收益法、成本法等），出具「不動產估價報告書」。這份報告書會詳細載明估價基準日、估價方法、估價結果及相關分析，作為法院認定房產市價的重要依據。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion Item 2 -->
+                            <div class="accordion-item border rounded-lg overflow-hidden">
+                                <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100">
+                                    <span class="flex items-center">
+                                        <i data-lucide="landmark" class="mr-4 text-slate-600"></i>
+                                        <span class="font-semibold text-lg text-slate-800">參考金融機構貸款評定價格</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="accordion-icon transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t bg-white text-slate-600">
+                                        <p>法院會向持有該房產抵押權的金融機構（如銀行）調閱其對該房產的鑑估報告或貸款評估價格。金融機構在核貸時會進行嚴謹的估價，其評定價格具有一定的參考性，但受金融管制影響，容易低於市價。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion Item 3 -->
+                            <div class="accordion-item border rounded-lg overflow-hidden">
+                                <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100">
+                                    <span class="flex items-center">
+                                        <i data-lucide="file-text" class="mr-4 text-slate-600"></i>
+                                        <span class="font-semibold text-lg text-slate-800">參考大型仲介公司買賣資料</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="accordion-icon transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t bg-white text-slate-600">
+                                      <p>法院可能要求當事人提供或自行向大型不動產仲介公司調閱該房產周邊近期相似條件房產的成交行情資料，扣除佣金後估算售價。這能反映市場的實際交易狀況。</p>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- Accordion Item 4 -->
+                            <div class="accordion-item border rounded-lg overflow-hidden">
+                                <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100">
+                                    <span class="flex items-center">
+                                        <i data-lucide="gavel" class="mr-4 text-slate-600"></i>
+                                        <span class="font-semibold text-lg text-slate-800">參考法院拍賣或公有房地價格</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="accordion-icon transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t bg-white text-slate-600">
+                                      <p>若有類似房產近期在法院拍賣或由政府機關（如財政部國有財產署）出售的案例，其成交價格也會被法院納入參考。</p>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- Accordion Item 5 -->
+                            <div class="accordion-item border rounded-lg overflow-hidden">
+                                <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100">
+                                    <span class="flex items-center">
+                                        <i data-lucide="newspaper" class="mr-4 text-slate-600"></i>
+                                        <span class="font-semibold text-lg text-slate-800">參考報章雜誌等市場資料</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="accordion-icon transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t bg-white text-slate-600">
+                                      <p>法院也會綜合考量報章雜誌上刊載的房市分析、區域行情報導，以及其他任何能反映房產市場價值的資料。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content: Couple's Involvement -->
+                    <div id="tab-couple" class="tab-content">
+                         <div class="space-y-4 accordion-container">
+                            <!-- Accordion Item 1 -->
+                            <div class="accordion-item border rounded-lg overflow-hidden">
+                                <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100">
+                                    <span class="flex items-center">
+                                        <i data-lucide="handshake" class="mr-4 text-emerald-600"></i>
+                                        <span class="font-semibold text-lg text-slate-800">協議優先原則</span>
+                                        <span class="ml-4 text-xs font-bold bg-emerald-200 text-emerald-800 py-1 px-2 rounded-full">最省時省力</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="accordion-icon transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t bg-white text-slate-600">
+                                        <p>如果夫妻雙方能夠理性溝通，並對房產的價值達成共識，可以直接在離婚協議書中載明該房產的價值。法院通常會尊重雙方的合意。這是最省時省力的方式。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion Item 2 -->
+                            <div class="accordion-item border rounded-lg overflow-hidden">
+                                <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100">
+                                    <span class="flex items-center">
+                                        <i data-lucide="layers" class="mr-4 text-slate-600"></i>
+                                        <span class="font-semibold text-lg text-slate-800">各自提出證據與主張</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="accordion-icon transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t bg-white text-slate-600">
+                                        <p>若無法協議，夫妻雙方可以各自委託不動產估價師進行估價，或自行蒐集實價登錄資料、銀行鑑價報告、房仲行情分析等，提交給法院作為證據。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion Item 3 -->
+                            <div class="accordion-item border rounded-lg overflow-hidden">
+                                <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100">
+                                    <span class="flex items-center">
+                                        <i data-lucide="message-square" class="mr-4 text-slate-600"></i>
+                                        <span class="font-semibold text-lg text-slate-800">參與法院鑑價程序</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="accordion-icon transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t bg-white text-slate-600">
+                                      <p>當法院委託鑑價時，夫妻雙方通常會被通知參與勘估過程，可以向估價師提供資訊或表達意見。報告出爐後，雙方也有權利對內容提出質疑。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 3: Case Study & Legal Basis -->
+        <section class="py-16 md:py-24 bg-slate-50">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
+                    <!-- Case Study Timeline -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">情境模擬</h3>
+                        <p class="text-slate-600 mb-8">王先生與李小姐的公寓價值爭議</p>
+                        <div class="relative">
+                            <div class="timeline-line"></div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4 class="font-semibold text-slate-700">1. 爭議起點</h4>
+                                <p class="text-sm text-slate-500">王先生主張1,500萬，李小姐主張1,200萬，無法達成共識。</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4 class="font-semibold text-slate-700">2. 法院介入</h4>
+                                <p class="text-sm text-slate-500">李小姐向法院聲請剩餘財產分配，並請求法院對公寓進行鑑價。</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4 class="font-semibold text-slate-700">3. 專業鑑價</h4>
+                                <p class="text-sm text-slate-500">法院指定估價師，勘查並參考周邊實價登錄、銀行鑑價及仲介成交案例。</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4 class="font-semibold text-slate-700">4. 最終報告</h4>
+                                <p class="text-sm text-slate-500">估價師出具報告，認定該公寓市價為1,400萬元。</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4 class="font-semibold text-slate-700">5. 法院判決</h4>
+                                <p class="text-sm text-slate-500">法院採納估價報告，以此價格作為剩餘財產分配的計算基礎。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Legal Basis -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">法律怎麼說？</h3>
+                        <p class="text-slate-600 mb-8">我們的判斷依據</p>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <p class="text-slate-700 leading-relaxed">
+                                雖然《民法》未明定估價方式，但法院實務上會參酌
+                                <span class="tooltip text-amber-600 font-semibold">
+                                    《房地合一課徵所得稅申報作業要點》第六點第四項
+                                    <i data-lucide="info" class="inline-block w-4 h-4 ml-1"></i>
+                                    <span class="tooltip-text">
+                                        <strong class="block mb-2">時價資料認定方式：</strong>
+                                        (一)金融機構貸款評定之價格。<br>
+                                        (二)不動產估價師之估價資料。<br>
+                                        (三)大型仲介公司買賣資料扣除佣金加成估算之售價。<br>
+                                        (四)法院拍賣或財政部國有財產署等出售公有房屋、土地之價格。<br>
+                                        (五)報章雜誌所載市場價格。<br>
+                                        (六)其他具參考性之時價資料。<br>
+                                        (七)時價資料同時有數種者，得以其平均數認定。
+                                    </span>
+                                </span>
+                                的「時價資料認定」方式，來認定不動產的市場價值。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Key Takeaways & CTA -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800">實務考量：三大注意事項</h2>
+                    <p class="text-lg text-slate-600 mt-4 max-w-2xl mx-auto">在處理房產價值時，請務必留意以下關鍵點。</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="bg-slate-50 p-8 rounded-lg text-center">
+                        <div class="mx-auto bg-amber-500 text-white w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                            <span class="font-bold text-3xl">1</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">估價基準時點</h3>
+                        <p class="text-slate-600">財產價值計算基準，原則上是「離婚訴訟起訴時」或「協議離婚登記日」的市價。</p>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-lg text-center">
+                        <div class="mx-auto bg-amber-500 text-white w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                            <span class="font-bold text-3xl">2</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">證據的重要性</h3>
+                        <p class="text-slate-600">主張財產價值必須有充分證據，專業的「不動產估價報告書」通常具有最高的證明力。</p>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-lg text-center">
+                        <div class="mx-auto bg-amber-500 text-white w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                            <span class="font-bold text-3xl">3</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">稅務價值 ≠ 市場價值</h3>
+                        <p class="text-slate-600">請注意，土地公告現值、房屋評定現值遠低於市價，法院通常不會直接採用。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer & Final CTA -->
+    <footer class="bg-slate-800 text-white">
+        <div class="container mx-auto px-6 py-12 text-center">
+            <p class="text-lg text-amber-400 mb-2">【從金庸看傳承】系列專題</p>
+            <h3 class="text-2xl font-bold mb-6">複雜的財產傳承，需要智慧與策略來化解。</h3>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 w-full sm:w-auto">預約專家一對一諮詢</a>
+                <a href="#" class="bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 w-full sm:w-auto">下載本頁重點彙整PDF</a>
+            </div>
+            <div class="mt-12 border-t border-slate-700 pt-8 text-sm text-slate-400">
+                <p>感謝 金庸群 專家訂正：律師 鍾依庭、會計師 林月嬌、地政士 沙振言</p>
+                <p class="mt-2">※ 此資訊為 AI 整理，並經由專家群訂正。所有個案狀況不同，請務必諮詢專業人士以保障您的權益。</p>
+                <p class="mt-4">&copy; 2024 專業指南. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+
+                // Update button active state
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Update content active state
+                tabContents.forEach(content => {
+                    if (content.id === `tab-${tabId}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Accordion functionality
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const accordionItem = header.parentElement;
+                const accordionContent = header.nextElementSibling;
+                const accordionIcon = header.querySelector('.accordion-icon');
+
+                // Close all other accordions within the same container
+                const container = accordionItem.closest('.accordion-container');
+                if (container) {
+                    container.querySelectorAll('.accordion-item').forEach(item => {
+                        if (item !== accordionItem) {
+                            item.querySelector('.accordion-content').style.maxHeight = null;
+                            item.querySelector('.accordion-icon').classList.remove('rotate-180');
+                        }
+                    });
+                }
+                
+                // Toggle current accordion
+                if (accordionContent.style.maxHeight) {
+                    accordionContent.style.maxHeight = null;
+                    accordionIcon.classList.remove('rotate-180');
+                } else {
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                    accordionIcon.classList.add('rotate-180');
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
