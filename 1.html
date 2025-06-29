@@ -63,30 +63,50 @@
         <main>
             <!-- 比較表容器 -->
             <div class="overflow-x-auto rounded-xl shadow-2xl shadow-indigo-900/20 border border-gray-700 bg-gray-800/50 backdrop-blur-sm">
-                <table class="w-full min-w-[800px] text-sm md:text-base">
+                <table class="w-full min-w-[1000px] text-sm md:text-base">
                     <!-- 表頭 -->
                     <thead class="border-b border-gray-700">
                         <tr>
                             <!-- 功能項目欄 -->
-                            <th class="w-1/4 px-6 py-5 text-left text-lg font-bold sticky left-0 bg-gray-800/50">
+                            <th class="w-[28%] px-6 py-5 text-left text-lg font-bold sticky left-0 bg-gray-800/50">
                                 <span class="highlight-line">功能項目</span>
                             </th>
                             <!-- 方案一：免費會員 -->
-                            <th class="w-1/4 px-6 py-5 text-center">
+                            <th class="w-[18%] px-6 py-5 text-center">
                                 <h2 class="text-xl font-bold text-gray-300 plan-name">免費會員</h2>
                                 <p class="font-normal text-gray-400 mt-1">基礎體驗</p>
+                                <div class="mt-4 text-2xl font-bold">免費</div>
                             </th>
                             <!-- 方案二：標準會員 -->
-                            <th class="w-1/4 px-6 py-5 text-center">
-                                <h2 class="text-xl font-bold text-cyan-400 plan-name">標準會員</h2>
+                            <th class="w-[18%] px-6 py-5 text-center">
+                                <h2 class="text-xl font-bold text-cyan-400 plan-name">標準版</h2>
                                 <p class="font-normal text-gray-400 mt-1">進階使用者</p>
+                                <div class="mt-4">
+                                    <span class="text-2xl font-bold text-white">$6,888</span>
+                                    <span class="text-sm text-gray-400">/年</span>
+                                </div>
+                                <div class="text-sm text-gray-500 h-5">原價 <s class="font-normal">$8,888</s></div>
                             </th>
                             <!-- 方案三：專業會員 (推薦) -->
-                            <th class="w-1/4 px-6 py-8 text-center relative bg-indigo-900/30">
-                                <!-- 更新：調整標籤位置，避免被裁切 -->
+                            <th class="w-[18%] px-6 py-5 text-center relative bg-indigo-900/30">
                                 <span class="absolute top-2 right-4 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">最受歡迎</span>
-                                <h2 class="text-xl font-bold text-indigo-400 plan-name">專業會員</h2>
+                                <h2 class="text-xl font-bold text-indigo-400 plan-name">專業版</h2>
                                 <p class="font-normal text-gray-400 mt-1">企業與開發者</p>
+                                <div class="mt-4">
+                                    <span class="text-2xl font-bold text-white">$16,888</span>
+                                    <span class="text-sm text-gray-400">/年</span>
+                                </div>
+                                <div class="text-sm text-gray-500 h-5">原價 <s class="font-normal">$18,888</s></div>
+                            </th>
+                             <!-- 方案四：客製版本 -->
+                            <th class="w-[18%] px-6 py-5 text-center bg-gray-700/30">
+                                <h2 class="text-xl font-bold text-amber-400 plan-name">客製版本</h2>
+                                <p class="font-normal text-gray-400 mt-1">大型企業解決方案</p>
+                                <div class="mt-4">
+                                    <span class="text-2xl font-bold text-white">$180,000</span>
+                                    <span class="text-sm text-gray-400">起</span>
+                                </div>
+                                <div class="text-sm text-gray-500 h-5"> </div>
                             </th>
                         </tr>
                     </thead>
@@ -95,78 +115,87 @@
                     <tbody>
                         <!-- 分類：核心功能 -->
                         <tr class="bg-gray-800/20">
-                            <td colspan="4" class="px-6 py-3 text-base font-semibold text-indigo-300 sticky left-0 bg-gray-800/20">核心功能</td>
+                            <td colspan="5" class="px-6 py-3 text-base font-semibold text-indigo-300 sticky left-0 bg-gray-800/20">核心功能</td>
                         </tr>
                         <tr class="border-b border-gray-700/50">
                             <td class="px-6 py-4 font-medium text-gray-300 sticky left-0 bg-gray-800/50">AI 智能助理</td>
                             <td class="px-6 py-4 text-center text-gray-400">基礎問答</td>
                             <td class="px-6 py-4 text-center text-cyan-400 font-semibold">進階對話</td>
                             <td class="px-6 py-4 text-center text-indigo-400 font-semibold bg-indigo-900/30">多輪對話與記憶</td>
+                            <td class="px-6 py-4 text-center text-amber-400 font-semibold bg-gray-700/30">企業級整合</td>
                         </tr>
                         <tr class="border-b border-gray-700/50">
                             <td class="px-6 py-4 font-medium text-gray-300 sticky left-0 bg-gray-800/50">AI 寫作副手</td>
                             <td class="px-6 py-4 text-center text-gray-400">3 次/日</td>
                             <td class="px-6 py-4 text-center text-cyan-400 font-semibold">10 次/日</td>
                             <td class="px-6 py-4 text-center text-indigo-400 font-semibold bg-indigo-900/30">無限次使用</td>
+                            <td class="px-6 py-4 text-center text-amber-400 font-semibold bg-gray-700/30">無限次使用</td>
                         </tr>
                         <tr class="border-b border-gray-700/50">
                             <td class="px-6 py-4 font-medium text-gray-300 sticky left-0 bg-gray-800/50">AI 檔案分析</td>
                             <td class="px-6 py-4 text-center text-gray-400">3 次/日 (PDF)</td>
                             <td class="px-6 py-4 text-center text-cyan-400 font-semibold">10 次/日 (PDF, DOCX)</td>
                             <td class="px-6 py-4 text-center text-indigo-400 font-semibold bg-indigo-900/30">無限次使用 (多格式)</td>
+                            <td class="px-6 py-4 text-center text-amber-400 font-semibold bg-gray-700/30">無限次使用 (多格式)</td>
                         </tr>
 
                         <!-- 分類：進階工具 -->
                         <tr class="bg-gray-800/20">
-                            <td colspan="4" class="px-6 py-3 text-base font-semibold text-indigo-300 sticky left-0 bg-gray-800/20">進階工具</td>
+                            <td colspan="5" class="px-6 py-3 text-base font-semibold text-indigo-300 sticky left-0 bg-gray-800/20">進階工具</td>
                         </tr>
                         <tr class="border-b border-gray-700/50">
                             <td class="px-6 py-4 font-medium text-gray-300 sticky left-0 bg-gray-800/50">AI 圖像生成</td>
-                            <!-- 更新：使用帶有顏色的 span 來顯示圖示 -->
                             <td class="px-6 py-4 text-center"><span class="text-green-500 font-bold text-lg">✔️</span></td>
                             <td class="px-6 py-4 text-center text-cyan-400 font-semibold"><span class="text-green-500 font-bold text-lg">✔️</span> (高畫質)</td>
                             <td class="px-6 py-4 text-center text-indigo-400 font-semibold bg-indigo-900/30"><span class="text-green-500 font-bold text-lg">✔️</span> (高畫質與風格)</td>
+                            <td class="px-6 py-4 text-center text-amber-400 font-semibold bg-gray-700/30"><span class="text-green-500 font-bold text-lg">✔️</span> (客製化模型)</td>
                         </tr>
                         <tr class="border-b border-gray-700/50">
                             <td class="px-6 py-4 font-medium text-gray-300 sticky left-0 bg-gray-800/50">AI 網頁爬蟲</td>
                             <td class="px-6 py-4 text-center"><span class="text-red-500 font-bold text-lg">✖️</span></td>
                             <td class="px-6 py-4 text-center text-cyan-400 font-semibold"><span class="text-green-500 font-bold text-lg">✔️</span></td>
                             <td class="px-6 py-4 text-center text-indigo-400 font-semibold bg-indigo-900/30"><span class="text-green-500 font-bold text-lg">✔️</span> (排程爬取)</td>
+                            <td class="px-6 py-4 text-center text-amber-400 font-semibold bg-gray-700/30"><span class="text-green-500 font-bold text-lg">✔️</span> (大規模爬取)</td>
                         </tr>
                         <tr class="border-b border-gray-700/50">
                             <td class="px-6 py-4 font-medium text-gray-300 sticky left-0 bg-gray-800/50">AI 語音辨識</td>
                             <td class="px-6 py-4 text-center"><span class="text-red-500 font-bold text-lg">✖️</span></td>
                             <td class="px-6 py-4 text-center text-cyan-400 font-semibold"><span class="text-green-500 font-bold text-lg">✔️</span></td>
                             <td class="px-6 py-4 text-center text-indigo-400 font-semibold bg-indigo-900/30"><span class="text-green-500 font-bold text-lg">✔️</span> (即時轉錄)</td>
+                            <td class="px-6 py-4 text-center text-amber-400 font-semibold bg-gray-700/30"><span class="text-green-500 font-bold text-lg">✔️</span> (私有化部署)</td>
                         </tr>
                         <tr class="border-b border-gray-700/50">
                             <td class="px-6 py-4 font-medium text-gray-300 sticky left-0 bg-gray-800/50">AI 商業圖表</td>
                             <td class="px-6 py-4 text-center"><span class="text-red-500 font-bold text-lg">✖️</span></td>
                             <td class="px-6 py-4 text-center text-cyan-400 font-semibold"><span class="text-green-500 font-bold text-lg">✔️</span></td>
                             <td class="px-6 py-4 text-center text-indigo-400 font-semibold bg-indigo-900/30"><span class="text-green-500 font-bold text-lg">✔️</span> (互動式圖表)</td>
+                            <td class="px-6 py-4 text-center text-amber-400 font-semibold bg-gray-700/30"><span class="text-green-500 font-bold text-lg">✔️</span> (串接企業 BI)</td>
                         </tr>
 
                         <!-- 分類：協作與客製化 -->
                         <tr class="bg-gray-800/20">
-                            <td colspan="4" class="px-6 py-3 text-base font-semibold text-indigo-300 sticky left-0 bg-gray-800/20">協作與客製化</td>
+                            <td colspan="5" class="px-6 py-3 text-base font-semibold text-indigo-300 sticky left-0 bg-gray-800/20">協作與客製化</td>
                         </tr>
                         <tr class="border-b border-gray-700/50">
                             <td class="px-6 py-4 font-medium text-gray-300 sticky left-0 bg-gray-800/50">專案管理與協作</td>
                             <td class="px-6 py-4 text-center"><span class="text-red-500 font-bold text-lg">✖️</span></td>
                             <td class="px-6 py-4 text-center text-gray-400">5 個專案</td>
                             <td class="px-6 py-4 text-center text-indigo-400 font-semibold bg-indigo-900/30">無限專案與團隊</td>
+                            <td class="px-6 py-4 text-center text-amber-400 font-semibold bg-gray-700/30">企業級權限管理</td>
                         </tr>
                         <tr class="border-b border-gray-700/50">
                             <td class="px-6 py-4 font-medium text-gray-300 sticky left-0 bg-gray-800/50">自訂 AI 代理人</td>
                             <td class="px-6 py-4 text-center"><span class="text-red-500 font-bold text-lg">✖️</span></td>
                             <td class="px-6 py-4 text-center"><span class="text-red-500 font-bold text-lg">✖️</span></td>
                             <td class="px-6 py-4 text-center text-indigo-400 font-semibold bg-indigo-900/30"><span class="text-green-500 font-bold text-lg">✔️</span></td>
+                            <td class="px-6 py-4 text-center text-amber-400 font-semibold bg-gray-700/30"><span class="text-green-500 font-bold text-lg">✔️</span> (進階客製)</td>
                         </tr>
                         <tr class="border-b border-gray-700/50">
                             <td class="px-6 py-4 font-medium text-gray-300 sticky left-0 bg-gray-800/50">模型選擇彈性</td>
                             <td class="px-6 py-4 text-center text-gray-400">標準模型</td>
                             <td class="px-6 py-4 text-center text-cyan-400 font-semibold">進階模型</td>
                             <td class="px-6 py-4 text-center text-indigo-400 font-semibold bg-indigo-900/30">所有模型 (含 Beta)</td>
+                            <td class="px-6 py-4 text-center text-amber-400 font-semibold bg-gray-700/30">可導入私有模型</td>
                         </tr>
 
                         <!-- 行動按鈕列 -->
@@ -181,6 +210,9 @@
                             <td class="px-6 py-6 text-center bg-indigo-900/30">
                                 <button class="w-full max-w-[200px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg btn-hover-effect">升級專業版</button>
                             </td>
+                            <td class="px-6 py-6 text-center bg-gray-700/30">
+                                <button class="w-full max-w-[200px] bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-3 px-6 rounded-lg btn-hover-effect">聯絡我們</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -189,7 +221,7 @@
 
         <!-- 頁尾 -->
         <footer class="text-center mt-12 md:mt-16 text-gray-500">
-            <p>&copy; 2025 奇點智匯 JudgAI. All rights reserved.</p>
+            <p>&copy; 2024 奇點智匯 JudgAI. All rights reserved.</p>
             <p class="text-sm mt-2">方案內容可能隨時更新，請以官網最新資訊為準。</p>
         </footer>
 
