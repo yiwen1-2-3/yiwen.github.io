@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>財富的兩面刃：從1.2億遺產風暴，看懂家族傳承的圓滿之道</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        h1, h2, h3 {
+            font-family: 'Noto Serif TC', serif;
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .interactive-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(99, 179, 237, 0.2), 0 4px 6px -2px rgba(99, 179, 237, 0.1);
+        }
+        .chapter-icon {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #3182ce, #63b3ed);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(99, 179, 237, 0.5);
+        }
+        .flip-card {
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+        }
+        .flip-card-front {
+            background-color: #2d3748;
+            border: 1px solid #4a5568;
+        }
+        .flip-card-back {
+            background-color: #4a5568;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <!-- Hero Section -->
+    <header class="min-h-screen bg-cover bg-center bg-fixed flex items-center justify-center text-center text-white p-4" style="background-image: url('https://images.unsplash.com/photo-1588596402492-26185459392e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+        <div class="bg-black bg-opacity-60 p-8 md:p-12 rounded-xl backdrop-blur-sm">
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">財富的兩面刃</h1>
+            <p class="text-lg md:text-2xl max-w-3xl mx-auto">從1.2億遺產風暴，看懂家族傳承的圓滿之道</p>
+        </div>
+    </header>
+
+    <!-- Introduction -->
+    <section class="py-16 md:py-24 bg-gray-900">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <p class="text-lg md:text-xl leading-relaxed mb-8 scroll-reveal">
+                「家家有本難念的經」，而財富傳承，往往是這本經裡最難懂、也最傷感情的一頁。當一筆高達1.2億元的巨額資產，撞上一位驟然離世卻未留隻字片語的父親時，它就不再是單純的數字，而是一面映照人性的「照妖鏡」。
+            </p>
+            <p class="text-base md:text-lg text-blue-300 font-semibold scroll-reveal">
+                本文將深入剖析財富傳承中由「法律」、「稅務」、「人性」與「情感」交織而成的四維結構，助您實現「傳富，更傳愛」的終極圓滿。
+            </p>
+        </div>
+    </section>
+
+    <div class="container mx-auto px-4 md:px-6 py-12">
+
+        <!-- Chapter 1 -->
+        <section class="mb-24 scroll-reveal">
+            <div class="text-center mb-12">
+                <div class="inline-block p-4 rounded-full chapter-icon mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-300">第一章：風暴之眼</h2>
+                <p class="text-xl mt-2">當「天理人情」對上「白紙黑字」</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
+                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                    <h3 class="text-2xl font-bold mb-3 text-red-300">母親的視角：天理人情</h3>
+                    <p>長年侍奉的兒子，理應獲得絕大部分財產。這是最樸素的公平正義。</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                    <h3 class="text-2xl font-bold mb-3 text-green-300">姐妹的視角：白紙黑字</h3>
+                    <p>基於《民法》賦予的權利，我們擁有不容剝奪的繼承權。</p>
+                </div>
+            </div>
+            
+            <div class="bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700">
+                <h3 class="text-2xl font-bold mb-6 text-center text-yellow-300">【法律的冰冷預設】無遺囑下的「法定繼承」</h3>
+                <div class="text-center mb-8">
+                    <p class="text-4xl font-bold text-white">1.2億 遺產</p>
+                    <p class="text-gray-400">在法律天平上，被精準地切成四等份</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <p class="text-lg font-semibold">母親 (配偶)</p>
+                        <p class="text-2xl font-bold text-blue-300">3,000萬</p>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <p class="text-lg font-semibold">兒子 (子女)</p>
+                        <p class="text-2xl font-bold text-blue-300">3,000萬</p>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <p class="text-lg font-semibold">姐妹一 (子女)</p>
+                        <p class="text-2xl font-bold text-blue-300">3,000萬</p>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <p class="text-lg font-semibold">姐妹二 (子女)</p>
+                        <p class="text-2xl font-bold text-blue-300">3,000萬</p>
+                    </div>
+                </div>
+
+                <div class="mt-10 pt-6 border-t border-gray-700">
+                    <h3 class="text-2xl font-bold mb-4 text-center text-yellow-300">【權利的最後防線】無法迴避的「特留分」</h3>
+                    <p class="text-center mb-4">法律為防止父母偏心而設的「強制性」保障。任何遺囑都無法剝奪。</p>
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-center">
+                        <div class="bg-red-900 bg-opacity-50 p-6 rounded-lg border border-red-500 interactive-card">
+                            <p class="text-lg font-semibold">每位姐妹的特留分</p>
+                            <p class="text-sm">應繼分(1/4) 的一半 = 1/8</p>
+                            <p class="text-3xl font-bold text-red-300 mt-2">1,500萬</p>
+                            <p class="text-xs text-red-200 mt-1">這是一筆任何遺囑都無法剝奪的權利</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 2 -->
+        <section class="mb-24 scroll-reveal">
+            <div class="text-center mb-12">
+                <div class="inline-block p-4 rounded-full chapter-icon mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-green-300">第二章：拆彈的藝術</h2>
+                <p class="text-xl mt-2">「遺囑」作骨，「保險」為翼的雙軌佈局</p>
+            </div>
+            
+            <div class="bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700 text-center">
+                <h3 class="text-2xl font-bold mb-6">【互動模擬】善用規則，重塑傳承</h3>
+                <p class="mb-8 max-w-2xl mx-auto">點擊下方按鈕，觀看專業規劃如何改變財富的流向，在法律範圍內實現母親的心願。</p>
+                
+                <div id="simulation-container" class="grid md:grid-cols-3 gap-6 items-start mb-8">
+                    <!-- Initial State -->
+                    <div id="initial-estate" class="bg-gray-700 p-6 rounded-lg border-2 border-dashed border-red-400">
+                        <h4 class="text-xl font-bold mb-2">母親的遺產</h4>
+                        <p class="text-3xl font-bold text-white">1.2億</p>
+                        <div class="mt-4">
+                            <p class="text-sm text-red-300 font-semibold">姐妹可主張特留分</p>
+                            <p class="text-xl font-bold text-red-300">各 1,500萬</p>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flex justify-center items-center h-full">
+                        <svg id="arrow-icon" xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </div>
+
+                    <!-- Final State -->
+                    <div id="final-distribution" class="grid grid-cols-1 gap-4 opacity-0 transition-opacity duration-1000">
+                        <div class="bg-blue-900 bg-opacity-50 p-4 rounded-lg border border-blue-500">
+                            <h4 class="text-lg font-bold">給兒子的保險金</h4>
+                            <p class="text-sm text-blue-300">《保險法》第112條</p>
+                            <p class="text-2xl font-bold text-white">8,000萬</p>
+                            <p class="text-xs font-semibold text-green-300">不計入遺產，直接給付</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <h4 class="text-lg font-bold">縮水後的遺產</h4>
+                            <p class="text-2xl font-bold text-white">4,000萬</p>
+                            <div class="mt-2">
+                                <p class="text-xs text-yellow-300 font-semibold">姐妹可主張特留分</p>
+                                <p class="text-lg font-bold text-yellow-300">各 500萬</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="simulate-btn" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg">
+                    啟動雙軌佈局
+                </button>
+            </div>
+        </section>
+
+        <!-- Chapter 3 -->
+        <section class="mb-24 scroll-reveal">
+            <div class="text-center mb-12">
+                <div class="inline-block p-4 rounded-full chapter-icon mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-red-400">第三章：風暴的邊界</h2>
+                <p class="text-xl mt-2">「實質課稅」這條隱形的紅線</p>
+            </div>
+
+            <div class="bg-gray-800 p-8 rounded-xl shadow-2xl border border-red-800">
+                <h3 class="text-2xl font-bold mb-6 text-center">【避稅的紅線警示】</h3>
+                <p class="text-center mb-8 max-w-3xl mx-auto">任何在生命終點線前的「百米衝刺」式規劃，都充滿了被稅務機關挑戰的風險。時間，才是最好的朋友。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-red-900 bg-opacity-40 p-5 rounded-lg text-center interactive-card border border-red-700">
+                        <h4 class="text-xl font-bold text-red-300">躉繳投保</h4>
+                        <p class="mt-2 text-sm">一次性繳清所有保費，目的性過於明顯。</p>
+                    </div>
+                    <div class="bg-red-900 bg-opacity-40 p-5 rounded-lg text-center interactive-card border border-red-700">
+                        <h4 class="text-xl font-bold text-red-300">高齡/帶病投保</h4>
+                        <p class="mt-2 text-sm">不符合正常核保邏輯，有違保險精神。</p>
+                    </div>
+                    <div class="bg-red-900 bg-opacity-40 p-5 rounded-lg text-center interactive-card border border-red-700">
+                        <h4 class="text-xl font-bold text-red-300">短期密集投保</h4>
+                        <p class="mt-2 text-sm">投保後極短時間內身故，意圖明顯。</p>
+                    </div>
+                    <div class="bg-red-900 bg-opacity-40 p-5 rounded-lg text-center interactive-card border border-red-700">
+                        <h4 class="text-xl font-bold text-red-300">鉅額投保</h4>
+                        <p class="mt-2 text-sm">保額與資力顯不相當，或保費來源為借貸。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 4 -->
+        <section class="mb-24 scroll-reveal">
+            <div class="text-center mb-12">
+                <div class="inline-block p-4 rounded-full chapter-icon mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-yellow-300">第四章：超越金錢的維度</h2>
+                <p class="text-xl mt-2">財富傳承的終極智慧</p>
+            </div>
+
+            <p class="text-center text-lg mb-10 max-w-3xl mx-auto">成功的傳承，不僅是技術操作，更是維繫家庭關係的藝術。點擊下方的卡片，探索超越金錢的傳承智慧。</p>
+            
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="flip-card h-64 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h4 class="text-2xl font-bold">溝通的隔閡</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>一場坦誠的家庭會議，其價值勝過千萬元的律師費。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card h-64 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h4 class="text-2xl font-bold">傳承「價格」</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>共同撰寫「家族憲章」，傳承無形的價值觀與家族精神。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card h-64 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h4 class="text-2xl font-bold">冰冷的法律文件</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>手寫一份溫暖的「情感遺囑」，用愛撫平分配帶來的傷痕。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="py-16 md:py-24 bg-gray-800 rounded-lg scroll-reveal">
+            <div class="container mx-auto px-6 max-w-4xl text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-300 mb-6">讓愛，為您的傳承智慧加冕</h2>
+                <p class="text-lg md:text-xl leading-relaxed mb-8">
+                    成功的財富傳承，是一場考驗人性、智慧與遠見的綜合藝術。它需要我們左手拿著法律的羅盤，右手捧著溫暖的同理心，在理性的規劃中，注入感性的關懷。
+                </p>
+                <p class="text-2xl font-serif text-white font-bold">
+                    唯有如此，財富才能真正成為祝福，而「愛」，將是您留給後代最璀璨、最永恆的傳承。
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="text-center py-8 text-gray-500 text-sm">
+        <p>此為根據聯合新聞網案例所設計之互動式網頁，僅供說明與參考。</p>
+        <p>&copy; 2025 互動式故事網頁. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Scroll Reveal Animation
+        const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        scrollRevealElements.forEach(el => observer.observe(el));
+
+        // Chapter 2 Interactive Simulation
+        const simulateBtn = document.getElementById('simulate-btn');
+        const initialEstate = document.getElementById('initial-estate');
+        const finalDistribution = document.getElementById('final-distribution');
+        const arrowIcon = document.getElementById('arrow-icon');
+        const simulationContainer = document.getElementById('simulation-container');
+
+        simulateBtn.addEventListener('click', () => {
+            if (simulateBtn.textContent.includes('啟動')) {
+                // Animate the change
+                initialEstate.style.transition = 'all 1s ease-in-out';
+                initialEstate.innerHTML = `
+                    <h4 class="text-xl font-bold mb-2">縮水後的遺產</h4>
+                    <p class="text-3xl font-bold text-white">4,000萬</p>
+                    <div class="mt-4">
+                        <p class="text-sm text-yellow-300 font-semibold">姐妹可主張特留分</p>
+                        <p class="text-xl font-bold text-yellow-300">各 500萬</p>
+                    </div>
+                `;
+                initialEstate.classList.remove('border-red-400');
+                initialEstate.classList.add('border-yellow-400');
+
+                finalDistribution.style.opacity = '1';
+                
+                // Change layout for better visual flow on mobile
+                if (window.innerWidth < 768) {
+                    simulationContainer.classList.remove('md:grid-cols-3');
+                    simulationContainer.classList.add('grid-cols-1');
+                    arrowIcon.style.transform = 'rotate(90deg)';
+                } else {
+                    arrowIcon.classList.add('text-green-400');
+                }
+                
+                // Create and animate the "insurance" block
+                const insuranceTransfer = document.createElement('div');
+                insuranceTransfer.className = 'absolute bg-blue-400 rounded-full';
+                insuranceTransfer.style.width = '50px';
+                insuranceTransfer.style.height = '50px';
+                insuranceTransfer.style.opacity = '0.7';
+                insuranceTransfer.style.transition = 'all 1.5s ease-out';
+                
+                const startRect = initialEstate.getBoundingClientRect();
+                const endRect = finalDistribution.children[0].getBoundingClientRect();
+                
+                document.body.appendChild(insuranceTransfer);
+                
+                insuranceTransfer.style.left = `${startRect.left + startRect.width / 2}px`;
+                insuranceTransfer.style.top = `${startRect.top + startRect.height / 2 + window.scrollY}px`;
+
+                setTimeout(() => {
+                    insuranceTransfer.style.left = `${endRect.left + endRect.width / 2}px`;
+                    insuranceTransfer.style.top = `${endRect.top + endRect.height / 2 + window.scrollY}px`;
+                    insuranceTransfer.style.opacity = '0';
+                    insuranceTransfer.style.transform = 'scale(0.5)';
+                }, 100);
+
+                setTimeout(() => {
+                    insuranceTransfer.remove();
+                }, 1600);
+
+
+                simulateBtn.textContent = '重置模擬';
+                simulateBtn.style.background = 'linear-gradient(90deg, #a0aec0, #cbd5e0)';
+
+            } else {
+                // Reset to initial state
+                initialEstate.innerHTML = `
+                    <h4 class="text-xl font-bold mb-2">母親的遺產</h4>
+                    <p class="text-3xl font-bold text-white">1.2億</p>
+                    <div class="mt-4">
+                        <p class="text-sm text-red-300 font-semibold">姐妹可主張特留分</p>
+                        <p class="text-xl font-bold text-red-300">各 1,500萬</p>
+                    </div>
+                `;
+                initialEstate.classList.remove('border-yellow-400');
+                initialEstate.classList.add('border-red-400');
+                finalDistribution.style.opacity = '0';
+                
+                if (window.innerWidth < 768) {
+                    simulationContainer.classList.add('md:grid-cols-3');
+                    simulationContainer.classList.remove('grid-cols-1');
+                    arrowIcon.style.transform = 'rotate(0deg)';
+                } else {
+                    arrowIcon.classList.remove('text-green-400');
+                }
+
+                simulateBtn.textContent = '啟動雙軌佈局';
+                simulateBtn.style.background = 'linear-gradient(90deg, #3182ce, #63b3ed)';
+            }
+        });
+    </script>
+</body>
+</html>
