@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇點智匯 JudgAI - 會員方案比較</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 自定義樣式 */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050816; /* 深邃星空背景 */
+        }
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .plan-card {
+            background-color: rgba(17, 24, 39, 0.8); /* 半透明玻璃效果 */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        .plan-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(56, 189, 248, 0.6);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+        }
+        .popular-badge {
+            background: linear-gradient(90deg, #38bdf8, #a78bfa);
+            box-shadow: 0 0 15px #38bdf8;
+        }
+        .cta-button {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            transition: all 0.3s ease-in-out;
+        }
+        .cta-button:hover {
+            box-shadow: 0 0 20px #38bdf8;
+            transform: scale(1.05);
+        }
+        .feature-item svg {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <div class="min-h-screen w-full px-4 py-12 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Header -->
+            <header class="text-center mb-16">
+                <h1 class="font-orbitron text-4xl sm:text-5xl md:text-6xl font-bold tracking-wider gradient-text">
+                    奇點智匯 JudgAI
+                </h1>
+                <p class="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
+                    解鎖您的數據潛能。從個人專案到企業級應用，選擇最適合您的智慧解決方案。
+                </p>
+            </header>
+
+            <!-- Pricing Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- Plan 1: 體驗版 -->
+                <div class="plan-card rounded-2xl p-8 flex flex-col">
+                    <div class="flex-grow">
+                        <h3 class="font-orbitron text-2xl font-bold text-white">體驗版</h3>
+                        <p class="mt-4 text-gray-400">適合初次接觸或個人使用者</p>
+                        <div class="mt-6">
+                            <span class="text-5xl font-bold text-white">免費</span>
+                        </div>
+                        <ul class="mt-8 space-y-4 text-left">
+                            <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>每月 <strong class="text-white">10</strong> 次對話</span>
+                            </li>
+                            <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>上傳 <strong class="text-white">3</strong> 個檔案</span>
+                            </li>
+                             <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>檔案大小限制 <strong class="text-white">2MB</strong></span>
+                            </li>
+                            <li class="feature-item flex items-start text-gray-500">
+                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                <span>API 存取</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="cta-button mt-8 block w-full text-center text-white font-bold py-3 rounded-lg">免費註冊</a>
+                </div>
+
+                <!-- Plan 2: 標準版 (Most Popular) -->
+                <div class="relative plan-card rounded-2xl p-8 flex flex-col border-2 border-cyan-400">
+                    <div class="popular-badge absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 px-4 py-1 text-sm font-bold text-gray-900 rounded-full">
+                        最受歡迎
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-orbitron text-2xl font-bold text-white">標準版</h3>
+                        <p class="mt-4 text-gray-400">適合專業人士與小型團隊</p>
+                        <div class="mt-6">
+                            <span class="text-5xl font-bold text-white">$15</span>
+                            <span class="text-lg text-gray-400">/ 月</span>
+                        </div>
+                        <ul class="mt-8 space-y-4 text-left">
+                            <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>每月 <strong class="text-white">100</strong> 次對話</span>
+                            </li>
+                            <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>上傳 <strong class="text-white">50</strong> 個檔案</span>
+                            </li>
+                             <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>檔案大小限制 <strong class="text-white">10MB</strong></span>
+                            </li>
+                            <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>API 存取</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="cta-button mt-8 block w-full text-center text-white font-bold py-3 rounded-lg">選擇方案</a>
+                </div>
+
+                <!-- Plan 3: 專業版 -->
+                <div class="plan-card rounded-2xl p-8 flex flex-col">
+                    <div class="flex-grow">
+                        <h3 class="font-orbitron text-2xl font-bold text-white">專業版</h3>
+                        <p class="mt-4 text-gray-400">為進階用戶與成長中企業打造</p>
+                        <div class="mt-6">
+                            <span class="text-5xl font-bold text-white">$45</span>
+                            <span class="text-lg text-gray-400">/ 月</span>
+                        </div>
+                        <ul class="mt-8 space-y-4 text-left">
+                            <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>每月 <strong class="text-white">無限</strong> 次對話</span>
+                            </li>
+                            <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>上傳 <strong class="text-white">無限</strong> 個檔案</span>
+                            </li>
+                             <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>檔案大小限制 <strong class="text-white">100MB</strong></span>
+                            </li>
+                            <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>優先 API 存取</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="cta-button mt-8 block w-full text-center text-white font-bold py-3 rounded-lg">升級專業版</a>
+                </div>
+                
+                <!-- Plan 4: 企業版 -->
+                <div class="plan-card rounded-2xl p-8 flex flex-col">
+                    <div class="flex-grow">
+                        <h3 class="font-orbitron text-2xl font-bold text-white">企業版</h3>
+                        <p class="mt-4 text-gray-400">客製化、安全且可擴展的方案</p>
+                        <div class="mt-6">
+                            <span class="text-4xl font-bold text-white">客製報價</span>
+                        </div>
+                        <ul class="mt-8 space-y-4 text-left">
+                            <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>所有專業版功能</span>
+                            </li>
+                            <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>專屬部署選項</span>
+                            </li>
+                             <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>進階安全與合規性</span>
+                            </li>
+                            <li class="feature-item flex items-start">
+                                <svg class="w-6 h-6 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>專人客戶支援</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="cta-button mt-8 block w-full text-center text-white font-bold py-3 rounded-lg">聯絡我們</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
