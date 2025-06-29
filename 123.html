@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇點智匯 JudgAI - 方案與價格</title>
+    
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 引入 Google Fonts (Inter & Noto Sans TC) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 自定義樣式 */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* 切換開關的動畫效果 */
+        .toggle-switch-bg:before {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 80%;
+            left: 5%;
+            top: 10%;
+            background-color: white;
+            border-radius: 9999px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        input:checked + .toggle-switch-bg:before {
+            transform: translateX(90%);
+        }
+        
+        /* 推薦標籤的樣式 */
+        .recommended-badge {
+            transform: rotate(45deg);
+        }
+
+        /* 推薦方案高亮動畫 */
+        @keyframes pulse-highlight {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 12px rgba(59, 130, 246, 0);
+            }
+        }
+        .plan-highlight {
+            animation: pulse-highlight 2s ease-out;
+            border-color: #2563eb; /* blue-600 */
+        }
+        
+        /* FAQ details/summary 樣式 */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary .arrow-down {
+            transform: rotate(180deg);
+        }
+
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <div class="container mx-auto px-4 py-12 md:py-20">
+        
+        <!-- 標題區 -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-800 mb-3">選擇最適合您的方案</h1>
+            <p class="text-lg text-slate-500 max-w-2xl mx-auto">無論您是個人工作者還是大型團隊，我們都有對應的方案滿足您的需求。</p>
+        </header>
+
+        <!-- 智慧方案推薦器 -->
+        <section id="recommender" class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg mb-16 border border-slate-200">
+            <h2 class="text-2xl font-bold text-center text-slate-800 mb-2">還在猶豫嗎？</h2>
+            <p class="text-center text-slate-500 mb-8">回答幾個問題，讓我們為您找到最佳方案！</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+                <div>
+                    <label for="user-type" class="block text-sm font-medium text-slate-700 mb-2">您的身分是？</label>
+                    <select id="user-type" class="w-full bg-slate-100 border-slate-200 rounded-lg py-3 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="personal">個人/學生</option>
+                        <option value="professional">專業人士</option>
+                        <option value="team">小型事務所/團隊</option>
+                        <option value="enterprise">中大型企業/法務</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="team-size" class="block text-sm font-medium text-slate-700 mb-2">您的團隊人數？</label>
+                    <select id="team-size" class="w-full bg-slate-100 border-slate-200 rounded-lg py-3 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="1">只有我一人</option>
+                        <option value="2-5">2-5 人</option>
+                        <option value="6-15">6-15 人</option>
+                        <option value="15+">15 人以上</option>
+                    </select>
+                </div>
+                <button id="recommend-btn" class="w-full md:w-auto bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300">查看推薦</button>
+            </div>
+            <p id="recommend-result" class="text-center mt-6 font-semibold text-emerald-700 bg-emerald-50 p-3 rounded-lg hidden"></p>
+        </section>
+
+        <!-- 計費週期切換器 -->
+        <div class="flex justify-center items-center space-x-4 mb-12">
+            <span class="font-medium text-slate-600" id="monthly-label">月繳</span>
+            <label for="billing-cycle-switch" class="relative inline-block w-28 h-12 cursor-pointer">
+                <input type="checkbox" id="billing-cycle-switch" class="sr-only peer">
+                <div class="toggle-switch-bg w-full h-full bg-slate-200 rounded-full absolute top-0 left-0 transition-colors duration-300 peer-checked:bg-blue-600"></div>
+            </label>
+            <span class="font-medium text-slate-400" id="annual-label">
+                年繳 <span class="ml-2 inline-block bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">省下 2 個月!</span>
+            </span>
+        </div>
+
+        <!-- 價格方案網格 -->
+        <div id="pricing-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+
+            <!-- 方案 1: 免費版 (Free) -->
+            <div id="plan-free" class="bg-white rounded-xl shadow-md p-8 flex flex-col border-2 border-transparent transition-all duration-300">
+                <div class="flex-grow">
+                    <h3 class="text-2xl font-bold text-slate-800">免費版</h3>
+                    <p class="text-slate-500 mt-2 mb-6">適合剛入門的個人使用者</p>
+                    <div class="my-4"><span class="text-5xl font-extrabold text-slate-900">$0</span><span class="text-slate-500 font-medium">/ 永久</span></div>
+                    <ul class="space-y-4 text-slate-600 mt-8">
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>每月 10 次 AI 問答</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>基本案件管理</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>500MB 文件儲存空間</li>
+                        <li class="flex items-center text-slate-400"><svg class="w-5 h-5 text-slate-400 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>團隊協作功能</li>
+                    </ul>
+                </div>
+                <button class="w-full mt-8 bg-slate-200 text-slate-700 font-bold py-3 rounded-lg hover:bg-slate-300 transition-colors duration-300">開始免費體驗</button>
+            </div>
+
+            <!-- 方案 2: 專業版 (Pro) -->
+            <div id="plan-pro" class="bg-white rounded-xl shadow-lg p-8 flex flex-col border-2 border-blue-600 relative overflow-hidden transition-all duration-300">
+                <div class="absolute top-0 right-0 w-32 h-32"><div class="absolute text-center recommended-badge bg-blue-600 text-white font-semibold py-1 right-[-48px] top-[32px] w-[170px]">最受歡迎</div></div>
+                <div class="flex-grow">
+                    <h3 class="text-2xl font-bold text-blue-600">專業版</h3>
+                    <p class="text-slate-500 mt-2 mb-6">適合專業人士與小型事務所</p>
+                    <div class="my-4 price-container" data-monthly="1200" data-annually="12000"><span class="text-5xl font-extrabold text-slate-900 price-value">$1,200</span><span class="text-slate-500 font-medium price-period">/ 月</span></div>
+                    <ul class="space-y-4 text-slate-600 mt-8">
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>無限次 AI 問答</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>AI 摘要與進階分析</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>15GB 文件儲存空間</li>
+                        <li class="flex items-center text-slate-400"><svg class="w-5 h-5 text-slate-400 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>團隊協作功能</li>
+                    </ul>
+                </div>
+                <button class="w-full mt-8 bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300">選擇專業版</button>
+            </div>
+
+            <!-- 方案 3: 團隊版 (Team) -->
+            <div id="plan-team" class="bg-white rounded-xl shadow-md p-8 flex flex-col border-2 border-transparent transition-all duration-300">
+                <div class="flex-grow">
+                    <h3 class="text-2xl font-bold text-slate-800">團隊版</h3>
+                    <p class="text-slate-500 mt-2 mb-6">適合需要協作的中小型團隊</p>
+                    <div class="my-4 price-container" data-monthly="3000" data-annually="30000"><span class="text-5xl font-extrabold text-slate-900 price-value">$3,000</span><span class="text-slate-500 font-medium price-period">/ 使用者 / 月</span></div>
+                    <ul class="space-y-4 text-slate-600 mt-8">
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>包含所有專業版功能</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>團隊案件與文件共享</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>進階權限管理</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>50GB/使用者 儲存空間</li>
+                    </ul>
+                </div>
+                <button class="w-full mt-8 bg-slate-800 text-white font-bold py-3 rounded-lg hover:bg-slate-900 transition-colors duration-300">選擇團隊版</button>
+            </div>
+
+            <!-- 方案 4: 企業版 (Enterprise) -->
+            <div id="plan-enterprise" class="bg-white rounded-xl shadow-md p-8 flex flex-col border-2 border-transparent transition-all duration-300">
+                <div class="flex-grow">
+                    <h3 class="text-2xl font-bold text-slate-800">企業版</h3>
+                    <p class="text-slate-500 mt-2 mb-6">為大型組織提供客製化方案</p>
+                    <div class="my-4"><span class="text-4xl font-extrabold text-slate-900">客製報價</span></div>
+                    <ul class="space-y-4 text-slate-600 mt-8">
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>包含所有團隊版功能</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>專屬客戶經理</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>API 串接與系統整合</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>私有雲部署選項</li>
+                    </ul>
+                </div>
+                <button class="w-full mt-8 bg-slate-200 text-slate-700 font-bold py-3 rounded-lg hover:bg-slate-300 transition-colors duration-300">聯絡我們</button>
+            </div>
+        </div>
+
+        <!-- 常見問題 FAQ -->
+        <section id="faq" class="max-w-4xl mx-auto mt-20">
+             <h2 class="text-3xl font-bold text-center text-slate-800 mb-10">常見問題</h2>
+             <div class="space-y-4">
+                <details class="bg-white p-6 rounded-lg shadow-sm group">
+                    <summary class="flex justify-between items-center font-semibold text-slate-800 cursor-pointer">
+                        我可以隨時升級或降級我的方案嗎？
+                        <svg class="w-5 h-5 text-slate-500 transform transition-transform duration-300 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <p class="text-slate-600 mt-4">是的，您可以隨時在您的帳戶設定中升級方案。若要降級或取消，請在當前計費週期結束前操作即可。</p>
+                </details>
+                <details class="bg-white p-6 rounded-lg shadow-sm group">
+                    <summary class="flex justify-between items-center font-semibold text-slate-800 cursor-pointer">
+                        年繳方案真的有比較划算嗎？
+                        <svg class="w-5 h-5 text-slate-500 transform transition-transform duration-300 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <p class="text-slate-600 mt-4">絕對是的！選擇年繳方案，您只需支付 10 個月的費用，即可享用 12 個月的服務，相當於直接打了 83 折優惠。</p>
+                </details>
+                 <details class="bg-white p-6 rounded-lg shadow-sm group">
+                    <summary class="flex justify-between items-center font-semibold text-slate-800 cursor-pointer">
+                        「AI 問答」次數如何計算？
+                        <svg class="w-5 h-5 text-slate-500 transform transition-transform duration-300 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <p class="text-slate-600 mt-4">每一次您向 JudgAI 提問並獲得回覆，即計為一次。這包括但不限於詢問法律見解、生成摘要、分析爭點等。專業版以上方案提供無限次問答，讓您無後顧之憂。</p>
+                </details>
+             </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- 計費週期切換邏輯 ---
+            const toggleSwitch = document.getElementById('billing-cycle-switch');
+            const priceContainers = document.querySelectorAll('.price-container');
+            const monthlyLabel = document.getElementById('monthly-label');
+            const annualLabel = document.getElementById('annual-label');
+
+            function updatePrices() {
+                const isAnnual = toggleSwitch.checked;
+                monthlyLabel.classList.toggle('text-slate-600', !isAnnual);
+                monthlyLabel.classList.toggle('text-slate-400', isAnnual);
+                annualLabel.classList.toggle('text-slate-600', isAnnual);
+                annualLabel.classList.toggle('text-slate-400', !isAnnual);
+
+                priceContainers.forEach(container => {
+                    const priceValueEl = container.querySelector('.price-value');
+                    const pricePeriodEl = container.querySelector('.price-period');
+                    const monthlyPrice = parseInt(container.dataset.monthly);
+                    const annuallyPrice = parseInt(container.dataset.annually);
+                    
+                    if (isAnnual) {
+                        priceValueEl.textContent = `$${annuallyPrice.toLocaleString()}`;
+                        pricePeriodEl.textContent = container.dataset.monthly === '3000' ? '/ 使用者 / 年' : '/ 年';
+                    } else {
+                        priceValueEl.textContent = `$${monthlyPrice.toLocaleString()}`;
+                        pricePeriodEl.textContent = container.dataset.monthly === '3000' ? '/ 使用者 / 月' : '/ 月';
+                    }
+                });
+            }
+            toggleSwitch.addEventListener('change', updatePrices);
+            updatePrices();
+
+            // --- 智慧方案推薦器邏輯 ---
+            const recommendBtn = document.getElementById('recommend-btn');
+            const userTypeSelect = document.getElementById('user-type');
+            const teamSizeSelect = document.getElementById('team-size');
+            const resultText = document.getElementById('recommend-result');
+            const allPlans = document.querySelectorAll('#pricing-grid > div');
+
+            recommendBtn.addEventListener('click', function() {
+                const userType = userTypeSelect.value;
+                const teamSize = teamSizeSelect.value;
+                let recommendedPlanId = 'plan-pro'; // 預設推薦 Pro
+                let recommendationMessage = '';
+
+                if (userType === 'enterprise' || teamSize === '15+') {
+                    recommendedPlanId = 'plan-enterprise';
+                    recommendationMessage = '根據您的規模，我們建議您採用「企業版」以獲得最完整的客製化服務。';
+                } else if (userType === 'team' || teamSize === '6-15' || teamSize === '2-5') {
+                    recommendedPlanId = 'plan-team';
+                    recommendationMessage = '您的團隊需求，最適合使用「團隊版」來進行高效協作。';
+                } else if (userType === 'professional') {
+                    recommendedPlanId = 'plan-pro';
+                    recommendationMessage = '作為專業人士，「專業版」能為您提供最強大的 AI 分析能力。';
+                } else { // personal
+                    recommendedPlanId = 'plan-free';
+                    recommendationMessage = '我們建議您從「免費版」開始，體驗 JudgAI 的基本功能！';
+                }
+                
+                // 移除所有舊的高亮
+                allPlans.forEach(plan => {
+                    plan.classList.remove('plan-highlight');
+                    // 恢復Pro版的預設邊框
+                    if(plan.id === 'plan-pro') {
+                        plan.classList.add('border-blue-600');
+                    } else {
+                        plan.classList.add('border-transparent');
+                    }
+                });
+
+                const recommendedPlanElement = document.getElementById(recommendedPlanId);
+                
+                if (recommendedPlanElement) {
+                    // 滾動到目標位置
+                    recommendedPlanElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // 移除Pro版的預設邊框以避免衝突
+                    document.getElementById('plan-pro').classList.remove('border-blue-600');
+                    document.getElementById('plan-pro').classList.add('border-transparent');
+
+                    // 加上高亮效果
+                    recommendedPlanElement.classList.remove('border-transparent');
+                    recommendedPlanElement.classList.add('plan-highlight');
+
+                    // 顯示推薦訊息
+                    resultText.textContent = recommendationMessage;
+                    resultText.classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
