@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇點智匯 JudgAI - 會員方案</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        /* 針對推薦卡片的特殊樣式 */
+        .recommended-card {
+            transform: scale(1.05);
+        }
+        @media (max-width: 1024px) {
+            .recommended-card {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="container mx-auto px-4 py-12 md:py-20">
+
+        <!-- Header Section -->
+        <div class="text-center mb-12 md:mb-16">
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4">選擇最適合您的方案</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">從免費開始，隨業務成長升級。奇點智匯 JudgAI 提供彈性方案，滿足您在不同階段的需求。</p>
+        </div>
+
+        <!-- Pricing Cards Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-center">
+
+            <!-- Card 1: 免費版 (Free) -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 h-full flex flex-col">
+                <div class="flex-grow">
+                    <h3 class="text-2xl font-bold text-gray-800">免費版</h3>
+                    <p class="text-4xl font-extrabold my-4">$0<span class="text-xl font-medium text-gray-500"> / 月</span></p>
+                    <p class="text-gray-500 mb-6">適合剛起步的個人或開發者。</p>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span><strong>API Tokens:</strong> 3,000 /月</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span><strong>文件分析:</strong> 100 頁 /月</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span>通用雙模型比對</li>
+                        <li class="flex items-center text-gray-400"><span class="mr-3">✖</span>自訂比對模型</li>
+                        <li class="flex items-center text-gray-400"><span class="mr-3">✖</span>報告下載 (PDF/Word)</li>
+                    </ul>
+                </div>
+                <button class="w-full mt-8 bg-white border-2 border-blue-500 text-blue-500 font-bold py-3 px-4 rounded-lg hover:bg-blue-50 transition-transform duration-300">開始使用</button>
+            </div>
+
+            <!-- Card 2: 標準版 (Standard) - Recommended -->
+            <div class="bg-white rounded-2xl shadow-2xl p-8 h-full flex flex-col border-4 border-blue-500 relative recommended-card">
+                <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
+                    <span class="bg-blue-500 text-white text-sm font-bold px-4 py-1 rounded-full">推薦方案</span>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="text-2xl font-bold text-blue-900">標準版</h3>
+                    <p class="text-5xl font-extrabold my-4 text-blue-900">$1,000<span class="text-xl font-medium text-gray-600"> / 月</span></p>
+                    <p class="text-gray-600 mb-6">適合專業人士與新創團隊。</p>
+                    <ul class="space-y-4 text-gray-800">
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span><strong>API Tokens:</strong> 30,000 /月</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span><strong>文件分析:</strong> 3,000 頁 /月</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span><strong>儲值優惠:</strong> 9折</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span>自訂比對模型</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span>報告下載 (PDF/Word)</li>
+                        <li class="flex items-center text-gray-400"><span class="mr-3">✖</span>客製化報告 LOGO</li>
+                    </ul>
+                </div>
+                <button class="w-full mt-8 bg-blue-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-600 transition-transform duration-300 transform hover:scale-105">立即升級</button>
+            </div>
+
+            <!-- Card 3: 專業版 (Professional) -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 h-full flex flex-col">
+                <div class="flex-grow">
+                    <h3 class="text-2xl font-bold text-gray-800">專業版</h3>
+                    <p class="text-4xl font-extrabold my-4">$10,000<span class="text-xl font-medium text-gray-500"> / 月</span></p>
+                    <p class="text-gray-500 mb-6">為中小型企業提供進階功能。</p>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span><strong>API Tokens:</strong> 300,000 /月</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span><strong>文件分析:</strong> 30,000 頁 /月</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span><strong>儲值優惠:</strong> 85折</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span>自訂比對模型</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span>報告下載 (PDF/Word)</li>
+                        <li class="flex items-center"><span class="text-blue-500 mr-3">✔</span>客製化報告 LOGO</li>
+                    </ul>
+                </div>
+                <button class="w-full mt-8 bg-white border-2 border-blue-500 text-blue-500 font-bold py-3 px-4 rounded-lg hover:bg-blue-50 transition-transform duration-300">選擇專業版</button>
+            </div>
+
+            <!-- Card 4: 企業版 (Enterprise) -->
+            <div class="bg-gray-800 text-white rounded-2xl shadow-lg p-8 h-full flex flex-col">
+                <div class="flex-grow">
+                    <h3 class="text-2xl font-bold">企業版</h3>
+                    <p class="text-4xl font-extrabold my-4">客製化</p>
+                    <p class="text-gray-300 mb-6">為大型企業提供專屬解決方案。</p>
+                    <ul class="space-y-4 text-gray-200">
+                        <li class="flex items-center"><span class="text-blue-400 mr-3">✔</span>客製化用量</li>
+                        <li class="flex items-center"><span class="text-blue-400 mr-3">✔</span>企業級私有雲部署</li>
+                        <li class="flex items-center"><span class="text-blue-400 mr-3">✔</span>專人技術支援</li>
+                        <li class="flex items-center"><span class="text-blue-400 mr-3">✔</span>包含所有專業版功能</li>
+                    </ul>
+                </div>
+                <button class="w-full mt-8 bg-white text-gray-800 font-bold py-3 px-4 rounded-lg hover:bg-gray-200 transition-transform duration-300">聯絡我們</button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
