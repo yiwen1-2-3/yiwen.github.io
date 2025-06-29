@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇點智匯 JudgAI - 您的 AI 法律夥伴</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Inter for English, Noto Sans TC for Traditional Chinese -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #f8fafc; /* A light gray background */
+        }
+        /* Style for active tab */
+        .tab-active {
+            border-color: #2563eb; /* Blue-600 */
+            color: #2563eb;
+            background-color: #eff6ff; /* Blue-50 */
+        }
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Animation for hero section elements */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Header & Navigation Bar -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-600">
+                <i class="fas fa-gavel"></i> JudgAI
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#features" class="text-slate-600 hover:text-blue-600 transition-colors">核心功能</a>
+                <a href="#pricing" class="text-slate-600 hover:text-blue-600 transition-colors">方案與價格</a>
+                <a href="#audience" class="text-slate-600 hover:text-blue-600 transition-colors">適用對象</a>
+                <a href="#testimonials" class="text-slate-600 hover:text-blue-600 transition-colors">客戶見證</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#" class="text-slate-600 hover:text-blue-600 transition-colors">登入</a>
+                <a href="#" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition-shadow shadow-md hover:shadow-lg">
+                    免費註冊
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="#features" class="block text-slate-600 hover:text-blue-600 py-2">核心功能</a>
+            <a href="#pricing" class="block text-slate-600 hover:text-blue-600 py-2">方案與價格</a>
+            <a href="#audience" class="block text-slate-600 hover:text-blue-600 py-2">適用對象</a>
+            <a href="#testimonials" class="block text-slate-600 hover:text-blue-600 py-2">客戶見證</a>
+            <hr class="my-2">
+            <a href="#" class="block text-slate-600 hover:text-blue-600 py-2">登入</a>
+            <a href="#" class="block bg-blue-600 text-white text-center px-5 py-2 rounded-full hover:bg-blue-700">免費註冊</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative py-20 md:py-32 bg-white">
+            <div class="absolute inset-0 bg-grid-slate-200/[0.04]" style="background-image: radial-gradient(circle, rgba(59, 130, 246, 0.1) 1px, transparent 1px);"></div>
+            <div class="container mx-auto px-6 text-center relative">
+                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 leading-tight fade-in-up">
+                    奇點智匯 JudgAI：<br class="md:hidden">您的 AI 法律夥伴
+                </h1>
+                <p class="mt-6 text-lg md:text-xl text-slate-600 max-w-3xl mx-auto fade-in-up delay-1">
+                    結合頂尖 AI 技術與巨量判決資料，提供最精準的量刑預測、法律論點生成與案件分析，賦能您的法律決策。
+                </p>
+                <div class="mt-10 flex justify-center space-x-4 fade-in-up delay-2">
+                    <a href="#pricing" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-transform hover:scale-105 shadow-lg">
+                        立即開始免費試用 →
+                    </a>
+                </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto fade-in-up delay-3">
+                    <div class="text-center p-4">
+                        <i class="fas fa-brain text-3xl text-blue-500 mb-3"></i>
+                        <h3 class="font-semibold text-lg">AI 智能預測</h3>
+                        <p class="text-slate-500 text-sm mt-1">秒速獲得量刑參考，掌握訴訟先機。</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <i class="fas fa-file-alt text-3xl text-blue-500 mb-3"></i>
+                        <h3 class="font-semibold text-lg">判決書智慧分析</h3>
+                        <p class="text-slate-500 text-sm mt-1">自動摘要重點、生成爭點，大幅提升閱卷效率。</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <i class="fas fa-lightbulb text-3xl text-blue-500 mb-3"></i>
+                        <h3 class="font-semibold text-lg">論點生成與證據分析</h3>
+                        <p class="text-slate-500 text-sm mt-1">AI 協助您建構有力論點，全面檢視證據。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audience Section -->
+        <section id="audience" class="py-20 bg-slate-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">專為法律專業人士與高效率工作者打造</h2>
+                    <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">無論您的角色為何，JudgAI 都能成為您最強大的後盾。</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow">
+                        <div class="text-blue-600 mb-4"><i class="fas fa-user-tie text-3xl"></i></div>
+                        <h3 class="text-xl font-bold mb-2">專業律師 / 法務</h3>
+                        <p class="text-slate-600">AI 重點摘要、智能推薦類案、客觀量刑預測，提升辦案效率與品質，將繁雜的法律數據轉化為清晰的洞見。</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow">
+                        <div class="text-blue-600 mb-4"><i class="fas fa-user-graduate text-3xl"></i></div>
+                        <h3 class="text-xl font-bold mb-2">學術研究者 / 學生</h3>
+                        <p class="text-slate-600">快速理解判決核心，AI 協助整理學說與實務見解，加速研究進程，讓您專注於策略思考。</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow">
+                        <div class="text-blue-600 mb-4"><i class="fas fa-users text-3xl"></i></div>
+                        <h3 class="text-xl font-bold mb-2">一般民眾</h3>
+                        <p class="text-slate-600">AI 法律問題回覆、量刑預測提供參考，讓您對案件有初步了解，做出更明智的決策。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Table Section -->
+        <section id="pricing" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">選擇最適合您的方案</h2>
+                    <p class="mt-4 text-lg text-slate-600">從免費開始，彈性升級，滿足您不同階段的需求。</p>
+                </div>
+                <div class="overflow-x-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 min-w-[1000px] lg:min-w-0">
+                        <!-- Pricing Plan Cards -->
+                        <div class="border border-slate-200 rounded-xl p-8 flex flex-col">
+                            <h3 class="text-xl font-bold">免費會員</h3>
+                            <p class="mt-2 text-slate-500">適合初步體驗</p>
+                            <p class="mt-6 text-4xl font-bold">$0<span class="text-lg font-medium text-slate-500"> / 月</span></p>
+                            <p class="mt-2 text-slate-500">10 點 Credits</p>
+                            <a href="#" class="mt-8 w-full text-center bg-slate-200 text-slate-800 font-semibold py-3 rounded-lg hover:bg-slate-300 transition-colors">開始使用</a>
+                            <ul class="mt-8 space-y-4 text-slate-600 flex-grow">
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>AI 智能量刑預測</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>AI 法律問題自動回覆</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>AI 判決書重點摘要 (5篇/月)</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>AI 推薦類案 (5篇/月)</li>
+                                <li><i class="fas fa-times-circle text-slate-400 mr-2"></i>AI 法律論點生成</li>
+                                <li><i class="fas fa-times-circle text-slate-400 mr-2"></i>AI 證據分析</li>
+                                <li><i class="fas fa-times-circle text-slate-400 mr-2"></i>案件管理系統</li>
+                            </ul>
+                        </div>
+                        <div class="border border-slate-200 rounded-xl p-8 flex flex-col">
+                            <h3 class="text-xl font-bold">標準會員</h3>
+                            <p class="mt-2 text-slate-500">適合獨立工作者</p>
+                            <p class="mt-6 text-4xl font-bold">$800<span class="text-lg font-medium text-slate-500"> / 月</span></p>
+                            <p class="mt-2 text-slate-500">120 點 Credits</p>
+                            <a href="#" class="mt-8 w-full text-center bg-slate-800 text-white font-semibold py-3 rounded-lg hover:bg-slate-900 transition-colors">選擇標準版</a>
+                            <ul class="mt-8 space-y-4 text-slate-600 flex-grow">
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>AI 智能量刑預測</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>AI 法律問題自動回覆</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>AI 判決書重點摘要</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>AI 推薦類案</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>AI 法律論點生成</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>AI 證據分析</li>
+                                <li><i class="fas fa-times-circle text-slate-400 mr-2"></i>案件管理系統</li>
+                            </ul>
+                        </div>
+                        <div class="border-2 border-blue-600 rounded-xl p-8 flex flex-col relative shadow-2xl">
+                            <span class="absolute top-0 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">最受歡迎</span>
+                            <h3 class="text-xl font-bold text-blue-600">專業會員</h3>
+                            <p class="mt-2 text-slate-500">適合專業律師與法務</p>
+                            <p class="mt-6 text-4xl font-bold">$2,500<span class="text-lg font-medium text-slate-500"> / 月</span></p>
+                            <p class="mt-2 text-slate-500">400 點 Credits</p>
+                            <a href="#" class="mt-8 w-full text-center bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-colors">選擇專業版</a>
+                            <ul class="mt-8 space-y-4 text-slate-600 flex-grow">
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i><b>所有標準會員功能，加上...</b></li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>案件管理系統</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>專人客戶服務</li>
+                                <li><i class="fas fa-times-circle text-slate-400 mr-2"></i>團隊協作功能</li>
+                            </ul>
+                        </div>
+                        <div class="border border-slate-200 rounded-xl p-8 flex flex-col">
+                            <h3 class="text-xl font-bold">企業會員</h3>
+                            <p class="mt-2 text-slate-500">適合事務所與法務團隊</p>
+                            <p class="mt-6 text-4xl font-bold">客製化</p>
+                            <p class="mt-2 text-slate-500">專案洽談</p>
+                            <a href="#" class="mt-8 w-full text-center bg-slate-200 text-slate-800 font-semibold py-3 rounded-lg hover:bg-slate-300 transition-colors">聯絡我們</a>
+                            <ul class="mt-8 space-y-4 text-slate-600 flex-grow">
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i><b>所有專業會員功能，加上...</b></li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>團隊協作功能</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>API 串接服務</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>專屬客戶成功經理</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <div class="text-center mt-8 text-sm text-slate-500">
+                    <p>點數 (Credits) 計算方式：每次 AI 量刑預測消耗 2 點，每次 AI 判決書摘要消耗 5 點。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 bg-slate-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">強大，不止於此</h2>
+                    <p class="mt-4 text-lg text-slate-600">深入了解 JudgAI 如何革新您的法律工作流程。</p>
+                </div>
+                
+                <!-- Tab Controls -->
+                <div class="mb-8 flex justify-center border-b border-slate-200">
+                    <button data-tab="tab1" class="tab-control tab-active px-6 py-3 text-lg font-medium text-slate-500 border-b-2 border-transparent hover:text-blue-600 transition-colors">AI 量刑預測</button>
+                    <button data-tab="tab2" class="tab-control px-6 py-3 text-lg font-medium text-slate-500 border-b-2 border-transparent hover:text-blue-600 transition-colors">AI 智慧分析</button>
+                    <button data-tab="tab3" class="tab-control px-6 py-3 text-lg font-medium text-slate-500 border-b-2 border-transparent hover:text-blue-600 transition-colors">AI 論點生成</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="tab-content">
+                    <div id="tab1" class="tab-panel grid md:grid-cols-2 gap-12 items-center">
+                        <div class="text-left">
+                            <h3 class="text-2xl font-bold mb-4">數據驅動，預見判決</h3>
+                            <p class="text-slate-600 mb-4">上傳案件基本資料，JudgAI 即可基於數百萬份歷史判決，即時生成量刑預測報告。報告包含刑期分佈、類似案件比較，協助您制定最佳訴訟策略，並與客戶建立更穩固的信任基礎。</p>
+                            <ul class="space-y-2 text-slate-700">
+                                <li><i class="fa-solid fa-chart-pie text-blue-500 mr-2"></i>視覺化刑期分佈圖表</li>
+                                <li><i class="fa-solid fa-scale-balanced text-blue-500 mr-2"></i>影響因子權重分析</li>
+                                <li><i class="fa-solid fa-file-invoice text-blue-500 mr-2"></i>一鍵生成專業報告</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/E2E8F0/475569?text=AI+量刑預測儀表板" alt="AI 量刑預測儀表板" class="rounded-md w-full h-auto">
+                        </div>
+                    </div>
+                    <div id="tab2" class="tab-panel hidden grid md:grid-cols-2 gap-12 items-center">
+                        <div class="bg-white p-4 rounded-lg shadow-lg md:order-last">
+                            <img src="https://placehold.co/600x400/E2E8F0/475569?text=AI+判決書摘要示意圖" alt="AI 判決書摘要示意圖" class="rounded-md w-full h-auto">
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-2xl font-bold mb-4">告別茫茫卷海，秒速掌握爭點</h3>
+                            <p class="text-slate-600 mb-4">上傳判決書檔案，AI 自動為您提煉事實摘要、雙方爭點、法院見解。同時，系統會主動推薦高度相關的判決先例，讓您不錯過任何關鍵資訊，大幅提升閱卷效率。</p>
+                             <ul class="space-y-2 text-slate-700">
+                                <li><i class="fa-solid fa-highlighter text-blue-500 mr-2"></i>自動標示關鍵人、事、時、地、物</li>
+                                <li><i class="fa-solid fa-list-check text-blue-500 mr-2"></i>生成雙方攻防爭點摘要</li>
+                                <li><i class="fa-solid fa-magnifying-glass-chart text-blue-500 mr-2"></i>智能推薦關聯判決</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="tab3" class="tab-panel hidden grid md:grid-cols-2 gap-12 items-center">
+                        <div class="text-left">
+                            <h3 class="text-2xl font-bold mb-4">您的虛擬訴訟軍師</h3>
+                            <p class="text-slate-600 mb-4">針對您的案件爭議點，AI 能協助您從不同法學觀點、實務見解出發，生成多個攻擊或防禦論點。更能協助您分析證據之間的關聯性與證明力，建構無懈可擊的訴訟策略。</p>
+                             <ul class="space-y-2 text-slate-700">
+                                <li><i class="fa-solid fa-sitemap text-blue-500 mr-2"></i>多角度論點生成</li>
+                                <li><i class="fa-solid fa-shield-halved text-blue-500 mr-2"></i>分析對手可能主張</li>
+                                <li><i class="fa-solid fa-puzzle-piece text-blue-500 mr-2"></i>檢視證據鏈完整性</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/E2E8F0/475569?text=AI+論點生成流程圖" alt="AI 論點生成流程圖" class="rounded-md w-full h-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">聽聽專業人士怎麼說</h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-slate-100 p-8 rounded-xl">
+                        <p class="text-slate-700 mb-6">"JudgAI 的量刑預測功能讓我對案件的掌握度更高了，跟客戶溝通時也更有底氣。閱卷時間至少節省了 50%！"</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/48x48/64748B/FFFFFF?text=律" alt="王律師" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <p class="font-bold">王大明 律師</p>
+                                <p class="text-sm text-slate-500">XX 律師事務所 主持律師</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-100 p-8 rounded-xl">
+                        <p class="text-slate-700 mb-6">"以前做研究要看幾十篇判決，現在用 JudgAI 的摘要和類案推薦，幾小時就能完成，大大加速了我的研究進程。"</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/48x48/64748B/FFFFFF?text=陳" alt="陳教授" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <p class="font-bold">陳靜宜 教授</p>
+                                <p class="text-sm text-slate-500">國立大學 法律系</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-100 p-8 rounded-xl">
+                        <p class="text-slate-700 mb-6">"作為企業法務，每天要處理的合約和案件很多。JudgAI 幫助我快速評估風險，工作效率顯著提升。"</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/48x48/64748B/FFFFFF?text=李" alt="李法務" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <p class="font-bold">李志偉 法務長</p>
+                                <p class="text-sm text-slate-500">科技股份有限公司</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="py-20 bg-blue-600">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">準備好迎接法律工作的新世代了嗎？</h2>
+                <p class="mt-4 text-lg text-blue-200 max-w-2xl mx-auto">立即註冊，免費體驗 AI 賦能的強大效率。</p>
+                <a href="#" class="mt-8 inline-block bg-white text-blue-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-slate-100 transition-transform hover:scale-105 shadow-lg">
+                    立即免費註冊，獲取 10 點體驗額度 →
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-300">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">JudgAI</h3>
+                    <p class="text-slate-400">您的 AI 法律夥伴，<br>致力於讓法律服務更普及、更高效。</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">網站導覽</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="hover:text-white transition-colors">核心功能</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition-colors">方案與價格</a></li>
+                        <li><a href="#audience" class="hover:text-white transition-colors">適用對象</a></li>
+                        <li><a href="#testimonials" class="hover:text-white transition-colors">客戶見證</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">法律資訊</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition-colors">服務條款</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">隱私權政策</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">聯絡我們</h4>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-envelope mr-2"></i> service@judgai.com</li>
+                        <li><i class="fas fa-phone mr-2"></i> (02) 1234-5678</li>
+                    </ul>
+                    <div class="mt-4 space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-white text-2xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white text-2xl"><i class="fab fa-facebook-square"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-slate-700 pt-8 text-center text-slate-400 text-sm">
+                <p>&copy; 2025 奇點智匯 JudgAI. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // JavaScript for feature tabs
+        const tabControls = document.querySelectorAll('.tab-control');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        tabControls.forEach(control => {
+            control.addEventListener('click', () => {
+                const tabId = control.dataset.tab;
+
+                // Update control styles
+                tabControls.forEach(c => {
+                    c.classList.remove('tab-active');
+                });
+                control.classList.add('tab-active');
+
+                // Show/hide panels
+                tabPanels.forEach(panel => {
+                    if (panel.id === tabId) {
+                        panel.classList.remove('hidden');
+                    } else {
+                        panel.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
