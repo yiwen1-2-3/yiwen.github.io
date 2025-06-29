@@ -27,13 +27,13 @@
             background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
             overflow: hidden;
         }
-        .plan-card {
+        .plan-card, .audience-card {
             background-color: rgba(17, 24, 39, 0.8); /* 半透明玻璃效果 */
             backdrop-filter: blur(10px);
             border: 1px solid rgba(56, 189, 248, 0.2);
             transition: all 0.3s ease-in-out;
         }
-        .plan-card:hover {
+        .plan-card:hover, .audience-card:hover {
             transform: translateY(-10px) scale(1.02);
             border-color: rgba(56, 189, 248, 0.6);
             box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
@@ -126,13 +126,52 @@
 
         <!-- Introduction & Target Audience Section -->
         <section class="py-16 md:py-24 bg-gray-900/50">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="font-orbitron text-3xl md:text-4xl font-bold gradient-text">
                     專為法律專業人士與高效率工作者打造
                 </h2>
                 <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed">
                     無論您是資深律師、企業法務、法律學者，還是正在面對法律挑戰的個人，JudgAI 都能成為您最強大的後盾。我們將繁雜的法律數據轉化為清晰的洞見，讓您專注於策略思考，而非耗時的資料整理。
                 </p>
+                
+                <!-- Target Audience Cards -->
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                    <!-- Card 1: 專業律師/法務 -->
+                    <div class="audience-card p-8 rounded-2xl">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-10 h-10 text-cyan-400 mr-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0 0 12 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-19.5 0c1.01.143 2.01.317 3 .52m-13.5 0H18" /></svg>
+                            <h3 class="text-xl font-bold text-white">專業律師/法務</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <p><strong class="text-gray-200">痛點:</strong> <span class="text-gray-400">閱卷時間長、類案搜尋不易、難以快速評估風險。</span></p>
+                            <p><strong class="text-cyan-200">JudgAI 解方:</strong> <span class="text-cyan-300">AI 重點摘要、智能推薦類案、客觀量刑預測，提升辦案效率與品質。</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: 學術研究者/學生 -->
+                    <div class="audience-card p-8 rounded-2xl">
+                        <div class="flex items-center mb-4">
+                             <svg class="w-10 h-10 text-cyan-400 mr-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
+                            <h3 class="text-xl font-bold text-white">學術研究者/學生</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <p><strong class="text-gray-200">痛點:</strong> <span class="text-gray-400">需要大量閱讀判決書、整理法律爭點。</span></p>
+                            <p><strong class="text-cyan-200">JudgAI 解方:</strong> <span class="text-cyan-300">快速理解判決核心，AI 協助整理學說與實務見解，加速研究進程。</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: 一般民眾 -->
+                    <div class="audience-card p-8 rounded-2xl">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-10 h-10 text-cyan-400 mr-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m-7.5-2.962A3.375 3.375 0 0 1 15 12.25c1.152 0 2.183.654 2.698 1.602M12 3v5.25m0 0A3.375 3.375 0 0 0 15.25 12a3.375 3.375 0 0 0-3.25-3.25M12 3V5.25m0 0A3.375 3.375 0 0 1 8.75 12a3.375 3.375 0 0 1 3.25-3.25m0 0A3.375 3.375 0 0 0 15.25 12a3.375 3.375 0 0 0-3.25-3.25m0 0A3.375 3.375 0 0 1 8.75 12a3.375 3.375 0 0 1 3.25-3.25" /></svg>
+                            <h3 class="text-xl font-bold text-white">一般民眾</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <p><strong class="text-gray-200">痛點:</strong> <span class="text-gray-400">法律問題艱澀難懂、不確定自身權益、擔心訴訟成本。</span></p>
+                            <p><strong class="text-cyan-200">JudgAI 解方:</strong> <span class="text-cyan-300">AI 法律問題回覆、量刑預測提供參考，讓您對案件有初步了解，做出明智決策。</span></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
