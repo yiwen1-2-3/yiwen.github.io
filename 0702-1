@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>傳承的童話：一本關於愛與財富的魔法書</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background-color: #FDF6E3; /* 溫暖的羊皮紙背景色 */
+            color: #583E26;
+            overflow-x: hidden;
+        }
+        .storybook-section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5vw;
+            position: relative;
+            overflow: hidden;
+        }
+        .storybook-section h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .storybook-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            color: #8C5A3A;
+        }
+         .storybook-section p, .storybook-section li {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            line-height: 1.8;
+            max-width: 650px;
+        }
+        .curtain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #FDF6E3;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        /* 插畫風格 */
+        .illustration {
+            position: relative;
+        }
+        .family-silhouette i {
+            font-size: 4rem;
+            margin: 0 0.5rem;
+            color: #775A44;
+            transition: all 0.5s ease;
+        }
+        .lightning-bolt {
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 60%;
+            background: yellow;
+            opacity: 0;
+            clip-path: polygon(50% 0%, 60% 0, 30% 50%, 40% 50%, 20% 100%, 10% 100%, 40% 50%, 30% 50%);
+        }
+        .scales-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 4rem;
+        }
+        .scale {
+            width: 40%;
+            border: 5px solid #A07A5F;
+            border-radius: 10px;
+            padding: 1rem;
+            background: #F3EADF;
+            text-align: center;
+            transition: transform 1s ease-in-out;
+        }
+        .scale-arm {
+            width: 100%;
+            height: 10px;
+            background: #A07A5F;
+            margin-bottom: -5px;
+        }
+        .fulcrum {
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid #A07A5F;
+        }
+        .info-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            border: 2px dashed #8C5A3A;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        .interactive-slider { -webkit-appearance: none; appearance: none; width: 80%; height: 15px; background: #D9C6B4; border-radius: 5px; outline: none; opacity: 0.7; transition: opacity .2s; }
+        .interactive-slider:hover { opacity: 1; }
+        .interactive-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 25px; height: 25px; background: #8C5A3A; border-radius: 50%; cursor: pointer; }
+        .interactive-slider::-moz-range-thumb { width: 25px; height: 25px; background: #8C5A3A; border-radius: 50%; cursor: pointer; }
+        .warning-sign {
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .warning-sign:hover {
+            transform: scale(1.1);
+            color: #D32F2F;
+        }
+        .tree-container { cursor: pointer; text-align: center;}
+        #inheritance-tree { transition: transform 0.8s ease-in-out; transform-origin: bottom center; }
+        .fruit { position: absolute; opacity: 0; transition: all 0.5s ease; cursor: pointer;}
+        .fruit i { font-size: 3rem; color: #E57373; }
+        .fruit-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 50; text-align: center; max-width: 90vw; opacity: 0; pointer-events: none; transition: all 0.3s ease; }
+        #scroll-down {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 開場動畫 -->
+    <div id="curtain" class="curtain">
+        <h1 class="text-4xl md:text-6xl text-center mb-4">一本關於愛與財富的魔法書</h1>
+        <p class="text-xl">- 傳承的童話 -</p>
+        <p class="mt-8 text-lg animate-pulse">點擊任意處開始閱讀</p>
+    </div>
+
+    <div id="storybook-container">
+        <!-- 序章：風暴之眼 -->
+        <section id="prologue" class="storybook-section text-center">
+            <div id="prologue-content">
+                <div class="illustration mb-8">
+                    <div class="family-silhouette">
+                        <i id="father" class="fas fa-male"></i>
+                        <i id="mother-fig" class="fas fa-female"></i>
+                        <i id="child1" class="fas fa-child"></i>
+                        <i id="child2" class="fas fa-child"></i>
+                        <i id="child3" class="fas fa-child"></i>
+                    </div>
+                    <div class="house-roof" style="width: 250px; height: 10px; background: #8C5A3A; margin: 0 auto; border-radius: 5px;"></div>
+                    <div class="house-base" style="width: 200px; height: 100px; background: #D9C6B4; margin: 0 auto;"></div>
+                    <div class="lightning-bolt" id="lightning"></div>
+                </div>
+                <h1 id="main-title" class="opacity-0">財富的兩面刃</h1>
+                <h2 id="sub-title" class="opacity-0">從1.2億遺產風暴，看懂家族傳承的圓滿之道</h2>
+                <div id="scroll-down" class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-0">
+                    <i class="fas fa-chevron-down text-3xl"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第一章：天秤的兩端 -->
+        <section id="chapter1" class="storybook-section">
+            <div class="text-center max-w-4xl mx-auto">
+                <h2>第一章：風暴之眼</h2>
+                <p>悲劇的序幕，始於一個突如其來的句點。當「天理人情」對上「白紙黑字」，衝突因此而生。</p>
+            </div>
+            <div class="scales-container">
+                <div id="scale-left" class="scale">
+                    <h3 class="font-bold text-xl mb-2">母親與兒子的「天理人情」</h3>
+                    <i class="fas fa-heart text-red-500 text-3xl"></i> + <i class="fas fa-home text-yellow-700 text-3xl"></i>
+                    <p class="text-sm mt-2">長年侍奉，理應多得。</p>
+                </div>
+                <div class="fulcrum"></div>
+                <div id="scale-right" class="scale">
+                     <h3 class="font-bold text-xl mb-2">姐妹們的「白紙黑字」</h3>
+                    <i class="fas fa-balance-scale-right text-gray-700 text-3xl"></i> + <i class="fas fa-book text-blue-800 text-3xl"></i>
+                    <p class="text-sm mt-2">法律之前，權利平等。</p>
+                </div>
+            </div>
+            <div id="chapter1-cards" class="mt-8 grid md:grid-cols-2 gap-8 w-full max-w-4xl">
+                 <div id="card-inheritance" class="info-card">
+                    <h3 class="font-bold text-xl mb-2">【法律的冰冷預設】法定繼承</h3>
+                    <p>當沒有遺囑，法律的「公版劇本」會啟動。配偶與所有子女均分遺產。1.2億遺產，四位繼承人...</p>
+                    <div class="mt-4 p-4 bg-yellow-100 rounded-lg text-center">
+                        <span class="font-bold text-2xl">每人應得：3,000 萬元</span>
+                    </div>
+                </div>
+                <div id="card-compulsory" class="info-card">
+                    <h3 class="font-bold text-xl mb-2">【權利的最後防線】特留分</h3>
+                    <p>法律為防止偏心，保障每位子女最基本的繼承權。此權利連遺囑都無法完全剝奪。</p>
+                     <div class="mt-4 p-4 bg-red-100 rounded-lg text-center">
+                        <span class="font-bold text-2xl">每位姐妹特留分：1,500 萬元</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二章：拆彈的藝術 -->
+        <section id="chapter2" class="storybook-section">
+             <div class="text-center max-w-4xl mx-auto">
+                <h2>第二章：拆彈的藝術</h2>
+                <p>專業規劃師提出了一套「雙軌制」操作。不挑戰規則，而是善用規則，優雅地重塑傳承的樣貌。</p>
+            </div>
+            <div class="w-full max-w-5xl text-center mt-8">
+                <h3 class="text-2xl font-bold mb-4">互動體驗：滑動看看，保險如何改變傳承結局</h3>
+                <input id="insurance-slider" type="range" min="0" max="100" value="0" class="interactive-slider">
+                <div class="mt-6 grid md:grid-cols-3 gap-6 text-center">
+                    <div class="p-4 bg-green-100 rounded-xl shadow-md">
+                        <h4 class="font-bold text-lg">母親的遺產總額</h4>
+                        <p id="estate-value" class="text-3xl font-bold text-green-700">6000萬</p>
+                        <p class="text-sm">(不含已投入保險部分)</p>
+                    </div>
+                    <div class="p-4 bg-red-100 rounded-xl shadow-md">
+                        <h4 class="font-bold text-lg">女兒們的特留分(合計)</h4>
+                        <p id="compulsory-value" class="text-3xl font-bold text-red-700">1500萬</p>
+                         <p class="text-sm">(遺產總額的 1/4)</p>
+                    </div>
+                     <div class="p-4 bg-blue-100 rounded-xl shadow-md">
+                        <h4 class="font-bold text-lg">兒子得到的保險金</h4>
+                        <p id="insurance-payout" class="text-3xl font-bold text-blue-700">6000萬</p>
+                         <p class="text-sm">(不計入遺產)</p>
+                    </div>
+                </div>
+                 <p class="mt-6 text-sm italic">假設母親將自己原有的6000萬資產，加上繼承來的3000萬，共有9000萬可規劃。此處假設她將其中6000萬投入保險。</p>
+            </div>
+        </section>
+
+        <!-- 第三章：隱形的紅線 -->
+        <section id="chapter3" class="storybook-section">
+            <div class="text-center max-w-4xl mx-auto">
+                <h2>第三章：風暴的邊界</h2>
+                <p>任何強大的工具都不能濫用。稅務機關手握一把達摩克利斯之劍——「實質課稅原則」。</p>
+            </div>
+            <div class="mt-8 text-center relative w-full max-w-2xl">
+                <div id="sword" class="absolute -top-20 left-1/2 -translate-x-1/2 text-6xl text-gray-500 transition-transform duration-500">
+                    <i class="fa-solid fa-sword"></i>
+                </div>
+                <h3 class="text-2xl mb-4 text-red-700 font-bold">「呷緊弄破碗」的警示紅線</h3>
+                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 text-lg">
+                    <div class="warning-sign" data-warning="一次性繳清所有保費，目的性過於明顯。">
+                        <i class="fas fa-coins text-4xl mb-2"></i><p>躉繳投保</p>
+                    </div>
+                    <div class="warning-sign" data-warning="不合常理的年齡或健康狀況下投保，會被嚴格審視。">
+                        <i class="fas fa-user-plus text-4xl mb-2"></i><p>高齡帶病</p>
+                    </div>
+                    <div class="warning-sign" data-warning="投保後極短時間內身故，會被認為是規避行為。">
+                        <i class="fas fa-bolt text-4xl mb-2"></i><p>短期密集</p>
+                    </div>
+                    <div class="warning-sign" data-warning="保費與資力顯不相當，或來自借貸，易被挑戰。">
+                        <i class="fas fa-sack-dollar text-4xl mb-2"></i><p>鉅額投保</p>
+                    </div>
+                </div>
+                <p id="warning-text" class="mt-8 text-xl font-bold h-12"></p>
+                <p class="mt-8 text-2xl italic">「時間」是最好的朋友，也是最公正的裁判。</p>
+            </div>
+        </section>
+
+        <!-- 第四章：超越金錢 -->
+        <section id="chapter4" class="storybook-section">
+             <div class="text-center max-w-4xl mx-auto">
+                <h2>第四章：超越金錢的維度</h2>
+                <p>真正的圓滿，是維繫家庭關係。點擊下方的水壺，為傳承之樹澆水，看看它會結出什麼果實。</p>
+            </div>
+            <div id="tree-section" class="mt-8 text-center relative">
+                 <div class="tree-container" onclick="growTree()">
+                    <div id="tree-wrapper" style="position: relative; width: 300px; height: 400px; margin: 0 auto;">
+                        <svg id="inheritance-tree" width="100%" height="100%" viewBox="0 0 100 100" style="transform: scale(0.2);">
+                           <path d="M50 100 V 20 H 45 V 20 Q 30 20 30 35 T 20 50 Q 10 55 5 70 M50 20 H 55 V 20 Q 70 20 70 35 T 80 50 Q 90 55 95 70 M50 25 Q 60 25 60 40 T 55 60 M50 25 Q 40 25 40 40 T 45 60" stroke="#8B4513" stroke-width="5" fill="none" />
+                        </svg>
+                        <div id="fruit1" class="fruit" style="top: 35%; left: 15%;"><i class="fas fa-comments"></i></div>
+                        <div id="fruit2" class="fruit" style="top: 45%; left: 65%;"><i class="fas fa-scroll"></i></div>
+                        <div id="fruit3" class="fruit" style="top: 60%; left: 30%;"><i class="fas fa-envelope-open-text"></i></div>
+                    </div>
+                    <div class="mt-4">
+                        <i class="fas fa-tint text-5xl text-blue-500 animate-pulse"></i>
+                        <p>點我澆水</p>
+                    </div>
+                </div>
+            </div>
+             <div id="fruit-popup" class="fruit-popup">
+                <h3 id="popup-title" class="text-2xl font-bold mb-2"></h3>
+                <p id="popup-text"></p>
+                <button onclick="closePopup()" class="mt-4 px-6 py-2 bg-yellow-600 text-white rounded-lg">關閉</button>
+            </div>
+        </section>
+        
+        <!-- 結論 -->
+        <section id="conclusion" class="storybook-section bg-[#E9DCC9]">
+            <div class="text-center max-w-3xl mx-auto">
+                <i class="fas fa-crown text-6xl text-yellow-500 mb-8"></i>
+                <h1 class="mb-6">讓愛，為您的傳承智慧加冕</h1>
+                <p>成功的財富傳承，從來不是一道單純的法律或數學題，它是一場考驗人性、智慧與遠見的綜合藝術。它需要我們左手拿著法律的羅盤，右手捧著溫暖的同理心，在理性的規劃中，注入感性的關懷。</p>
+                <p class="mt-4 font-bold">唯有如此，財富才能真正成為祝福，實現「家和萬事興」的願景。</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+        // --- 全局設定 ---
+        const formatCurrency = (num) => new Intl.NumberFormat('zh-TW').format(num);
+
+        // --- 開場動畫 ---
+        const curtain = document.getElementById('curtain');
+        curtain.addEventListener('click', () => {
+            gsap.to(curtain, {
+                opacity: 0,
+                duration: 1,
+                onComplete: () => {
+                    curtain.style.display = 'none';
+                    document.body.style.overflowY = 'auto';
+                    // 觸發序章動畫
+                    const tlPrologue = gsap.timeline();
+                    tlPrologue.to("#father", { opacity: 0, duration: 1.5, ease: 'power2.inOut' })
+                        .to("#prologue", { backgroundColor: '#B0C4DE', duration: 1.5 }, "-=1.5")
+                        .to("#lightning", { opacity: 1, duration: 0.1, repeat: 2, yoyo: true }, "-=0.5")
+                        .to(".house-roof", { y: 5, x: 5, rotate: -2, duration: 0.1, repeat: 2, yoyo: true }, "-=0.5")
+                        .to(["#main-title", "#sub-title", "#scroll-down"], { opacity: 1, duration: 1, stagger: 0.3 });
+                }
+            });
+        });
+        
+        // --- 新增：向下箭頭點擊功能 ---
+        const scrollDownArrow = document.getElementById('scroll-down');
+        scrollDownArrow.addEventListener('click', () => {
+            gsap.to(window, { duration: 1.5, scrollTo: "#chapter1", ease: 'power2.inOut' });
+        });
+
+
+        // --- 第一章：天秤動畫 ---
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: "#chapter1",
+                start: "top center",
+                toggleActions: "play none none none",
+            }
+        })
+        .fromTo("#scale-left", { x: -100, opacity: 0 }, { x: 0, opacity: 1, duration: 1 })
+        .fromTo("#scale-right", { x: 100, opacity: 0 }, { x: 0, opacity: 1, duration: 1 }, "-=1")
+        .fromTo(".fulcrum", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, "-=1")
+        .to("#scale-left", { transform: 'translateY(20px) rotate(-3deg)', duration: 1.5, ease: 'elastic.out(1, 0.5)'})
+        .to("#scale-right", { transform: 'translateY(-20px) rotate(3deg)', duration: 1.5, ease: 'elastic.out(1, 0.5)'}, "-=1.5")
+        .to(["#card-inheritance", "#card-compulsory"], {
+            opacity: 1,
+            scale: 1,
+            stagger: 0.5,
+            duration: 0.8,
+            ease: 'back.out(1.7)'
+        });
+        
+        // --- 第二章：互動滑桿 ---
+        const slider = document.getElementById('insurance-slider');
+        const estateValueEl = document.getElementById('estate-value');
+        const compulsoryValueEl = document.getElementById('compulsory-value');
+        const insurancePayoutEl = document.getElementById('insurance-payout');
+
+        const totalPlannableAssets = 90000000; // 假設總可規劃資產
+        const fatherInheritance = 30000000; // 來自父親的遺產
+
+        function updateValues() {
+            const percentage = slider.value;
+            const amountToInsurance = totalPlannableAssets * (percentage / 100);
+            
+            const remainingEstate = fatherInheritance + (totalPlannableAssets - amountToInsurance);
+            const compulsoryPortionTotal = (remainingEstate / 4) * (1/2) * 2; // 兩位姐妹的特留分合計
+            const insurancePayout = amountToInsurance;
+
+            estateValueEl.textContent = formatCurrency(Math.round(remainingEstate/10000)) + '萬';
+            compulsoryValueEl.textContent = formatCurrency(Math.round(compulsoryPortionTotal/10000)) + '萬';
+            insurancePayoutEl.textContent = formatCurrency(Math.round(insurancePayout/10000)) + '萬';
+        }
+        slider.addEventListener('input', updateValues);
+        updateValues(); // 初始化
+
+        // --- 第三章：警告標示 ---
+        const warningSigns = document.querySelectorAll('.warning-sign');
+        const warningText = document.getElementById('warning-text');
+        const sword = document.getElementById('sword');
+
+        warningSigns.forEach(sign => {
+            sign.addEventListener('mouseenter', () => {
+                warningText.textContent = sign.dataset.warning;
+                gsap.to(sword, { y: 20, rotate: -5, duration: 0.2, ease: 'power2.out' });
+                gsap.to(sword, { y: 0, rotate: 0, delay: 0.2, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
+
+            });
+             sign.addEventListener('mouseleave', () => {
+                warningText.textContent = '';
+            });
+        });
+
+        // --- 第四章：樹木成長 ---
+        let treeGrowth = 0;
+        const tree = document.getElementById('inheritance-tree');
+        const fruits = document.querySelectorAll('.fruit');
+        
+        function growTree() {
+            if (treeGrowth < 3) {
+                treeGrowth++;
+                const newScale = 0.2 + treeGrowth * 0.28;
+                gsap.to(tree, { scale: newScale, duration: 1, ease: 'back.out(1.7)' });
+                
+                if (treeGrowth >= 1) gsap.to("#fruit1", { opacity: 1, delay: 0.5 });
+                if (treeGrowth >= 2) gsap.to("#fruit2", { opacity: 1, delay: 0.5 });
+                if (treeGrowth >= 3) gsap.to("#fruit3", { opacity: 1, delay: 0.5 });
+            }
+        }
+        
+        const popup = document.getElementById('fruit-popup');
+        const popupTitle = document.getElementById('popup-title');
+        const popupText = document.getElementById('popup-text');
+        
+        const fruitData = {
+            fruit1: { title: '溝通的果實', text: '絕大多數的家庭紛爭，源於「資訊的真空」與「情感的誤讀」。一場坦誠的家庭會議，其價值勝過千萬元的律師費。' },
+            fruit2: { title: '價值的果實', text: '您希望留給孩子的，僅僅是數字嗎？還是家族精神與處世智慧？可以共同撰寫一份「家族憲章」，傳承無形的財富。' },
+            fruit3: { title: '情感的果實', text: '在法律文件之外，親手寫下一封充滿愛的信。這份「情感的遺產」能撫平傷痕，讓愛成為永恆的連結。' },
+        };
+
+        fruits.forEach(fruit => {
+            fruit.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const data = fruitData[fruit.id];
+                popupTitle.textContent = data.title;
+                popupText.textContent = data.text;
+                gsap.to(popup, { opacity: 1, pointerEvents: 'auto' });
+            });
+        });
+
+        function closePopup() {
+            gsap.to(popup, { opacity: 0, pointerEvents: 'none' });
+        }
+        
+        // 確保點擊 popup 外部也能關閉
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                closePopup();
+            }
+        });
+
+
+    </script>
+</body>
+</html>
