@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>財富的兩面刃：互動式傳承智慧網頁</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 自定義樣式與動畫 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #0a192f; /* 深藍色背景 */
+            color: #ccd6f6; /* 淺色文字 */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #e6f1ff; /* 標題亮色 */
+        }
+        .highlight-red {
+            color: #ff4d4d; /* 紅色亮點 */
+        }
+        .bg-navy-light {
+            background-color: #112240; /* 較淺的深藍色，用於卡片背景 */
+        }
+
+        /* 首屏動態背景 */
+        .hero-bg {
+            background: linear-gradient(270deg, #0a192f, #112240, #0a192f);
+            background-size: 600% 600%;
+            animation: gradientAnimation 16s ease infinite;
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 向下滾動箭頭動畫 */
+        .scroll-down-arrow {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* 互動計算機動畫 */
+        .split-container .split-item {
+            transition: all 0.8s ease-in-out;
+        }
+        .split-container.split-active .split-item {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* 特留分模擬器動畫 */
+        #son-share-bar, #sisters-share-bar {
+            transition: width 1s ease-in-out;
+        }
+
+        /* 策略卡片翻轉效果 */
+        .card-container {
+            perspective: 1000px;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        .card-container.is-flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #1e3a5f;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+            background-color: #1e3a5f; /* 翻轉後顏色 */
+        }
+
+        /* 隱形紅線掃描動畫 */
+        .red-line-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .red-line-scan::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255, 50, 50, 0.8), transparent);
+            animation: scan 4s linear infinite;
+        }
+        @keyframes scan {
+            0% { transform: translateY(-10px); }
+            50% { transform: translateY(calc(100% + 10px)); }
+            100% { transform: translateY(-10px); }
+        }
+
+        /* 滾動淡入效果 */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* CTA 按鈕光暈效果 */
+        .cta-button {
+            box-shadow: 0 0 5px #ff4d4d, 0 0 15px #ff4d4d;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 5px #ff4d4d, 0 0 15px #ff4d4d; }
+            50% { box-shadow: 0 0 20px #ff4d4d, 0 0 40px #ff4d4d; }
+            100% { box-shadow: 0 0 5px #ff4d4d, 0 0 15px #ff4d4d; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 首屏 -->
+    <header class="hero-bg min-h-screen flex flex-col justify-center items-center text-center p-4 relative">
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-wider">
+            財富的<span class="highlight-red">兩面刃</span>
+        </h1>
+        <p class="text-lg md:text-2xl max-w-3xl mx-auto">
+            從1.2億遺產風暴，看懂家族傳承的圓滿之道
+        </p>
+        <div class="absolute bottom-10 scroll-down-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16 md:py-24 space-y-24 md:space-y-32">
+        
+        <!-- 第一章：風暴之眼 -->
+        <section class="fade-in-section">
+            <h2 class="text-3xl md:text-4xl text-center mb-12">
+                <span class="highlight-red">第一章：</span>風暴之眼
+            </h2>
+            <p class="text-center max-w-3xl mx-auto mb-16 text-lg">當「天理人情」對上「白紙黑字」，悲劇的序幕，往往始於一個突如其來的句點。那份來不及簽署的遺囑，成了家庭關係中最大的真空。</p>
+            
+            <div class="grid md:grid-cols-3 gap-8 items-center text-center">
+                <!-- 母親視角 -->
+                <div class="perspective-card cursor-pointer p-6 bg-navy-light rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow" data-character="mother">
+                    <img src="https://placehold.co/100x100/112240/ff4d4d?text=母" alt="母親頭像" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-red-400">
+                    <h3 class="text-xl font-bold mb-2">母親的視角</h3>
+                    <p class="text-gray-400">天理人情</p>
+                </div>
+                
+                <!-- 核心衝突 -->
+                <div class="flex flex-col items-center">
+                    <div class="text-4xl font-bold highlight-red">1.2億</div>
+                    <p class="text-xl mb-2">遺產風暴</p>
+                    <div class="text-5xl my-4 text-red-500 animate-pulse">VS</div>
+                    <p class="text-lg">公說公有理，婆說婆有理</p>
+                </div>
+
+                <!-- 姐妹視角 -->
+                <div class="perspective-card cursor-pointer p-6 bg-navy-light rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow" data-character="sisters">
+                    <img src="https://placehold.co/100x100/112240/ff4d4d?text=姐妹" alt="姐妹頭像" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-red-400">
+                    <h3 class="text-xl font-bold mb-2">姐妹的視角</h3>
+                    <p class="text-gray-400">白紙黑字</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二章：法律的預設劇本 -->
+        <section class="fade-in-section">
+            <h2 class="text-3xl md:text-4xl text-center mb-12">
+                <span class="highlight-red">第二章：</span>法律的預設劇本
+            </h2>
+            
+            <!-- 法定繼承 -->
+            <div class="bg-navy-light p-8 rounded-lg mb-16">
+                <h3 class="text-2xl text-center font-bold mb-2">無遺囑下的「法定繼承」</h3>
+                <p class="text-center text-gray-400 mb-8">若無規劃，法律的「公版劇本」將如何上演？</p>
+                <div class="text-center mb-8">
+                    <div class="inline-block bg-gray-900 p-4 rounded-lg text-2xl font-bold">遺產總額: <span class="highlight-red">NT$ 120,000,000</span></div>
+                </div>
+                <div class="text-center mb-12">
+                    <button id="start-inheritance-btn" class="bg-red-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-red-600 transition-colors">啟動法定繼承</button>
+                </div>
+                <div id="inheritance-results" class="split-container grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                    <div class="split-item p-4 bg-gray-900 rounded-lg transform -translate-y-5 opacity-0">
+                        <p class="text-lg">母親</p><p class="text-2xl font-bold highlight-red">3,000萬</p>
+                    </div>
+                    <div class="split-item p-4 bg-gray-900 rounded-lg transform -translate-y-5 opacity-0" style="transition-delay: 0.1s;">
+                        <p class="text-lg">兒子</p><p class="text-2xl font-bold highlight-red">3,000萬</p>
+                    </div>
+                    <div class="split-item p-4 bg-gray-900 rounded-lg transform -translate-y-5 opacity-0" style="transition-delay: 0.2s;">
+                        <p class="text-lg">姐妹A</p><p class="text-2xl font-bold highlight-red">3,000萬</p>
+                    </div>
+                    <div class="split-item p-4 bg-gray-900 rounded-lg transform -translate-y-5 opacity-0" style="transition-delay: 0.3s;">
+                        <p class="text-lg">姐妹B</p><p class="text-2xl font-bold highlight-red">3,000萬</p>
+                    </div>
+                </div>
+                 <p id="inheritance-info" class="text-center text-gray-400 mt-8 opacity-0 transition-opacity duration-1000">根據《民法》第1144條，配偶與子女共同繼承時，應繼分「均分」。</p>
+            </div>
+
+            <!-- 特留分 -->
+            <div class="bg-navy-light p-8 rounded-lg">
+                <h3 class="text-2xl text-center font-bold mb-2">無法迴避的「特留分」</h3>
+                <p class="text-center text-gray-400 mb-8">如果遺囑將全部財產只給兒子，能成功嗎？</p>
+                <div class="text-center mb-8">
+                    <button id="start-terufen-btn" class="bg-red-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-red-600 transition-colors">見證「特留分」的強制力</button>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between mb-1"><span>兒子</span><span>NT$ <span id="son-share-value">120,000,000</span></span></div>
+                        <div class="w-full bg-gray-700 rounded-full h-4"><div id="son-share-bar" class="bg-blue-500 h-4 rounded-full" style="width: 100%;"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1"><span>姐妹 (合計)</span><span>NT$ <span id="sisters-share-value">0</span></span></div>
+                        <div class="w-full bg-gray-700 rounded-full h-4"><div id="sisters-share-bar" class="bg-pink-500 h-4 rounded-full" style="width: 0%;"></div></div>
+                    </div>
+                </div>
+                <p id="terufen-info" class="text-center text-gray-400 mt-8 opacity-0 transition-opacity duration-1000">根據《民法》第1223條，姐妹的特留分各為應繼分(1/4)的1/2，即遺產的1/8。任何遺囑都無法剝奪這各1,500萬的權利。</p>
+            </div>
+        </section>
+
+        <!-- 第三章：拆彈的藝術 -->
+        <section class="fade-in-section">
+            <h2 class="text-3xl md:text-4xl text-center mb-12">
+                <span class="highlight-red">第三章：</span>拆彈的藝術
+            </h2>
+            <p class="text-center max-w-3xl mx-auto mb-16 text-lg">專業規劃師提出的方案，並非單純的法律說教，而是一套精準、合法且充滿智慧的「雙軌制」操作。</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- 遺囑規劃卡片 -->
+                <div class="card-container h-80 cursor-pointer">
+                    <div class="card-inner">
+                        <div class="card-face bg-navy-light">
+                             <h3 class="text-2xl font-bold mb-4">第一軌：遺囑規劃</h3>
+                             <p class="text-lg">為傳承意願，立下「定海神針」</p>
+                             <p class="mt-4 text-red-400">(點擊查看詳情)</p>
+                        </div>
+                        <div class="card-face card-back">
+                             <ul class="list-disc list-inside space-y-3 text-left">
+                                 <li><span class="font-bold">固化意願：</span>將心願轉化為法律文件。</li>
+                                 <li><span class="font-bold">主動拆彈：</span>將女兒從權利爭取者，變為主動受贈者。</li>
+                                 <li><span class="font-bold">建立防火牆：</span>指定中立執行人，隔離利益衝突。</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- 保險規劃卡片 -->
+                <div class="card-container h-80 cursor-pointer">
+                    <div class="card-inner">
+                        <div class="card-face bg-navy-light">
+                             <h3 class="text-2xl font-bold mb-4">第二軌：善用保單</h3>
+                             <p class="text-lg">開闢獨立於遺產之外的「傳承密道」</p>
+                             <p class="mt-4 text-red-400">(點擊查看詳情)</p>
+                        </div>
+                        <div class="card-face card-back">
+                            <ul class="list-disc list-inside space-y-3 text-left">
+                                 <li><span class="font-bold">傳承密道：</span>運用《保險法》第112條，保險金不計入遺產。</li>
+                                 <li><span class="font-bold">合法縮小遺產：</span>投入保險的資金，脫離遺產範疇。</li>
+                                 <li><span class="font-bold">釜底抽薪：</span>降低特留分計算基礎，實現雙贏。</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第四章：隱形的紅線 -->
+        <section class="fade-in-section">
+             <h2 class="text-3xl md:text-4xl text-center mb-12">
+                <span class="highlight-red">第四章：</span>風暴的邊界
+            </h2>
+            <div class="bg-navy-light p-8 rounded-lg red-line-container">
+                <div class="red-line-scan"></div>
+                <h3 class="text-2xl text-center font-bold mb-2">「實質課稅」這條隱形的紅線</h3>
+                <p class="text-center text-gray-400 mb-8">任何過於倉促、不合常理的規劃，都可能弄巧成拙。請留意觸發警報的行為：</p>
+                <div class="max-w-md mx-auto space-y-4">
+                    <div class="flex items-center p-3 bg-gray-900 rounded-lg">
+                        <span class="text-red-500 font-bold text-2xl mr-4">[!]</span>
+                        <span><strong>躉繳投保：</strong>一次性繳清所有保費。</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-gray-900 rounded-lg">
+                        <span class="text-red-500 font-bold text-2xl mr-4">[!]</span>
+                        <span><strong>高齡與帶病投保：</strong>不符合正常核保邏輯。</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-gray-900 rounded-lg">
+                        <span class="text-red-500 font-bold text-2xl mr-4">[!]</span>
+                        <span><strong>短期密集投保：</strong>投保後極短時間內身故。</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-gray-900 rounded-lg">
+                        <span class="text-red-500 font-bold text-2xl mr-4">[!]</span>
+                        <span><strong>鉅額投保：</strong>保險金額與資力顯不相當。</span>
+                    </div>
+                </div>
+                <p class="text-center text-lg mt-8 italic">「時間」是最好的朋友，也是最公正的裁判。</p>
+            </div>
+        </section>
+
+        <!-- 第五章：超越金錢 -->
+        <section class="fade-in-section">
+            <h2 class="text-3xl md:text-4xl text-center mb-16">
+                <span class="highlight-red">第五章：</span>超越金錢的維度
+            </h2>
+            <div class="space-y-12">
+                <div class="fade-in-section text-center max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-4 highlight-red">溝通，是預防家庭戰爭的唯一疫苗</h3>
+                    <p class="text-lg">絕大多數的家庭紛爭，都源於「資訊的真空」與「情感的誤讀」。一場坦誠的家庭會議，其價值勝過千萬元的律師費。</p>
+                </div>
+                <div class="fade-in-section text-center max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-4 highlight-red">傳承「價值觀」，而非僅是「價格」</h3>
+                    <p class="text-lg">您希望留給孩子的，僅僅是一串銀行帳戶上的數字嗎？可以考慮與家人共同撰寫一份「家族憲章」，將無形的精神財富，融入有形的物質傳承之中。</p>
+                </div>
+                <div class="fade-in-section text-center max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-4 highlight-red">手寫一份溫暖的「情感遺囑」</h3>
+                    <p class="text-lg">在信中，解釋您做這些決定的用心，肯定他們在您生命中的獨特價值。這份「情感的遺產」，是任何金錢都無法衡量的。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 結論與 CTA -->
+        <section class="fade-in-section text-center py-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">讓<span class="highlight-red">愛</span>，為您的傳承智慧加冕</h2>
+            <p class="max-w-3xl mx-auto text-lg mb-12">成功的財富傳承，是法律羅盤與同理心的結合。在理性的規劃中，注入感性的關懷，財富才能真正成為祝福，實現「家和萬事興」的永恆願景。</p>
+            <button class="cta-button bg-red-500 text-white font-bold py-4 px-10 rounded-lg text-xl hover:bg-red-600 transition-all duration-300">
+                開啟您的傳承規劃對話
+            </button>
+        </section>
+    </main>
+
+    <!-- 彈出視窗 Modal -->
+    <div id="perspective-modal" class="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center p-4 z-50 hidden">
+        <div class="bg-navy-light rounded-lg p-8 max-w-lg w-full relative">
+            <button id="modal-close-btn" class="absolute top-4 right-4 text-white text-2xl">&times;</button>
+            <h3 id="modal-title" class="text-2xl font-bold mb-4 highlight-red"></h3>
+            <p id="modal-content" class="text-lg"></p>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // 滾動淡入效果
+        const faders = document.querySelectorAll('.fade-in-section');
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // 第一章：視角卡片點擊
+        const perspectiveCards = document.querySelectorAll('.perspective-card');
+        const modal = document.getElementById('perspective-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        const contents = {
+            mother: {
+                title: '母親的「天理人情」',
+                text: '長年侍奉左右、一肩扛起照顧責任的兒子，理應獲得絕大部分財產。這份心意，植根於對付出的直接感知，在她心中，這是最樸素的公平正義。'
+            },
+            sisters: {
+                title: '姐妹的「白紙黑字」',
+                text: '從海外返台奔喪的姐妹，帶來的是另一把尺——法律。她們的主張，並非全然出於貪婪，而是基於《民法》賦予她們不容剝奪的權利。'
+            }
+        };
+
+        perspectiveCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const character = card.dataset.character;
+                modalTitle.textContent = contents[character].title;
+                modalContent.textContent = contents[character].text;
+                modal.classList.remove('hidden');
+            });
+        });
+
+        modalCloseBtn.addEventListener('click', () => modal.classList.add('hidden'));
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+
+        // 第二章：法定繼承計算機
+        const startInheritanceBtn = document.getElementById('start-inheritance-btn');
+        const inheritanceResults = document.getElementById('inheritance-results');
+        const inheritanceInfo = document.getElementById('inheritance-info');
+
+        startInheritanceBtn.addEventListener('click', () => {
+            inheritanceResults.classList.add('split-active');
+            inheritanceInfo.style.opacity = '1';
+            startInheritanceBtn.disabled = true;
+            startInheritanceBtn.style.opacity = '0.5';
+        });
+
+        // 第二章：特留分模擬器
+        const startTerufenBtn = document.getElementById('start-terufen-btn');
+        const sonShareBar = document.getElementById('son-share-bar');
+        const sistersShareBar = document.getElementById('sisters-share-bar');
+        const sonShareValue = document.getElementById('son-share-value');
+        const sistersShareValue = document.getElementById('sisters-share-value');
+        const terufenInfo = document.getElementById('terufen-info');
+
+        startTerufenBtn.addEventListener('click', () => {
+            // 兒子份額從 1.2億 變 9000萬 (75%)
+            sonShareBar.style.width = '75%';
+            sonShareValue.textContent = '90,000,000';
+            
+            // 姐妹份額從 0 變 3000萬 (25%)
+            sistersShareBar.style.width = '25%';
+            sistersShareValue.textContent = '30,000,000';
+            
+            terufenInfo.style.opacity = '1';
+            startTerufenBtn.disabled = true;
+            startTerufenBtn.style.opacity = '0.5';
+        });
+
+        // 第三章：策略卡片翻轉
+        const cards = document.querySelectorAll('.card-container');
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('is-flipped');
+            });
+        });
+
+    });
+    </script>
+</body>
+</html>
